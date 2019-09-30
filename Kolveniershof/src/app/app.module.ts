@@ -9,7 +9,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatIconModule } from "@angular/material/icon";
 import { NavComponent } from "./components/nav/nav.component";
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatFormFieldModule , MatInputModule } from "@angular/material";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatCardModule } from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -25,7 +27,10 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
