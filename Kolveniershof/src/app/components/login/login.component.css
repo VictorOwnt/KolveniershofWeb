@@ -33,11 +33,26 @@
   transform: translate(-50%, -50%);
 }
 
-mat-card-title {
+::ng-deep mat-card-title {
   background-color: #2e7be8;
   color: white;
+  padding: 15px;
 }
 
-button{
-    background-color: #2e7be8;
+mat-card-content {
+  padding: 3em;
+  padding-bottom: 0;
+}
+
+mat-card-actions {
+  padding-top: 0;
+  padding: 2.5em;
+}
+
+mat-card {
+  padding: 0;
+}
+
+button {
+  background-color: #2e7be8;
 }
