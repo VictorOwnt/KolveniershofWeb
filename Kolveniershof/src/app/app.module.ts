@@ -12,13 +12,16 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatFormFieldModule , MatInputModule } from "@angular/material";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
+import { FooterComponent } from './components/footer/footer.component';
+import {MatButtonModule, MatButton} from '@angular/material/button';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
-    NavComponent
+    NavComponent,
+    FooterComponent
   ],
   imports: [
     MatMenuModule,
@@ -30,6 +33,7 @@ import { MatCardModule } from "@angular/material/card";
     MatFormFieldModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatButtonModule,
     MatInputModule
   ],
   providers: [],
