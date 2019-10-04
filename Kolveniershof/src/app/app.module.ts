@@ -16,6 +16,7 @@ import { FooterComponent } from "./footer/footer.component";
 import {MatButtonModule, MatButton} from "@angular/material/button";
 import { UserModule } from "./user/user.module";
 import { httpInterceptorProviders } from './Interceptors';
+import { WeekScheduleComponent } from './week-schedule/week-schedule.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { httpInterceptorProviders } from './Interceptors';
     LoginComponent,
     PageNotFoundComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    WeekScheduleComponent
   ],
   imports: [
     MatMenuModule,
