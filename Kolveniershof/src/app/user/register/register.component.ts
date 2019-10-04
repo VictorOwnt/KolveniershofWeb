@@ -1,4 +1,4 @@
-/*import { AuthenticationService } from "../authentication.service";
+import { AuthenticationService } from "../authentication.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import {
@@ -76,9 +76,7 @@ export class RegisterComponent implements OnInit {
     if (errors.required) {
       return "is required";
     } else if (errors.minlength) {
-      return `needs at least ${
-        errors.minlength.requiredLength
-      } characters (got ${errors.minlength.actualLength})`;
+      return `needs at least ${errors.minlength.requiredLength} characters (got ${errors.minlength.actualLength})`;
     } else if (errors.userAlreadyExists) {
       return `user already exists`;
     } else if (errors.email) {
@@ -112,16 +110,11 @@ export class RegisterComponent implements OnInit {
         (err: HttpErrorResponse) => {
           console.log(err);
           if (err.error instanceof Error) {
-            this.errorMsg = `Error while trying to login user ${
-              this.user.value.email
-            }: ${err.error.message}`;
+            this.errorMsg = `Error while trying to login user ${this.user.value.email}: ${err.error.message}`;
           } else {
-            this.errorMsg = `Error ${err.status} while trying to login user ${
-              this.user.value.email
-            }: ${err.error}`;
+            this.errorMsg = `Error ${err.status} while trying to login user ${this.user.value.email}: ${err.error}`;
           }
         }
       );
   }
-}*/
-
+}
