@@ -23,7 +23,8 @@ import { httpInterceptorProviders } from "./Interceptors";
     LoginComponent,
     PageNotFoundComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    WeekScheduleComponent
   ],
   imports: [
     MatMenuModule,
