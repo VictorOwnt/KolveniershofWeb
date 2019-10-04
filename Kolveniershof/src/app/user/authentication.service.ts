@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { Injectable } from "@angular/core";
+import { Observable, BehaviorSubject } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { map } from "rxjs/operators";
+import { environment } from "src/environments/environment";
 
 function parseJwt(token) {
   if (!token) {
     return null;
   }
-  const base64Url = token.split('.')[1];
-  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const base64Url = token.split(".")[1];
+  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
   return JSON.parse(window.atob(base64));
 }
 
@@ -17,7 +17,7 @@ function parseJwt(token) {
   providedIn: "root"
 })
 export class AuthenticationService {
-  private readonly _tokenKey = 'currentUser';
+  private readonly _tokenKey = "currentUser";
   private _user$: BehaviorSubject<string>;
 
   public redirectUrl: string;
@@ -43,7 +43,7 @@ export class AuthenticationService {
 
   get token(): string {
     const localToken = localStorage.getItem(this._tokenKey);
-    return !!localToken ? localToken : '';
+    return !!localToken ? localToken : "";
   }
 
   login(email: string, password: string): Observable<boolean> {
@@ -51,7 +51,7 @@ export class AuthenticationService {
       .post(
         `${environment.apiUrl}/account`,
         { email, password },
-        { responseType: 'text' }
+        { responseType: "text" }
       )
       .pipe(
         map((token: any) => {
@@ -89,7 +89,7 @@ export class AuthenticationService {
           password,
           passwordConfirmation: password
         },
-        { responseType: 'text' }
+        { responseType: "text" }
       )
       .pipe(
         map((token: any) => {
@@ -103,7 +103,6 @@ export class AuthenticationService {
         })
       );
   }
-
 
   checkUserNameAvailability = (email: string): Observable<boolean> => {
     return this.http.get<boolean>(

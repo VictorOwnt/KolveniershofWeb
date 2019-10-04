@@ -4,7 +4,6 @@ import { AuthenticationService } from "../authentication.service";
 import { Router } from "@angular/router";
 import { HttpErrorResponse } from "@angular/common/http";
 
-
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -28,7 +27,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    /*
     this.authService
       .login(this.user.value.username, this.user.value.password)
       .subscribe(
@@ -47,16 +45,11 @@ export class LoginComponent implements OnInit {
         (err: HttpErrorResponse) => {
           console.log(err);
           if (err.error instanceof Error) {
-            this.errorMsg = `Error while trying to login user ${
-              this.user.value.username
-            }: ${err.error.message}`;
+            this.errorMsg = `Error while trying to login user ${this.user.value.username}: ${err.error.message}`;
           } else {
-            this.errorMsg = `Error ${err.status} while trying to login user ${
-              this.user.value.username
-            }: ${err.error}`;
+            this.errorMsg = `Error ${err.status} while trying to login user ${this.user.value.username}: ${err.error}`;
           }
         }
-      );*/
+      );
   }
-  }
-
+}

@@ -21,6 +21,7 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { CommonModule } from "@angular/common";
 import { MatDividerModule, MatDivider } from "@angular/material/divider";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { MatDividerModule, MatDivider } from "@angular/material/divider";
     MatCardModule,
     MatButtonModule,
     MatInputModule,
-    UserModule
+    UserModule,
+    HttpClientModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
