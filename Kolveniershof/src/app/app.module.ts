@@ -16,6 +16,8 @@ import { FooterComponent } from "./footer/footer.component";
 import { MatButtonModule, MatButton } from "@angular/material/button";
 import { UserModule } from "./user/user.module";
 import { httpInterceptorProviders } from "./Interceptors";
+import { WeekScheduleComponent } from "./week-schedule/week-schedule.component";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { httpInterceptorProviders } from "./Interceptors";
     MatCardModule,
     MatButtonModule,
     MatInputModule,
-    UserModule
+    UserModule,
+    HttpClientModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
