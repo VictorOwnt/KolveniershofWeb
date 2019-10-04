@@ -9,15 +9,18 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatIconModule } from "@angular/material/icon";
 import { NavComponent } from "./nav/nav.component";
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatFormFieldModule , MatInputModule } from "@angular/material";
+import { MatFormFieldModule, MatInputModule } from "@angular/material";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
 import { FooterComponent } from "./footer/footer.component";
-import {MatButtonModule, MatButton} from "@angular/material/button";
+import { MatButtonModule, MatButton } from "@angular/material/button";
 import { UserModule } from "./user/user.module";
-import { httpInterceptorProviders } from './Interceptors';
-import { WeekScheduleComponent } from './week-schedule/week-schedule.component';
-
+import { httpInterceptorProviders } from "./Interceptors";
+import { WeekScheduleComponent } from "./week-schedule/week-schedule.component";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { CommonModule } from "@angular/common";
+import { MatDividerModule, MatDivider } from "@angular/material/divider";
 
 @NgModule({
   declarations: [
@@ -29,6 +32,10 @@ import { WeekScheduleComponent } from './week-schedule/week-schedule.component';
     WeekScheduleComponent
   ],
   imports: [
+    MatDividerModule,
+    CommonModule,
+    MatExpansionModule,
+    MatGridListModule,
     MatMenuModule,
     MatIconModule,
     BrowserModule,
