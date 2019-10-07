@@ -49,7 +49,7 @@ export class AuthenticationService {
   login(email: string, password: string): Observable<boolean> {
     return this.http
       .post(
-        `${environment.apiUrl}/users`,
+        `${environment.apiUrl}/users/login`,
         { email, password },
         { responseType: "text" }
       )
