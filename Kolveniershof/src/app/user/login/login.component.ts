@@ -1,5 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from "@angular/forms";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ValidatorFn,
+  AbstractControl
+} from "@angular/forms";
 import { AuthenticationService } from "../authentication.service";
 import { Router } from "@angular/router";
 import { HttpErrorResponse } from "@angular/common/http";
