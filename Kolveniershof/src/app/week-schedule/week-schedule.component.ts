@@ -19,14 +19,18 @@ export class WeekScheduleComponent implements OnInit {
     date: new Date(2019, 9, 30),
     text: "Monday",
     cols: 1,
-    rows: 2,
+    rows: 2
   };
   tuesday: Day = {
     id: 2,
     date: new Date(2019, 10, 1),
     text: "Tuesday",
     cols: 1,
+<<<<<<< HEAD
     rows: 2,
+=======
+    rows: 2
+>>>>>>> 90e1977ffc118a7ceca3bf142f90f59a48fd7b70
   };
   wednesday: Day = {
     id: 3,
@@ -34,35 +38,35 @@ export class WeekScheduleComponent implements OnInit {
 
     text: "Wednesday",
     cols: 1,
-    rows: 2,
+    rows: 2
   };
   thursday: Day = {
     id: 4,
     date: new Date(2019, 10, 3),
     text: "Thursday",
     cols: 1,
-    rows: 2,
+    rows: 2
   };
   friday: Day = {
     id: 5,
     date: new Date(2019, 10, 4),
     text: "Friday",
     cols: 1,
-    rows: 2,
+    rows: 2
   };
   saturday: Day = {
     id: 6,
     date: new Date(2019, 10, 5),
     text: "Saturday",
     cols: 1,
-    rows: 1,
+    rows: 1
   };
   sunday: Day = {
     id: 7,
     date: new Date(2019, 10, 6),
     text: "Sunday",
     cols: 1,
-    rows: 1,
+    rows: 1
   };
 
   constructor() {}

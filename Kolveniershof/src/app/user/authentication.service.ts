@@ -49,7 +49,7 @@ export class AuthenticationService {
   login(email: string, password: string): Observable<boolean> {
     return this.http
       .post(
-        `${environment.apiUrl}/account`,
+        `${environment.apiUrl}/users/login`,
         { email, password },
         { responseType: "text" }
       )
@@ -81,7 +81,7 @@ export class AuthenticationService {
   ): Observable<boolean> {
     return this.http
       .post(
-        `${environment.apiUrl}/account/register`,
+        `${environment.apiUrl}/register`,
         {
           firstname,
           lastname,
@@ -106,7 +106,7 @@ export class AuthenticationService {
 
   checkUserNameAvailability = (email: string): Observable<boolean> => {
     return this.http.get<boolean>(
-      `${environment.apiUrl}/account/checkusername`,
+      `${environment.apiUrl}/checkusername`,
       {
         params: { email }
       }

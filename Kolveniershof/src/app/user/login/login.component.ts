@@ -1,8 +1,23 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ValidatorFn,
+  AbstractControl
+} from "@angular/forms";
 import { AuthenticationService } from "../authentication.service";
 import { Router } from "@angular/router";
 import { HttpErrorResponse } from "@angular/common/http";
+
+function passwordValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } => {
+    console.log(control.value);
+    return control.value.length < 12
+      ? { passwordTooShort: { value: control.value.length } }
+      : null;
+  };
+}
 
 @Component({
   selector: "app-login",
@@ -36,7 +51,7 @@ export class LoginComponent implements OnInit {
               this.router.navigateByUrl(this.authService.redirectUrl);
               this.authService.redirectUrl = undefined;
             } else {
-              this.router.navigate(["/user-list"]);
+              this.router.navigate(["/week"]); // aanpassen naar gewnenste pagina
             }
           } else {
             this.errorMsg = `Could not login`;

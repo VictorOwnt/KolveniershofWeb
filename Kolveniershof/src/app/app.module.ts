@@ -22,7 +22,11 @@ import { MatExpansionModule } from "@angular/material/expansion";
 import { CommonModule } from "@angular/common";
 import { MatDividerModule, MatDivider } from "@angular/material/divider";
 import { HttpClientModule } from "@angular/common/http";
+<<<<<<< HEAD
 import { FlexLayoutModule } from "@angular/flex-layout";
+=======
+import { PictoAgendaComponent } from './picto-agenda/picto-agenda.component';
+>>>>>>> 90e1977ffc118a7ceca3bf142f90f59a48fd7b70
 
 @NgModule({
   declarations: [
@@ -31,7 +35,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     PageNotFoundComponent,
     NavComponent,
     FooterComponent,
-    WeekScheduleComponent
+    WeekScheduleComponent,
+    PictoAgendaComponent
   ],
   imports: [
     FlexLayoutModule,
