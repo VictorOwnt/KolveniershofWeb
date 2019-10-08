@@ -26,11 +26,7 @@ export class WeekScheduleComponent implements OnInit {
     date: new Date(2019, 10, 1),
     text: "Tuesday",
     cols: 1,
-<<<<<<< HEAD
-    rows: 2,
-=======
     rows: 2
->>>>>>> 90e1977ffc118a7ceca3bf142f90f59a48fd7b70
   };
   wednesday: Day = {
     id: 3,
