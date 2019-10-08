@@ -22,6 +22,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
 import { CommonModule } from "@angular/common";
 import { MatDividerModule, MatDivider } from "@angular/material/divider";
 import { HttpClientModule } from "@angular/common/http";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HttpClientModule } from "@angular/common/http";
     WeekScheduleComponent
   ],
   imports: [
+    FlexLayoutModule,
     MatDividerModule,
     CommonModule,
     MatExpansionModule,
