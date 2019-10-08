@@ -24,6 +24,8 @@ import { MatDividerModule, MatDivider } from "@angular/material/divider";
 import { HttpClientModule } from "@angular/common/http";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { PictoAgendaComponent } from "./picto-agenda/picto-agenda.component";
+import { DayOfWeekComponent } from './week-schedule/day-of-week/day-of-week.component';
+import { DayOfWeekendComponent } from './week-schedule/day-of-weekend/day-of-weekend.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { PictoAgendaComponent } from "./picto-agenda/picto-agenda.component";
     NavComponent,
     FooterComponent,
     WeekScheduleComponent,
-    PictoAgendaComponent
+    PictoAgendaComponent,
+    DayOfWeekComponent,
+    DayOfWeekendComponent
   ],
   imports: [
     FlexLayoutModule,
