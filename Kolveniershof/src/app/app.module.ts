@@ -22,6 +22,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
 import { CommonModule } from "@angular/common";
 import { MatDividerModule, MatDivider } from "@angular/material/divider";
 import { HttpClientModule } from "@angular/common/http";
+import { PictoAgendaComponent } from './picto-agenda/picto-agenda.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HttpClientModule } from "@angular/common/http";
     PageNotFoundComponent,
     NavComponent,
     FooterComponent,
-    WeekScheduleComponent
+    WeekScheduleComponent,
+    PictoAgendaComponent
   ],
   imports: [
     MatDividerModule,
