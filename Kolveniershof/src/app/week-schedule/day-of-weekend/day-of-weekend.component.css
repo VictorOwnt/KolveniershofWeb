@@ -1,0 +1,8 @@
+.geefFeedbackBtn {
+  background-color: #2e7be8;
+  color: white;
+}
+.geefFeedbackBtn:hover {
+  background-color: #cae2ff;
+  color: #000;
+}
