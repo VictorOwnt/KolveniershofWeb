@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://kolv02-backend.herokuapp.com/API"
+  apiUrl: "https://kolv02-backend.herokuapp.com"
 };
 
 /*

@@ -1,17 +1,17 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { LoginComponent } from "src/app/user/login/login.component";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LoginComponent } from 'src/app/user/login/login.component';
 
-import { RouterModule, Routes } from "@angular/router";
-import { PageNotFoundComponent } from "src/app/page-not-found/page-not-found.component";
-import { WeekScheduleComponent } from "./week-schedule/week-schedule.component";
+import { RouterModule, Routes } from '@angular/router';
+import { PageNotFoundComponent } from 'src/app/page-not-found/page-not-found.component';
+import { WeekScheduleComponent } from './week-schedule/week-schedule.component';
 
 const appRoutes: Routes = [
-  { path: "login", component: LoginComponent },
-  { path: "home", component: LoginComponent },
-  { path: "week", component: WeekScheduleComponent },
-  { path: "", redirectTo: "login", pathMatch: "full" },
-  { path: "**", component: PageNotFoundComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: LoginComponent },
+  { path: 'week', component: WeekScheduleComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
