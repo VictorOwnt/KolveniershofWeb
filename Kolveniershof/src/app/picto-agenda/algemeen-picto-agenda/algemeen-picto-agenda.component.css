@@ -21,9 +21,17 @@
   padding: 12px 15px;
 }
 
-/* .content-table tbody td {
+.content-table tbody tr td:first-child {
+  width: 20%;
+}
+
+.content-table tbody tr td:last-child {
+  width: 10%;
+}
+
+.content-table tbody td {
   border: 1px solid lightgray;
-} */
+}
 
 .content-table tbody tr {
   border-bottom: 1px solid #dddddd;

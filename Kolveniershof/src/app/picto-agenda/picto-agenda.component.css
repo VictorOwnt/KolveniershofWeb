@@ -1,4 +1,7 @@
 .container {
   margin-bottom: 15px;
   padding-top: 15px;
+  /* margin-left: 0px; */
+  width: 97%;
+  background-color: #EEF3F8;
 }
