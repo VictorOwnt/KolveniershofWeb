@@ -26,7 +26,7 @@
 }
 
 .content-table tbody tr td:last-child {
-  width: 10%;
+  width: 5%;
 }
 
 .content-table tbody td {
@@ -47,4 +47,8 @@
 
 .content-table tbody tr:hover {
   color: #2E7BE8;
+}
+
+.content-table tbody tr td span {
+  float: right;
 }
