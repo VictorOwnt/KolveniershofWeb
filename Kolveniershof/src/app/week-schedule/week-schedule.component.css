@@ -1,6 +1,12 @@
 .container {
   padding-top: 15px;
 }
+
 .spaceUnder {
   margin-bottom: 15px;
+}
+
+.space {
+  margin-bottom: 15px;
+  padding-top: 15px;
 }

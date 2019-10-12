@@ -18,9 +18,14 @@
 
 mat-toolbar {
   background-color: white;
+  text-align: left;
 }
 
 h3 {
   float: left;
   margin-left: 3%;
+}
+
+.copyright {
+  text-align: left;
 }
