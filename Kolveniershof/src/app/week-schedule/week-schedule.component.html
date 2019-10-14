@@ -1,16 +1,60 @@
 <div>
   <app-nav> </app-nav>
+  <div class="weekEnDagPicker">
+    <h5>
+      <span>
+        <fa-icon [icon]="faLessThan"></fa-icon>
+      </span>
+      <span>
+        Week 40
+      </span>
+      <span>
+        <fa-icon [icon]="faGreaterThan"></fa-icon>
+      </span>
+    </h5>
+    <h5>
+      <span>
+        <fa-icon [icon]="faLessThan"></fa-icon>
+      </span>
+      <span>
+        Dinsdag
+      </span>
+      <span>
+        <fa-icon [icon]="faGreaterThan"></fa-icon>
+      </span>
+    </h5>
+  </div>
   <div class="space">
     <mat-card>
-      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2.5%" fxLayoutAlign="center">
+      <div
+        class="container"
+        fxLayout="row"
+        fxLayout.xs="column"
+        fxLayoutWrap
+        fxLayoutGap="2.5%"
+        fxLayoutAlign="center"
+      >
         <app-day-of-week id="maandag"></app-day-of-week>
         <app-day-of-week id="dinsdag"></app-day-of-week>
         <app-day-of-week id="woensdag"></app-day-of-week>
       </div>
-      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2.5%" fxLayoutAlign="center">
+      <div
+        class="container"
+        fxLayout="row"
+        fxLayout.xs="column"
+        fxLayoutWrap
+        fxLayoutGap="2.5%"
+        fxLayoutAlign="center"
+      >
         <app-day-of-week id="donderdag"></app-day-of-week>
         <app-day-of-week id="vrijdag"></app-day-of-week>
-        <div fxLayout="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center">
+        <div
+          fxLayout="column"
+          fxLayout.xs="column"
+          fxLayoutWrap
+          fxLayoutGap="5%"
+          fxLayoutAlign="center"
+        >
           <app-day-of-weekend id="zaterdag"></app-day-of-weekend>
           <app-day-of-weekend id="zondag"></app-day-of-weekend>
         </div>
