@@ -9,15 +9,19 @@ export class ActivityUnit {
   ) {}
 
   static fromJSON(json: any): ActivityUnit {
-    const act = new ActivityUnit(json.activity, json.mentors, json.clients);
+    const act = new ActivityUnit(
+      json.activity,
+      json.mentors.map(User.fromJSON),
+      json.clients.map(User.fromJSON)
+    );
     return act;
   }
 
   toJSON(): any {
     return {
       activity: this.activity,
-      mentors: this.mentors,
-      clients: this.clients
+      mentors: this.mentors.map(ment => ment.toJSON()),
+      clients: this.clients.map(client => client.toJSON())
     };
   }
 

@@ -9,12 +9,20 @@ export class BusUnit {
   ) {}
 
   static fromJSON(json: any): BusUnit {
-    const busUnit = new BusUnit(json.bus, json.mentors, json.clients);
+    const busUnit = new BusUnit(
+      json.bus,
+      json.mentors.map(User.fromJSON),
+      json.clients.map(User.fromJSON)
+    );
     return busUnit;
   }
 
   toJSON(): any {
-    return { bus: this.bus, mentors: this.mentors, clients: this.clients };
+    return {
+      bus: this.bus,
+      mentors: this.mentors.map(ment => ment.toJSON()),
+      clients: this.clients.map(client => client.toJSON())
+    };
   }
 
   get bus(): Bus {
