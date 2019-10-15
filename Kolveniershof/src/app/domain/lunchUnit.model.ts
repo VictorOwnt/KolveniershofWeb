@@ -1,16 +1,25 @@
-import { User } from '../user/user.model';
+import { User } from "../user/user.model";
 
-export class LunchUnit{
-    constructor(
-        private _mentors = new Array<User>(),
-        private _clients = new Array<User>()
-    ){}
+export class LunchUnit {
+  constructor(
+    private _mentors = new Array<User>(),
+    private _clients = new Array<User>()
+  ) {}
 
-    get mentors() : Array<User>{
-        return this._mentors;
-    }
+  static fromJSON(json: any): LunchUnit {
+    const lunchUnit = new LunchUnit(json.mentors, json.clients);
+    return lunchUnit;
+  }
 
-    get clients(): Array<User>{
-        return this._clients;
-    }
+  toJSON(): any {
+    return { mentors: this.mentors, clients: this.clients };
+  }
+
+  get mentors(): Array<User> {
+    return this._mentors;
+  }
+
+  get clients(): Array<User> {
+    return this._clients;
+  }
 }

@@ -16,19 +16,6 @@ export class Workday {
     private _holiday: boolean
   ) {}
 
-  toJSON(): any {
-    return {
-      date: this.date,
-      amActivities: this.amActivities, //this.amActivities.map(act => act.toJSON())
-      pmActivities: this.pmActivities, //this.pmActivities.map(act => act.toJSON())
-      mentors: this.mentors,
-      lunch: this.lunch,
-      amBusses: this.amBusses,
-      pmBusses: this.pmBusses,
-      holiday: this._holiday
-    };
-  }
-
   static fromJSON(json: any): Workday {
     const workDay = new Workday(
       json.date,
@@ -41,6 +28,19 @@ export class Workday {
       json.holiday
     );
     return workDay;
+  }
+
+  toJSON(): any {
+    return {
+      date: this.date,
+      amActivities: this.amActivities, //this.amActivities.map(act => act.toJSON())
+      pmActivities: this.pmActivities, //this.pmActivities.map(act => act.toJSON())
+      mentors: this.mentors,
+      lunch: this.lunch,
+      amBusses: this.amBusses,
+      pmBusses: this.pmBusses,
+      holiday: this._holiday
+    };
   }
 
   get date(): Date {
