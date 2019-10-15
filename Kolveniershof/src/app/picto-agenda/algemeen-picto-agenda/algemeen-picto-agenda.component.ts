@@ -14,7 +14,6 @@ import { HttpClient } from "@angular/common/http";
 export class AlgemeenPictoAgendaComponent implements OnInit {
   faPencilAlt = faPencilAlt;
   faTrash = faTrash;
-  public response: any;
   public loadingError$ = this._workDayDataService.loadingError$;
   private _fetchWorkDays$: Observable<Workday[]> = this._workDayDataService
     .workdays$;
