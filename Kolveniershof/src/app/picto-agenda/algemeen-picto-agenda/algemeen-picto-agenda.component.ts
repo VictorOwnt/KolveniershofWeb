@@ -28,5 +28,9 @@ export class AlgemeenPictoAgendaComponent implements OnInit {
     return this._fetchWorkDays$;
   }
 
+  addNewWorkDay(workDay) {
+    this._workDayDataService.addNewWorkDay(workDay).subscribe;
+  }
+
   ngOnInit() {}
 }
