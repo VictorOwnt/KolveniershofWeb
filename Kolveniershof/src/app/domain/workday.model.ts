@@ -19,12 +19,12 @@ export class Workday {
   static fromJSON(json: any): Workday {
     const workDay = new Workday(
       json.date,
-      json.amActivities,
-      json.pmActivities,
-      json.mentors,
+      json.amActivities.map(ActivityUnit.fromJSON),
+      json.pmActivities.map(ActivityUnit.fromJSON),
+      json.mentors.map(User.fromJSON),
       json.lunch,
-      json.amBusses,
-      json.pmBusses,
+      json.amBusses.map(BusUnit.fromJSON),
+      json.pmBusses.map(BusUnit.fromJSON),
       json.holiday
     );
     return workDay;
@@ -33,12 +33,12 @@ export class Workday {
   toJSON(): any {
     return {
       date: this.date,
-      amActivities: this.amActivities, //this.amActivities.map(act => act.toJSON())
-      pmActivities: this.pmActivities, //this.pmActivities.map(act => act.toJSON())
-      mentors: this.mentors,
+      amActivities: this.amActivities.map(act => act.toJSON()), //this.amActivities
+      pmActivities: this.pmActivities.map(act => act.toJSON()), //this.pmActivities
+      mentors: this.mentors.map(ment => ment.toJSON()),
       lunch: this.lunch,
-      amBusses: this.amBusses,
-      pmBusses: this.pmBusses,
+      amBusses: this.amBusses.map(bus => bus.toJSON()),
+      pmBusses: this.pmBusses.map(bus => bus.toJSON()),
       holiday: this._holiday
     };
   }

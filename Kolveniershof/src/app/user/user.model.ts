@@ -49,4 +49,16 @@ export class User {
     );
     return user;
   }
+
+  toJSON(): any {
+    return {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      picture: this.picture,
+      admin: this.admin,
+      birthday: this.birthday,
+      absentDates: this.absentDates
+    };
+  }
 }
