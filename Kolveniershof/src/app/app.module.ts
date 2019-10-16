@@ -22,21 +22,21 @@ import { FooterComponent } from "./footer/footer.component";
 import { MatButtonModule, MatButton } from "@angular/material/button";
 import { UserModule } from "./user/user.module";
 import { httpInterceptorProviders } from "./Interceptors";
-import { WeekScheduleComponent } from "./week-schedule/week-schedule.component";
+import { PictoAgendaComponent } from "./picto-agenda/picto-agenda.component";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { CommonModule } from "@angular/common";
 import { MatDividerModule, MatDivider } from "@angular/material/divider";
 import { HttpClientModule } from "@angular/common/http";
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { PictoAgendaComponent } from "./picto-agenda/picto-agenda.component";
-import { DayOfWeekComponent } from "./week-schedule/day-of-week/day-of-week.component";
-import { DayOfWeekendComponent } from "./week-schedule/day-of-weekend/day-of-weekend.component";
-import { AlgemeenPictoAgendaComponent } from "./picto-agenda/algemeen-picto-agenda/algemeen-picto-agenda.component";
-import { VoormiddagPictoAgendaComponent } from "./picto-agenda/voormiddag-picto-agenda/voormiddag-picto-agenda.component";
-import { NamiddagPictoAgendaComponent } from "./picto-agenda/namiddag-picto-agenda/namiddag-picto-agenda.component";
-import { ExtraPictoAgendaComponent } from "./picto-agenda/extra-picto-agenda/extra-picto-agenda.component";
 import { WorkDayDataService } from "./workDay.data.service";
+import { WeekScheduleComponent } from "./week-schedule/week-schedule.component";
+import { DayOfWeekComponent } from "./picto-agenda/day-of-week/day-of-week.component";
+import { DayOfWeekendComponent } from "./picto-agenda/day-of-weekend/day-of-weekend.component";
+import { AlgemeenWeekScheduleComponent } from "./week-schedule/algemeen-week-schedule/algemeen-week-schedule.component";
+import { VoormiddagWeekScheduleComponent } from "./week-schedule/voormiddag-week-schedule/voormiddag-week-schedule.component";
+import { NamiddagWeekScheduleComponent } from "./week-schedule/namiddag-week-schedule/namiddag-week-schedule.component";
+import { ExtraWeekScheduleComponent } from "./week-schedule/extra-week-schedule/extra-week-schedule.component";
 
 @NgModule({
   declarations: [
@@ -49,10 +49,10 @@ import { WorkDayDataService } from "./workDay.data.service";
     PictoAgendaComponent,
     DayOfWeekComponent,
     DayOfWeekendComponent,
-    AlgemeenPictoAgendaComponent,
-    VoormiddagPictoAgendaComponent,
-    NamiddagPictoAgendaComponent,
-    ExtraPictoAgendaComponent
+    AlgemeenWeekScheduleComponent,
+    VoormiddagWeekScheduleComponent,
+    NamiddagWeekScheduleComponent,
+    ExtraWeekScheduleComponent
   ],
   imports: [
     FlexLayoutModule,

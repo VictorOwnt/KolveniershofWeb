@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { PictoAgendaComponent } from './picto-agenda.component';
+import { PictoAgendaComponent } from "./picto-agenda.component";
 
-describe('PictoAgendaComponent', () => {
+describe("PictoAgendaComponent", () => {
   let component: PictoAgendaComponent;
   let fixture: ComponentFixture<PictoAgendaComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PictoAgendaComponent ]
-    })
-    .compileComponents();
+      declarations: [PictoAgendaComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('PictoAgendaComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

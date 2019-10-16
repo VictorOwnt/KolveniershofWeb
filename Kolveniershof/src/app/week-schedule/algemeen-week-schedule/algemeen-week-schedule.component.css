@@ -10,7 +10,7 @@
 }
 
 .content-table thead tr {
-  background-color: #2E7BE8;
+  background-color: #2e7be8;
   color: #ffffff;
   text-align: left;
   font-weight: bold;
@@ -42,11 +42,11 @@
 }
 
 .content-table tbody tr:last-of-type {
-  border-bottom: 2px solid #2E7BE8;
+  border-bottom: 2px solid #2e7be8;
 }
 
 .content-table tbody tr:hover {
-  color: #2E7BE8;
+  color: #2e7be8;
 }
 
 .content-table tbody tr td span {

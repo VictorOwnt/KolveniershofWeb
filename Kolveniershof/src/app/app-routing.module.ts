@@ -4,15 +4,15 @@ import { LoginComponent } from "src/app/user/login/login.component";
 
 import { RouterModule, Routes } from "@angular/router";
 import { PageNotFoundComponent } from "src/app/page-not-found/page-not-found.component";
-import { WeekScheduleComponent } from "./week-schedule/week-schedule.component";
 import { PictoAgendaComponent } from "./picto-agenda/picto-agenda.component";
+import { WeekScheduleComponent } from "./week-schedule/week-schedule.component";
 
 const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "home", component: LoginComponent },
   { path: "week", component: WeekScheduleComponent },
   { path: "picto", component: PictoAgendaComponent },
-  { path: "", redirectTo: "login", pathMatch: "full" },
+  { path: "", redirectTo: "week", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent }
 ];
 

@@ -7,11 +7,11 @@ import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 
 @Component({
-  selector: "app-algemeen-picto-agenda",
-  templateUrl: "./algemeen-picto-agenda.component.html",
-  styleUrls: ["./algemeen-picto-agenda.component.css"]
+  selector: "app-algemeen-week-schedule",
+  templateUrl: "./algemeen-week-schedule.component.html",
+  styleUrls: ["./algemeen-week-schedule.component.css"]
 })
-export class AlgemeenPictoAgendaComponent implements OnInit {
+export class AlgemeenWeekScheduleComponent implements OnInit {
   faPencilAlt = faPencilAlt;
   faTrash = faTrash;
   public loadingError$ = this._workDayDataService.loadingError$;

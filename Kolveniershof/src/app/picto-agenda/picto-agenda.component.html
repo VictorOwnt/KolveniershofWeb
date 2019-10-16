@@ -1,5 +1,5 @@
-<app-nav> </app-nav>
-<div class="container">
+<div>
+  <app-nav> </app-nav>
   <div class="weekEnDagPicker">
     <h5>
       <span>
@@ -23,12 +23,160 @@
         <fa-icon [icon]="faGreaterThan"></fa-icon>
       </span>
     </h5>
-    <button>Save Week</button>
   </div>
-
-  <app-algemeen-picto-agenda></app-algemeen-picto-agenda>
-  <app-voormiddag-picto-agenda></app-voormiddag-picto-agenda>
-  <app-namiddag-picto-agenda></app-namiddag-picto-agenda>
-  <app-extra-picto-agenda></app-extra-picto-agenda>
+  <div class="space">
+    <div
+      class="container"
+      fxLayout="row"
+      fxLayout.xs="column"
+      fxLayoutWrap
+      fxLayoutGap="2.5%"
+      fxLayoutAlign="center"
+    >
+      <app-day-of-week id="maandag"></app-day-of-week>
+      <app-day-of-week id="dinsdag"></app-day-of-week>
+      <app-day-of-week id="woensdag"></app-day-of-week>
+    </div>
+    <div
+      class="container"
+      fxLayout="row"
+      fxLayout.xs="column"
+      fxLayoutWrap
+      fxLayoutGap="2.5%"
+      fxLayoutAlign="center"
+    >
+      <app-day-of-week id="donderdag"></app-day-of-week>
+      <app-day-of-week id="vrijdag"></app-day-of-week>
+      <div
+        fxLayout="column"
+        fxLayout.xs="column"
+        fxLayoutWrap
+        fxLayoutGap="5%"
+        fxLayoutAlign="center"
+      >
+        <app-day-of-weekend id="zaterdag"></app-day-of-weekend>
+        <app-day-of-weekend id="zondag"></app-day-of-weekend>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
 </div>
-<app-footer></app-footer>
+<!-- <div
+    class="container"
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayoutWrap
+    fxLayoutGap="2.5%"
+    fxLayoutAlign="center"
+  >
+    <div fxFlex="30%" class="spaceUnder">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            {{ monday.text }}
+          </mat-card-title>
+          <mat-card-subtitle>
+            {{ monday.date | date }}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            <img src="assets/images/icons/busBlack.png" alt="black bus" />
+            <img
+              src="assets/images/icons/beverageCupBlack.png"
+              alt="black cup"
+            />
+          </p>
+          <hr />
+          <p>item voormiddag</p>
+          <p>item voormiddag</p>
+          <hr />
+          <p>item middag</p>
+          <hr />
+          <p>item namiddag</p>
+          <hr />
+          <p>item avond</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex="30%" class="spaceUnder">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            {{ monday.text }}
+          </mat-card-title>
+          <mat-card-subtitle>
+            {{ monday.date | date }}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            <img src="assets/images/icons/busBlack.png" alt="black bus" />
+            <img
+              src="assets/images/icons/beverageCupBlack.png"
+              alt="black cup"
+            />
+          </p>
+          <hr />
+          <p>item voormiddag</p>
+          <p>item voormiddag</p>
+          <hr />
+          <p>item middag</p>
+          <hr />
+          <p>item namiddag</p>
+          <hr />
+          <p>item avond</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex="30%" class="spaceUnder">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            {{ monday.text }}
+          </mat-card-title>
+          <mat-card-subtitle>
+            {{ monday.date | date }}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            <img src="assets/images/icons/busBlack.png" alt="black bus" />
+            <img
+              src="assets/images/icons/beverageCupBlack.png"
+              alt="black cup"
+            />
+          </p>
+          <hr />
+          <p>item voormiddag</p>
+          <p>item voormiddag</p>
+          <hr />
+          <p>item middag</p>
+          <hr />
+          <p>item namiddag</p>
+          <hr />
+          <p>item avond</p>
+        </mat-card-content>
+      </mat-card>
+    </div> -->
+<!---->
+
+<!--
+    <mat-grid-tile id="tuesday">
+      {{ tuesday.text }}
+    </mat-grid-tile>
+    <mat-grid-tile id="wednesday">
+      {{ wednesday.text }}
+    </mat-grid-tile>
+    <mat-grid-tile id="thursday">
+      {{ thursday.text }}
+    </mat-grid-tile>
+    <mat-grid-tile id="friday">
+      {{ friday.text }}
+    </mat-grid-tile>
+    <mat-grid-tile id="saturday">
+      {{ saturday.text }}
+    </mat-grid-tile>
+    <mat-grid-tile id="sunday">
+      {{ sunday.text }}
+    </mat-grid-tile>-->
