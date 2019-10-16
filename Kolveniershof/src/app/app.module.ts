@@ -36,6 +36,7 @@ import { AlgemeenPictoAgendaComponent } from "./picto-agenda/algemeen-picto-agen
 import { VoormiddagPictoAgendaComponent } from "./picto-agenda/voormiddag-picto-agenda/voormiddag-picto-agenda.component";
 import { NamiddagPictoAgendaComponent } from "./picto-agenda/namiddag-picto-agenda/namiddag-picto-agenda.component";
 import { ExtraPictoAgendaComponent } from "./picto-agenda/extra-picto-agenda/extra-picto-agenda.component";
+import { WorkDayDataService } from "./workDay.data.service";
 
 @NgModule({
   declarations: [
@@ -74,7 +75,7 @@ import { ExtraPictoAgendaComponent } from "./picto-agenda/extra-picto-agenda/ext
     HttpClientModule,
     FontAwesomeModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, WorkDayDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
