@@ -3,11 +3,11 @@ import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
-  selector: "app-extra-picto-agenda",
-  templateUrl: "./extra-picto-agenda.component.html",
-  styleUrls: ["./extra-picto-agenda.component.css"]
+  selector: "app-namiddag-week-schedule",
+  templateUrl: "./namiddag-week-schedule.component.html",
+  styleUrls: ["./namiddag-week-schedule.component.css"]
 })
-export class ExtraPictoAgendaComponent implements OnInit {
+export class NamiddagWeekScheduleComponent implements OnInit {
   faPencilAlt = faPencilAlt;
   faTrash = faTrash;
 

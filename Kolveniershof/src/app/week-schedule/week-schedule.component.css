@@ -1,15 +1,21 @@
-.container {
-  padding-top: 15px;
-}
-
-.spaceUnder {
-  margin-bottom: 15px;
-}
-
-.space {
+/* .container {
   margin-bottom: 15px;
   padding-top: 15px;
+  width: 97%;
+  background-color: #EEF3F8;
+} */
+
+button {
+  color: white;
+  background-color: #2E7BE8;
+  float: right;
+  padding: 10px 15px 10px 15px;
+  margin-bottom: 25px;
+  border: 1px solid lightgray;
+  border-radius: 7px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
+
 .weekEnDagPicker {
   text-align: center;
 
