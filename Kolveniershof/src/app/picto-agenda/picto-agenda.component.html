@@ -1,33 +1,15 @@
 <div>
-  <app-nav> </app-nav>
-  <div class="container">
-    <div class="weekEnDagPicker">
-      <h5>
-        <span>
-          <fa-icon [icon]="faLessThan"></fa-icon>
-        </span>
-        <span>
-          Week 40
-        </span>
-        <span>
-          <fa-icon [icon]="faGreaterThan"></fa-icon>
-        </span>
-      </h5>
-      <h5>
-        <span>
-          <fa-icon [icon]="faLessThan"></fa-icon>
-        </span>
-        <span>
-          Dinsdag
-        </span>
-        <span>
-          <fa-icon [icon]="faGreaterThan"></fa-icon>
-        </span>
-      </h5>
-    </div>
-    <div class="space">
+  <app-nav> </app-nav><app-date-picker></app-date-picker>
+  <div>
+    <div
+      fxLayout="column"
+      fxLayout.xs="column"
+      fxLayout.s="column"
+      fxLayoutGap=""
+      fxLayoutAlign="center"
+    >
+      <!-- part 1 of week -->
       <div
-        class="container"
         fxLayout="row"
         fxLayout.xs="column"
         fxLayoutWrap
@@ -38,8 +20,9 @@
         <app-day-of-week id="dinsdag"></app-day-of-week>
         <app-day-of-week id="woensdag"></app-day-of-week>
       </div>
+
+      <!-- part 2 of week -->
       <div
-        class="container"
         fxLayout="row"
         fxLayout.xs="column"
         fxLayoutWrap
@@ -49,6 +32,7 @@
         <app-day-of-week id="donderdag"></app-day-of-week>
         <app-day-of-week id="vrijdag"></app-day-of-week>
         <div
+        class="widthAndHeight"
           fxLayout="column"
           fxLayout.xs="column"
           fxLayout.s="column"

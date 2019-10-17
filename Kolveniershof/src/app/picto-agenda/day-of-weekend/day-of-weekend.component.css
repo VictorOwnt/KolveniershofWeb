@@ -31,4 +31,44 @@ mat-card-actions {
 
 mat-card {
   padding: 0;
+  margin: 15px;
+  height: 100%;
 }
+
+div{
+  height: 100%;
+}
+/*
+::ng-deep mat-card-header {
+  background-color: #2e7be8;
+  color: white;
+  padding: 15px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+mat-card-subtitle {
+  color: white;
+}
+
+mat-card-content {
+  padding: 3em;
+  padding-bottom: 0;
+  background-color: white;
+}
+
+mat-card {
+  padding: 0;
+  margin: 15px;
+  background-color: #eff3f8;
+}
+
+.footerCard {
+  background-color: transparent;
+}
+
+.slightBottomPadding {
+  padding-bottom: 1px;
+}
+*/

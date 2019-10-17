@@ -37,6 +37,7 @@ import { AlgemeenWeekScheduleComponent } from "./week-schedule/algemeen-week-sch
 import { VoormiddagWeekScheduleComponent } from "./week-schedule/voormiddag-week-schedule/voormiddag-week-schedule.component";
 import { NamiddagWeekScheduleComponent } from "./week-schedule/namiddag-week-schedule/namiddag-week-schedule.component";
 import { ExtraWeekScheduleComponent } from "./week-schedule/extra-week-schedule/extra-week-schedule.component";
+import { DatePickerComponent } from "./picto-agenda/date-picker/date-picker.component";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ExtraWeekScheduleComponent } from "./week-schedule/extra-week-schedule/
     AlgemeenWeekScheduleComponent,
     VoormiddagWeekScheduleComponent,
     NamiddagWeekScheduleComponent,
-    ExtraWeekScheduleComponent
+    ExtraWeekScheduleComponent,
+    DatePickerComponent
   ],
   imports: [
     FlexLayoutModule,
