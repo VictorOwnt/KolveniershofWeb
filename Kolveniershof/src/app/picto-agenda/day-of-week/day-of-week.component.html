@@ -2,31 +2,106 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title>
+        dagVanDeWeek
         <!-- {{ day.text }} -->
         <!--via input in weekschedule de elementen vullen/meesturen die dan gevult moeten worden-->
       </mat-card-title>
       <mat-card-subtitle>
+        datum
         <!-- {{ day.date | date }} -->
         <!--via input in weekschedule de elementen vullen/meesturen die dan gevult moeten worden-->
       </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <p>
-        <img src="assets/images/icons/busBlack.png" alt="black bus" />
-        <img src="assets/images/icons/beverageCupBlack.png" alt="black cup" />
-      </p>
+      <!-- morning transportation and activities -->
+      <table>
+        <tr>
+          <td>
+            <img
+              src="assets/images/icons/busBlack.png"
+              alt="bus icon activity"
+              width="40"
+            />
+          </td>
+          <td>
+            <img
+              src="assets/images/icons/beverageCupBlack.png"
+              alt="cup icon activity"
+              width="40"
+            />
+          </td>
+        </tr>
+      </table>
+
       <hr />
-      <p>item voormiddag</p>
-      <p>item voormiddag</p>
+      <!-- am activity -->
+      <table>
+        <tr>
+          <td>
+            <img
+              src="assets/images/icons/icon-sofa.svg"
+              alt="sofa icon activity"
+              width="40"
+            />
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <img
+              src="assets/images/icons/icon-frying-pan.svg"
+              alt="cooking icon activity"
+              width="40"
+            />
+          </td>
+          <td></td>
+        </tr>
+      </table>
+
       <hr />
-      <p>item middag</p>
+      <!-- noon activity / lunch -->
+      <table>
+        <tr>
+          <td>
+            <img
+              src="assets/images/icons/forkKnifeBlack.png"
+              alt=""
+              width="40"
+            />
+          </td>
+        </tr>
+      </table>
+
       <hr />
-      <p>item namiddag</p>
+      <!-- pm activities -->
+      <table>
+        <tr>
+          <td>
+            <img src="assets/images/icons/icon-walking.svg" alt="" width="40" />
+          </td>
+        </tr>
+      </table>
+
       <hr />
-      <p>item avond</p>
-      <mat-form-field>
-        <input matInput placeholder="Voeg een opmerking toe" type="" />
-      </mat-form-field>
+      <!-- transportation evening -->
+      <table>
+        <tr>
+          <td>
+            <img src="assets/images/icons/busBlack.png" alt="" width="40" />
+          </td>
+        </tr>
+      </table>
+
+      <div class="footerCard">
+        <mat-form-field>
+          <input matInput placeholder="Voeg een opmerking toe" type="" />
+        </mat-form-field>
+      </div>
+      <div class="slightBottomPadding">
+        <h6 style="font-weight: 100;">
+          druk op enter om opmerking toe te voegen
+        </h6>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>

@@ -13,7 +13,7 @@ const appRoutes: Routes = [
   { path: "home", component: LoginComponent },
   { path: "week", component: WeekScheduleComponent }, //
   { path: "picto", component: PictoAgendaComponent },
-  { path: "", redirectTo: "week", pathMatch: "full" },
+  { path: "", redirectTo: "picto", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent }
 ];
 

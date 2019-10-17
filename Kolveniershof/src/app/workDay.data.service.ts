@@ -24,7 +24,7 @@ export class WorkDayDataService {
   }
 
   addNewWorkDay(workday: Workday) {
-    //Als je deze werkdag wil opslaan, moet je hem toevoegen aan de databank.
+    // Als je deze werkdag wil opslaan, moet je hem toevoegen aan de databank.
     return this.http.post(
       `${environment.apiUrl}/API/Workdays`,
       workday.toJSON()
