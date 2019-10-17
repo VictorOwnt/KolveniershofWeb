@@ -67,3 +67,7 @@ mat-card {
   padding-left: 2em;
   padding-right: 2em;
 }
+.buttons {
+  border: none;
+  background-color: transparent;
+}
