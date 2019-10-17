@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { WorkDayDataService } from "src/app/workDay.data.service";
@@ -15,15 +15,25 @@ export class AlgemeenWeekScheduleComponent implements OnInit {
   faPencilAlt = faPencilAlt;
   faTrash = faTrash;
   public loadingError$ = this._workDayDataService.loadingError$;
-  private _fetchWorkDays$: Observable<Workday[]> = this._workDayDataService
-    .workdays$;
+
+  private _date = new Date(2019, 1, 1);
+  private _fetchWorkDays$: Observable<
+    Workday
+  > = this._workDayDataService.getWorkDayByDate(this._date);
+
+  /* @Input() public workday: Workday;*/
 
   constructor(
     private _workDayDataService: WorkDayDataService,
     private http: HttpClient
   ) {}
 
-  get workdays$(): Observable<Workday[]> {
+  /*  getWorkDayByDate(_date): Observable<Workday> {
+    return this._fetchWorkDays$;
+  }*/
+
+  get workday$(): Observable<Workday> {
+    console.log(this._fetchWorkDays$);
     return this._fetchWorkDays$;
   }
 
