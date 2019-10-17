@@ -25,10 +25,14 @@
     </h5>
     <button>Save Week</button>
   </div>
-
-  <app-algemeen-week-schedule></app-algemeen-week-schedule>
+  <div *ngIf="(workdays$ | async ) as workdays"><!--Divs voor te testen, moeten nog verwijderd worden eens het werkt-->
+  <div *ngFor="let wd of workdays">
+  <app-algemeen-week-schedule [workday] ="wd"></app-algemeen-week-schedule>
+</div>
+  </div>
   <app-voormiddag-week-schedule></app-voormiddag-week-schedule>
   <app-namiddag-week-schedule></app-namiddag-week-schedule>
   <app-extra-week-schedule></app-extra-week-schedule>
 </div>
 <app-footer></app-footer>
+
