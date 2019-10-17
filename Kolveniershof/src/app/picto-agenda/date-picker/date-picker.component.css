@@ -5,8 +5,11 @@
 h5 span {
   color: #003a70;
 }
-
-h5 span fa-icon {
+.buttons {
+  border: none;
+  background-color: transparent;
+}
+h5 button fa-icon {
   padding-left: 5px;
   padding-right: 5px;
   color: #acadae;
