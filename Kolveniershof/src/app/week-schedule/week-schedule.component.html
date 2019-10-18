@@ -1,4 +1,5 @@
 <app-nav> </app-nav>
+<div></div>
 <div class="container">
   <div class="weekEnDagPicker">
     <h5>
@@ -25,6 +26,7 @@
     </h5>
     <button>Save Week</button>
   </div>
+  
   <div *ngIf="(workdays$ | async ) as workdays"><!--Divs voor te testen, moeten nog verwijderd worden eens het werkt-->
   <div *ngFor="let wd of workdays">
   <app-algemeen-week-schedule [workday] ="wd"></app-algemeen-week-schedule>

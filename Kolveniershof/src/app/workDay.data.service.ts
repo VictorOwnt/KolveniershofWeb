@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable, Subject, of } from "rxjs";
-import { map, share, catchError, delay } from "rxjs/operators";
+import { map, share, catchError, delay, tap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Workday } from "./domain/workday.model";
@@ -15,10 +15,10 @@ export class WorkDayDataService {
 
   get workdays$(): Observable<Workday[]> {
     return this.http.get(`${environment.apiUrl}/API/Workdays`).pipe(
-      catchError(error => {
+      catchError(error => { console.log("fout ophalen"+ error)
         this.loadingError$.next(error.statusText);
         return of(null);
-      }),
+      }),tap(x=>console.log("records ontvangen")),
       map((list: any[]): Workday[] => list.map(Workday.fromJSON))
     );
   }
@@ -39,7 +39,7 @@ export class WorkDayDataService {
 
   getWorkDayByDate(date): Observable<Workday> {
     return this.http
-      .get(`${environment.apiUrl}/API/Workdays/${date}`)
+      .get(`${environment.apiUrl}/API/Workdays/date/${date}`)
       .pipe(map((workDay: any): Workday => workDay.fromJSON(workDay)));
   }
 }

@@ -15,7 +15,7 @@ import { map } from 'rxjs/operators';
 export class WeekScheduleComponent implements OnInit {
   faGreaterThan = faGreaterThan;
   faLessThan = faLessThan;
-  private date = new Date(2019,1,1);
+  private date = new Date(2019,1,1);// to delete
   public loadingError$ = this._workDayDataService.loadingError$;
   private _fetchWorkday$: Observable<Workday[]> = this._workDayDataService.workdays$; //Haalt momenteel alles op, was makkelijker om zo te testen
  
@@ -31,6 +31,7 @@ export class WeekScheduleComponent implements OnInit {
     return this._fetchWorkday$;
 
   }
+  
 
   
 }

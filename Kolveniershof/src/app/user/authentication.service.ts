@@ -23,7 +23,12 @@ export class AuthenticationService {
   public redirectUrl: string;
 
   constructor(private http: HttpClient) {
-    let parsedToken = parseJwt(localStorage.getItem(this._tokenKey));
+    
+    let currentUser = localStorage.getItem(this._tokenKey);
+    if(currentUser){
+    let parsedToken = (JSON.parse(currentUser)).token;
+    // parseJwt(localStorage.getItem(this._tokenKey));
+    parsedToken = parseJwt(parsedToken);
     if (parsedToken) {
       const expires =
         new Date(parseInt(parsedToken.exp, 10) * 1000) < new Date();
@@ -35,6 +40,11 @@ export class AuthenticationService {
     this._user$ = new BehaviorSubject<string>(
       parsedToken && parsedToken.unique_name
     );
+  }
+    else{
+      this._user$ = new BehaviorSubject<string>(null);
+    
+    }
   }
 
   get user$(): BehaviorSubject<string> {
@@ -106,9 +116,9 @@ export class AuthenticationService {
       );
   }
 
-  checkUserNameAvailability = (email: string): Observable<boolean> => {
+  checkUserNameAvailability = (userName: string): Observable<boolean> => {
     return this.http.get<boolean>(`${environment.apiUrl}/checkusername`, {
-      params: { email }
+      params: { userName }
     });
   };
 }
