@@ -4,7 +4,7 @@ export class User {
     private _firstName: string,
     private _lastName: string,
     private _email: string,
-    private _picture: string,
+    //private _picture: string,
     private _admin: boolean,
     private _birthday: Date,
     private _absentDates: Date[]
@@ -26,9 +26,9 @@ export class User {
     return this._email;
   }
 
-  get picture(): string {
+ /* get picture(): string {
     return this._picture;
-  }
+  }*/
 
   get admin(): boolean {
     return this._admin;
@@ -48,7 +48,7 @@ export class User {
       json.firstName,
       json.lastName,
       json.email,
-      json.picture,
+      //json.picture,
       json.admin,
       json.birthday,
       json.absentDates
@@ -62,7 +62,7 @@ export class User {
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
-      picture: this.picture,
+      //picture: this.picture,
       admin: this.admin,
       birthday: this.birthday,
       absentDates: this.absentDates

@@ -9,10 +9,10 @@ export class Workday {
     private _date = new Date(),
     private _amActivities = new Array<ActivityUnit>(),
     private _pmActivities = new Array<ActivityUnit>(),
-    private _mentors = new Array<User>(),
+    //private _mentors = new Array<User>(),
     private _lunch: LunchUnit,
-    private _amBusses = new Array<BusUnit>(),
-    private _pmBusses = new Array<BusUnit>(),
+    //private _amBusses = new Array<BusUnit>(),
+    //private _pmBusses = new Array<BusUnit>(),
     private _holiday: boolean
   ) {}
 
@@ -21,10 +21,10 @@ export class Workday {
       json.date,
       json.amActivities.map(ActivityUnit.fromJSON),
       json.pmActivities.map(ActivityUnit.fromJSON),
-      json.mentors.map(User.fromJSON),
+      //json.mentors.map(User.fromJSON),
       json.lunch,
-      json.amBusses.map(BusUnit.fromJSON),
-      json.pmBusses.map(BusUnit.fromJSON),
+      //json.amBusses.map(BusUnit.fromJSON),
+      //json.pmBusses.map(BusUnit.fromJSON),
       json.holiday
     );
     return workDay;
@@ -35,10 +35,10 @@ export class Workday {
       date: this.date,
       amActivities: this.amActivities.map(act => act.toJSON()), //this.amActivities
       pmActivities: this.pmActivities.map(act => act.toJSON()), //this.pmActivities
-      mentors: this.mentors.map(ment => ment.toJSON()),
+      //mentors: this.mentors.map(ment => ment.toJSON()),
       lunch: this.lunch,
-      amBusses: this.amBusses.map(bus => bus.toJSON()),
-      pmBusses: this.pmBusses.map(bus => bus.toJSON()),
+      //amBusses: this.amBusses.map(bus => bus.toJSON()),
+      //pmBusses: this.pmBusses.map(bus => bus.toJSON()),
       holiday: this._holiday
     };
   }
@@ -52,16 +52,16 @@ export class Workday {
   get pmActivities(): Array<ActivityUnit> {
     return this._pmActivities;
   }
-  get mentors(): Array<User> {
+ /* get mentors(): Array<User> {
     return this._mentors;
-  }
+  }*/
   get lunch(): LunchUnit {
     return this._lunch;
   }
-  get amBusses(): Array<BusUnit> {
+ /* get amBusses(): Array<BusUnit> {
     return this._amBusses;
   }
   get pmBusses(): Array<BusUnit> {
     return this._pmBusses;
-  }
+  }*/
 }

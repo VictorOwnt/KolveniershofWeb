@@ -16,7 +16,7 @@ import { Observable } from "rxjs";
       req: HttpRequest<any>,
       next: HttpHandler
     ): Observable<HttpEvent<any>> {
-      if (this.authService.token.length) {
+      if (this.authService.token) {
         const clonedRequest = req.clone({
           headers: req.headers.set(
             "Authorization",
