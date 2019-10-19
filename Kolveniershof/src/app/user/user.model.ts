@@ -1,17 +1,17 @@
 export class User {
   constructor(
-    private _userName: string,
+    private _username: string,
     private _firstName: string,
     private _lastName: string,
     private _email: string,
-    //private _picture: string,
+    //private _picture: string, // Werd niet opgenomen in backend
     private _admin: boolean,
     private _birthday: Date,
     private _absentDates: Date[]
   ) {}
 
-  get userName(): string {
-    return this._userName;
+  get username(): string {
+    return this._username;
   }
 
   get firstName(): string {
@@ -58,7 +58,7 @@ export class User {
 
   toJSON(): any {
     return {
-      userName: this.userName,
+      username: this.username,
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
