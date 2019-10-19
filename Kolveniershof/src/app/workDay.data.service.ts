@@ -10,7 +10,7 @@ import { Workday } from "./domain/workday.model";
 })
 export class WorkDayDataService {
   public loadingError$ = new Subject<string>();
-
+  
   constructor(private http: HttpClient) {}
 
   get workdays$(): Observable<Workday[]> {
@@ -40,6 +40,6 @@ export class WorkDayDataService {
   getWorkDayByDate(date): Observable<Workday> {
     return this.http
       .get(`${environment.apiUrl}/API/Workdays/date/${date}`)
-      .pipe(map((workDay: any): Workday => workDay.fromJSON(workDay)));
+      .pipe(map((workDay: any): Workday => Workday.fromJSON(workDay)));
   }
 }

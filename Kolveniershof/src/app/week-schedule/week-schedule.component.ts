@@ -17,7 +17,7 @@ export class WeekScheduleComponent implements OnInit {
   faLessThan = faLessThan;
   private date = new Date(2019,1,1);// to delete
   public loadingError$ = this._workDayDataService.loadingError$;
-  private _fetchWorkday$: Observable<Workday[]> = this._workDayDataService.workdays$; //Haalt momenteel alles op, was makkelijker om zo te testen
+  private _fetchWorkday$: Observable<Workday> = this._workDayDataService.getWorkDayByDate(this.formattedDate(this.date)); //Haalt momenteel alles op, was makkelijker om zo te testen
  
   constructor(
     private _workDayDataService: WorkDayDataService,
@@ -26,10 +26,21 @@ export class WeekScheduleComponent implements OnInit {
 
   ngOnInit() {}
 
-  get workdays$(): Observable<Workday[]>{
+  get workday$(): Observable<Workday>{
    
     return this._fetchWorkday$;
 
+  }
+
+  formattedDate(d = new Date) {
+    let month = String(d.getMonth() + 1);
+    let day = String(d.getDate());
+    const year = String(d.getFullYear());
+  
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+  
+    return `${year}_${month}_${day}`;
   }
   
 
