@@ -10,36 +10,35 @@ import { Workday } from "./domain/workday.model";
 })
 export class WorkDayDataService {
   public loadingError$ = new Subject<string>();
-  
   constructor(private http: HttpClient) {}
 
   get workdays$(): Observable<Workday[]> {
-    return this.http.get(`${environment.apiUrl}/API/Workdays`).pipe(
-      catchError(error => { console.log("fout ophalen"+ error)
+    return this.http.get(`${environment.apiUrl}/API/workdays`).pipe(
+      catchError(error => {
+        console.log("fout ophalen" + error);
         this.loadingError$.next(error.statusText);
         return of(null);
-      }),tap(x=>console.log("records ontvangen")),
+      }), tap(x => console.log("records ontvangen")),
       map((list: any[]): Workday[] => list.map(Workday.fromJSON))
     );
   }
 
   addNewWorkDay(workday: Workday) {
-    // Als je deze werkdag wil opslaan, moet je hem toevoegen aan de databank.
     return this.http.post(
-      `${environment.apiUrl}/API/Workdays`,
+      `${environment.apiUrl}/API/workdays`,
       workday.toJSON()
     );
   }
 
   getWorkDayById(id): Observable<Workday> {
     return this.http
-      .get(`${environment.apiUrl}/API/Workdays/${id}`)
+      .get(`${environment.apiUrl}/API/workdays/${id}`)
       .pipe(map((workDay: any): Workday => Workday.fromJSON(workDay)));
   }
 
-  getWorkDayByDate(date): Observable<Workday> {
+  getWorkDaysByDate(dateString): Observable<Workday[]> {
     return this.http
-      .get(`${environment.apiUrl}/API/Workdays/date/${date}`)
-      .pipe(map((workDay: any): Workday => Workday.fromJSON(workDay)));
+      .get(`${environment.apiUrl}/API/workdays/date/${dateString}`)
+      .pipe(map((list: any[]): Workday[] => list.map(Workday.fromJSON)));
   }
 }

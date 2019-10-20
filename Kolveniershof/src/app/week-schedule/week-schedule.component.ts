@@ -15,10 +15,10 @@ import { map } from 'rxjs/operators';
 export class WeekScheduleComponent implements OnInit {
   faGreaterThan = faGreaterThan;
   faLessThan = faLessThan;
-  private date = new Date(2019,1,1);// to delete
+  private date = new Date(2019, 1, 1); // to delete
   public loadingError$ = this._workDayDataService.loadingError$;
-  private _fetchWorkday$: Observable<Workday> = this._workDayDataService.getWorkDayByDate(this.formattedDate(this.date)); //Haalt momenteel alles op, was makkelijker om zo te testen
- 
+  private _fetchWorkdays$: Observable<Workday[]> = this._workDayDataService.getWorkDaysByDate(this.formattedDate(this.date));
+
   constructor(
     private _workDayDataService: WorkDayDataService,
     private http: HttpClient
@@ -26,23 +26,23 @@ export class WeekScheduleComponent implements OnInit {
 
   ngOnInit() {}
 
-  get workday$(): Observable<Workday>{
-   
-    return this._fetchWorkday$;
+  get workdays$(): Observable<Workday[]>{
+
+    return this._fetchWorkdays$;
 
   }
 
-  formattedDate(d = new Date) {
-    let month = String(d.getMonth() + 1);
+  formattedDate(d) {
+    let month = String(d.getMonth());
     let day = String(d.getDate());
     const year = String(d.getFullYear());
-  
+
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
-  
-    return `${year}_${month}_${day}`;
-  }
-  
 
-  
+    return `${day}_${month}_${year}`;
+  }
+
+
+
 }
