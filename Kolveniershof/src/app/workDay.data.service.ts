@@ -36,9 +36,9 @@ export class WorkDayDataService {
       .pipe(map((workDay: any): Workday => Workday.fromJSON(workDay)));
   }
 
-  getWorkDaysByDate(dateString): Observable<Workday[]> {
+  getWorkdaysByDate(dateString): Observable<Workday> {
     return this.http
       .get(`${environment.apiUrl}/API/workdays/date/${dateString}`)
-      .pipe(map((list: any[]): Workday[] => list.map(Workday.fromJSON)));
+      .pipe(map(Workday.fromJSON));
   }
 }
