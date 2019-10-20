@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { LoginComponent } from "src/app/user/login/login.component";
 
 import { RouterModule, Routes } from "@angular/router";
-import { PageNotFoundComponent } from "src/app/page-not-found/page-not-found.component";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { PictoAgendaComponent } from "./picto-agenda/picto-agenda.component";
 import { WeekScheduleComponent } from "./week-schedule/week-schedule.component";
 import { AuthGuard } from "./user/auth.guard";

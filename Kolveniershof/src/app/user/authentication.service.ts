@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable, BehaviorSubject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
-import { environment } from "src/environments/environment";
+import { environment } from "../../environments/environment";
 
 function parseJwt(token) {
   if (!token) {
@@ -23,7 +23,7 @@ export class AuthenticationService {
   public redirectUrl: string;
 
   constructor(private http: HttpClient) {
-    
+
     let currentUser = localStorage.getItem(this._tokenKey);
     if(currentUser){
     let parsedToken = (JSON.parse(currentUser)).token;
@@ -44,7 +44,7 @@ export class AuthenticationService {
   }
     else{
       this._user$ = new BehaviorSubject<string>(null);
-    
+
     }
   }
 
