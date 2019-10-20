@@ -21,7 +21,7 @@ import { MatCardModule } from "@angular/material/card";
 import { FooterComponent } from "./footer/footer.component";
 import { MatButtonModule, MatButton } from "@angular/material/button";
 import { UserModule } from "./user/user.module";
-import { httpInterceptorProviders } from "./Interceptors";
+import { httpInterceptorProviders } from "./http-interceptors";
 import { PictoAgendaComponent } from "./picto-agenda/picto-agenda.component";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatExpansionModule } from "@angular/material/expansion";
