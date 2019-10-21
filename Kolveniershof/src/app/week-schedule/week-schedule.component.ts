@@ -18,19 +18,21 @@ export class WeekScheduleComponent implements OnInit {
   private date = new Date(2019, 1, 1); // to delete
   public loadingError$ = this._workDayDataService.loadingError$;
   private _fetchWorkdays$: Observable<Workday> = this._workDayDataService.getWorkdaysByDate(this.formattedDate(this.date));
-
+  private workday: Workday;
   constructor(
     private _workDayDataService: WorkDayDataService,
     private http: HttpClient
-  ) {}
-
-  ngOnInit() {
-    this.workday$.subscribe(e => console.log(e));
+  ) {
+    this._fetchWorkdays$.subscribe(val => this.workday = val);
   }
 
-  get workday$(): Observable<Workday>{
+  ngOnInit() {
+    //this.workday$.subscribe(e => console.log(e));
+  }
 
-    return this._fetchWorkdays$;
+  get workday$(): Workday{
+
+    return this.workday;
 
   }
 
