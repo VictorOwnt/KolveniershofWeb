@@ -6,32 +6,19 @@
   </thead>
   <tbody>
     <tr>
-      <td>Koken</td>
-      <td>Kathleen</td>
+      <td>{{workday.amActivities[0].activity.name}}</td>
+      <td>{{workday.amActivities[0].mentors[0].firstName + " " + workday.amActivities[0].mentors[0].lastName}},
+        {{workday.amActivities[0].mentors[1].firstName + " " + workday.amActivities[0].mentors[1].lastName}}
+      </td>
       <td>
         <fa-icon [icon]="faPencilAlt"></fa-icon>
         <span>&#10006;</span>
       </td>
     </tr>
     <tr>
-      <td>Digitaal Atelier</td>
-      <td>Nick, Bjorn</td>
-      <td>
-        <fa-icon [icon]="faPencilAlt"></fa-icon>
-        <span>&#10006;</span>
+      <td>{{workday.amActivities[1].activity.name}}</td>
+      <td>{{workday.amActivities[1].mentors[0].firstName + " " + workday.amActivities[1].mentors[0].lastName}}
       </td>
-    </tr>
-    <tr>
-      <td>Crea</td>
-      <td>Josianne</td>
-      <td>
-        <fa-icon [icon]="faPencilAlt"></fa-icon>
-        <span>&#10006;</span>
-      </td>
-    </tr>
-    <tr>
-      <td>Winkelen</td>
-      <td>Ann T</td>
       <td>
         <fa-icon [icon]="faPencilAlt"></fa-icon>
         <span>&#10006;</span>

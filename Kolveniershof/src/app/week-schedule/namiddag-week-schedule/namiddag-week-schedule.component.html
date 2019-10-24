@@ -6,32 +6,9 @@
     </thead>
     <tbody>
       <tr>
-        <td>Spik en Span</td>
-        <td>Anja, Josianne</td>
-        <td>
-          <fa-icon [icon]="faPencilAlt"></fa-icon>
-          <span>&#10006;</span>
-        </td>
-      </tr>
-      <tr>
-        <td>Beleving **</td>
-        <td>Annemie</td>
-        <td>
-          <fa-icon [icon]="faPencilAlt"></fa-icon>
-          <span>&#10006;</span>
-        </td>
-      </tr>
-      <tr>
-        <td>Sport</td>
-        <td>Ann T, Ine</td>
-        <td>
-          <fa-icon [icon]="faPencilAlt"></fa-icon>
-          <span>&#10006;</span>
-        </td>
-      </tr>
-      <tr>
-        <td>K-Lumet</td>
-        <td>Koen</td>
+        <td>{{workday.pmActivities[0].activity.name}}</td>
+        <td>{{workday.pmActivities[0].mentors[0].firstName + " " + workday.pmActivities[0].mentors[0].lastName}},
+          {{workday.pmActivities[0].mentors[1].firstName + " " + workday.pmActivities[0].mentors[1].lastName}}</td>
         <td>
           <fa-icon [icon]="faPencilAlt"></fa-icon>
           <span>&#10006;</span>
