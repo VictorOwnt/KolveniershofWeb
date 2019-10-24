@@ -16,6 +16,7 @@ import {
   MatTable,
   MatTableModule
 } from "@angular/material";
+import {MatListModule} from '@angular/material/list';
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
 import { FooterComponent } from "./footer/footer.component";
@@ -38,6 +39,7 @@ import { VoormiddagWeekScheduleComponent } from "./week-schedule/voormiddag-week
 import { NamiddagWeekScheduleComponent } from "./week-schedule/namiddag-week-schedule/namiddag-week-schedule.component";
 import { ExtraWeekScheduleComponent } from "./week-schedule/extra-week-schedule/extra-week-schedule.component";
 import { DatePickerComponent } from "./picto-agenda/date-picker/date-picker.component";
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,10 @@ import { DatePickerComponent } from "./picto-agenda/date-picker/date-picker.comp
     MatInputModule,
     UserModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatListModule,
+    ScrollingModule
+    
   ],
   providers: [httpInterceptorProviders, WorkDayDataService],
   bootstrap: [AppComponent]

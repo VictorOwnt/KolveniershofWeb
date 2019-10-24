@@ -1,6 +1,24 @@
 <div>
   <app-nav> </app-nav><app-date-picker></app-date-picker>
-  <div>
+  
+  <div
+  fxLayout="row"
+      fxLayout.xs="row"
+      fxLayout.sm="row"
+      fxLayoutGap=""
+      >
+    <div
+    fxLayout="column"
+      fxLayout.xs="column"
+      fxLayout.sm="column"
+      fxLayoutGap=""
+      fxLayoutAlign="left">
+      <mat-list>
+          <mat-list-item *ngFor="let user of (users$ |async); let i = index" >
+            
+            <button mat-raised-button (click)="showPictoOfUser(i)">{{user.firstName}}, {{user.lastName}}</button>
+          </mat-list-item>
+        </mat-list></div>
     <div
       fxLayout="column"
       fxLayout.xs="column"
