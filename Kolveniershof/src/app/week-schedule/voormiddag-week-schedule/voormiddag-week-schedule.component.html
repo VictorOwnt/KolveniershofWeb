@@ -5,19 +5,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>{{workday.amActivities[0].activity.name}}</td>
-      <td>{{workday.amActivities[0].mentors[0].firstName + " " + workday.amActivities[0].mentors[0].lastName}},
-        {{workday.amActivities[0].mentors[1].firstName + " " + workday.amActivities[0].mentors[1].lastName}}
-      </td>
+    <tr *ngFor="let activity of workday.amActivities">
+      <td>{{activity.activity.name}}</td>
       <td>
-        <fa-icon [icon]="faPencilAlt"></fa-icon>
-        <span>&#10006;</span>
-      </td>
-    </tr>
-    <tr>
-      <td>{{workday.amActivities[1].activity.name}}</td>
-      <td>{{workday.amActivities[1].mentors[0].firstName + " " + workday.amActivities[1].mentors[0].lastName}}
+        <span *ngFor="let mentor of activity.mentors">{{mentor.firstName + " " + mentor.lastName + ", "}}</span>
       </td>
       <td>
         <fa-icon [icon]="faPencilAlt"></fa-icon>
