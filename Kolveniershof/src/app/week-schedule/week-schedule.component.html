@@ -24,14 +24,14 @@
         <fa-icon [icon]="faGreaterThan"></fa-icon>
       </span>
     </h5>
-    <button>Save Week</button>
+    <button mat-raised-button>Save Week</button>
   </div>
-  
-  
-  <app-algemeen-week-schedule [workday] ="workday$"></app-algemeen-week-schedule>
-  <app-voormiddag-week-schedule [workday] ="workday$"></app-voormiddag-week-schedule>
-  <app-namiddag-week-schedule [workday] ="workday$"></app-namiddag-week-schedule>
-  <app-extra-week-schedule [workday] ="workday$"></app-extra-week-schedule>
+
+  <app-algemeen-week-schedule [workday]="workday$"></app-algemeen-week-schedule>
+  <app-voormiddag-week-schedule
+    [workday]="workday$"
+  ></app-voormiddag-week-schedule>
+  <app-namiddag-week-schedule [workday]="workday$"></app-namiddag-week-schedule>
+  <app-extra-week-schedule [workday]="workday$"></app-extra-week-schedule>
 </div>
 <app-footer></app-footer>
-

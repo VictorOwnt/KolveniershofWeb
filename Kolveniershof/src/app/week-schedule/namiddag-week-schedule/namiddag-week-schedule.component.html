@@ -1,19 +1,23 @@
-  <table class="content-table">
-    <thead>
-      <tr>
-        <th colspan="3">Namiddag</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let activity of workday.pmActivities">
-        <td>{{activity.activity.name}}</td>
-        <td>
-          <span *ngFor="let mentor of activity.mentors">{{mentor.firstName + " " + mentor.lastName + ", "}}</span>
-        </td>
-        <td>
+<table class="content-table">
+  <thead>
+    <tr>
+      <th colspan="3">Namiddag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let activity of workday.pmActivities">
+      <td>{{ activity.activity.name }}</td>
+      <td>
+        <span *ngFor="let mentor of activity.mentors">{{
+          mentor.firstName + " " + mentor.lastName + ", "
+        }}</span>
+      </td>
+      <td>
+        <button class="buttons">
           <fa-icon [icon]="faPencilAlt"></fa-icon>
-          <span>&#10006;</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        </button>
+        <button class="buttons"><span>&#10006;</span></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
