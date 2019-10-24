@@ -17,7 +17,7 @@ export class WeekScheduleComponent implements OnInit {
   faLessThan = faLessThan;
   private date = new Date(2019, 1, 1); // to delete
   public loadingError$ = this._workDayDataService.loadingError$;
-  private _fetchWorkday$: Observable<Workday> = this._workDayDataService.getWorkdaysByDate(this.formattedDate(this.date));
+  private _fetchWorkday$: Observable<Workday> = this._workDayDataService.getWorkDayByDate(this.formattedDate(this.date));
   private workday: Workday;
   constructor(
     private _workDayDataService: WorkDayDataService,
