@@ -6,6 +6,7 @@ import { Workday } from '../domain/workday.model';
 import { WorkDayDataService } from '../workDay.data.service';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { MatDatepickerInputEvent } from '@angular/material';
 
 @Component({
   selector: "app-week-schedule",
@@ -15,15 +16,15 @@ import { map } from 'rxjs/operators';
 export class WeekScheduleComponent implements OnInit {
   faGreaterThan = faGreaterThan;
   faLessThan = faLessThan;
-  private date = new Date(2019, 1, 1); // to delete
   public loadingError$ = this._workDayDataService.loadingError$;
-  private _fetchWorkday$: Observable<Workday> = this._workDayDataService.getWorkDayByDate(this.formattedDate(this.date));
-  private workday: Workday;
+  private _fetchWorkday$: Observable<Workday> = this._workDayDataService.getWorkDayByDate(this.formattedDate(new Date()));
+  private _workday: Workday;
+  private testdate : string;
   constructor(
     private _workDayDataService: WorkDayDataService,
     private http: HttpClient
   ) {
-    this._fetchWorkday$.subscribe(val => this.workday = val);
+    this._fetchWorkday$.subscribe(val => this._workday = val);
   }
 
   ngOnInit() {
@@ -32,12 +33,14 @@ export class WeekScheduleComponent implements OnInit {
 
   get workday$(): Workday{
 
-    return this.workday;
+    return this._workday;
 
   }
-
+  set workday(date:Date){
+    this._workDayDataService.getWorkDayByDate(this.formattedDate(date)).subscribe(val => this._workday = val);
+  }
   formattedDate(d) {
-    let month = String(d.getMonth());
+    let month = String(d.getMonth()+1);//month begint vanaf 0 tot 11
     let day = String(d.getDate());
     const year = String(d.getFullYear());
 
@@ -47,6 +50,8 @@ export class WeekScheduleComponent implements OnInit {
     return `${day}_${month}_${year}`;
   }
 
-
+  laadDagSchema(event: MatDatepickerInputEvent<Date>) {
+    this._workDayDataService.getWorkDayByDate(this.formattedDate(event.value)).subscribe(val => this._workday = val);
+  }
 
 }

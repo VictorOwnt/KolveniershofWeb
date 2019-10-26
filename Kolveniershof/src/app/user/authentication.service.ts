@@ -56,18 +56,18 @@ export class AuthenticationService {
     return this.tokenString;
   }
 
-  login(userName: string, password: string): Observable<boolean> {
+  login(email: string, password: string): Observable<boolean> {
     return this.http
       .post(
         `${environment.apiUrl}/API/users/login`,
-        { userName, password },
+        { email, password },
         { responseType: "text" }
       )
       .pipe(
         map((token: any) => {
           if (token) {
             localStorage.setItem(this._tokenKey, token);
-            this._user$.next(userName);
+            this._user$.next(email);
             return true;
           } else {
             return false;
@@ -116,9 +116,9 @@ export class AuthenticationService {
       );
   }
 
-  checkUserNameAvailability = (userName: string): Observable<boolean> => {
+  checkUserNameAvailability = (email: string): Observable<boolean> => {
     return this.http.get<boolean>(`${environment.apiUrl}/checkusername`, {
-      params: { userName }
+      params: { email }
     });
   };
 }

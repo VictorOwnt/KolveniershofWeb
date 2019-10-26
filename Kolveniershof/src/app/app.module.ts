@@ -14,7 +14,8 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatTable,
-  MatTableModule
+  MatTableModule,
+  MatNativeDateModule
 } from "@angular/material";
 import {MatListModule} from '@angular/material/list';
 import { ReactiveFormsModule } from "@angular/forms";
@@ -40,6 +41,7 @@ import { NamiddagWeekScheduleComponent } from "./week-schedule/namiddag-week-sch
 import { ExtraWeekScheduleComponent } from "./week-schedule/extra-week-schedule/extra-week-schedule.component";
 import { DatePickerComponent } from "./picto-agenda/date-picker/date-picker.component";
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -79,10 +81,12 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     HttpClientModule,
     FontAwesomeModule,
     MatListModule,
-    ScrollingModule
+    ScrollingModule,
+    MatDatepickerModule,
+    MatNativeDateModule
     
   ],
-  providers: [httpInterceptorProviders, WorkDayDataService],
+  providers: [httpInterceptorProviders, WorkDayDataService,MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
