@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthenticationService } from '../user/authentication.service';
 import { Router } from '@angular/router';
+import { User } from '../user/user.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: "app-nav",
@@ -8,12 +10,22 @@ import { Router } from '@angular/router';
   styleUrls: ["./nav.component.css"]
 })
 export class NavComponent implements OnInit {
-
-  loggedInUser$ = this._authenticationService.user$;
-  constructor( private router: Router,private _authenticationService: AuthenticationService) {}
+  
+  loggedInUser$ =  new BehaviorSubject<string>("");
+  constructor( private router: Router,private _authenticationService: AuthenticationService) {
+    this.setCurrentUserFromLocalStorage();
+    
+  }
   logout() {
     this._authenticationService.logout();
     this.router.navigateByUrl("");
   }
   ngOnInit() {}
+
+  setCurrentUserFromLocalStorage(){
+    if(localStorage.getItem("currentUser")){
+      this.loggedInUser$=new BehaviorSubject<string>(User.fromJSON(JSON.parse(localStorage.getItem("currentUser"))).email);
+    }
+  }
 }
+
