@@ -13,7 +13,7 @@ export class UserDataService {
   constructor(private http: HttpClient) {}
 
   get users$(): Observable<User[]> {
-    return this.http.get(`${environment.apiUrl}/User/`).pipe(
+    return this.http.get(`${environment.apiUrl}/API/Users/`).pipe(
       catchError(error => {
         this.loadingError$.next(error.statusText);
         return of(null);

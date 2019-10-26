@@ -1,5 +1,6 @@
 export class User {
   constructor(
+    private _id: string,
     private _username: string,
     private _firstName: string,
     private _lastName: string,
@@ -10,6 +11,9 @@ export class User {
     private _absentDates: Date[]
   ) {}
 
+  get id(): string{
+    return this._id;
+  }
   get username(): string {
     return this._username;
   }
@@ -44,6 +48,7 @@ export class User {
 
   static fromJSON(json: any): User {
     const user = new User(
+      json._id,
       json.username,
       json.firstName,
       json.lastName,
@@ -58,6 +63,7 @@ export class User {
 
   toJSON(): any {
     return {
+      _id:this._id,
       username: this.username,
       firstName: this.firstName,
       lastName: this.lastName,

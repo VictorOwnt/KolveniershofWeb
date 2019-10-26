@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable, BehaviorSubject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
-import { environment } from "src/environments/environment";
+import { environment } from "../../environments/environment";
 
 function parseJwt(token) {
   if (!token) {
@@ -23,7 +23,7 @@ export class AuthenticationService {
   public redirectUrl: string;
 
   constructor(private http: HttpClient) {
-    
+
     let currentUser = localStorage.getItem(this._tokenKey);
     if(currentUser){
     let parsedToken = (JSON.parse(currentUser)).token;
@@ -44,7 +44,7 @@ export class AuthenticationService {
   }
     else{
       this._user$ = new BehaviorSubject<string>(null);
-    
+
     }
   }
 
@@ -56,18 +56,18 @@ export class AuthenticationService {
     return this.tokenString;
   }
 
-  login(userName: string, password: string): Observable<boolean> {
+  login(email: string, password: string): Observable<boolean> {
     return this.http
       .post(
         `${environment.apiUrl}/API/users/login`,
-        { userName, password },
+        { email, password },
         { responseType: "text" }
       )
       .pipe(
         map((token: any) => {
           if (token) {
             localStorage.setItem(this._tokenKey, token);
-            this._user$.next(userName);
+            this._user$.next(email);
             return true;
           } else {
             return false;
@@ -116,9 +116,9 @@ export class AuthenticationService {
       );
   }
 
-  checkUserNameAvailability = (userName: string): Observable<boolean> => {
+  checkUserNameAvailability = (email: string): Observable<boolean> => {
     return this.http.get<boolean>(`${environment.apiUrl}/checkusername`, {
-      params: { userName }
+      params: { email }
     });
   };
 }

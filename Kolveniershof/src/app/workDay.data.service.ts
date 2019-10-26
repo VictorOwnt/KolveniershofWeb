@@ -15,10 +15,10 @@ export class WorkDayDataService {
 
   get workdays$(): Observable<Workday[]> {
     return this.http.get(`${environment.apiUrl}/API/Workdays`).pipe(
-      catchError(error => { console.log("fout ophalen"+ error)
+      catchError(error => { 
         this.loadingError$.next(error.statusText);
         return of(null);
-      }),tap(x=>console.log("records ontvangen")),
+      }),
       map((list: any[]): Workday[] => list.map(Workday.fromJSON))
     );
   }
@@ -41,5 +41,14 @@ export class WorkDayDataService {
     return this.http
       .get(`${environment.apiUrl}/API/Workdays/date/${date}`)
       .pipe(map((workDay: any): Workday => Workday.fromJSON(workDay)));
+  }
+
+
+  // zit nog niet in backend, momenteel 7x een dag ophalen
+  getWeekOfUser(userId,date):Observable<Workday>{
+    return this.http
+      .get(`${environment.apiUrl}/API/Workdays/date/${date}/${userId}`)
+      .pipe(map((workDay: any): Workday => Workday.fromJSON(workDay)));
+    
   }
 }

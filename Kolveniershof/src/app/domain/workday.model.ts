@@ -17,7 +17,7 @@ export class Workday {
   ) {}
 
   static fromJSON(json: any): Workday {
-    const workDay = new Workday(
+    return new Workday(
       json.date,
       json.amActivities.map(ActivityUnit.fromJSON),
       json.pmActivities.map(ActivityUnit.fromJSON),
@@ -27,7 +27,6 @@ export class Workday {
       json.eveningBusses.map(BusUnit.fromJSON),
       json.holiday
     );
-    return workDay;
   }
 
   toJSON(): any {

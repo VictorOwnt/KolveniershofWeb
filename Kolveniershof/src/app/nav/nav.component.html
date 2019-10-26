@@ -5,14 +5,16 @@
         ><img src="assets/images/logo.svg" height="40" alt="logo" />
       </a>
       <span class="spacer"></span>
+      <span *ngIf="(loggedInUser$ | async) as user">{{ user }}</span>
       <span>
         <button class="buttons">
           Gegevens wijzigen
         </button>
       </span>
       <span>·</span>
+      
       <span>
-        <button class="buttons">
+        <button (click)="logout()" mat-flat-button class="buttons">
           Afmelden
         </button>
       </span>
