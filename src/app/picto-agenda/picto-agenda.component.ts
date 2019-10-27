@@ -5,6 +5,7 @@ import { UserDataService } from "../user/user.data.service";
 import { User } from "../user/user.model";
 import { Observable } from "rxjs";
 import { WorkDayDataService } from "../workDay.data.service";
+import { MatDatepickerInputEvent } from '@angular/material';
 
 @Component({
   selector: "app-picto-agenda",
@@ -14,6 +15,7 @@ import { WorkDayDataService } from "../workDay.data.service";
 export class PictoAgendaComponent implements OnInit {
   faGreaterThan = faGreaterThan;
   faLessThan = faLessThan;
+  val:Date;
 
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
   private _users: User[];
@@ -23,6 +25,7 @@ export class PictoAgendaComponent implements OnInit {
     private _workdayDataService: WorkDayDataService
   ) {
     this._fetchUsers$.subscribe(users => (this._users = users));
+    this.showPictoOfUser();
   }
 
   ngOnInit() {}
@@ -30,12 +33,20 @@ export class PictoAgendaComponent implements OnInit {
   get users$(): Observable<User[]> {
     return this._fetchUsers$;
   }
-  showPictoOfUser(index): void {
-    const clickedUser = this._users[index];
-    const currentWeek = this.getCurrentWeek();
+  showPictoOfUser(index?:number): void {
+    
+    let clickedUser = User.fromJSON(JSON.parse(localStorage.getItem("currentUser")));
+    
+    if(index){
+      clickedUser = this._users[index];
+    }
+    let currentWeek = this.getCurrentWeek();
+    if(this.val){
+     currentWeek = this.getCurrentWeek(this.val);
+    }   
     let date;
-
     let workday;
+    
     for (let i = 0; i < currentWeek.length; i++) {
       date = currentWeek[i];
 
@@ -46,19 +57,23 @@ export class PictoAgendaComponent implements OnInit {
     }
   }
 
-  getCurrentWeek(): Date[] {
-    let curr: Date = new Date();
+  getCurrentWeek(date?:Date): Date[] {
+    let chosenDate: Date = new Date();
+    if(date){
+      chosenDate = date;
+    }
+    
     let week = [];
     for (let i = 1; i <= 7; i++) {
-      let first = curr.getDate() - curr.getDay() + i;
-      let day = new Date(curr.setDate(first)); //.toISOString().slice(0, 10)
+      let first = chosenDate.getDate() - chosenDate.getDay() + i;
+      let day = new Date(chosenDate.setDate(first)); //.toISOString().slice(0, 10)
 
       week.push(this.formattedDate(day));
     }
     return week;
   }
   formattedDate(d) {
-    let month = String(d.getMonth());
+    let month = String(d.getMonth()+1);
     let day = String(d.getDate());
     const year = String(d.getFullYear());
 

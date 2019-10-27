@@ -19,7 +19,7 @@ import {
   MatDialogModule
 } from "@angular/material";
 import {MatListModule} from '@angular/material/list';
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
 import { FooterComponent } from "./footer/footer.component";
 import { MatButtonModule, MatButton } from "@angular/material/button";
@@ -88,7 +88,8 @@ import { EditWeekScheduleComponent } from './edit-week-schedule/edit-week-schedu
     ScrollingModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
     
   ],
   entryComponents: [EditWeekScheduleComponent],
