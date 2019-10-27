@@ -26,6 +26,7 @@ export class NavComponent implements OnInit {
     if(localStorage.getItem("currentUser")){
       this.loggedInUser$=new BehaviorSubject<string>(User.fromJSON(JSON.parse(localStorage.getItem("currentUser"))).email);
     }
+    
   }
 }
 

@@ -71,4 +71,8 @@ export class PictoAgendaComponent implements OnInit {
 
     return `${day}_${month}_${year}`;
   }
+
+  isAdmin() : boolean{
+    return User.fromJSON(JSON.parse(localStorage.getItem("currentUser"))).admin;
+    }
 }

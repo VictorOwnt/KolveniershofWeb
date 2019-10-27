@@ -15,6 +15,7 @@
       fxLayoutGap=""
       fxLayoutAlign="flex-start center"
     >
+    <div *ngIf="isAdmin()">
       <mat-list>
         <mat-list-item *ngFor="let user of users$ | async; let i = index">
           <button mat-raised-button (click)="showPictoOfUser(i)">
@@ -23,6 +24,7 @@
         </mat-list-item>
       </mat-list>
     </div>
+  </div>
     <div
       fxLayout="column"
       fxLayout.xs="column"
