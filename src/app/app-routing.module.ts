@@ -10,9 +10,9 @@ import { AuthGuard } from "./user/auth.guard";
 
 const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
-  { path: "home", component: LoginComponent, },
-  { path: "week", component: WeekScheduleComponent,canActivate: [ AuthGuard ] }, //
-  { path: "picto", component: PictoAgendaComponent,canActivate: [ AuthGuard ] },
+  { path: "home", component: PictoAgendaComponent },
+  { path: "week", component: WeekScheduleComponent, canActivate: [AuthGuard] }, //
+  { path: "picto", component: PictoAgendaComponent, canActivate: [AuthGuard] },
   { path: "", redirectTo: "home", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent }
 ];
