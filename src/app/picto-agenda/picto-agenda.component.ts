@@ -5,7 +5,6 @@ import { UserDataService } from "../user/user.data.service";
 import { User } from "../user/user.model";
 import { Observable } from "rxjs";
 import { WorkDayDataService } from "../workDay.data.service";
-import { MatDatepickerInputEvent } from '@angular/material';
 
 @Component({
   selector: "app-picto-agenda",
