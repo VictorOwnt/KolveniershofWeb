@@ -5,6 +5,7 @@ import { UserDataService } from "../user/user.data.service";
 import { User } from "../user/user.model";
 import { Observable } from "rxjs";
 import { WorkDayDataService } from "../workDay.data.service";
+import { Workday } from "../domain/workday.model";
 
 @Component({
   selector: "app-picto-agenda",
@@ -14,11 +15,12 @@ import { WorkDayDataService } from "../workDay.data.service";
 export class PictoAgendaComponent implements OnInit {
   faGreaterThan = faGreaterThan;
   faLessThan = faLessThan;
-  val:Date;
+  val: Date = new Date(new Date().getFullYear(), 0, 1);
 
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
   private _users: User[];
   private workDays = [];
+
   constructor(
     private _userDataService: UserDataService,
     private _workdayDataService: WorkDayDataService
@@ -32,20 +34,22 @@ export class PictoAgendaComponent implements OnInit {
   get users$(): Observable<User[]> {
     return this._fetchUsers$;
   }
-  showPictoOfUser(index?:number): void {
-    
-    let clickedUser = User.fromJSON(JSON.parse(localStorage.getItem("currentUser")));
-    
-    if(index){
+
+  showPictoOfUser(index?: number): void {
+    let clickedUser = User.fromJSON(
+      JSON.parse(localStorage.getItem("currentUser"))
+    );
+
+    if (index) {
       clickedUser = this._users[index];
     }
     let currentWeek = this.getCurrentWeek();
-    if(this.val){
-     currentWeek = this.getCurrentWeek(this.val);
-    }   
-    let date;
-    let workday;
-    
+    if (this.val) {
+      currentWeek = this.getCurrentWeek(this.val);
+    }
+
+    let date: Date;
+    let workday: Workday;
     for (let i = 0; i < currentWeek.length; i++) {
       date = currentWeek[i];
 
@@ -54,25 +58,26 @@ export class PictoAgendaComponent implements OnInit {
         .subscribe(wd => (workday = wd));
       this.workDays.push(workday);
     }
+    console.log(this.workDays);
   }
 
-  getCurrentWeek(date?:Date): Date[] {
+  getCurrentWeek(date?: Date): Date[] {
     let chosenDate: Date = new Date();
-    if(date){
+    if (date) {
       chosenDate = date;
     }
-    
-    let week = [];
+
+    const week = [];
     for (let i = 1; i <= 7; i++) {
-      let first = chosenDate.getDate() - chosenDate.getDay() + i;
-      let day = new Date(chosenDate.setDate(first)); //.toISOString().slice(0, 10)
+      const first = chosenDate.getDate() - chosenDate.getDay() + i;
+      const day = new Date(chosenDate.setDate(first)); // .toISOString().slice(0, 10)
 
       week.push(this.formattedDate(day));
     }
     return week;
   }
-  formattedDate(d) {
-    let month = String(d.getMonth()+1);
+  formattedDate(d: Date) {
+    let month = String(d.getMonth() + 1);
     let day = String(d.getDate());
     const year = String(d.getFullYear());
 
@@ -86,7 +91,7 @@ export class PictoAgendaComponent implements OnInit {
     return `${day}_${month}_${year}`;
   }
 
-  isAdmin() : boolean{
+  isAdmin(): boolean {
     return User.fromJSON(JSON.parse(localStorage.getItem("currentUser"))).admin;
-    }
+  }
 }
