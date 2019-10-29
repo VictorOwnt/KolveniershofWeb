@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
 html,
 body {
   height: 100%;
@@ -128,4 +127,13 @@ mat-card {
 
 .content-table tbody tr td span {
   float: left;
+}
+
+.geefFeedbackBtn {
+  background-color: #2e7be8;
+  color: white;
+}
+.geefFeedbackBtn:hover {
+  background-color: #cae2ff;
+  color: #000;
 }

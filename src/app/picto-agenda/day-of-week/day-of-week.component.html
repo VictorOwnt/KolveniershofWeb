@@ -84,16 +84,25 @@
         </tr>
       </table>
 
+      <hr />
       <div class="footerCard">
         <mat-form-field>
-          <input matInput placeholder="Voeg een opmerking toe" type="" />
+          <input
+            matInput
+            placeholder="Voeg een opmerking toe"
+            type="text"
+            [formControl]="commentFormControl"
+          />
         </mat-form-field>
+        <br>
+        <button mat-raised-button type="submit" class="geefFeedbackBtn">Sla op</button>
       </div>
-      <div class="slightBottomPadding">
+
+      <!-- <div class="slightBottomPadding">
         <h6 style="font-weight: 100;">
           druk op enter om opmerking toe te voegen
         </h6>
-      </div>
+      </div> -->
     </mat-card-content>
   </mat-card>
 </div>

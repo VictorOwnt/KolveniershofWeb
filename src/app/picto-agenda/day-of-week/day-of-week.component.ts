@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Workday } from "src/app/domain/workday.model";
+import { FormControl } from "@angular/forms";
 
 export class DayNameAndDate {
   constructor(private _date: Date, private _name: string, private _icon = "") {}
@@ -24,6 +25,8 @@ export class DayNameAndDate {
 export class DayOfWeekComponent implements OnInit {
   @Input() public workday: Workday;
 
+  private commentFormControl = new FormControl("", []);
+
   private namesOfDays = [
     "Zondag",
     "Maandag",
@@ -34,6 +37,7 @@ export class DayOfWeekComponent implements OnInit {
     "Zaterdag"
   ];
   public nameOfDay: DayNameAndDate;
+
   constructor() {}
 
   ngOnInit() {
