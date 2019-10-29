@@ -91,8 +91,17 @@
           fxLayoutGap="5%"
           fxLayoutAlign="center"
         >
-          <app-day-of-weekend id="zaterdag"></app-day-of-weekend>
-          <app-day-of-weekend id="zondag"></app-day-of-weekend>
+          <!-- weekend -->
+          <app-day-of-weekend
+            id="zaterdag"
+            [workday]="getWorkday(5)"
+            [day]="Zaterdag"
+          ></app-day-of-weekend>
+          <app-day-of-weekend
+            id="zondag"
+            [workday]="getWorkday(6)"
+            [day]="Zondag"
+          ></app-day-of-weekend>
         </div>
       </div>
     </div>

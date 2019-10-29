@@ -25,13 +25,13 @@ export class DayOfWeekComponent implements OnInit {
   @Input() public workday: Workday;
 
   private namesOfDays = [
+    "Zondag",
     "Maandag",
     "Dinsdag",
     "Woensdag",
     "Donderdag",
     "Vrijdag",
-    "Zaterdag",
-    "Zondag"
+    "Zaterdag"
   ];
   public nameOfDay: DayNameAndDate;
   constructor() {}
@@ -39,12 +39,10 @@ export class DayOfWeekComponent implements OnInit {
   ngOnInit() {
     const date = this.unFormattedDate(this.workday.date);
     this.nameOfDay = new DayNameAndDate(date, this.getNameOfDay(date));
-    console.log(this.workday.lunch.icon);
   }
 
   getNameOfDay(date) {
-    console.log(date);
-    return this.namesOfDays[date.getDay() - 1];
+    return this.namesOfDays[date.getDay()];
   }
 
   unFormattedDate(date: any) {

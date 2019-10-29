@@ -1,9 +1,19 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
+import { Workday } from "src/app/domain/workday.model";
 
-export interface Day {
-  id: number;
-  name: string;
-  date: Date;
+export class DayNameAndDate {
+  constructor(private _date: Date, private _name: string, private _icon = "") {}
+  get date() {
+    return this._date;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  get icon() {
+    return this._icon;
+  }
 }
 
 @Component({
@@ -12,18 +22,36 @@ export interface Day {
   styleUrls: ["./day-of-weekend.component.css"]
 })
 export class DayOfWeekendComponent implements OnInit {
-  zaterdag: Day = {
-    id: 0,
-    name: "Zaterdag",
-    date: new Date(2019, 10, 6)
-  };
-  zondag: Day = {
-    id: 1,
-    name: "Zondag",
-    date: new Date(2019, 10, 7)
-  };
+  private namesOfDays = [
+    "Zondag",
+    "Maandag",
+    "Dinsdag",
+    "Woensdag",
+    "Donderdag",
+    "Vrijdag",
+    "Zaterdag"
+  ];
 
+  @Input() public day: string; // voorlopig
+  @Input() public workday: Workday; // voorlopig
+  public nameOfDay: DayNameAndDate;
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const date = this.unFormattedDate(this.workday.date);
+    this.nameOfDay = new DayNameAndDate(date, this.getNameOfDay(date));
+  }
+
+  getNameOfDay(date: Date) {
+    console.log(date.getDay());
+    return this.namesOfDays[date.getDay()];
+  }
+
+  unFormattedDate(date: any) {
+    date = date.split("_");
+    const day = date[0];
+    const month = date[1] - 1;
+    const year = date[2];
+    return new Date(year, month, day);
+  }
 }

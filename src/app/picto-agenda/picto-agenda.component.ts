@@ -93,7 +93,6 @@ export class PictoAgendaComponent implements OnInit {
         this.workDays.push(workdayy);
       }
       this.workDays = this.workDays.sort(w => w.date);
-      console.dir(this.workDays);
     }
   }
 

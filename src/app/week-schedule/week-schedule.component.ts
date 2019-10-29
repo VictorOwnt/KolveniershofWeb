@@ -32,7 +32,7 @@ export class WeekScheduleComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.workday$.subscribe(e => console.log(e));
+    // this.workday$.subscribe(e => console.log(e));
   }
 
   get workday$(): Workday {
@@ -46,7 +46,7 @@ export class WeekScheduleComponent implements OnInit {
   }
 
   formattedDate(d) {
-    let month = String(d.getMonth() + 1); //month begint vanaf 0 tot 11
+    let month = String(d.getMonth() + 1); // month begint vanaf 0 tot 11
     let day = String(d.getDate());
     const year = String(d.getFullYear());
 
