@@ -3,9 +3,14 @@ import { faGreaterThan } from "@fortawesome/free-solid-svg-icons";
 import { faLessThan } from "@fortawesome/free-solid-svg-icons";
 import { UserDataService } from "../user/user.data.service";
 import { User } from "../user/user.model";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { WorkDayDataService } from "../workDay.data.service";
 import { Workday } from "../domain/workday.model";
+import { Activity } from "../domain/activity.model";
+import { ActivityUnit } from "../domain/activityUnit.model";
+import { LunchUnit } from "../domain/lunchUnit.model";
+import { BusUnit } from "../domain/busUnit.model";
+import { Bus } from "../domain/bus.model";
 
 @Component({
   selector: "app-picto-agenda",
@@ -44,21 +49,52 @@ export class PictoAgendaComponent implements OnInit {
       clickedUser = this._users[index];
     }
     let currentWeek = this.getCurrentWeek();
-    if (this.val) {
-      currentWeek = this.getCurrentWeek(this.val);
+
+    const temp: Date = this.val;
+    if (temp) {
+      currentWeek = this.getCurrentWeek(temp);
     }
-
-    let date: Date;
     let workday: Workday;
-    for (let i = 0; i < currentWeek.length; i++) {
-      date = currentWeek[i];
-
+    for (const date of currentWeek) {
       this._workdayDataService
         .getWeekOfUser(clickedUser.id, date)
         .subscribe(wd => (workday = wd));
       this.workDays.push(workday);
     }
-    console.log(this.workDays);
+
+    this.workDays = this.workDays.filter(elem => elem !== undefined);
+
+    if (this.workDays === undefined || this.workDays.length === 0) {
+      const amW: ActivityUnit[] = [
+        new ActivityUnit(new Activity("voetballen", "icon-soccer-player.svg")),
+        new ActivityUnit(new Activity("praten", "icon-talk.svg"))
+      ];
+      const pmW: ActivityUnit[] = [
+        new ActivityUnit(new Activity("paardrijden", "icon-horse.svg")),
+        new ActivityUnit(new Activity("koken", "icon-frying-pan.svg"))
+      ];
+      const men = [];
+      const lun: LunchUnit = new LunchUnit();
+      const amB: BusUnit[] = [
+        new BusUnit(new Bus("Gent", "rood", "busBlack.png")),
+        new BusUnit(new Bus("Leuven", "roze", "busBlack.png"))
+      ];
+      const pmB: BusUnit[] = [
+        new BusUnit(new Bus("Gent", "rood", "busBlack.png")),
+        new BusUnit(new Bus("Leuven", "roze", "busBlack.png"))
+      ];
+
+      const hol = false;
+      const temp2 = this.val;
+      let workdayy;
+      const currentweek = this.getCurrentWeek(temp2);
+      for (const dater of currentweek) {
+        workdayy = new Workday(dater, amW, pmW, men, lun, amB, pmB, hol);
+        this.workDays.push(workdayy);
+      }
+      this.workDays = this.workDays.sort(w => w.date);
+      console.dir(this.workDays);
+    }
   }
 
   getCurrentWeek(date?: Date): Date[] {
@@ -76,6 +112,7 @@ export class PictoAgendaComponent implements OnInit {
     }
     return week;
   }
+
   formattedDate(d: Date) {
     let month = String(d.getMonth() + 1);
     let day = String(d.getDate());
@@ -93,5 +130,9 @@ export class PictoAgendaComponent implements OnInit {
 
   isAdmin(): boolean {
     return User.fromJSON(JSON.parse(localStorage.getItem("currentUser"))).admin;
+  }
+
+  getWorkday(param) {
+    return this.workDays[param];
   }
 }

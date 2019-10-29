@@ -2,7 +2,12 @@
   <app-nav> </app-nav><app-date-picker></app-date-picker>
 
   <mat-form-field>
-    <input matInput [matDatepicker]="picker" [(ngModel)] = 'val' placeholder="Selecteer datum">
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [(ngModel)]="val"
+      placeholder="Selecteer datum"
+    />
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
@@ -20,16 +25,16 @@
       fxLayoutGap=""
       fxLayoutAlign="flex-start center"
     >
-    <div *ngIf="isAdmin()">
-      <mat-list>
-        <mat-list-item *ngFor="let user of users$ | async; let i = index">
-          <button mat-raised-button (click)="showPictoOfUser(i)">
-            {{ user.firstName }}, {{ user.lastName }}
-          </button>
-        </mat-list-item>
-      </mat-list>
+      <div *ngIf="isAdmin()">
+        <mat-list>
+          <mat-list-item *ngFor="let user of users$ | async; let i = index">
+            <button mat-raised-button (click)="showPictoOfUser(i)">
+              {{ user.firstName }}, {{ user.lastName }}
+            </button>
+          </mat-list-item>
+        </mat-list>
+      </div>
     </div>
-  </div>
     <div
       fxLayout="column"
       fxLayout.xs="column"
@@ -46,9 +51,18 @@
         fxLayoutGap="2.5%"
         fxLayoutAlign="center"
       >
-        <app-day-of-week id="maandag"></app-day-of-week>
-        <app-day-of-week id="dinsdag"></app-day-of-week>
-        <app-day-of-week id="woensdag"></app-day-of-week>
+        <app-day-of-week
+          id="maandag"
+          [workday]="getWorkday(0)"
+        ></app-day-of-week>
+        <app-day-of-week
+          id="dinsdag"
+          [workday]="getWorkday(1)"
+        ></app-day-of-week>
+        <app-day-of-week
+          id="woensdag"
+          [workday]="getWorkday(2)"
+        ></app-day-of-week>
       </div>
 
       <!-- part 2 of week -->
@@ -60,8 +74,14 @@
         fxLayoutGap="2.5%"
         fxLayoutAlign="center"
       >
-        <app-day-of-week id="donderdag"></app-day-of-week>
-        <app-day-of-week id="vrijdag"></app-day-of-week>
+        <app-day-of-week
+          id="donderdag"
+          [workday]="getWorkday(3)"
+        ></app-day-of-week>
+        <app-day-of-week
+          id="vrijdag"
+          [workday]="getWorkday(4)"
+        ></app-day-of-week>
         <div
           class="widthAndHeight"
           fxLayout="column"
