@@ -15,11 +15,11 @@ import { Workday } from "../domain/workday.model";
 export class PictoAgendaComponent implements OnInit {
   faGreaterThan = faGreaterThan;
   faLessThan = faLessThan;
-  val: Date = new Date(new Date().getFullYear(), 0, 1);
+  val: Date; //= new Date(new Date().getFullYear(), 0, 1);
 
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
   private _users: User[];
-  private workDays = [];
+  private workDays;
 
   constructor(
     private _userDataService: UserDataService,
@@ -36,6 +36,7 @@ export class PictoAgendaComponent implements OnInit {
   }
 
   showPictoOfUser(index?: number): void {
+    this.workDays = [];
     let clickedUser = User.fromJSON(
       JSON.parse(localStorage.getItem("currentUser"))
     );
@@ -55,10 +56,23 @@ export class PictoAgendaComponent implements OnInit {
 
       this._workdayDataService
         .getWeekOfUser(clickedUser.id, date)
-        .subscribe(wd => (workday = wd));
-      this.workDays.push(workday);
+        .subscribe({
+          next: (result : Workday)=> {
+            console.log(result);
+            if(result){
+            workday = result;}
+          },
+          error:(err:any) => {
+            console.log(err);
+          },
+          complete: () =>{
+            console.log("complete");
+            console.log(`${workday.date}`);
+            this.workDays.push(workday);
+          }
+        })
     }
-    console.log(this.workDays);
+    
   }
 
   getCurrentWeek(date?: Date): Date[] {
@@ -94,4 +108,10 @@ export class PictoAgendaComponent implements OnInit {
   isAdmin(): boolean {
     return User.fromJSON(JSON.parse(localStorage.getItem("currentUser"))).admin;
   }
+  get workdays$():Workday[]{
+    return this.workDays;
+  }
+ /* testFun(): Workday{
+    return this.workDays[1];
+  }*/
 }

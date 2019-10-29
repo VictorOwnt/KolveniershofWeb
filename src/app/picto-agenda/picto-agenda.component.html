@@ -30,6 +30,7 @@
       </mat-list>
     </div>
   </div>
+  <div *ngIf="workdays$">
     <div
       fxLayout="column"
       fxLayout.xs="column"
@@ -38,7 +39,8 @@
       fxLayoutAlign="center"
     >
       <!-- part 1 of week -->
-      <div
+      
+      <div 
         fxLayout="row"
         fxLayout.xs="column"
         fxLayout.sm="column"
@@ -76,6 +78,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
   <app-footer></app-footer>
 </div>
