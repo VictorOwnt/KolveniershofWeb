@@ -22,4 +22,14 @@ h5 span fa-icon {
 
 .widthAndHeight {
   height: 100%;
+  margin-bottom: 2em;
+}
+.containerDatePicker {
+  max-width: 30%;
+  margin-top: 1.5em;
+  margin-bottom: 0;
+}
+
+.container{
+  text-align: center;
 }

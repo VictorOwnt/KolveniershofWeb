@@ -1,16 +1,22 @@
 <div>
-  <app-nav> </app-nav><app-date-picker></app-date-picker>
+  <app-nav> </app-nav>
+  <!-- <app-date-picker>
+  </app-date-picker> -->
 
-  <mat-form-field>
-    <input
-      matInput
-      [matDatepicker]="picker"
-      [(ngModel)]="val"
-      placeholder="Selecteer datum"
-    />
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+  <div class="container containerDatePicker">
+    <br />
+    <!-- datepicker -->
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        [(ngModel)]="val"
+        placeholder="Selecteer datum"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
   <div
     fxLayout="row"
     fxLayout.xs="row"
