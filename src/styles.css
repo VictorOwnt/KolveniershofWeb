@@ -4,6 +4,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -17,21 +18,25 @@ body {
   margin-right: auto;
   margin-left: auto;
 }
+
 @media (min-width: 768px) {
   .container {
     width: 750px;
   }
 }
+
 @media (min-width: 992px) {
   .container {
     width: 970px;
   }
 }
+
 @media (min-width: 1200px) {
   .container {
     width: 1170px;
   }
 }
+
 .center {
   margin: 0;
   position: absolute;
@@ -67,6 +72,7 @@ mat-card {
   padding-left: 2em;
   padding-right: 2em;
 }
+
 .buttons {
   border: none;
   background-color: transparent;
@@ -121,5 +127,5 @@ mat-card {
 }
 
 .content-table tbody tr td span {
-  float: right;
+  float: left;
 }
