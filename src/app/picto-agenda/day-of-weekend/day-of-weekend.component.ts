@@ -33,7 +33,6 @@ export class DayOfWeekendComponent implements OnInit {
     "Zaterdag"
   ];
 
-  @Input() public day: string; // voorlopig
   @Input() public workday: Workday; // voorlopig
   public nameOfDay: DayNameAndDate;
 

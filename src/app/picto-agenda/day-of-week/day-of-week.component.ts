@@ -25,7 +25,7 @@ export class DayNameAndDate {
 export class DayOfWeekComponent implements OnInit {
   @Input() public workday: Workday;
 
-  private commentFormControl = new FormControl("", []);
+  public commentFormControl = new FormControl("", []);
 
   private namesOfDays = [
     "Zondag",
