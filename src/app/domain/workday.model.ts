@@ -32,8 +32,8 @@ export class Workday {
   toJSON(): any {
     return {
       date: this.date,
-      amActivities: this.amActivities.map(act => act.toJSON()), //this.amActivities
-      pmActivities: this.pmActivities.map(act => act.toJSON()), //this.pmActivities
+      amActivities: this.amActivities.map(act => act.toJSON()), // this.amActivities
+      pmActivities: this.pmActivities.map(act => act.toJSON()), // this.pmActivities
       mentors: this.mentors.map(ment => ment.toJSON()),
       lunch: this.lunch,
       amBusses: this.amBusses.map(bus => bus.toJSON()),

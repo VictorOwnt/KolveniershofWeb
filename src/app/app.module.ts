@@ -44,6 +44,7 @@ import { DatePickerComponent } from "./picto-agenda/date-picker/date-picker.comp
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { EditWeekScheduleComponent } from './edit-week-schedule/edit-week-schedule.component';
+import { BusschemaComponent } from './busschema/busschema.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { EditWeekScheduleComponent } from './edit-week-schedule/edit-week-schedu
     NamiddagWeekScheduleComponent,
     ExtraWeekScheduleComponent,
     DatePickerComponent,
-    EditWeekScheduleComponent
+    EditWeekScheduleComponent,
+    BusschemaComponent
   ],
   imports: [
     FlexLayoutModule,

@@ -7,10 +7,12 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { PictoAgendaComponent } from "./picto-agenda/picto-agenda.component";
 import { WeekScheduleComponent } from "./week-schedule/week-schedule.component";
 import { AuthGuard } from "./user/auth.guard";
+import { BusschemaComponent } from "./busschema/busschema.component";
 
 const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "home", component: PictoAgendaComponent },
+  { path: "bus", component: BusschemaComponent },
   { path: "dag", component: WeekScheduleComponent, canActivate: [AuthGuard] }, //
   { path: "week", component: WeekScheduleComponent, canActivate: [AuthGuard] }, //
   { path: "picto", component: PictoAgendaComponent, canActivate: [AuthGuard] },

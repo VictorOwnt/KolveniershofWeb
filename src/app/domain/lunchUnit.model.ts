@@ -3,7 +3,8 @@ import { User } from "../user/user.model";
 export class LunchUnit {
   constructor(
     private _mentors = new Array<User>(),
-    private _clients = new Array<User>()
+    private _clients = new Array<User>(),
+    private _icon = "forkKnifeBlack.png"
   ) {}
 
   static fromJSON(json: any): LunchUnit {
@@ -27,5 +28,9 @@ export class LunchUnit {
 
   get clients(): Array<User> {
     return this._clients;
+  }
+
+  get icon(): string {
+    return this._icon;
   }
 }
