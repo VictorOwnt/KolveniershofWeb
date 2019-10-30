@@ -57,61 +57,56 @@ export class PictoAgendaComponent implements OnInit {
     }
     let workday: Workday;
     for (const date of currentWeek) {
-      this._workdayDataService
-        .getWeekOfUser(clickedUser.id, date)
-        .subscribe({
-          next: (result : Workday)=> {
-            console.log(result);
-            if(result){
-            workday = result;}
-          },
-          error:(err:any) => {
-            console.log(err);
-          },
-          complete: () =>{
-            console.log("complete");
-            console.log(`${workday.date}`);
-            this.workDays.push(workday);
+      this._workdayDataService.getWeekOfUser(clickedUser.id, date).subscribe({
+        next: (result: Workday) => {
+          console.log(result);
+          if (result) {
+            workday = result;
           }
-        })
+        },
+        error: (err: any) => {
+          console.log(err);
+        },
+        complete: () => {
+          console.log("complete");
+          console.log(`${workday.date}`);
+          this.workDays.push(workday);
+        }
+      });
     }
-<<<<<<< HEAD
-    
-=======
 
-    this.workDays = this.workDays.filter(elem => elem !== undefined);
+    // this.workDays = this.workDays.filter(elem => elem !== undefined);
 
-    if (this.workDays === undefined || this.workDays.length === 0) {
-      const amW: ActivityUnit[] = [
-        new ActivityUnit(new Activity("voetballen", "icon-soccer-player.svg")),
-        new ActivityUnit(new Activity("praten", "icon-talk.svg"))
-      ];
-      const pmW: ActivityUnit[] = [
-        new ActivityUnit(new Activity("paardrijden", "icon-horse.svg")),
-        new ActivityUnit(new Activity("koken", "icon-frying-pan.svg"))
-      ];
-      const men = [];
-      const lun: LunchUnit = new LunchUnit();
-      const amB: BusUnit[] = [
-        new BusUnit(new Bus("Gent", "rood", "busBlack.png")),
-        new BusUnit(new Bus("Leuven", "roze", "busBlack.png"))
-      ];
-      const pmB: BusUnit[] = [
-        new BusUnit(new Bus("Gent", "rood", "busBlack.png")),
-        new BusUnit(new Bus("Leuven", "roze", "busBlack.png"))
-      ];
+    // if (this.workDays === undefined || this.workDays.length === 0) {
+    //   const amW: ActivityUnit[] = [
+    //     new ActivityUnit(new Activity("voetballen", "icon-soccer-player.svg")),
+    //     new ActivityUnit(new Activity("praten", "icon-talk.svg"))
+    //   ];
+    //   const pmW: ActivityUnit[] = [
+    //     new ActivityUnit(new Activity("paardrijden", "icon-horse.svg")),
+    //     new ActivityUnit(new Activity("koken", "icon-frying-pan.svg"))
+    //   ];
+    //   const men = [];
+    //   const lun: LunchUnit = new LunchUnit();
+    //   const amB: BusUnit[] = [
+    //     new BusUnit(new Bus("Gent", "rood", "busBlack.png")),
+    //     new BusUnit(new Bus("Leuven", "roze", "busBlack.png"))
+    //   ];
+    //   const pmB: BusUnit[] = [
+    //     new BusUnit(new Bus("Gent", "rood", "busBlack.png")),
+    //     new BusUnit(new Bus("Leuven", "roze", "busBlack.png"))
+    //   ];
 
-      const hol = false;
-      const temp2 = this.val;
-      let workdayy;
-      const currentweek = this.getCurrentWeek(temp2);
-      for (const dater of currentweek) {
-        workdayy = new Workday(dater, amW, pmW, men, lun, amB, pmB, hol);
-        this.workDays.push(workdayy);
-      }
-      this.workDays = this.workDays.sort(w => w.date);
-    }
->>>>>>> 8b9426badc24fbb95e9e701b3bbf15e437a29e38
+    //   const hol = false;
+    //   const temp2 = this.val;
+    //   let workdayy;
+    //   const currentweek = this.getCurrentWeek(temp2);
+    //   for (const dater of currentweek) {
+    //     workdayy = new Workday(dater, amW, pmW, men, lun, amB, pmB, hol);
+    //     this.workDays.push(workdayy);
+    //   }
+    //   this.workDays = this.workDays.sort(w => w.date);
+    // }
   }
 
   getCurrentWeek(date?: Date): Date[] {
@@ -148,17 +143,14 @@ export class PictoAgendaComponent implements OnInit {
   isAdmin(): boolean {
     return User.fromJSON(JSON.parse(localStorage.getItem("currentUser"))).admin;
   }
-<<<<<<< HEAD
-  get workdays$():Workday[]{
+  get workdays$(): Workday[] {
     return this.workDays;
   }
- /* testFun(): Workday{
+  /* testFun(): Workday{
     return this.workDays[1];
   }*/
-=======
 
   getWorkday(param) {
     return this.workDays[param];
   }
->>>>>>> 8b9426badc24fbb95e9e701b3bbf15e437a29e38
 }

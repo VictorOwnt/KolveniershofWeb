@@ -3,6 +3,7 @@ import { Workday } from "src/app/domain/workday.model";
 
 export class DayNameAndDate {
   constructor(private _date: Date, private _name: string, private _icon = "") {}
+
   get date() {
     return this._date;
   }
@@ -35,6 +36,7 @@ export class DayOfWeekendComponent implements OnInit {
   @Input() public day: string; // voorlopig
   @Input() public workday: Workday; // voorlopig
   public nameOfDay: DayNameAndDate;
+
   constructor() {}
 
   ngOnInit() {
