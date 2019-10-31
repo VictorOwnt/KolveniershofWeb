@@ -1,6 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { faGreaterThan } from "@fortawesome/free-solid-svg-icons";
-import { faLessThan } from "@fortawesome/free-solid-svg-icons";
 import { UserDataService } from "../user/user.data.service";
 import { User } from "../user/user.model";
 import { Observable, Subject } from "rxjs";
@@ -18,8 +16,6 @@ import { Bus } from "../domain/bus.model";
   styleUrls: ["./picto-agenda.component.css"]
 })
 export class PictoAgendaComponent implements OnInit {
-  faGreaterThan = faGreaterThan;
-  faLessThan = faLessThan;
   val: Date; //= new Date(new Date().getFullYear(), 0, 1);
 
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$;

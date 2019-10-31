@@ -1,11 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { faGreaterThan } from "@fortawesome/free-solid-svg-icons";
-import { faLessThan } from "@fortawesome/free-solid-svg-icons";
 import { Observable } from "rxjs";
 import { Workday } from "../domain/workday.model";
 import { WorkDayDataService } from "../workDay.data.service";
 import { HttpClient } from "@angular/common/http";
-import { map } from "rxjs/operators";
 import { MatDatepickerInputEvent } from "@angular/material";
 
 @Component({
@@ -14,21 +11,14 @@ import { MatDatepickerInputEvent } from "@angular/material";
   styleUrls: ["./week-schedule.component.css"]
 })
 export class WeekScheduleComponent implements OnInit {
-  faGreaterThan = faGreaterThan;
-  faLessThan = faLessThan;
-
   public loadingError$ = this._workDayDataService.loadingError$;
   private _fetchWorkday$: Observable<
     Workday
   > = this._workDayDataService.getWorkDayByDate(this.formattedDate(new Date()));
   private _workday: Workday;
-  private testdate: string;
 
-  constructor(
-    private _workDayDataService: WorkDayDataService,
-    private http: HttpClient
-  ) {
-    this._fetchWorkday$.subscribe(val => (this._workday = val));
+  constructor(private _workDayDataService: WorkDayDataService) {
+    this._fetchWorkday$.subscribe(value => (this._workday = value));
   }
 
   ngOnInit() {
@@ -45,10 +35,10 @@ export class WeekScheduleComponent implements OnInit {
       .subscribe(val => (this._workday = val));
   }
 
-  formattedDate(d) {
-    let month = String(d.getMonth() + 1); // month begint vanaf 0 tot 11
-    let day = String(d.getDate());
-    const year = String(d.getFullYear());
+  formattedDate(date) {
+    let month = String(date.getMonth() + 1); // month begint vanaf 0 tot 11
+    let day = String(date.getDate());
+    const year = String(date.getFullYear());
 
     if (month.length < 2) {
       month = "0" + month;
@@ -63,6 +53,6 @@ export class WeekScheduleComponent implements OnInit {
   laadDagSchema(event: MatDatepickerInputEvent<Date>) {
     this._workDayDataService
       .getWorkDayByDate(this.formattedDate(event.value))
-      .subscribe(val => (this._workday = val));
+      .subscribe(value => (this._workday = value));
   }
 }
