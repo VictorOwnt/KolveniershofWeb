@@ -1,41 +1,19 @@
 <app-nav> </app-nav>
-<mat-form-field>
-  <input matInput [matDatepicker]="picker" placeholder="Selecteer datum" (dateChange)="laadDagSchema($event)">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
 <div></div>
 <div class="container">
   <div class="weekEnDagPicker">
     <h5>
-      <span>
-        <fa-icon [icon]="faLessThan"></fa-icon>
-      </span>
-      <span>
-        Week 40
-      </span>
-      <span>
-        <fa-icon [icon]="faGreaterThan"></fa-icon>
-      </span>
-    </h5>
-    <h5>
-      <span>
-        <fa-icon [icon]="faLessThan"></fa-icon>
-      </span>
-      <span>
-        Dinsdag
-      </span>
-      <span>
-        <fa-icon [icon]="faGreaterThan"></fa-icon>
-      </span>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Selecteer datum" (dateChange)="laadDagSchema($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
     </h5>
     <button mat-raised-button>Save Week</button>
   </div>
 
   <app-algemeen-week-schedule [workday]="workday$"></app-algemeen-week-schedule>
-  <app-voormiddag-week-schedule
-    [workday]="workday$"
-  ></app-voormiddag-week-schedule>
+  <app-voormiddag-week-schedule [workday]="workday$"></app-voormiddag-week-schedule>
   <app-namiddag-week-schedule [workday]="workday$"></app-namiddag-week-schedule>
   <app-extra-week-schedule [workday]="workday$"></app-extra-week-schedule>
 </div>
