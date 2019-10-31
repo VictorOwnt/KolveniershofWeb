@@ -5,14 +5,18 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let activity of workday.amActivities">
-      <td>{{activity.activity.name}}</td>
+    <tr *ngFor="let activity of workday.amActivities; let i = index">
+      <td>{{ activity.activity.name }}</td>
       <td>
-        <span *ngFor="let mentor of activity.mentors">{{mentor.firstName + " " + mentor.lastName + ", "}}</span>
+        <span *ngFor="let mentor of activity.mentors">
+          {{ mentor.firstName + " " + mentor.lastName + ", " }}
+        </span>
       </td>
       <td>
-        <fa-icon [icon]="faPencilAlt"></fa-icon>
-        <span>&#10006;</span>
+        <button class="buttons" (click)="openEditWeekSchedule(i)">
+          <fa-icon [icon]="faPencilAlt"></fa-icon>
+        </button>
+        <button class="buttons"><span>&#10006;</span></button>
       </td>
     </tr>
   </tbody>

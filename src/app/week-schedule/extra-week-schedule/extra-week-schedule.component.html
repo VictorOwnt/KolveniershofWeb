@@ -7,10 +7,12 @@
   <tbody>
     <tr>
       <td>Lunch</td>
-      <td>{{workday.lunch.lunch}}</td>
+      <td>{{ workday.lunch }}</td>
       <td>
-        <fa-icon [icon]="faPencilAlt"></fa-icon>
-        <span>&#10006;</span>
+        <button class="buttons">
+          <fa-icon [icon]="faPencilAlt"></fa-icon>
+        </button>
+        <button class="buttons"><span>&#10006;</span></button>
       </td>
     </tr>
   </tbody>

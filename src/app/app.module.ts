@@ -15,10 +15,11 @@ import {
   MatInputModule,
   MatTable,
   MatTableModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatDialogModule
 } from "@angular/material";
-import {MatListModule} from '@angular/material/list';
-import { ReactiveFormsModule } from "@angular/forms";
+import { MatListModule } from "@angular/material/list";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
 import { FooterComponent } from "./footer/footer.component";
 import { MatButtonModule, MatButton } from "@angular/material/button";
@@ -40,8 +41,11 @@ import { VoormiddagWeekScheduleComponent } from "./week-schedule/voormiddag-week
 import { NamiddagWeekScheduleComponent } from "./week-schedule/namiddag-week-schedule/namiddag-week-schedule.component";
 import { ExtraWeekScheduleComponent } from "./week-schedule/extra-week-schedule/extra-week-schedule.component";
 import { DatePickerComponent } from "./picto-agenda/date-picker/date-picker.component";
-import {ScrollingModule} from '@angular/cdk/scrolling';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ScrollingModule } from "@angular/cdk/scrolling";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { EditWeekScheduleComponent } from "./edit-week-schedule/edit-week-schedule.component";
+import { BusschemaComponent } from "./busschema/busschema.component";
+import { RegisterComponent } from './user/register/register.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,10 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     VoormiddagWeekScheduleComponent,
     NamiddagWeekScheduleComponent,
     ExtraWeekScheduleComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    EditWeekScheduleComponent,
+    BusschemaComponent,
+    RegisterComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -83,10 +90,16 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatListModule,
     ScrollingModule,
     MatDatepickerModule,
-    MatNativeDateModule
-    
+    MatNativeDateModule,
+    MatDialogModule,
+    FormsModule
   ],
-  providers: [httpInterceptorProviders, WorkDayDataService,MatDatepickerModule],
+  entryComponents: [EditWeekScheduleComponent],
+  providers: [
+    httpInterceptorProviders,
+    WorkDayDataService,
+    MatDatepickerModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

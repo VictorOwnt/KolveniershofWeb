@@ -1,0 +1,22 @@
+button {
+    color: white;
+    background-color: #2e7be8;
+    float: right;
+    margin-bottom: 25px;
+    border: 1px solid lightgray;
+    border-radius: 7px;
+}
+
+.weekEnDagPicker {
+    text-align: center;
+}
+
+h5 span {
+    color: #003a70;
+}
+
+h5 span fa-icon {
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #acadae;
+}

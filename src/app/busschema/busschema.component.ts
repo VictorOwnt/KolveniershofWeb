@@ -1,39 +1,30 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
 import { Workday } from "../domain/workday.model";
 import { WorkDayDataService } from "../workDay.data.service";
 import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 import { MatDatepickerInputEvent } from "@angular/material";
 
 @Component({
-  selector: "app-week-schedule",
-  templateUrl: "./week-schedule.component.html",
-  styleUrls: ["./week-schedule.component.css"]
+  selector: "app-busschema",
+  templateUrl: "./busschema.component.html",
+  styleUrls: ["./busschema.component.css"]
 })
-export class WeekScheduleComponent implements OnInit {
+export class BusschemaComponent implements OnInit {
   public loadingError$ = this._workDayDataService.loadingError$;
   private _fetchWorkday$: Observable<
     Workday
   > = this._workDayDataService.getWorkDayByDate(this.formattedDate(new Date()));
   private _workday: Workday;
 
-  constructor(private _workDayDataService: WorkDayDataService) {
+  constructor(
+    private _workDayDataService: WorkDayDataService,
+    private http: HttpClient
+  ) {
     this._fetchWorkday$.subscribe(value => (this._workday = value));
   }
 
-  ngOnInit() {
-    // this.workday$.subscribe(e => console.log(e));
-  }
-
-  get workday$(): Workday {
-    return this._workday;
-  }
-
-  set workday(date: Date) {
-    this._workDayDataService
-      .getWorkDayByDate(this.formattedDate(date))
-      .subscribe(val => (this._workday = val));
-  }
+  ngOnInit() {}
 
   formattedDate(date) {
     let month = String(date.getMonth() + 1); // month begint vanaf 0 tot 11

@@ -8,9 +8,9 @@
     <tr *ngFor="let activity of workday.pmActivities">
       <td>{{ activity.activity.name }}</td>
       <td>
-        <span *ngFor="let mentor of activity.mentors">{{
-          mentor.firstName + " " + mentor.lastName + ", "
-        }}</span>
+        <span *ngFor="let mentor of activity.mentors">
+          {{ mentor.firstName + " " + mentor.lastName + ", " }}
+        </span>
       </td>
       <td>
         <button class="buttons">

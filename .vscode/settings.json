@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/11aa9c62-896e-4f8c-b03f-598bac76a2e6/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/KolveniershofFrontend",
+    "appService.deploySubpath": ""
+}

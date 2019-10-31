@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (this.authService.user$.getValue()) {
+    if (localStorage.getItem("currentUser")) {
       return true;
     }
     this.authService.redirectUrl = state.url;

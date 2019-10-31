@@ -1,0 +1,114 @@
+<app-nav> </app-nav>
+<div class="weekEnDagPicker">
+    <h5>
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Selecteer datum" (dateChange)="laadDagSchema($event)">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </h5>
+    <button mat-raised-button>Save Week</button>
+</div>
+<table class="content-table">
+    <thead>
+        <tr>
+            <th colspan="6">Busschema</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Week 1</td>
+            <td><img src="assets/images/icons/icon-moon.svg" alt="bus icon activity" width="40"></td>
+            <td><img src="assets/images/icons/icon-pencil.svg" alt="bus icon activity" width="40"></td>
+            <td><img src="assets/images/icons/icon-sun.svg" alt="bus icon activity" width="40"></td>
+            <td><img src="assets/images/icons/icon-cloud-lightning.svg" alt="bus icon activity" width="40"></td>
+            <td><img src="assets/images/icons/busBlack.png" alt="bus icon activity" width="40"></td>
+        </tr>
+        <tr>
+            <td>Datum</td>
+            <td>Maandag</td>
+            <td>Dinsdag</td>
+            <td>Woensdag</td>
+            <td>Donderdag</td>
+            <td>Vrijdag</td>
+        </tr>
+        <tr>
+            <td>Opvang</td>
+            <td>ANJA </td>
+            <td>HEDWIG/JOSIANNE</td>
+            <td>ANJA/JOSIANNE</td>
+            <td>RENÉE/SOFIE/BJORN</td>
+            <td>ANNEMIE/JOSIANNE</td>
+        </tr>
+        <tr>
+            <td>WC's</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td> <img src="assets/images/icons/busBlack.png" alt="bus icon activity" width="40">Beige</td>
+            <td>ANNEMIE</td>
+            <td>INE </td>
+            <td>FRIEDA </td>
+            <td></td>
+            <td>AN</td>
+        </tr>
+        <tr>
+            <td> <img src="assets/images/icons/busBlack.png" alt="bus icon activity" width="40">Gele</td>
+            <td>LINDA </td>
+            <td>ANNEMIE </td>
+            <td>KOEN </td>
+            <td> </td>
+            <td>ANJA </td>
+        </tr>
+        <tr>
+            <td> <img src="assets/images/icons/busBlack.png" alt="bus icon activity" width="40">Blauwe</td>
+            <td>DINA </td>
+            <td>KATHLEEN </td>
+            <td>NICK </td>
+            <td>FREDDY </td>
+            <td>ANN T</td>
+        </tr>
+        <tr>
+            <td> <img src="assets/images/icons/forkKnifeBlack.png" alt="" width="40" />Lunch</td>
+            <td>NICK LINDA MAGDA AN </td>
+            <td>ANNEMIE INE/ BJORN KATHY ANN T </td>
+            <td>NICK ANJA KASPER KOEN </td>
+            <td>KOEN HEDWIG
+
+                EVY </td>
+            <td>FRIEDA NICK
+
+                KATHLEEN
+            </td>
+        </tr>
+        <tr>
+            <td> <img src="assets/images/icons/busBlack.png" alt="bus icon activity" width="40">Beige</td>
+            <td>AN </td>
+            <td>NICK </td>
+            <td>ANN T </td>
+            <td>KOEN </td>
+            <td>NICK </td>
+        </tr>
+        <tr>
+            <td> <img src="assets/images/icons/busBlack.png" alt="bus icon activity" width="40">Gele</td>
+            <td>KOEN </td>
+            <td>FRIEDA </td>
+            <td>INE </td>
+            <td>NICK </td>
+            <td>HEDWIG </td>
+        </tr>
+        <tr>
+            <td> <img src="assets/images/icons/busBlack.png" alt="bus icon activity" width="40">Blauwe</td>
+            <td>ANNEMIE </td>
+            <td>KATHLEEN </td>
+            <td>AN </td>
+            <td>DINA </td>
+            <td>KOEN </td>
+        </tr>
+    </tbody>
+</table>
+<app-footer></app-footer>
