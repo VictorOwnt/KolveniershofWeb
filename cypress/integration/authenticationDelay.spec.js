@@ -1,7 +1,14 @@
 describe('Login Page', () => {
     beforeEach(() => {});
 
-    it('login page', () => {
+    it('mock login with a delay', function () {
+        cy.server({
+            delay: 2000
+        });
+        cy.route({
+            method: 'GET',
+            url: 'http://localhost:4200/login'
+        });
         cy.visit('http://localhost:4200/login');
         cy.get('[data-cy=login-email]').type('test10@gmail.com');
         cy.get('[data-cy=login-password]').type('test00##');
