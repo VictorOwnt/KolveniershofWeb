@@ -1,5 +1,4 @@
-<!-- Dit mag weg als het werkt -->
-<tbody>
+<!-- <tbody>
     <tr *ngFor="let morningbus of workday.morningBusses">
         <td>{{ morningbus.bus.name }}</td>
         <td>
@@ -14,8 +13,7 @@
             <button class="buttons"><span>&#10006;</span></button>
         </td>
     </tr>
-</tbody>
-<!-- Dit mag weg als het werkt -->
+</tbody> -->
 
 <table class="content-table">
     <thead>
@@ -34,15 +32,15 @@
         </tr>
         <tr>
             <td>Datum</td>
-            <td>Maandag</td>
-            <td>Dinsdag</td>
+            <td>Maandag {{workday.date | date: "dd/MM/yyyy" }}</td>
+            <td>Dinsdag </td>
             <td>Woensdag</td>
             <td>Donderdag</td>
             <td>Vrijdag</td>
         </tr>
         <tr>
             <td>Opvang</td>
-            <td>ANJA </td>
+            <td>{{worday.daycareMentors.firstName}} </td>
             <td>HEDWIG/JOSIANNE</td>
             <td>ANJA/JOSIANNE</td>
             <td>RENÉE/SOFIE/BJORN</td>
