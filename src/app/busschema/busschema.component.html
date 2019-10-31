@@ -9,7 +9,23 @@
     </h5>
     <button mat-raised-button>Save Week</button>
 </div>
-<table class="content-table">
+
+<!-- 
+    Tijdelijke div
+ -->
+<div>
+
+    <div fxFlex="0 0 calc(25%-0.5%)" *ngFor="
+          let localRecipe of (busUnit$ | async )
+        ">
+        <div>{{localRecipe.mentors[0].firstName + localRecipe.mentors[0].birthday}}</div>
+        <!-- <app-recipe [recipe]="localRecipe"></app-recipe> -->
+    </div>
+</div>
+
+<!--  -->
+
+<!-- <table class="content-table">
     <thead>
         <tr>
             <th colspan="6">Busschema</th>
@@ -110,5 +126,5 @@
             <td>KOEN </td>
         </tr>
     </tbody>
-</table>
+</table> -->
 <app-footer></app-footer>
