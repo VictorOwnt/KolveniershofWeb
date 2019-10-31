@@ -1,7 +1,7 @@
-describe('Login Page', () => {
+describe('logintest', () => {
     beforeEach(() => {});
 
-    it('login page', () => {
+    it('logintest', () => {
         cy.visit('http://localhost:4200/login');
         cy.get('[data-cy=login-email]').type('test10@gmail.com');
         cy.get('[data-cy=login-password]').type('test00##');
