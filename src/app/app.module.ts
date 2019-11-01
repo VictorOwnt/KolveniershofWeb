@@ -46,6 +46,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { EditWeekScheduleComponent } from "./edit-week-schedule/edit-week-schedule.component";
 import { BusschemaComponent } from "./busschema/busschema.component";
 import { RegisterComponent } from './user/register/register.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { RegisterComponent } from './user/register/register.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule
   ],
   entryComponents: [EditWeekScheduleComponent],
   providers: [

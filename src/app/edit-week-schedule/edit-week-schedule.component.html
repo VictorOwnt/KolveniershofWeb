@@ -1,25 +1,32 @@
 <div *ngIf="data$.changeType == 'Algemeen'">
     <h2 mat-dialog-title>{{data$.changeType}}</h2>
 
-    <mat-dialog-content [formGroup]="form">
-
+    <mat-dialog-content [formGroup]="edit">
+<!-- Eerder een link gebruiken?
         <mat-form-field>
             <input matInput placeholder="Vervoer" formControlName="vervoer">
-        </mat-form-field>
+        </mat-form-field>-->
         <br>
         <mat-form-field>
-            <input matInput placeholder="Ziek" formControlName="ziek">
-        </mat-form-field>
+            <mat-label>Afwezig</mat-label>
+            <mat-select [formControlName]="absent" multiple>
+              <mat-option *ngFor="let userAbsent of users$" [value]="absentUser">{{userAbsent.lastName}} {{userAbsent.firstName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
         <br>
+
         <mat-form-field>
-            <input matInput placeholder="Afwezig" formControlName="afwezig">
-        </mat-form-field>
+            <mat-label>Ziek</mat-label>
+            <mat-select [formControlName]="sick" multiple>
+              <mat-option *ngFor="let userSick of users$" [value]="sickUser">{{userSick.lastName}} {{userSick.firstName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
 
 
     </mat-dialog-content>
 
     <mat-dialog-actions>
-        <button class="mat-raised-button" (click)="close()">Annuleer</button>
-        <button class="mat-raised-button mat-primary" (click)="save()">Wijzig</button>
+        <button mat-dialog-close class="mat-raised-button">Annuleer</button>
+        <button mat-dialog-close class="mat-raised-button mat-primary" (click)="save()">Wijzig</button>
     </mat-dialog-actions>
 </div>
