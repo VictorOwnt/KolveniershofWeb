@@ -1,1 +1,25 @@
+<div *ngIf="data$.changeType == 'Algemeen'">
+    <h2 mat-dialog-title>{{data$.changeType}}</h2>
 
+    <mat-dialog-content [formGroup]="form">
+
+        <mat-form-field>
+            <input matInput placeholder="Vervoer" formControlName="vervoer">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput placeholder="Ziek" formControlName="ziek">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput placeholder="Afwezig" formControlName="afwezig">
+        </mat-form-field>
+
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button class="mat-raised-button" (click)="close()">Annuleer</button>
+        <button class="mat-raised-button mat-primary" (click)="save()">Wijzig</button>
+    </mat-dialog-actions>
+</div>

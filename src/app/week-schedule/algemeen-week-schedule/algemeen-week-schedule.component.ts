@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from "@angular/core";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Workday } from "src/app/domain/workday.model";
+import { MatDialogRef, MatDialog } from '@angular/material';
+import { EditWeekScheduleComponent } from 'src/app/edit-week-schedule/edit-week-schedule.component';
 
 @Component({
   selector: "app-algemeen-week-schedule",
@@ -12,7 +14,12 @@ export class AlgemeenWeekScheduleComponent implements OnInit {
   faPencilAlt = faPencilAlt;
   faTrash = faTrash;
   @Input() public workday: Workday;
-  constructor() {}
+  editWeekSchedule: MatDialogRef<EditWeekScheduleComponent>;
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit() {}
+  openEditWeekSchedule() {
+    this.editWeekSchedule = this.dialog.open(EditWeekScheduleComponent,{data: { workday: this.workday, changeType: "Algemeen"}});
+    
+  }
 }

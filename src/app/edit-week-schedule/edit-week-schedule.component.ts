@@ -11,7 +11,7 @@ import { EditData } from './editData';
 export class EditWeekScheduleComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: EditData) { 
-    console.log(`${data.workday.amActivities[data.index].activity.name}`);
+    console.log(`${data.workday.date}`);
     //console.log(`${data}`);
   }
 
@@ -19,4 +19,7 @@ export class EditWeekScheduleComponent implements OnInit {
   ngOnInit() {
   }
 
+  get data$(): EditData{
+    return this.data;
+  }
 }
