@@ -33,13 +33,13 @@ export class DayOfWeekendComponent implements OnInit {
     "Zaterdag"
   ];
 
-  @Input() public workday: Workday; // voorlopig
+  @Input() public weekDay: Workday; // voorlopig
   public nameOfDay: DayNameAndDate;
 
   constructor() {}
 
   ngOnInit() {
-    const date = this.unFormattedDate(this.workday.date);
+    const date = this.unFormattedDate(this.weekDay.date);
     this.nameOfDay = new DayNameAndDate(date, this.getNameOfDay(date));
   }
 
@@ -49,10 +49,18 @@ export class DayOfWeekendComponent implements OnInit {
   }
 
   unFormattedDate(date: any) {
-    date = date.split("_");
-    const day = date[0];
+    date = date.split("-");
+    const year = date[0];
     const month = date[1] - 1;
-    const year = date[2];
-    return new Date(year, month, day);
+    const day = date[2];
+    if(day.charAt(0) === "0"){
+      return new Date(year, month, day.substring(1,2));
+    }
+    return new Date(year, month, day.substring(0,2));
+    
+    
+  }
+  get nameOfDay$(): DayNameAndDate{
+    return this.nameOfDay;
   }
 }

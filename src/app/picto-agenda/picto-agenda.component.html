@@ -25,27 +25,30 @@
       </div>
     </div>
   </div>
-  <div *ngIf="workdays$">
+  
+  <div *ngIf="getWorkday(1)">
     <div fxLayout="column" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="" fxLayoutAlign="center">
+        <div *ngIf= "clickedUser$">
+            <mat-card-title>Picto-agenda van {{clickedUser$.firstName}} {{clickedUser$.lastName}}</mat-card-title></div>
       <!-- part 1 of week -->
 
       <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="2.5%"
         fxLayoutAlign="center">
-        <app-day-of-week id="maandag" [workday]="getWorkday(0)"></app-day-of-week>
-        <app-day-of-week id="dinsdag" [workday]="getWorkday(1)"></app-day-of-week>
-        <app-day-of-week id="woensdag" [workday]="getWorkday(2)"></app-day-of-week>
+        <app-day-of-week id="maandag" [weekDay]="getWorkday(0)"></app-day-of-week>
+        <app-day-of-week id="dinsdag" [weekDay]="getWorkday(1)"></app-day-of-week>
+        <app-day-of-week id="woensdag" [weekDay]="getWorkday(2)"></app-day-of-week>
       </div>
 
       <!-- part 2 of week -->
       <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="2.5%"
         fxLayoutAlign="center">
-        <app-day-of-week id="donderdag" [workday]="getWorkday(3)"></app-day-of-week>
-        <app-day-of-week id="vrijdag" [workday]="getWorkday(4)"></app-day-of-week>
+        <app-day-of-week id="donderdag" [weekDay]="getWorkday(3)"></app-day-of-week>
+        <app-day-of-week id="vrijdag" [weekDay]="getWorkday(4)"></app-day-of-week>
         <div class="widthAndHeight" fxLayout="column" fxLayout.xs="column" fxLayout.sm="column" fxLayoutWrap
           fxLayoutGap="5%" fxLayoutAlign="center">
           <!-- weekend -->
-          <app-day-of-weekend id="zaterdag" [workday]="getWorkday(5)"></app-day-of-weekend>
-          <app-day-of-weekend id="zondag" [workday]="getWorkday(6)"></app-day-of-weekend>
+          <app-day-of-weekend id="zaterdag" [weekDay]="getWorkday(5)"></app-day-of-weekend>
+          <app-day-of-weekend id="zondag" [weekDay]="getWorkday(6)"></app-day-of-weekend>
         </div>
       </div>
     </div>

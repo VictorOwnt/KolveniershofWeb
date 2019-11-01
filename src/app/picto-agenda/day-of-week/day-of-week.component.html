@@ -16,7 +16,7 @@
       <!-- morning transportation and activities -->
       <table>
         <tr>
-          <td *ngFor="let amBus of workday.amBusses">
+          <td *ngFor="let amBus of weekDay.amBusses">
             <img
               src="assets/images/icons/{{ amBus.bus.icon }}"
               alt="{{ amBus.bus.name }}"
@@ -29,7 +29,7 @@
       <hr />
       <!-- am activity -->
       <table>
-        <tr *ngFor="let amActivity of workday.amActivities">
+        <tr *ngFor="let amActivity of weekDay.amActivities">
           <td>
             <img
               src="assets/images/icons/{{ amActivity.activity.icon }}"
@@ -47,7 +47,7 @@
         <tr>
           <td>
             <img
-              src="assets/images/icons/{{ workday.lunch.icon }}"
+              src="assets/images/icons/{{ weekDay.lunch.icon }}"
               alt=""
               width="40"
             />
@@ -58,7 +58,7 @@
       <hr />
       <!-- pm activities -->
       <table>
-        <tr *ngFor="let pmActivity of workday.pmActivities">
+        <tr *ngFor="let pmActivity of weekDay.pmActivities">
           <td>
             <img
               src="assets/images/icons/{{ pmActivity.activity.icon }}"
@@ -74,7 +74,7 @@
       <!-- transportation evening -->
       <table>
         <tr>
-          <td *ngFor="let pmBus of workday.pmBusses">
+          <td *ngFor="let pmBus of weekDay.pmBusses">
             <img
               src="assets/images/icons/{{ pmBus.bus.icon }}"
               alt="{{ pmBus.bus.name }}"
