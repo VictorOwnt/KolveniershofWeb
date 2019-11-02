@@ -20,7 +20,7 @@ export class AlgemeenWeekScheduleComponent implements OnInit {
   private userAbsents = User[10];
   private help: User;
   @Input() public workday: Workday;
-  @Input() public date:Date;
+  @Input() public planningDate: Date;
   editWeekSchedule: MatDialogRef<EditWeekScheduleComponent>;
   
   constructor(private dialog: MatDialog,private _userDataService : UserDataService) {
@@ -43,7 +43,7 @@ export class AlgemeenWeekScheduleComponent implements OnInit {
       if(user.absentDates.length != 0){
       user.absentDates.forEach(absentDate =>{
         
-        if(absentDate === this.date){
+        if(absentDate === this.planningDate){
           this.userAbsents.add(this.help);
         }
       })}else{
