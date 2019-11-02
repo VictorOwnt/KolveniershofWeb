@@ -11,8 +11,7 @@ import { EditWeekScheduleComponent } from 'src/app/edit-week-schedule/edit-week-
   styleUrls: ["./algemeen-week-schedule.component.css"]
 })
 export class AlgemeenWeekScheduleComponent implements OnInit {
-  faPencilAlt = faPencilAlt;
-  faTrash = faTrash;
+  
   @Input() public workday: Workday;
   editWeekSchedule: MatDialogRef<EditWeekScheduleComponent>;
   constructor(private dialog: MatDialog) {}

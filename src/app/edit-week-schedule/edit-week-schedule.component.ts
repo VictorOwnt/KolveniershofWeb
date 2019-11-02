@@ -21,9 +21,7 @@ export class EditWeekScheduleComponent implements OnInit {
   sick = new FormControl();
   absent = new FormControl();
   constructor(@Inject(MAT_DIALOG_DATA) public data: EditData,private _userDataService: UserDataService,private formBuilder:FormBuilder) { 
-    
-    //console.log(`${data.workday.date}`);
-    //console.log(`${data}`);
+
   }
 
   
@@ -44,8 +42,6 @@ export class EditWeekScheduleComponent implements OnInit {
   get data$(): EditData{
     return this.data;
   }
-  save(): void{
-
-  }
+  
   
 }

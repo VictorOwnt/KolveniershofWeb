@@ -2,6 +2,7 @@ import { User } from "../user/user.model";
 
 export class LunchUnit {
   constructor(
+    private _lunch: string,
     private _mentors = new Array<User>(),
     private _clients = new Array<User>(),
     private _icon = "forkKnifeBlack.png"
@@ -9,6 +10,7 @@ export class LunchUnit {
 
   static fromJSON(json: any): LunchUnit {
     const lunchUnit = new LunchUnit(
+      json.lunch,
       json.mentors.map(User.fromJSON),
       json.clients.map(User.fromJSON)
     );
@@ -32,5 +34,8 @@ export class LunchUnit {
 
   get icon(): string {
     return this._icon;
+  }
+  get lunch():string{
+    return this._lunch;
   }
 }

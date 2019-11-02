@@ -15,16 +15,16 @@ export interface EditData {
   styleUrls: ["./voormiddag-week-schedule.component.css"]
 })
 export class VoormiddagWeekScheduleComponent implements OnInit {
-  faPencilAlt = faPencilAlt;
-  faTrash = faTrash;
+  
   editWeekSchedule: MatDialogRef<EditWeekScheduleComponent>;
   @Input() public workday: Workday;
   constructor(private dialog: MatDialog) {}
 
   
-  openEditWeekSchedule(i) {
-    this.editWeekSchedule = this.dialog.open(EditWeekScheduleComponent,{data: { workday: this.workday, index : i}});
+ 
+  ngOnInit() {}
+  openEditWeekSchedule() {
+    this.editWeekSchedule = this.dialog.open(EditWeekScheduleComponent,{data: { workday: this.workday, changeType: "Voormiddag"}});
     
   }
-  ngOnInit() {}
 }

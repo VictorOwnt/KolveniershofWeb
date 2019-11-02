@@ -1,8 +1,15 @@
 <table class="content-table">
   <thead>
     <tr>
-      <th colspan="3">Voormiddag</th>
+      <th colspan="2">Voormiddag</th>
+      <th>
+          <button mat-raised-button (click)="openEditWeekSchedule(i)">
+            Wijzig
+          </button>
+          
+        </th>
     </tr>
+
   </thead>
   <tbody>
     <tr *ngFor="let activity of workday.amActivities; let i = index">
@@ -12,12 +19,7 @@
           {{ mentor.firstName + " " + mentor.lastName + ", " }}
         </span>
       </td>
-      <td>
-        <button class="buttons" (click)="openEditWeekSchedule(i)">
-          <fa-icon [icon]="faPencilAlt"></fa-icon>
-        </button>
-        <button class="buttons"><span>&#10006;</span></button>
-      </td>
+      <td></td>
     </tr>
   </tbody>
 </table>

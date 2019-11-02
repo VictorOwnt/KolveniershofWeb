@@ -12,9 +12,7 @@ import { MatDatepickerInputEvent } from "@angular/material";
 })
 export class WeekScheduleComponent implements OnInit {
   public loadingError$ = this._workDayDataService.loadingError$;
-  private _fetchWorkday$: Observable<
-    Workday
-  > = this._workDayDataService.getWorkDayByDate(this.formattedDate(new Date()));
+  private _fetchWorkday$: Observable<Workday> = this._workDayDataService.getWorkDayByDate(this.formattedDate(new Date()));
   private _workday: Workday;
 
   constructor(private _workDayDataService: WorkDayDataService) {
@@ -22,7 +20,8 @@ export class WeekScheduleComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.workday$.subscribe(e => console.log(e));
+    
+    
   }
 
   get workday$(): Workday {

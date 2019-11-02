@@ -40,7 +40,9 @@ export class WorkDayDataService {
   getWorkDayByDate(date): Observable<Workday> {
     return this.http
       .get(`${environment.apiUrl}/API/Workdays/date/${date}`)
-      .pipe(map((workDay: any): Workday => Workday.fromJSON(workDay)));
+      .pipe(map((workDay: any): Workday =>{
+        console.log(`${Workday.fromJSON(workDay)}`)
+        return Workday.fromJSON(workDay)}));
   }
 
   // zit nog niet in backend, momenteel 7x een dag ophalen
