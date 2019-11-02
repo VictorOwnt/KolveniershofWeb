@@ -16,21 +16,28 @@ export class EditWeekScheduleComponent implements OnInit {
 
   
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
-  private _users: User[];
-  public edit: FormGroup;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: EditData,private _userDataService: UserDataService) { 
-    this._fetchUsers$.subscribe(users => (this._users = users));
+  private _users= this._fetchUsers$.subscribe(users => (this._users = users));
+  public form: FormGroup;
+  sick = new FormControl();
+  absent = new FormControl();
+  constructor(@Inject(MAT_DIALOG_DATA) public data: EditData,private _userDataService: UserDataService,private formBuilder:FormBuilder) { 
+    
     //console.log(`${data.workday.date}`);
     //console.log(`${data}`);
   }
 
   
   ngOnInit() {
-    this.edit = new FormGroup({
-      absents: new FormControl('absent')
+    this.form = new FormGroup({
+      absent: this.absent,
+      sick: this.sick
     })
   }
 
+  onSubmit(){
+    console.log(`${this.form.value.sick}`);
+    
+  }
   get users$(): User[]{
     return this._users;
   }
