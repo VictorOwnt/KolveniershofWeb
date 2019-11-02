@@ -22,7 +22,12 @@
     </tr>
     <tr>
       <td>Afwezig</td>
-      <td></td>
+      <td>
+        <div *ngIf="users$">
+        <span *ngFor="let userAbsent of userAbsents$">
+        {{ userAbsent.firstName + " " + userAbsent.lastName + ", " }}
+      </span>
+    </div></td>
       <td>
         
       </td>

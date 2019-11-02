@@ -14,7 +14,7 @@ export class WeekScheduleComponent implements OnInit {
   public loadingError$ = this._workDayDataService.loadingError$;
   private _fetchWorkday$: Observable<Workday> = this._workDayDataService.getWorkDayByDate(this.formattedDate(new Date()));
   private _workday: Workday;
-
+  public date: Date;
   constructor(private _workDayDataService: WorkDayDataService) {
     this._fetchWorkday$.subscribe(value => (this._workday = value));
   }
@@ -22,6 +22,9 @@ export class WeekScheduleComponent implements OnInit {
   ngOnInit() {
     
     
+  }
+  get date$():Date{
+    return this.date;
   }
 
   get workday$(): Workday {
