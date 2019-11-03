@@ -7,19 +7,19 @@
         <br>
         
         <mat-form-field>
-            <mat-label>Afwezig</mat-label>
+            <mat-label>Afwezig/Ziek</mat-label>
             <mat-select [formControl]="absent" multiple>
               <mat-option *ngFor="let userAbsent of users$" [value]="userAbsent">{{userAbsent.lastName}} {{userAbsent.firstName}}</mat-option>
             </mat-select>
           </mat-form-field>
         <br>
 
-        <mat-form-field>
+        <!--<mat-form-field>
             <mat-label>Ziek</mat-label>
             <mat-select [formControl]="sick" multiple>
               <mat-option *ngFor="let userSick of users$" [value]="userSick">{{userSick.lastName}} {{userSick.firstName}}</mat-option>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field>-->
         
 
     </mat-dialog-content>

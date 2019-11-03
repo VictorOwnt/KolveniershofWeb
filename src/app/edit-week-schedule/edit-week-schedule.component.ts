@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { Workday } from '../domain/workday.model';
 import { EditData } from './editData';
@@ -18,22 +18,31 @@ export class EditWeekScheduleComponent implements OnInit {
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
   private _users= this._fetchUsers$.subscribe(users => (this._users = users));
   public form: FormGroup;
-  sick = new FormControl();
+  //sick = new FormControl();
   absent = new FormControl();
-  constructor(@Inject(MAT_DIALOG_DATA) public data: EditData,private _userDataService: UserDataService,private formBuilder:FormBuilder) { 
+  
+  constructor(@Inject(MAT_DIALOG_DATA) public data: EditData,private _userDataService: UserDataService,private formBuilder:FormBuilder,) { 
 
   }
 
   
   ngOnInit() {
     this.form = new FormGroup({
-      absent: this.absent,
-      sick: this.sick
+      absent: this.absent
+      //sick: this.sick
     })
   }
 
   onSubmit(){
-    console.log(`${this.form.value.sick}`);
+    
+    this.form.value.absent.forEach(userAbsent => {
+      userAbsent.absentDates.push(this.data$.planningDate);
+      
+      //put request 
+    /*
+    userDataService().put(userAbsent.toJson());
+    */
+    });
     
   }
   get users$(): User[]{
@@ -42,6 +51,8 @@ export class EditWeekScheduleComponent implements OnInit {
   get data$(): EditData{
     return this.data;
   }
-  
+  get userDataService() : UserDataService{
+    return this._userDataService;
+  }
   
 }

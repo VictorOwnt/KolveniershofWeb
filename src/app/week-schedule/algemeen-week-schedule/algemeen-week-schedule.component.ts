@@ -29,7 +29,7 @@ export class AlgemeenWeekScheduleComponent implements OnInit {
 
   ngOnInit() {}
   openEditWeekSchedule() {
-    this.editWeekSchedule = this.dialog.open(EditWeekScheduleComponent,{data: { workday: this.workday, changeType: "Algemeen"}});
+    this.editWeekSchedule = this.dialog.open(EditWeekScheduleComponent,{data: { workday: this.workday, changeType: "Algemeen", planningDate: this.planningDate}});
     
   }
 
