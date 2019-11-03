@@ -27,20 +27,22 @@ export class EditWeekScheduleComponent implements OnInit {
 
   
   ngOnInit() {
+    
     this.form = new FormGroup({
       absent: this.absent
       //sick: this.sick
     })
+    
   }
 
   onSubmit(){
     
     this.form.value.absent.forEach(userAbsent => {
       userAbsent.absentDates.push(this.data$.planningDate);
-      
+      console.log(`${userAbsent.absentDates[0]}`);
       //put request 
     /*
-    userDataService().put(userAbsent.toJson());
+    this.userDataService.put(userAbsent.toJson());
     */
     });
     
@@ -54,5 +56,7 @@ export class EditWeekScheduleComponent implements OnInit {
   get userDataService() : UserDataService{
     return this._userDataService;
   }
-  
+  get activity1():string {
+    return this.data.workday.amActivities[0].activity.name;
+  }
 }

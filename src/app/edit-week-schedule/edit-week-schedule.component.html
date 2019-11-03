@@ -1,11 +1,13 @@
 
     <h2 mat-dialog-title>{{data$.changeType}}</h2>
-    <div *ngIf="data$.changeType == 'Algemeen'">
-        <form [formGroup]="form" (ngSubmit)='onSubmit()'>
-    <mat-dialog-content >
-     
+
+    
+    
+    <form [formGroup]="form" (ngSubmit)='onSubmit()'>
+      <mat-dialog-content >
         <br>
-        
+        <!-- Algemeen-->
+        <div *ngIf="data$.changeType == 'Algemeen'">
         <mat-form-field>
             <mat-label>Afwezig/Ziek</mat-label>
             <mat-select [formControl]="absent" multiple>
@@ -20,13 +22,38 @@
               <mat-option *ngFor="let userSick of users$" [value]="userSick">{{userSick.lastName}} {{userSick.firstName}}</mat-option>
             </mat-select>
           </mat-form-field>-->
-        
+        </div>
+        <!-- Voormiddag-->
+        <div *ngIf="data$.changeType == 'Voormiddag'">
+          <div *ngFor="let activity of data.workday.amActivities">
+          <mat-form-field>
+              <mat-label>{{activity.activity.name}}</mat-label>
+              <mat-select [formControl]="activity.activity.name" multiple>
+                <mat-option *ngFor="let participant of users$" [value]="participant">{{participant.lastName}} {{participant.firstName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <br>         
+          </div>
+          <!-- Namiddag-->
+        <div *ngIf="data$.changeType == 'Namiddag'">
+            <div *ngFor="let activity of data.workday.pmActivities">
+            <mat-form-field>
+                <mat-label>{{activity.activity.name}}</mat-label>
+                <mat-select [formControl]="activity.activity.name" multiple>
+                  <mat-option *ngFor="let participant of users$" [value]="participant">{{participant.lastName}} {{participant.firstName}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <br>         
+            </div>
 
+            
     </mat-dialog-content>
 
+  
     <mat-dialog-actions>
         <button mat-dialog-close class="mat-raised-button">Annuleer</button>
         <button type="submit" mat-dialog-close class="mat-raised-button mat-primary" >Wijzig</button>
     </mat-dialog-actions>
   </form>
-</div>
