@@ -56,7 +56,5 @@ export class EditWeekScheduleComponent implements OnInit {
   get userDataService() : UserDataService{
     return this._userDataService;
   }
-  get activity1():string {
-    return this.data.workday.amActivities[0].activity.name;
-  }
+  
 }

@@ -47,7 +47,16 @@
             </div>
             <br>         
             </div>
-
+        <div *ngIf="data$.changeType == 'Extra'">
+          <mat-form-field>
+            <mat-label>Lunch</mat-label>
+            <input
+          matInput
+          type="text"
+          value="{{data$.workday.lunch.lunch}}"
+        />
+          </mat-form-field>
+        </div>
             
     </mat-dialog-content>
 
