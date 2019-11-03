@@ -38,4 +38,7 @@ export class LunchUnit {
   get lunch():string{
     return this._lunch;
   }
+  set lunch(food){
+    this._lunch = food;
+  }
 }

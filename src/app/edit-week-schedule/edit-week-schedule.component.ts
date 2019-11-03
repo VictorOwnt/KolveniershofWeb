@@ -18,10 +18,10 @@ export class EditWeekScheduleComponent implements OnInit {
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
   private _users= this._fetchUsers$.subscribe(users => (this._users = users));
   public form: FormGroup;
-  //sick = new FormControl();
   absent = new FormControl();
+  lunch = new FormControl();
   
-  constructor(@Inject(MAT_DIALOG_DATA) public data: EditData,private _userDataService: UserDataService,private formBuilder:FormBuilder,) { 
+  constructor(@Inject(MAT_DIALOG_DATA) public data: EditData,private _userDataService: UserDataService,) { //private formBuilder:FormBuilder // deze methode werkt niet?
 
   }
 
@@ -29,14 +29,36 @@ export class EditWeekScheduleComponent implements OnInit {
   ngOnInit() {
     
     this.form = new FormGroup({
-      absent: this.absent
-      //sick: this.sick
+      absent: this.absent,
+      lunch : this.lunch
     })
     
   }
 
   onSubmit(){
+    switch(this.data$.changeType) { 
+      case "Algemeen": { 
+         this.handleAlgemeen();
+         break; 
+      } 
+      case "Voormiddag": { 
+         this.handleVoormiddag(); 
+         break; 
+      } 
+      case "Namiddag": {
+         this.handleNamiddag(); 
+         break;    
+      } 
+      case "Extra": { 
+         this.handleExtra(); 
+         break; 
+      }  
+      
+   }
     
+    
+  }
+  handleAlgemeen(){
     this.form.value.absent.forEach(userAbsent => {
       userAbsent.absentDates.push(this.data$.planningDate);
       console.log(`${userAbsent.absentDates[0]}`);
@@ -45,7 +67,17 @@ export class EditWeekScheduleComponent implements OnInit {
     this.userDataService.put(userAbsent.toJson());
     */
     });
+  }
+
+  handleVoormiddag(){
     
+  }
+  handleNamiddag(){
+    
+  }
+  handleExtra(){
+    this.data$.workday.lunch.lunch=this.form.value.lunch;
+    console.log(`${this.data$.workday.lunch.lunch}`);
   }
   get users$(): User[]{
     return this._users;

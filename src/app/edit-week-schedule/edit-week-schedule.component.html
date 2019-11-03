@@ -16,12 +16,6 @@
           </mat-form-field>
         <br>
 
-        <!--<mat-form-field>
-            <mat-label>Ziek</mat-label>
-            <mat-select [formControl]="sick" multiple>
-              <mat-option *ngFor="let userSick of users$" [value]="userSick">{{userSick.lastName}} {{userSick.firstName}}</mat-option>
-            </mat-select>
-          </mat-form-field>-->
         </div>
         <!-- Voormiddag-->
         <div *ngIf="data$.changeType == 'Voormiddag'">
@@ -54,6 +48,7 @@
           matInput
           type="text"
           value="{{data$.workday.lunch.lunch}}"
+          [formControl]="lunch"
         />
           </mat-form-field>
         </div>
