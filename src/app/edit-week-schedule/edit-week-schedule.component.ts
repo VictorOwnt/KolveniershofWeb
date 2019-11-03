@@ -55,6 +55,7 @@ export class EditWeekScheduleComponent implements OnInit {
       }  
       
    }
+   
     
     
   }
@@ -62,6 +63,7 @@ export class EditWeekScheduleComponent implements OnInit {
     this.form.value.absent.forEach(userAbsent => {
       userAbsent.absentDates.push(this.data$.planningDate);
       console.log(`${userAbsent.absentDates[0]}`);
+      console.log(`${this.users$[0].absentDates}`);
       //put request 
     /*
     this.userDataService.put(userAbsent.toJson());
@@ -77,7 +79,7 @@ export class EditWeekScheduleComponent implements OnInit {
   }
   handleExtra(){
     this.data$.workday.lunch.lunch=this.form.value.lunch;
-    console.log(`${this.data$.workday.lunch.lunch}`);
+    //put request
   }
   get users$(): User[]{
     return this._users;
