@@ -5,7 +5,7 @@ import { EditData } from './editData';
 import { Observable } from 'rxjs';
 import { User } from '../user/user.model';
 import { UserDataService } from '../user/user.data.service';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-week-schedule',
@@ -18,20 +18,21 @@ export class EditWeekScheduleComponent implements OnInit {
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
   private _users= this._fetchUsers$.subscribe(users => (this._users = users));
   public form: FormGroup;
-  absent = new FormControl();
-  lunch = new FormControl();
   
-  constructor(@Inject(MAT_DIALOG_DATA) public data: EditData,private _userDataService: UserDataService,) { //private formBuilder:FormBuilder // deze methode werkt niet?
-
+  constructor(@Inject(MAT_DIALOG_DATA) public data: EditData,private _userDataService: UserDataService) { //private formBuilder:FormBuilder // deze methode werkt niet?
+    
   }
 
   
   ngOnInit() {
     
     this.form = new FormGroup({
-      absent: this.absent,
-      lunch : this.lunch
+      absent: new FormControl("absent"),
+      lunch : new FormControl("lunch"),
+      amActivities: new FormArray([this.createControls("am")]),
+      pmActivities: new FormArray([this.createControls("pm")])
     })
+    
     
   }
 
@@ -72,10 +73,26 @@ export class EditWeekScheduleComponent implements OnInit {
   }
 
   handleVoormiddag(){
+    console.log(`${this.form.value.amActivities[0]}`);
+    const value = this.form.value.amActivities[0];//get rid of array
+    console.log(`${value}`);
+    this.data$.workday.amActivities.forEach(amActivity =>{
+      console.log(`${amActivity.clients.length}`)
+      let usersToAdd = value[amActivity.activity.name];
+      usersToAdd.forEach(user => amActivity.clients.push(user) );
+      console.log(`${amActivity.clients.length}`)
+    })
+
     
   }
   handleNamiddag(){
     
+    const value = this.form.value.pmActivities[0];    
+    this.data$.workday.pmActivities.forEach(pmActivity =>{
+      let usersToAdd = value[pmActivity.activity.name];
+      usersToAdd.forEach(user => pmActivity.clients.push(user) );
+      })
+    //put request
   }
   handleExtra(){
     this.data$.workday.lunch.lunch=this.form.value.lunch;
@@ -89,6 +106,21 @@ export class EditWeekScheduleComponent implements OnInit {
   }
   get userDataService() : UserDataService{
     return this._userDataService;
+  }
+  
+  createControls(activityType:string):FormGroup{
+    let formGroup =  new FormGroup({});
+    if(activityType === "am"){
+      this.data$.workday.amActivities.forEach(amActivity =>{
+        formGroup.addControl(amActivity.activity.name,new FormControl(amActivity.activity.name));
+      });
+    }else if(activityType === "pm"){
+      this.data$.workday.pmActivities.forEach(pmActivity =>{
+        formGroup.addControl(pmActivity.activity.name,new FormControl(pmActivity.activity.name));
+      })
+    }
+    
+    return formGroup;
   }
   
 }

@@ -10,7 +10,7 @@
         <div *ngIf="data$.changeType == 'Algemeen'">
         <mat-form-field>
             <mat-label>Afwezig/Ziek</mat-label>
-            <mat-select [formControl]="absent" multiple>
+            <mat-select formControlName="absent" multiple>
               <mat-option *ngFor="let userAbsent of users$" [value]="userAbsent">{{userAbsent.lastName}} {{userAbsent.firstName}}</mat-option>
             </mat-select>
           </mat-form-field>
@@ -19,25 +19,33 @@
         </div>
         <!-- Voormiddag-->
         <div *ngIf="data$.changeType == 'Voormiddag'">
-          <div *ngFor="let activity of data.workday.amActivities">
+          <div formArrayName="amActivities" *ngFor="let item of form.get('amActivities')['controls']; let i = index">
+            <div [formGroupName]="i">
+          <div *ngFor="let amActivity of data.workday.amActivities">
           <mat-form-field>
-              <mat-label>{{activity.activity.name}}</mat-label>
-              <mat-select [formControl]="activity.activity.name" multiple>
+              <mat-label>{{amActivity.activity.name}}</mat-label>
+              <mat-select [formControlName]="amActivity.activity.name" multiple>
                 <mat-option *ngFor="let participant of users$" [value]="participant">{{participant.lastName}} {{participant.firstName}}</mat-option>
               </mat-select>
             </mat-form-field>
+          </div>
+          </div>
           </div>
           <br>         
           </div>
           <!-- Namiddag-->
         <div *ngIf="data$.changeType == 'Namiddag'">
-            <div *ngFor="let activity of data.workday.pmActivities">
+            <div formArrayName="pmActivities" *ngFor="let item of form.get('pmActivities')['controls']; let i = index">
+                <div [formGroupName]="i">
+            <div *ngFor="let pmActivity of data.workday.pmActivities">
             <mat-form-field>
-                <mat-label>{{activity.activity.name}}</mat-label>
-                <mat-select [formControl]="activity.activity.name" multiple>
+                <mat-label>{{pmActivity.activity.name}}</mat-label>
+                <mat-select [formControlName]="pmActivity.activity.name" multiple>
                   <mat-option *ngFor="let participant of users$" [value]="participant">{{participant.lastName}} {{participant.firstName}}</mat-option>
                 </mat-select>
               </mat-form-field>
+            </div>
+            </div>
             </div>
             <br>         
             </div>
@@ -48,7 +56,7 @@
           matInput
           type="text"
           value="{{data$.workday.lunch.lunch}}"
-          [formControl]="lunch"
+          formControlName="lunch"
         />
           </mat-form-field>
         </div>
