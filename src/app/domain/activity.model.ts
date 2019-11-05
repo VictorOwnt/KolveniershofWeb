@@ -10,4 +10,7 @@ export class Activity{
     get icon(): string{
         return this._icon;
     }
+    set name(description:string){
+        this._name = description;
+    }
 }

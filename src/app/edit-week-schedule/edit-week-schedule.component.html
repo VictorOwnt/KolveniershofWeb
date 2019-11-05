@@ -21,7 +21,15 @@
         <div *ngIf="data$.changeType == 'Voormiddag'">
           <div formArrayName="amActivities" *ngFor="let item of form.get('amActivities')['controls']; let i = index">
             <div [formGroupName]="i">
+               
           <div *ngFor="let amActivity of data.workday.amActivities">
+              <input
+              matInput
+              [placeholder]="amActivity.activity.name"
+              type="text"
+              #value
+              (change)="updateActivityName(value,i)"
+            />
           <mat-form-field>
               <mat-label>{{amActivity.activity.name}}</mat-label>
               <mat-select [formControlName]="amActivity.activity.name" multiple>
