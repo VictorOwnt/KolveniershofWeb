@@ -73,14 +73,12 @@ export class EditWeekScheduleComponent implements OnInit {
   }
 
   handleVoormiddag(){
-    console.log(`${this.form.value.amActivities[0]}`);
     const value = this.form.value.amActivities[0];//get rid of array
-    console.log(`${value}`);
     this.data$.workday.amActivities.forEach(amActivity =>{
-      console.log(`${amActivity.clients.length}`)
-      let usersToAdd = value[amActivity.activity.name];
-      usersToAdd.forEach(user => amActivity.clients.push(user) );
-      console.log(`${amActivity.clients.length}`)
+    let usersToAdd = value[amActivity.activity.name];
+    if(typeof(usersToAdd) != "string")
+      usersToAdd.forEach(user => amActivity.clients.push(user));
+     
     })
 
     
