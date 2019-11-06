@@ -22,13 +22,13 @@
           <div formArrayName="amActivities" *ngFor="let item of form.get('amActivities')['controls']; let i = index">
             <div [formGroupName]="i">
                
-          <div *ngFor="let amActivity of data.workday.amActivities">
+          <div *ngFor="let amActivity of data.workday.amActivities;let activityIndex = index">
               <input
               matInput
               [placeholder]="amActivity.activity.name"
               type="text"
               #value
-              (change)="updateActivityName(value,i)"
+              (change)="updateActivityName(value,activityIndex,'am')"
             />
           <mat-form-field>
               <mat-label>{{amActivity.activity.name}}</mat-label>
@@ -45,7 +45,14 @@
         <div *ngIf="data$.changeType == 'Namiddag'">
             <div formArrayName="pmActivities" *ngFor="let item of form.get('pmActivities')['controls']; let i = index">
                 <div [formGroupName]="i">
-            <div *ngFor="let pmActivity of data.workday.pmActivities">
+            <div *ngFor="let pmActivity of data.workday.pmActivities;let activityIndex = index">
+                <input
+                matInput
+                [placeholder]="pmActivity.activity.name"
+                type="text"
+                #value
+                (change)="updateActivityName(value,activityIndex,'pm')"
+              />
             <mat-form-field>
                 <mat-label>{{pmActivity.activity.name}}</mat-label>
                 <mat-select [formControlName]="pmActivity.activity.name" multiple>

@@ -83,8 +83,11 @@ export class EditWeekScheduleComponent implements OnInit {
      
     })
   }
-  updateActivityName(value:HTMLInputElement,index){
-    this.data$.workday.amActivities[index].activity.name = value.value;
+  updateActivityName(text:HTMLInputElement,index,type:string){
+    if(type === "am")
+    this.data$.workday.amActivities[index].activity.name = text.value;
+    if(type === "pm")
+    this.data$.workday.pmActivities[index].activity.name = text.value;
   }
   handleNamiddag(){
     
