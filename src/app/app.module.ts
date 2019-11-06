@@ -45,8 +45,7 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { EditWeekScheduleComponent } from "./edit-week-schedule/edit-week-schedule.component";
 import { BusschemaComponent } from "./busschema/busschema.component";
-import { RegisterComponent } from "./user/register/register.component";
-import { BusschemaTableComponent } from "./busschema/busschema-table/busschema-table.component";
+
 
 @NgModule({
   declarations: [
@@ -94,7 +93,8 @@ import { BusschemaTableComponent } from "./busschema/busschema-table/busschema-t
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule
   ],
   entryComponents: [EditWeekScheduleComponent],
   providers: [

@@ -1,7 +1,14 @@
 <table class="content-table">
   <thead>
     <tr>
-      <th colspan="3">Algemeen</th>
+      <th colspan="2">Algemeen</th>
+      <th>
+        <button mat-raised-button (click)="openEditWeekSchedule(i)">
+          Wijzig
+        </button>
+        
+      </th>
+      
     </tr>
   </thead>
   <tbody>
@@ -10,31 +17,21 @@
       <td data-cy="dataDatum">Datum: {{ workday.date | date: "dd/MM/yyyy" }}</td>
       <!-- <td>Alexane, An DB, Christel, Elke, Jonas, Katelijne, Margot, Simon, Sigirid</td> -->
       <td>
-        <button class="buttons">
-          <fa-icon [icon]="faPencilAlt"></fa-icon>
-        </button>
-        <button class="buttons"><span>&#10006;</span></button>
+        
       </td>
     </tr>
     <tr>
-      <td>Afwezig</td>
-      <td></td>
+      <td>Afwezig/Ziek</td>
       <td>
-        <button class="buttons">
-          <fa-icon [icon]="faPencilAlt"></fa-icon>
-        </button>
-        <button class="buttons"><span>&#10006;</span></button>
+        <div *ngIf="users$">
+        <span *ngFor="let userAbsent of userAbsents$">
+        {{ userAbsent.firstName + " " + userAbsent.lastName + ", " }}
+      </span>
+    </div></td>
+      <td>
+        
       </td>
     </tr>
-    <tr>
-      <td>Ziek</td>
-      <td>Christl</td>
-      <td>
-        <button class="buttons">
-          <fa-icon [icon]="faPencilAlt"></fa-icon>
-        </button>
-        <button class="buttons"><span>&#10006;</span></button>
-      </td>
-    </tr>
+    
   </tbody>
 </table>
