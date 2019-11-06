@@ -45,8 +45,7 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { EditWeekScheduleComponent } from "./edit-week-schedule/edit-week-schedule.component";
 import { BusschemaComponent } from "./busschema/busschema.component";
-import { RegisterComponent } from './user/register/register.component';
-import {MatSelectModule} from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -66,7 +65,8 @@ import {MatSelectModule} from '@angular/material/select';
     DatePickerComponent,
     EditWeekScheduleComponent,
     BusschemaComponent,
-    RegisterComponent
+    RegisterComponent,
+    BusschemaTableComponent
   ],
   imports: [
     FlexLayoutModule,

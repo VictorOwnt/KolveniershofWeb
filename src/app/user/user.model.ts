@@ -5,13 +5,12 @@ export class User {
     private _firstName: string,
     private _lastName: string,
     private _email: string,
-    //private _picture: string, // Werd niet opgenomen in backend
     private _admin: boolean,
     private _birthday: Date,
     private _absentDates: Date[]
   ) {}
 
-  get id(): string{
+  get id(): string {
     return this._id;
   }
   get username(): string {
@@ -30,7 +29,7 @@ export class User {
     return this._email;
   }
 
- /* get picture(): string {
+  /* get picture(): string {
     return this._picture;
   }*/
 
@@ -53,7 +52,6 @@ export class User {
       json.firstName,
       json.lastName,
       json.email,
-      //json.picture,
       json.admin,
       json.birthday,
       json.absentDates
@@ -63,12 +61,11 @@ export class User {
 
   toJSON(): any {
     return {
-      _id:this._id,
+      _id: this._id,
       username: this.username,
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
-      //picture: this.picture,
       admin: this.admin,
       birthday: this.birthday,
       absentDates: this.absentDates
