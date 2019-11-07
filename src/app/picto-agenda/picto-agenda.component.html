@@ -1,4 +1,4 @@
-<div>
+
   <app-nav> </app-nav>
   <!-- <app-date-picker>
   </app-date-picker> -->
@@ -7,14 +7,15 @@
     <br />
     <!-- datepicker -->
     <mat-form-field>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="val" placeholder="Selecteer datum" />
+      <input matInput [matDatepicker]="picker" [(ngModel)]="chosenDate" placeholder="Selecteer datum" />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </div>
-  <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayoutGap="" fxLayoutAlign="center">
+  <div class="floatLeft" fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayoutGap="" fxLayoutAlign="center">
     <div fxLayout="column" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="" fxLayoutAlign="flex-start center">
       <div *ngIf="isAdmin()">
+        
         <mat-list>
           <mat-list-item *ngFor="let user of users$ | async; let i = index">
             <button mat-raised-button (click)="showPictoOfUser(i)">
@@ -26,10 +27,11 @@
     </div>
   </div>
   
-  <div *ngIf="getWorkday(1)">
+  <div class="floatRight" *ngIf="getWorkday(1)">
     <div fxLayout="column" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="" fxLayoutAlign="center">
         <div *ngIf= "clickedUser$">
-            <mat-card-title>Picto-agenda van {{clickedUser$.firstName}} {{clickedUser$.lastName}}</mat-card-title></div>
+            <mat-card-title> {{clickedUser$.firstName}} {{clickedUser$.lastName}}</mat-card-title>
+          </div>
       <!-- part 1 of week -->
 
       <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="2.5%"
@@ -54,4 +56,3 @@
     </div>
   </div>
   <app-footer></app-footer>
-</div>

@@ -54,7 +54,7 @@ export class PictoAgendaComponent implements OnInit {
     }
     let workday: Workday;
     for (const date of currentWeek) {
-      this._workdayDataService.getWeekOfUser(this._clickedUser.id, date).subscribe({
+      this._workdayDataService.getWorkDayByDate(date).subscribe({
         next: (result: Workday) => {
           //console.log(result);
           if (result) {
@@ -73,38 +73,7 @@ export class PictoAgendaComponent implements OnInit {
     }
     
 
-    // this.workDays = this.workDays.filter(elem => elem !== undefined);
-
-    // if (this.workDays === undefined || this.workDays.length === 0) {
-    //   const amW: ActivityUnit[] = [
-    //     new ActivityUnit(new Activity("voetballen", "icon-soccer-player.svg")),
-    //     new ActivityUnit(new Activity("praten", "icon-talk.svg"))
-    //   ];
-    //   const pmW: ActivityUnit[] = [
-    //     new ActivityUnit(new Activity("paardrijden", "icon-horse.svg")),
-    //     new ActivityUnit(new Activity("koken", "icon-frying-pan.svg"))
-    //   ];
-    //   const men = [];
-    //   const lun: LunchUnit = new LunchUnit();
-    //   const amB: BusUnit[] = [
-    //     new BusUnit(new Bus("Gent", "rood", "busBlack.png")),
-    //     new BusUnit(new Bus("Leuven", "roze", "busBlack.png"))
-    //   ];
-    //   const pmB: BusUnit[] = [
-    //     new BusUnit(new Bus("Gent", "rood", "busBlack.png")),
-    //     new BusUnit(new Bus("Leuven", "roze", "busBlack.png"))
-    //   ];
-
-    //   const hol = false;
-    //   const temp2 = this.val;
-    //   let workdayy;
-    //   const currentweek = this.getCurrentWeek(temp2);
-    //   for (const dater of currentweek) {
-    //     workdayy = new Workday(dater, amW, pmW, men, lun, amB, pmB, hol);
-    //     this.workDays.push(workdayy);
-    //   }
-    //   this.workDays = this.workDays.sort(w => w.date);
-    // }
+    
   }
 
   getCurrentWeek(date?: Date): Date[] {
@@ -147,7 +116,7 @@ export class PictoAgendaComponent implements OnInit {
   
 
   getWorkday(param) {
-    //this.sortByDate(); 
+    this.sortByDate(); 
     return this.workDays[param];
   }
 
@@ -161,15 +130,18 @@ export class PictoAgendaComponent implements OnInit {
     return this._clickedUser;
   }
 
-  private getTime(date?: Date) {
+  private getTime(dateString) {
+    const date = new Date(dateString);
+    
     return date != null ? date.getTime() : 0;
 }
 
 
 public sortByDate(): void {
+  if(this.workDays.length >1){
     this.workDays.sort((day1:Workday, day2:Workday) => {
         return this.getTime(day1.date) - this.getTime(day2.date);
     });
-}
+}}
 
 }

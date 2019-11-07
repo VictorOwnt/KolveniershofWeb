@@ -40,11 +40,10 @@ export class DayOfWeekComponent implements OnInit {
   private nameOfDay: DayNameAndDate;
 
   constructor() {
-   // console.log(`${this.weekDay.date}`);
+    
   }
 
   ngOnInit() {
-   // console.log(`${this.weekDay.date}`);
     const date = this.unFormattedDate(this.weekDay.date);
     this.nameOfDay = new DayNameAndDate(date, this.getNameOfDay(date));
   }

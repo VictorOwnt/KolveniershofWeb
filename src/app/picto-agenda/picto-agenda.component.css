@@ -1,3 +1,12 @@
+.floatLeft{
+  float: left;
+  width: 10%;
+}
+.floatRight{
+  float: right;
+  width: 90%;
+}
+
 .spaceUnder {
   margin-bottom: 15px;
 }
