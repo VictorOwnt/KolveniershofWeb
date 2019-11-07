@@ -3,7 +3,7 @@ import { Workday } from "src/app/domain/workday.model";
 import { FormControl } from "@angular/forms";
 
 export class DayNameAndDate {
-  constructor(private _date: Date, private _name: string, private _icon = "") {}
+  constructor(private _date: Date, private _name: string) {}
   get date() {
     return this._date;
   }
@@ -12,9 +12,7 @@ export class DayNameAndDate {
     return this._name;
   }
 
-  get icon() {
-    return this._icon;
-  }
+  
 }
 
 @Component({

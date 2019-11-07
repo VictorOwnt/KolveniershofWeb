@@ -15,14 +15,11 @@
     <mat-card-content>
       <!-- morning transportation and activities -->
       <table>
-        <tr>
-          <td *ngFor="let amBus of weekDay.amBusses">
-            <img
-              src="assets/images/icons/{{ amBus.bus.icon }}"
-              alt="{{ amBus.bus.name }}"
-              width="40"
-            />
+        <tr *ngFor="let amBus of weekDay.amBusses">
+          <td>
+            <img src="assets/images/icons/busBlack.png" alt="{{ amBus.bus.name }}" width="40" />
           </td>
+          <td> {{ amBus.bus.name }}</td>
         </tr>
       </table>
 
@@ -31,11 +28,8 @@
       <table>
         <tr *ngFor="let amActivity of weekDay.amActivities">
           <td>
-            <img
-              src="assets/images/icons/{{ amActivity.activity.icon }}"
-              alt="{{ amActivity.activity.name }}"
-              width="40"
-            />
+            <img src="assets/images/icons/{{'icon-'+ amActivity.activity.icon+'.svg' }}"
+              alt="{{ amActivity.activity.name }}" width="40" />
           </td>
           <td>{{ amActivity.activity.name }} hier moet begeleider komen</td>
         </tr>
@@ -46,12 +40,10 @@
       <table>
         <tr>
           <td>
-            <img
-              src="assets/images/icons/{{ weekDay.lunch.icon }}"
-              alt=""
-              width="40"
-            />
+            <img src="assets/images/icons/forkKnifeBlack.png" alt="" width="40" />
+
           </td>
+          <td> {{weekDay.lunch.lunch}}</td>
         </tr>
       </table>
 
@@ -60,11 +52,8 @@
       <table>
         <tr *ngFor="let pmActivity of weekDay.pmActivities">
           <td>
-            <img
-              src="assets/images/icons/{{ pmActivity.activity.icon }}"
-              alt="{{ pmActivity.activity.name }}"
-              width="40"
-            />
+            <img src="assets/images/icons/{{'icon-'+ pmActivity.activity.icon +'.svg' }}"
+              alt="{{ pmActivity.activity.name }}" width="40" />
           </td>
           <td>{{ pmActivity.activity.name }} hier moet begeleider komen</td>
         </tr>
@@ -73,26 +62,20 @@
       <hr />
       <!-- transportation evening -->
       <table>
-        <tr>
-          <td *ngFor="let pmBus of weekDay.pmBusses">
-            <img
-              src="assets/images/icons/{{ pmBus.bus.icon }}"
-              alt="{{ pmBus.bus.name }}"
-              width="40"
-            />
+        <tr *ngFor="let pmBus of weekDay.pmBusses">
+
+          <td>
+            <img src="assets/images/icons/busBlack.png" alt="{{ pmBus.bus.name }}" width="40" />
           </td>
+          <td>{{ pmBus.bus.name }}</td>
+
         </tr>
       </table>
 
       <hr />
       <div class="footerCard">
         <mat-form-field>
-          <input
-            matInput
-            placeholder="Voeg een opmerking toe"
-            type="text"
-            [formControl]="commentFormControl"
-          />
+          <input matInput placeholder="Voeg een opmerking toe" type="text" [formControl]="commentFormControl" />
         </mat-form-field>
         <br>
         <button mat-raised-button type="submit" class="geefFeedbackBtn">Sla op</button>
