@@ -12,6 +12,7 @@
     <button mat-raised-button>Save Week</button>
   </div>
 
+  <!-- het algemeen, voormiddag, namiddag, extra krijgen elk de volledige corresponderende workday voor een bepaalde datum -->
   <app-algemeen-week-schedule [workday]="workday$" [planningDate]="planningDate$"></app-algemeen-week-schedule>
   <app-voormiddag-week-schedule [workday]="workday$"></app-voormiddag-week-schedule>
   <app-namiddag-week-schedule [workday]="workday$"></app-namiddag-week-schedule>

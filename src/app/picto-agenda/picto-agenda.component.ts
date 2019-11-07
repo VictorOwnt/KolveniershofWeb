@@ -16,12 +16,12 @@ import { Bus } from "../domain/bus.model";
   styleUrls: ["./picto-agenda.component.css"]
 })
 export class PictoAgendaComponent implements OnInit {
-  public val: Date; 
-  
+  public val: Date;
+
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
   private _users: User[];
   private workDays;
-  private _clickedUser:User;
+  private _clickedUser: User;
 
   constructor(
     private _userDataService: UserDataService,
@@ -48,30 +48,30 @@ export class PictoAgendaComponent implements OnInit {
     }
     let currentWeek = this.getCurrentWeek();
 
-    
     if (this.val) {
       currentWeek = this.getCurrentWeek(this.val);
     }
     let workday: Workday;
     for (const date of currentWeek) {
-      this._workdayDataService.getWeekOfUser(this._clickedUser.id, date).subscribe({
-        next: (result: Workday) => {
-          //console.log(result);
-          if (result) {
-            workday = result;
+      this._workdayDataService
+        .getWeekOfUser(this._clickedUser.id, date)
+        .subscribe({
+          next: (result: Workday) => {
+            // console.log(result);
+            if (result) {
+              workday = result;
+            }
+          },
+          error: (err: any) => {
+            console.log(err);
+          },
+          complete: () => {
+            // console.log("complete");
+            // console.log(`${workday.date}`);
+            this.workDays.push(workday);
           }
-        },
-        error: (err: any) => {
-          console.log(err);
-        },
-        complete: () => {
-         // console.log("complete");
-         // console.log(`${workday.date}`);
-          this.workDays.push(workday);
-        }
-      });
+        });
     }
-    
 
     // this.workDays = this.workDays.filter(elem => elem !== undefined);
 
@@ -141,35 +141,35 @@ export class PictoAgendaComponent implements OnInit {
   isAdmin(): boolean {
     return User.fromJSON(JSON.parse(localStorage.getItem("currentUser"))).admin;
   }
+
   get workdays$(): Workday[] {
     return this.workDays;
   }
-  
 
   getWorkday(param) {
-    //this.sortByDate(); 
+    // this.sortByDate();
     return this.workDays[param];
   }
 
-  get monday$(): Workday{
+  get monday$(): Workday {
     return this.workDays[0];
   }
-  get tuesday$(): Workday{
+
+  get tuesday$(): Workday {
     return this.workDays[1];
   }
-  get clickedUser$():User{
+
+  get clickedUser$(): User {
     return this._clickedUser;
   }
 
   private getTime(date?: Date) {
     return date != null ? date.getTime() : 0;
-}
+  }
 
-
-public sortByDate(): void {
-    this.workDays.sort((day1:Workday, day2:Workday) => {
-        return this.getTime(day1.date) - this.getTime(day2.date);
+  public sortByDate(): void {
+    this.workDays.sort((day1: Workday, day2: Workday) => {
+      return this.getTime(day1.date) - this.getTime(day2.date);
     });
-}
-
+  }
 }

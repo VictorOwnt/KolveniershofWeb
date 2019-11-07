@@ -12,4 +12,6 @@ export class DatePickerComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  // deze component wordt niet meer gebruikt
 }

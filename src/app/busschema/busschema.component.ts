@@ -48,9 +48,7 @@ export class BusschemaComponent implements OnInit {
     this._fetchWorkday$.subscribe(value => (this._workday = value));
   }
 
-  ngOnInit() {
-    // this.workday$.subscribe(e => console.log(e));
-  }
+  ngOnInit() {}
 
   get workday$(): Workday {
     return this._workday;

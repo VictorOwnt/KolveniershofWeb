@@ -3,13 +3,9 @@
     <mat-card-header>
       <mat-card-title>
         {{ nameOfDay.name }}
-        <!-- {{ day.text }} -->
-        <!--via input in weekschedule de elementen vullen/meesturen die dan gevult moeten worden-->
       </mat-card-title>
       <mat-card-subtitle>
         {{ nameOfDay.date | date: "dd/MM/yyyy" }}
-        <!-- {{ day.date | date }} -->
-        <!--via input in weekschedule de elementen vullen/meesturen die dan gevult moeten worden-->
       </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
@@ -18,7 +14,9 @@
         <textarea matInput placeholder=""></textarea>
       </mat-form-field>
       <br />
-      <button mat-raised-button type="submit" class="geefFeedbackBtn">Sla op</button>
+      <button mat-raised-button type="submit" class="geefFeedbackBtn">
+        Sla op
+      </button>
     </mat-card-content>
   </mat-card>
 </div>

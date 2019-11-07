@@ -11,19 +11,23 @@ import { BehaviorSubject } from "rxjs";
 })
 export class NavComponent implements OnInit {
   loggedInUser$ = new BehaviorSubject<string>("");
+
   constructor(
     private router: Router,
     private _authenticationService: AuthenticationService
   ) {
     this.setCurrentUserFromLocalStorage();
   }
+
   logout() {
     this._authenticationService.logout();
     this.router.navigateByUrl("login");
     if (localStorage.getItem("currentUser")) {
+      // om cookie te verwijderen in local storage
       localStorage.removeItem("currentUser");
     }
   }
+
   ngOnInit() {}
 
   setCurrentUserFromLocalStorage() {

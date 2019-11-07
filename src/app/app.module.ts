@@ -1,3 +1,4 @@
+// everything still has to be put in seperate modules
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { MatMenuModule } from "@angular/material/menu";
@@ -45,7 +46,7 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { EditWeekScheduleComponent } from "./edit-week-schedule/edit-week-schedule.component";
 import { BusschemaComponent } from "./busschema/busschema.component";
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from "@angular/material/select";
 import { RegisterComponent } from "./user/register/register.component";
 import { BusschemaTableComponent } from "./busschema/busschema-table/busschema-table.component";
 
