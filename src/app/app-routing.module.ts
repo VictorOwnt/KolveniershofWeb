@@ -13,7 +13,6 @@ const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "home", component: PictoAgendaComponent },
   { path: "bus", component: BusschemaComponent },
-  { path: "dag", component: WeekScheduleComponent, canActivate: [AuthGuard] }, //
   { path: "week", component: WeekScheduleComponent, canActivate: [AuthGuard] }, //
   { path: "picto", component: PictoAgendaComponent, canActivate: [AuthGuard] },
   { path: "", redirectTo: "home", pathMatch: "full" },

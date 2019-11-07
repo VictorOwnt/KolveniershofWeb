@@ -4,6 +4,17 @@
       <a routerLink="/picto"
         ><img src="assets/images/logo.svg" height="40" alt="logo" />
       </a>
+      <div *ngIf="isAdmin()">
+      <a routerLink="/picto"
+        ><button class="buttons" mat-flat-button>Picto-Agenda</button>
+      </a>
+      <a routerLink="/week"
+        ><button class="buttons" mat-flat-button>Dagplanning</button>
+      </a>
+      <a routerLink="/bus"
+        ><button class="buttons" mat-flat-button>Busschema</button>
+      </a>
+    </div>
       <span class="spacer"></span>
       <span *ngIf="loggedInUser$ | async as user">{{ user }}</span>
       <span>
