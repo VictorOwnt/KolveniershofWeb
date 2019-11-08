@@ -1,6 +1,6 @@
 # Kolveniershof
 
-Kolv2Angular is an angular web-app created for the Kolveniershof project. This web-app is an agenda made for the handicapped clients and their mentors.
+Kolv2Angular is an angular web-app created for the Kolveniershof project. This web-app is an agenda made for the clients and their mentors @Kolveniershof.
 
 ## Installation
 
