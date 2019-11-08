@@ -6,8 +6,6 @@ import {
   RouterStateSnapshot,
   Router
 } from "@angular/router";
-import { Observable } from "rxjs";
-import { User } from './user.model';
 
 @Injectable({
   providedIn: "root"

@@ -13,8 +13,6 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import {
   MatFormFieldModule,
   MatInputModule,
-  MatTable,
-  MatTableModule,
   MatNativeDateModule,
   MatDialogModule
 } from "@angular/material";
@@ -22,14 +20,14 @@ import { MatListModule } from "@angular/material/list";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
 import { FooterComponent } from "./footer/footer.component";
-import { MatButtonModule, MatButton } from "@angular/material/button";
+import { MatButtonModule } from "@angular/material/button";
 import { UserModule } from "./user/user.module";
 import { httpInterceptorProviders } from "./http-interceptors";
 import { PictoAgendaComponent } from "./picto-agenda/picto-agenda.component";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { CommonModule } from "@angular/common";
-import { MatDividerModule, MatDivider } from "@angular/material/divider";
+import { MatDividerModule } from "@angular/material/divider";
 import { HttpClientModule } from "@angular/common/http";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { WorkDayDataService } from "./workDay.data.service";
@@ -45,7 +43,7 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { EditWeekScheduleComponent } from "./edit-week-schedule/edit-week-schedule.component";
 import { BusschemaComponent } from "./busschema/busschema.component";
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from "@angular/material/select";
 import { RegisterComponent } from "./user/register/register.component";
 import { BusschemaTableComponent } from "./busschema/busschema-table/busschema-table.component";
 

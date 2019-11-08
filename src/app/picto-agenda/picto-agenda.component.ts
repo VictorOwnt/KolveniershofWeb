@@ -4,11 +4,6 @@ import { User } from "../user/user.model";
 import { Observable, Subject } from "rxjs";
 import { WorkDayDataService } from "../workDay.data.service";
 import { Workday } from "../domain/workday.model";
-import { Activity } from "../domain/activity.model";
-import { ActivityUnit } from "../domain/activityUnit.model";
-import { LunchUnit } from "../domain/lunchUnit.model";
-import { BusUnit } from "../domain/busUnit.model";
-import { Bus } from "../domain/bus.model";
 
 @Component({
   selector: "app-picto-agenda",

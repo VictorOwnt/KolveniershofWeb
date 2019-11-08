@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { Workday } from "../domain/workday.model";
 import { WorkDayDataService } from "../workDay.data.service";
-import { HttpClient } from "@angular/common/http";
 import { MatDatepickerInputEvent } from "@angular/material";
 
 @Component({
