@@ -15,11 +15,11 @@
     <mat-card-content>
       <!-- morning transportation and activities -->
       <table>
-        <tr *ngFor="let amBus of weekDay.amBusses">
+        <tr>
           <td>
-            <img src="assets/images/icons/busBlack.png" alt="{{ amBus.bus.name }}" width="40" />
+            <img src="assets/images/icons/busBlack.png" width="40" />
           </td>
-          <td> {{ amBus.bus.name }}</td>
+
         </tr>
       </table>
 
@@ -62,12 +62,11 @@
       <hr />
       <!-- transportation evening -->
       <table>
-        <tr *ngFor="let pmBus of weekDay.pmBusses">
+        <tr>
 
           <td>
-            <img src="assets/images/icons/busBlack.png" alt="{{ pmBus.bus.name }}" width="40" />
+            <img src="assets/images/icons/busBlack.png" width="40" />
           </td>
-          <td>{{ pmBus.bus.name }}</td>
 
         </tr>
       </table>
