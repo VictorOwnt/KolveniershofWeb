@@ -2,7 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { Workday } from "../domain/workday.model";
 import { WorkDayDataService } from "../workDay.data.service";
-import { MatDatepickerInputEvent } from "@angular/material";
+import {
+  MatDatepickerInputEvent,
+  MatDialogRef,
+  MatDialog
+} from "@angular/material";
+import { EditWeekScheduleComponent } from "../edit-week-schedule/edit-week-schedule.component";
 
 @Component({
   selector: "app-week-schedule",
@@ -16,8 +21,25 @@ export class WeekScheduleComponent implements OnInit {
   > = this._workDayDataService.getWorkDayByDate(this.formattedDate(new Date()));
   private _workday: Workday;
   public planningDate: Date;
-  constructor(private _workDayDataService: WorkDayDataService) {
+  editWeekSchedule: MatDialogRef<EditWeekScheduleComponent>;
+
+  constructor(
+    private _workDayDataService: WorkDayDataService,
+    private dialog: MatDialog
+  ) {
     this._fetchWorkday$.subscribe(value => (this._workday = value));
+  }
+
+  openEditWeekSchedule() {
+    this.editWeekSchedule = this.dialog.open(EditWeekScheduleComponent, {
+      data: { workday: this._workday, changeType: "Namiddag" }
+    });
+  }
+
+  openEditWeekScheduleVoormiddag() {
+    this.editWeekSchedule = this.dialog.open(EditWeekScheduleComponent, {
+      data: { workday: this._workday, changeType: "Voormiddag" }
+    });
   }
 
   ngOnInit() {}
