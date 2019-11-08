@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Workday } from "src/app/domain/workday.model";
 import { FormControl } from "@angular/forms";
+import { ActivityUnit } from 'src/app/domain/activityUnit.model';
 
 export class DayNameAndDate {
   constructor(private _date: Date, private _name: string) {}
@@ -41,6 +42,11 @@ export class DayOfWeekComponent implements OnInit {
     
   }
 
+  getMentors(activity:ActivityUnit):string{
+    let mentors = new Array(); 
+    activity.mentors.forEach(mentor => mentors.push(`${mentor.firstName} ${mentor.lastName}`));
+    return mentors.toString();
+  }
   ngOnInit() {
     const date = this.unFormattedDate(this.weekDay.date);
     this.nameOfDay = new DayNameAndDate(date, this.getNameOfDay(date));
@@ -66,4 +72,6 @@ export class DayOfWeekComponent implements OnInit {
   get nameOfDay$(): DayNameAndDate{
     return this.nameOfDay;
   }
+ 
+  
 }

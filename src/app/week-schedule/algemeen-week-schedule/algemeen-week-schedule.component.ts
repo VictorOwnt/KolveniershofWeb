@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
 export class AlgemeenWeekScheduleComponent implements OnInit {
   
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
-  private _users = this._fetchUsers$.subscribe(users => (this._users = users));
+  private _users:User[];
   private userAbsents = User[10];
   private help: User;
   @Input() public workday: Workday;
@@ -24,10 +24,12 @@ export class AlgemeenWeekScheduleComponent implements OnInit {
   editWeekSchedule: MatDialogRef<EditWeekScheduleComponent>;
   
   constructor(private dialog: MatDialog,private _userDataService : UserDataService) {
-    
+    this._fetchUsers$.subscribe(users => (this._users = users));
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
   openEditWeekSchedule() {
     this.editWeekSchedule = this.dialog.open(EditWeekScheduleComponent,{data: { workday: this.workday, changeType: "Algemeen", planningDate: this.planningDate}});
     
@@ -39,16 +41,14 @@ export class AlgemeenWeekScheduleComponent implements OnInit {
   get userAbsents$(): User[]{
     
     this.users$.forEach(user => {
-      this.help= user;
+      
       if(user.absentDates.length != 0){
       user.absentDates.forEach(absentDate =>{
         
         if(absentDate === this.planningDate){
           this.userAbsents.add(this.help);
         }
-      })}else{
-        console.log("Was undefined/empty");
-      }
+      })}
     });
     return this.userAbsents;
   }

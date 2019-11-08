@@ -63,8 +63,8 @@ export class EditWeekScheduleComponent implements OnInit {
   handleAlgemeen(){
     this.form.value.absent.forEach(userAbsent => {
       userAbsent.absentDates.push(this.data$.planningDate);
-      console.log(`${userAbsent.absentDates[0]}`);
-      console.log(`${this.users$[0].absentDates}`);
+      //console.log(`${userAbsent.absentDates[0]}`);
+      //console.log(`${this.users$[0].absentDates}`);
       //put request 
     /*
     this.userDataService.put(userAbsent.toJson());
