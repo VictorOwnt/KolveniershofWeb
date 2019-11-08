@@ -40,17 +40,12 @@ export class WorkDayDataService {
   getWorkDayByDate(date): Observable<Workday> {
     return this.http
       .get(`${environment.apiUrl}/API/Workdays/date/${date}`)
-      .pipe(map((workDay: any): Workday =>{
-       
-        return Workday.fromJSON(workDay)}));
+      .pipe(
+        map(
+          (workDay: any): Workday => {
+            return Workday.fromJSON(workDay);
+          }
+        )
+      );
   }
-
-  /*// zit nog niet in backend, momenteel 7x een dag ophalen
-  getWeekOfUser(userId, date): Observable<Workday> {
-    return this.http
-      .get(`${environment.apiUrl}/API/Workdays/date/${date}/${userId}`)
-      .pipe(map((workDay: any): Workday => {
-        console.log(`${workDay}`);
-        return Workday.fromJSON(workDay)}));
-  }*/
 }

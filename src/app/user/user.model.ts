@@ -1,7 +1,6 @@
 export class User {
   constructor(
     private _id: string,
-    //private _username: string,
     private _firstName: string,
     private _lastName: string,
     private _email: string,
@@ -13,9 +12,6 @@ export class User {
   get id(): string {
     return this._id;
   }
-  /*get username(): string {
-    return this._username;
-  }*/
 
   get firstName(): string {
     return this._firstName;
@@ -28,10 +24,6 @@ export class User {
   get email(): string {
     return this._email;
   }
-
-  /* get picture(): string {
-    return this._picture;
-  }*/
 
   get admin(): boolean {
     return this._admin;
@@ -48,7 +40,6 @@ export class User {
   static fromJSON(json: any): User {
     const user = new User(
       json._id,
-      //json.username,
       json.firstName,
       json.lastName,
       json.email,
@@ -62,7 +53,6 @@ export class User {
   toJSON(): any {
     return {
       _id: this._id,
-      //username: this.username,
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,

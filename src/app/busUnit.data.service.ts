@@ -8,18 +8,4 @@ import { BusUnit } from "./domain/busUnit.model";
 @Injectable({
   providedIn: "root"
 })
-export class BusUnitDataService {
-  public loadingError$ = new Subject<string>();
-
-  constructor(private http: HttpClient) {}
-
-  get busUnits$(): Observable<BusUnit[]> {
-    return this.http.get(`${environment.apiUrl}/API/Busses/units`).pipe(
-      catchError(error => {
-        this.loadingError$.next(error.statusText);
-        return of(null);
-      }),
-      map((list: any[]): BusUnit[] => list.map(BusUnit.fromJSON))
-    );
-  }
-}
+export class BusUnitDataService {}

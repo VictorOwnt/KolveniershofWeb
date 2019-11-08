@@ -1,44 +1,46 @@
- .floatLeft{ 
-  float: left;
-  width: 10%;
-}
-.floatRight{
-  float: right;
-  width: 90%;
-}
+ .floatLeft {
+   float: left;
+   width: 10%;
+ }
 
-.spaceUnder {
-  margin-bottom: 15px;
-}
+ .floatRight {
+   float: right;
+   width: 90%;
+ }
 
-.weekEnDagPicker {
-  text-align: center;
-}
+ .spaceUnder {
+   margin-bottom: 15px;
+ }
 
-h5 span {
-  color: #003a70;
-}
+ .weekEnDagPicker {
+   text-align: center;
+ }
 
-h5 span fa-icon {
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #acadae;
-}
+ h5 span {
+   color: #003a70;
+ }
 
-.sizeAndAlignment {
-  width: 100%;
-}
+ h5 span fa-icon {
+   padding-left: 5px;
+   padding-right: 5px;
+   color: #acadae;
+ }
 
-.widthAndHeight {
-  height: 100%;
-  margin-bottom: 2em;
-}
-.containerDatePicker {
-  max-width: 30%;
-  margin-top: 1.5em;
-  margin-bottom: 0;
-}
+ .sizeAndAlignment {
+   width: 100%;
+ }
 
-.container{
-  text-align: center;
-}
+ .widthAndHeight {
+   height: 100%;
+   margin-bottom: 2em;
+ }
+
+ .containerDatePicker {
+   max-width: 30%;
+   margin-top: 1.5em;
+   margin-bottom: 0;
+ }
+
+ .container {
+   text-align: center;
+ }

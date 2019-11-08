@@ -6,36 +6,32 @@
         <button mat-raised-button (click)="openEditWeekSchedule(i)">
           Wijzig
         </button>
-        
+
       </th>
-      
+
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Vervoer</td>
-      <td ><a routerLink="/bus"
-        ><button class="buttons" mat-flat-button>Busschema</button>
-      </a></td>
-      <!--
-        data-cy="dataDatum">Datum: {{ workday.date | date: "dd/MM/yyyy" }} 
-        <td>Alexane, An DB, Christel, Elke, Jonas, Katelijne, Margot, Simon, Sigirid</td> -->
+      <td><a routerLink="/bus"><button class="buttons" mat-flat-button>Busschema</button>
+        </a></td>
       <td>
-        
+
       </td>
     </tr>
     <tr>
       <td>Afwezig/Ziek</td>
       <td>
         <div *ngIf="users$">
-        <span *ngFor="let userAbsent of userAbsents$">
-        {{ userAbsent.firstName + " " + userAbsent.lastName + ", " }}
-      </span>
-    </div></td>
+          <span *ngFor="let userAbsent of userAbsents$">
+            {{ userAbsent.firstName + " " + userAbsent.lastName + ", " }}
+          </span>
+        </div>
+      </td>
       <td>
-        
+
       </td>
     </tr>
-    
   </tbody>
 </table>

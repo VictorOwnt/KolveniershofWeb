@@ -16,12 +16,12 @@ import { Bus } from "../domain/bus.model";
   styleUrls: ["./picto-agenda.component.css"]
 })
 export class PictoAgendaComponent implements OnInit {
-  public val: Date; 
-  
+  public val: Date;
+
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
   private _users: User[];
   private workDays;
-  private _clickedUser:User;
+  private _clickedUser: User;
 
   constructor(
     private _userDataService: UserDataService,
@@ -48,7 +48,6 @@ export class PictoAgendaComponent implements OnInit {
     }
     let currentWeek = this.getCurrentWeek();
 
-    
     if (this.val) {
       currentWeek = this.getCurrentWeek(this.val);
     }
@@ -56,7 +55,6 @@ export class PictoAgendaComponent implements OnInit {
     for (const date of currentWeek) {
       this._workdayDataService.getWorkDayByDate(date).subscribe({
         next: (result: Workday) => {
-          //console.log(result);
           if (result) {
             workday = result;
           }
@@ -65,15 +63,10 @@ export class PictoAgendaComponent implements OnInit {
           console.log(err);
         },
         complete: () => {
-         // console.log("complete");
-         // console.log(`${workday.date}`);
           this.workDays.push(workday);
         }
       });
     }
-    
-
-    
   }
 
   getCurrentWeek(date?: Date): Date[] {
@@ -113,35 +106,33 @@ export class PictoAgendaComponent implements OnInit {
   get workdays$(): Workday[] {
     return this.workDays;
   }
-  
 
   getWorkday(param) {
-    this.sortByDate(); 
+    this.sortByDate();
     return this.workDays[param];
   }
 
-  get monday$(): Workday{
+  get monday$(): Workday {
     return this.workDays[0];
   }
-  get tuesday$(): Workday{
+  get tuesday$(): Workday {
     return this.workDays[1];
   }
-  get clickedUser$():User{
+  get clickedUser$(): User {
     return this._clickedUser;
   }
 
   private getTime(dateString) {
     const date = new Date(dateString);
-    
+
     return date != null ? date.getTime() : 0;
-}
+  }
 
-
-public sortByDate(): void {
-  if(this.workDays.length >1){
-    this.workDays.sort((day1:Workday, day2:Workday) => {
+  public sortByDate(): void {
+    if (this.workDays.length > 1) {
+      this.workDays.sort((day1: Workday, day2: Workday) => {
         return this.getTime(day1.date) - this.getTime(day2.date);
-    });
-}}
-
+      });
+    }
+  }
 }

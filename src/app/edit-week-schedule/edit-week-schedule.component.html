@@ -1,86 +1,71 @@
+<h2 mat-dialog-title>{{data$.changeType}}</h2>
 
-    <h2 mat-dialog-title>{{data$.changeType}}</h2>
+<form [formGroup]="form" (ngSubmit)='onSubmit()'>
+  <mat-dialog-content>
+    <br>
+    <!-- Algemeen-->
+    <div *ngIf="data$.changeType == 'Algemeen'">
+      <mat-form-field>
+        <mat-label>Afwezig/Ziek</mat-label>
+        <mat-select formControlName="absent" multiple>
+          <mat-option *ngFor="let userAbsent of users$" [value]="userAbsent">{{userAbsent.lastName}}
+            {{userAbsent.firstName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
 
-    
-    
-    <form [formGroup]="form" (ngSubmit)='onSubmit()'>
-      <mat-dialog-content >
-        <br>
-        <!-- Algemeen-->
-        <div *ngIf="data$.changeType == 'Algemeen'">
-        <mat-form-field>
-            <mat-label>Afwezig/Ziek</mat-label>
-            <mat-select formControlName="absent" multiple>
-              <mat-option *ngFor="let userAbsent of users$" [value]="userAbsent">{{userAbsent.lastName}} {{userAbsent.firstName}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        <br>
+    </div>
+    <!-- Voormiddag-->
+    <div *ngIf="data$.changeType == 'Voormiddag'">
+      <div formArrayName="amActivities" *ngFor="let item of form.get('amActivities')['controls']; let i = index">
+        <div [formGroupName]="i">
 
-        </div>
-        <!-- Voormiddag-->
-        <div *ngIf="data$.changeType == 'Voormiddag'">
-          <div formArrayName="amActivities" *ngFor="let item of form.get('amActivities')['controls']; let i = index">
-            <div [formGroupName]="i">
-               
           <div *ngFor="let amActivity of data.workday.amActivities;let activityIndex = index">
-              <input
-              matInput
-              [placeholder]="amActivity.activity.name"
-              type="text"
-              #value
-              (change)="updateActivityName(value,activityIndex,'am')"
-            />
-          <mat-form-field>
+            <input matInput [placeholder]="amActivity.activity.name" type="text" #value
+              (change)="updateActivityName(value,activityIndex,'am')" />
+            <mat-form-field>
               <mat-label>{{amActivity.activity.name}}</mat-label>
               <mat-select [formControlName]="amActivity.activity.name" multiple>
-                <mat-option *ngFor="let participant of users$" [value]="participant">{{participant.lastName}} {{participant.firstName}}</mat-option>
+                <mat-option *ngFor="let participant of users$" [value]="participant">{{participant.lastName}}
+                  {{participant.firstName}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
-          </div>
-          </div>
-          <br>         
-          </div>
-          <!-- Namiddag-->
-        <div *ngIf="data$.changeType == 'Namiddag'">
-            <div formArrayName="pmActivities" *ngFor="let item of form.get('pmActivities')['controls']; let i = index">
-                <div [formGroupName]="i">
-            <div *ngFor="let pmActivity of data.workday.pmActivities;let activityIndex = index">
-                <input
-                matInput
-                [placeholder]="pmActivity.activity.name"
-                type="text"
-                #value
-                (change)="updateActivityName(value,activityIndex,'pm')"
-              />
-            <mat-form-field>
-                <mat-label>{{pmActivity.activity.name}}</mat-label>
-                <mat-select [formControlName]="pmActivity.activity.name" multiple>
-                  <mat-option *ngFor="let participant of users$" [value]="participant">{{participant.lastName}} {{participant.firstName}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            </div>
-            </div>
-            <br>         
-            </div>
-        <div *ngIf="data$.changeType == 'Extra'">
-          <mat-form-field>
-            <mat-label>Lunch</mat-label>
-            <input
-          matInput
-          type="text"
-          value="{{data$.workday.lunch.lunch}}"
-          formControlName="lunch"
-        />
-          </mat-form-field>
         </div>
-            
-    </mat-dialog-content>
+      </div>
+      <br>
+    </div>
+    <!-- Namiddag-->
+    <div *ngIf="data$.changeType == 'Namiddag'">
+      <div formArrayName="pmActivities" *ngFor="let item of form.get('pmActivities')['controls']; let i = index">
+        <div [formGroupName]="i">
+          <div *ngFor="let pmActivity of data.workday.pmActivities;let activityIndex = index">
+            <input matInput [placeholder]="pmActivity.activity.name" type="text" #value
+              (change)="updateActivityName(value,activityIndex,'pm')" />
+            <mat-form-field>
+              <mat-label>{{pmActivity.activity.name}}</mat-label>
+              <mat-select [formControlName]="pmActivity.activity.name" multiple>
+                <mat-option *ngFor="let participant of users$" [value]="participant">{{participant.lastName}}
+                  {{participant.firstName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+    <div *ngIf="data$.changeType == 'Extra'">
+      <mat-form-field>
+        <mat-label>Lunch</mat-label>
+        <input matInput type="text" value="{{data$.workday.lunch.lunch}}" formControlName="lunch" />
+      </mat-form-field>
+    </div>
 
-  
-    <mat-dialog-actions>
-        <button mat-dialog-close class="mat-raised-button">Annuleer</button>
-        <button type="submit" mat-dialog-close class="mat-raised-button mat-primary" >Wijzig</button>
-    </mat-dialog-actions>
-  </form>
+  </mat-dialog-content>
+
+
+  <mat-dialog-actions>
+    <button mat-dialog-close class="mat-raised-button">Annuleer</button>
+    <button type="submit" mat-dialog-close class="mat-raised-button mat-primary">Wijzig</button>
+  </mat-dialog-actions>
+</form>

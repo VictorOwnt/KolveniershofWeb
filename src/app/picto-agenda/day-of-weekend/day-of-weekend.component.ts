@@ -53,14 +53,12 @@ export class DayOfWeekendComponent implements OnInit {
     const year = date[0];
     const month = date[1] - 1;
     const day = date[2];
-    if(day.charAt(0) === "0"){
-      return new Date(year, month, day.substring(1,2));
+    if (day.charAt(0) === "0") {
+      return new Date(year, month, day.substring(1, 2));
     }
-    return new Date(year, month, day.substring(0,2));
-    
-    
+    return new Date(year, month, day.substring(0, 2));
   }
-  get nameOfDay$(): DayNameAndDate{
+  get nameOfDay$(): DayNameAndDate {
     return this.nameOfDay;
   }
 }
