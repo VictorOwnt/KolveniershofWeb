@@ -4,6 +4,7 @@ import { User } from "../user/user.model";
 import { Observable, Subject } from "rxjs";
 import { WorkDayDataService } from "../workDay.data.service";
 import { Workday } from "../domain/workday.model";
+import { StaticMethods } from "../domain/staticMethods";
 
 @Component({
   selector: "app-picto-agenda",
@@ -15,7 +16,7 @@ export class PictoAgendaComponent implements OnInit {
 
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
   private _users: User[];
-  private workDays;
+  private workDays: any[] | Workday[];
   private _clickedUser: User;
 
   constructor(
@@ -75,49 +76,36 @@ export class PictoAgendaComponent implements OnInit {
       const first = chosenDate.getDate() - chosenDate.getDay() + i;
       const day = new Date(chosenDate.setDate(first)); // .toISOString().slice(0, 10)
 
-      week.push(this.formattedDate(day));
+      week.push(StaticMethods.formattedDate(day));
     }
     return week;
-  }
-
-  formattedDate(d: Date) {
-    let month = String(d.getMonth() + 1);
-    let day = String(d.getDate());
-    const year = String(d.getFullYear());
-
-    if (month.length < 2) {
-      month = "0" + month;
-    }
-    if (day.length < 2) {
-      day = "0" + day;
-    }
-
-    return `${day}_${month}_${year}`;
   }
 
   isAdmin(): boolean {
     return User.fromJSON(JSON.parse(localStorage.getItem("currentUser"))).admin;
   }
+
   get workdays$(): Workday[] {
     return this.workDays;
   }
 
-  getWorkday(param) {
+  getWorkday(param: string | number) {
     this.sortByDate();
     return this.workDays[param];
   }
 
-  get monday$(): Workday {
-    return this.workDays[0];
-  }
-  get tuesday$(): Workday {
-    return this.workDays[1];
-  }
-  get clickedUser$(): User {
+  // get monday$(): Workday {
+  //   return this.workDays[0];
+  // }
+  // get tuesday$(): Workday {
+  //   return this.workDays[1];
+  // }
+
+  get clickedUser(): User {
     return this._clickedUser;
   }
 
-  private getTime(dateString) {
+  private getTime(dateString: string | number | Date) {
     const date = new Date(dateString);
 
     return date != null ? date.getTime() : 0;

@@ -2,12 +2,12 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title style="text-align: center;">
-        {{ nameOfDay$.name }}
+        {{ nameOfDay.name }}
         <!-- {{ day.text }} -->
         <!--via input in weekschedule de elementen vullen/meesturen die dan gevult moeten worden-->
       </mat-card-title>
       <mat-card-subtitle style="text-align: center;">
-        {{ nameOfDay$.date | date: "dd/MM/yyyy" }}
+        {{ nameOfDay.date | date: "dd/MM/yyyy" }}
         <!-- {{ day.date | date }} -->
         <!--via input in weekschedule de elementen vullen/meesturen die dan gevult moeten worden-->
       </mat-card-subtitle>
@@ -27,10 +27,15 @@
       <table>
         <tr *ngFor="let amActivity of weekDay.amActivities">
           <td>
-            <img src="assets/images/icons/{{'icon-'+ amActivity.activity.icon+'.svg' }}"
-              alt="{{ amActivity.activity.name }}" width="40" />
+            <img
+              src="assets/images/icons/{{
+                'icon-' + amActivity.activity.icon + '.svg'
+              }}"
+              alt="{{ amActivity.activity.name }}"
+              width="40"
+            />
           </td>
-          <td>{{ amActivity.activity.name }} {{getMentors(amActivity)}} </td>
+          <td>{{ amActivity.activity.name }} {{ getMentors(amActivity) }}</td>
         </tr>
       </table>
 
@@ -39,9 +44,13 @@
       <table>
         <tr>
           <td>
-            <img src="assets/images/icons/forkKnifeBlack.png" alt="" width="40" />
+            <img
+              src="assets/images/icons/forkKnifeBlack.png"
+              alt=""
+              width="40"
+            />
           </td>
-          <td> {{weekDay.lunch.lunch}}</td>
+          <td>{{ weekDay.lunch.lunch }}</td>
         </tr>
       </table>
 
@@ -50,10 +59,15 @@
       <table>
         <tr *ngFor="let pmActivity of weekDay.pmActivities">
           <td>
-            <img src="assets/images/icons/{{'icon-'+ pmActivity.activity.icon +'.svg' }}"
-              alt="{{ pmActivity.activity.name }}" width="40" />
+            <img
+              src="assets/images/icons/{{
+                'icon-' + pmActivity.activity.icon + '.svg'
+              }}"
+              alt="{{ pmActivity.activity.name }}"
+              width="40"
+            />
           </td>
-          <td>{{ pmActivity.activity.name }} {{getMentors(pmActivity)}}</td>
+          <td>{{ pmActivity.activity.name }} {{ getMentors(pmActivity) }}</td>
         </tr>
       </table>
 
@@ -70,10 +84,17 @@
       <hr />
       <div class="footerCard">
         <mat-form-field>
-          <input matInput placeholder="Voeg een opmerking toe" type="text" [formControl]="commentFormControl" />
+          <input
+            matInput
+            placeholder="Voeg een opmerking toe"
+            type="text"
+            [formControl]="commentFormControl"
+          />
         </mat-form-field>
-        <br>
-        <button mat-raised-button type="submit" class="geefFeedbackBtn">Sla op</button>
+        <br />
+        <button mat-raised-button type="submit" class="geefFeedbackBtn">
+          Sla op
+        </button>
       </div>
     </mat-card-content>
   </mat-card>

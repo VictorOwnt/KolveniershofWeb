@@ -36,7 +36,6 @@ import { DayOfWeekComponent } from "./picto-agenda/day-of-week/day-of-week.compo
 import { DayOfWeekendComponent } from "./picto-agenda/day-of-weekend/day-of-weekend.component";
 import { AlgemeenWeekScheduleComponent } from "./week-schedule/algemeen-week-schedule/algemeen-week-schedule.component";
 import { ExtraWeekScheduleComponent } from "./week-schedule/extra-week-schedule/extra-week-schedule.component";
-import { DatePickerComponent } from "./picto-agenda/date-picker/date-picker.component";
 import { ScrollingModule } from "@angular/cdk/scrolling";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { EditWeekScheduleComponent } from "./edit-week-schedule/edit-week-schedule.component";
@@ -58,7 +57,6 @@ import { BusschemaTableComponent } from "./busschema/busschema-table/busschema-t
     DayOfWeekendComponent,
     AlgemeenWeekScheduleComponent,
     ExtraWeekScheduleComponent,
-    DatePickerComponent,
     EditWeekScheduleComponent,
     BusschemaComponent,
     RegisterComponent,
