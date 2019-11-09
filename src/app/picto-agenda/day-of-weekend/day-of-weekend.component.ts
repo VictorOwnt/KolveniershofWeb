@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Workday } from "src/app/domain/workday.model";
-import { StaticMethods } from "src/app/domain/staticMethods";
+import { StaticMethodsPicto } from "src/app/domain/staticMethods";
 import { DayNameAndDate } from "../day-of-week/day-of-week.component";
 
 @Component({
@@ -15,10 +15,10 @@ export class DayOfWeekendComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    const date = StaticMethods.unFormattedDate(this.weekDay.date);
+    const date = StaticMethodsPicto.unFormattedDate(this.weekDay.date);
     this._nameOfDay = new DayNameAndDate(
       date,
-      StaticMethods.getNameOfDay(date)
+      StaticMethodsPicto.getNameOfDay(date)
     );
   }
 

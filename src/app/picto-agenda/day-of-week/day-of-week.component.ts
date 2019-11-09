@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Workday } from "src/app/domain/workday.model";
 import { FormControl } from "@angular/forms";
 import { ActivityUnit } from "src/app/domain/activityUnit.model";
-import { StaticMethods } from "src/app/domain/staticMethods";
+import { StaticMethodsPicto } from "src/app/domain/staticMethods";
 
 export class DayNameAndDate {
   constructor(private _date: Date, private _name: string) {}
@@ -38,10 +38,10 @@ export class DayOfWeekComponent implements OnInit {
   }
 
   ngOnInit() {
-    const date = StaticMethods.unFormattedDate(this.weekDay.date);
+    const date = StaticMethodsPicto.unFormattedDate(this.weekDay.date);
     this._nameOfDay = new DayNameAndDate(
       date,
-      StaticMethods.getNameOfDay(date)
+      StaticMethodsPicto.getNameOfDay(date)
     );
   }
 

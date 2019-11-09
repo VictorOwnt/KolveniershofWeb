@@ -34,8 +34,6 @@ import { WorkDayDataService } from "./workDay.data.service";
 import { WeekScheduleComponent } from "./week-schedule/week-schedule.component";
 import { DayOfWeekComponent } from "./picto-agenda/day-of-week/day-of-week.component";
 import { DayOfWeekendComponent } from "./picto-agenda/day-of-weekend/day-of-weekend.component";
-import { AlgemeenWeekScheduleComponent } from "./week-schedule/algemeen-week-schedule/algemeen-week-schedule.component";
-import { ExtraWeekScheduleComponent } from "./week-schedule/extra-week-schedule/extra-week-schedule.component";
 import { ScrollingModule } from "@angular/cdk/scrolling";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { EditWeekScheduleComponent } from "./edit-week-schedule/edit-week-schedule.component";
@@ -43,6 +41,7 @@ import { BusschemaComponent } from "./busschema/busschema.component";
 import { MatSelectModule } from "@angular/material/select";
 import { RegisterComponent } from "./user/register/register.component";
 import { BusschemaTableComponent } from "./busschema/busschema-table/busschema-table.component";
+import { BlockOfWeekScheduleComponent } from "./week-schedule/block-of-week-schedule/block-of-week-schedule.component";
 
 @NgModule({
   declarations: [
@@ -55,12 +54,11 @@ import { BusschemaTableComponent } from "./busschema/busschema-table/busschema-t
     PictoAgendaComponent,
     DayOfWeekComponent,
     DayOfWeekendComponent,
-    AlgemeenWeekScheduleComponent,
-    ExtraWeekScheduleComponent,
     EditWeekScheduleComponent,
     BusschemaComponent,
     RegisterComponent,
-    BusschemaTableComponent
+    BusschemaTableComponent,
+    BlockOfWeekScheduleComponent
   ],
   imports: [
     FlexLayoutModule,

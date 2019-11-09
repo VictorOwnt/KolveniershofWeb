@@ -1,4 +1,8 @@
-export class StaticMethods {
+import { MatDialogRef, MatDialog } from "@angular/material";
+
+import { EditWeekScheduleComponent } from "../edit-week-schedule/edit-week-schedule.component";
+
+export class StaticMethodsPicto {
   static namesOfDays = [
     "Zondag",
     "Maandag",
@@ -20,7 +24,6 @@ export class StaticMethods {
     if (day.length < 2) {
       day = "0" + day;
     }
-
     return `${day}_${month}_${year}`;
   }
 
@@ -36,7 +39,7 @@ export class StaticMethods {
   }
 
   static getNameOfDay(date: Date) {
-    return StaticMethods.namesOfDays[date.getDay()];
+    return StaticMethodsPicto.namesOfDays[date.getDay()];
   }
 }
 
@@ -55,3 +58,21 @@ export class DayNameAndDate {
     return this._icon;
   }
 }
+
+// export class StaticMethodsWeekSchedule {
+//   static editWeekSchedule: MatDialogRef<EditWeekScheduleComponent>;
+//   static dialog: any;
+
+//   constructor(private dialog: MatDialog) {
+//     this.dialog = dialog;
+//   }
+//   static openEditWeekSchedule(type, workday, planningDate) {
+//     this.editWeekSchedule = this.dialog.open(EditWeekScheduleComponent, {
+//       data: {
+//         workday,
+//         changeType: "Algemeen",
+//         planningDate
+//       }
+//     });
+//   }
+// }

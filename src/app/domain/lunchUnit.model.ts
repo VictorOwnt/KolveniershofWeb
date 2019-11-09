@@ -35,10 +35,10 @@ export class LunchUnit {
   get icon(): string {
     return this._icon;
   }
-  get lunch():string{
+  get lunch(): string {
     return this._lunch;
   }
-  set lunch(food){
+  set lunch(food) {
     this._lunch = food;
   }
 }

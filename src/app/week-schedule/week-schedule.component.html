@@ -4,70 +4,32 @@
   <div class="weekEnDagPicker">
     <h5>
       <mat-form-field>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="planningDate" placeholder="Selecteer datum"
-          (dateChange)="laadDagSchema($event)">
+        <input
+          matInput
+          [matDatepicker]="picker"
+          [(ngModel)]="planningDate"
+          placeholder="Selecteer datum"
+          (dateChange)="laadDagSchema($event)"
+        />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </h5>
-    <button mat-raised-button>Save Week</button>
+    <div *ngIf="dayNr !== 0 && dayNr !== 6">
+      <button mat-raised-button>Save Week</button>
+    </div>
   </div>
-
-  <app-algemeen-week-schedule [workday]="workday$" [planningDate]="planningDate$"></app-algemeen-week-schedule>
-  <table class="content-table">
-    <thead>
-      <tr>
-        <th colspan="2">Voormiddag</th>
-        <th>
-          <button mat-raised-button (click)="openEditWeekScheduleVoormiddag()">
-            Wijzig
-          </button>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let activity of workday$.amActivities; let i = index">
-        <td>{{ activity.activity.name }}
-          <br> Begeleiders:
-          <div *ngFor="let mentor of activity.mentors">
-            {{mentor.firstName + " " + mentor.lastName +", "}}
-          </div>
-        </td>
-        <td>
-          <span *ngFor="let client of activity.clients">
-            {{ client.firstName + " " + client.lastName + ", " }}
-          </span>
-        </td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <table class="content-table">
-    <thead>
-      <tr>
-        <th colspan="2">Namiddag</th>
-        <th>
-          <button mat-raised-button (click)="openEditWeekSchedule()">Wijzig</button>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let activity of workday$.pmActivities">
-        <td>{{ activity.activity.name }}
-          <br> Begeleiders:
-          <div *ngFor="let mentor of activity.mentors">
-            {{mentor.firstName + " " + mentor.lastName +", "}}
-          </div>
-        </td>
-        <td>
-          <span *ngFor="let client of activity.clients">
-            {{ client.firstName + " " + client.lastName + ", " }}
-          </span>
-        </td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <app-extra-week-schedule [workday]="workday$"></app-extra-week-schedule>
+  <div *ngIf="dayNr !== 0 && dayNr !== 6; else weekend">
+    <div *ngFor="let i of namesOfBlocks">
+      <app-block-of-week-schedule
+        [workday]="workday$"
+        [planningDate]="planningDate$"
+        [name]="i"
+      ></app-block-of-week-schedule>
+    </div>
+  </div>
 </div>
+<ng-template #weekend>
+  <h1>Het is weekend</h1>
+</ng-template>
 <app-footer></app-footer>

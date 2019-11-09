@@ -15,6 +15,7 @@ import { EditWeekScheduleComponent } from "../edit-week-schedule/edit-week-sched
   styleUrls: ["./week-schedule.component.css"]
 })
 export class WeekScheduleComponent implements OnInit {
+  private namesOfBlocks = ["Algemeen", "Voormiddag", "Extra", "Namiddag"];
   public loadingError$ = this._workDayDataService.loadingError$;
   private _fetchWorkday$: Observable<
     Workday
@@ -30,19 +31,8 @@ export class WeekScheduleComponent implements OnInit {
     this._fetchWorkday$.subscribe(value => (this._workday = value));
   }
 
-  openEditWeekSchedule() {
-    this.editWeekSchedule = this.dialog.open(EditWeekScheduleComponent, {
-      data: { workday: this._workday, changeType: "Namiddag" }
-    });
-  }
-
-  openEditWeekScheduleVoormiddag() {
-    this.editWeekSchedule = this.dialog.open(EditWeekScheduleComponent, {
-      data: { workday: this._workday, changeType: "Voormiddag" }
-    });
-  }
-
   ngOnInit() {}
+
   get planningDate$(): Date {
     return this.planningDate;
   }
@@ -68,7 +58,6 @@ export class WeekScheduleComponent implements OnInit {
     if (day.length < 2) {
       day = "0" + day;
     }
-
     return `${day}_${month}_${year}`;
   }
 

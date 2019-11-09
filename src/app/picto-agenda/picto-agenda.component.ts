@@ -4,7 +4,7 @@ import { User } from "../user/user.model";
 import { Observable, Subject } from "rxjs";
 import { WorkDayDataService } from "../workDay.data.service";
 import { Workday } from "../domain/workday.model";
-import { StaticMethods } from "../domain/staticMethods";
+import { StaticMethodsPicto } from "../domain/staticMethods";
 
 @Component({
   selector: "app-picto-agenda",
@@ -76,7 +76,7 @@ export class PictoAgendaComponent implements OnInit {
       const first = chosenDate.getDate() - chosenDate.getDay() + i;
       const day = new Date(chosenDate.setDate(first)); // .toISOString().slice(0, 10)
 
-      week.push(StaticMethods.formattedDate(day));
+      week.push(StaticMethodsPicto.formattedDate(day));
     }
     return week;
   }
