@@ -32,23 +32,13 @@ export class BlockOfWeekScheduleComponent implements OnInit {
   ngOnInit() {}
 
   openEditWeekSchedule() {
-    if (this.name === "Algemeen") {
-      this.editWeekSchedule = this.dialog.open(EditWeekScheduleComponent, {
-        data: {
-          workday: this.workday,
-          // tslint:disable-next-line: no-use-before-declare
-          changeType: this.name,
-          planningDate: this.planningDate
-        }
-      });
-    }
-    if (this.name !== "Algemeen") {
-      this.editWeekSchedule = this.dialog.open(EditWeekScheduleComponent, {
-        data: {
-          data: { workday: this.workday, changeType: this.name }
-        }
-      });
-    }
+    this.editWeekSchedule = this.dialog.open(EditWeekScheduleComponent, {
+      data: {
+        workday: this.workday,
+        changeType: this.name,
+        planningDate: this.planningDate
+      }
+    });
   }
 
   get variable() {
@@ -66,7 +56,6 @@ export class BlockOfWeekScheduleComponent implements OnInit {
       case "Namiddag":
         break;
     }
-    this._variable = ["heyikben reeven"];
   }
 
   get users$(): User[] {
@@ -86,7 +75,6 @@ export class BlockOfWeekScheduleComponent implements OnInit {
     return this.userAbsents;
   }
   get food(): string {
-    console.log(this.workday);
     if (this.workday.lunch !== undefined) {
       return this.workday.lunch.lunch;
     }

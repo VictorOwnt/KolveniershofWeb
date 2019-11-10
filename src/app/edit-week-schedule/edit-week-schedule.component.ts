@@ -20,7 +20,7 @@ export class EditWeekScheduleComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: EditData,
     private _userDataService: UserDataService
   ) {
-    // private formBuilder:FormBuilder // deze methode werkt niet?
+    
   }
 
   ngOnInit() {

@@ -12,7 +12,7 @@ import { StaticMethodsPicto } from "../domain/staticMethods";
   styleUrls: ["./picto-agenda.component.css"]
 })
 export class PictoAgendaComponent implements OnInit {
-  public val: Date;
+  public chosenDate: Date;
 
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
   private _users: User[];
@@ -44,8 +44,8 @@ export class PictoAgendaComponent implements OnInit {
     }
     let currentWeek = this.getCurrentWeek();
 
-    if (this.val) {
-      currentWeek = this.getCurrentWeek(this.val);
+    if (this.chosenDate) {
+      currentWeek = this.getCurrentWeek(this.chosenDate);
     }
     let workday: Workday;
     for (const date of currentWeek) {
@@ -74,7 +74,7 @@ export class PictoAgendaComponent implements OnInit {
     const week = [];
     for (let i = 1; i <= 7; i++) {
       const first = chosenDate.getDate() - chosenDate.getDay() + i;
-      const day = new Date(chosenDate.setDate(first)); // .toISOString().slice(0, 10)
+      const day = new Date(chosenDate.setDate(first)); 
 
       week.push(StaticMethodsPicto.formattedDate(day));
     }

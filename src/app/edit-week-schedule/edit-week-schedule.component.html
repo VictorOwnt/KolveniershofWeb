@@ -7,7 +7,7 @@
     <div *ngIf="data$.changeType == 'Algemeen'">
       <mat-form-field>
         <mat-label>Afwezig/Ziek</mat-label>
-        <mat-select formControlName="absent" multiple>
+        <mat-select formControlName="absent" multiple >
           <mat-option *ngFor="let userAbsent of users$" [value]="userAbsent">{{userAbsent.lastName}}
             {{userAbsent.firstName}}</mat-option>
         </mat-select>
