@@ -51,6 +51,7 @@ export class WeekScheduleComponent implements OnInit {
   }
 
   laadDagSchema(event: MatDatepickerInputEvent<Date>) {
+    this.planningDate= event.value;
     this._workDayDataService
       .getWorkDayByDate(StaticMethodsPicto.formattedDate(event.value))
       .subscribe(value => (this._workday = value));
