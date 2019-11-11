@@ -7,8 +7,8 @@
     <div *ngIf="data$.changeType == 'Algemeen'">
       <mat-form-field>
         <mat-label>Afwezig/Ziek</mat-label>
-        <mat-select formControlName="absent" multiple >
-          <mat-option *ngFor="let userAbsent of users$" [value]="userAbsent">{{userAbsent.lastName}}
+        <mat-select formControlName="absent" [ngModel]="[]" multiple >
+          <mat-option *ngFor="let userAbsent of (users$ | async)" [value]="userAbsent">{{userAbsent.lastName}}
             {{userAbsent.firstName}}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -25,8 +25,8 @@
               (change)="updateActivityName(value,activityIndex,'am')" />
             <mat-form-field>
               <mat-label>{{amActivity.activity.name}}</mat-label>
-              <mat-select [formControlName]="amActivity.activity.name" multiple>
-                <mat-option *ngFor="let participant of users$" [value]="participant">{{participant.lastName}}
+              <mat-select [formControlName]="amActivity.activity.name" [ngModel]="[]" multiple>
+                <mat-option *ngFor="let participant of (users$ | async)" [value]="participant">{{participant.lastName}}
                   {{participant.firstName}}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -45,7 +45,7 @@
             <mat-form-field>
               <mat-label>{{pmActivity.activity.name}}</mat-label>
               <mat-select [formControlName]="pmActivity.activity.name" multiple>
-                <mat-option *ngFor="let participant of users$" [value]="participant">{{participant.lastName}}
+                <mat-option *ngFor="let participant of (users$ | async)" [value]="participant">{{participant.lastName}}
                   {{participant.firstName}}</mat-option>
               </mat-select>
             </mat-form-field>

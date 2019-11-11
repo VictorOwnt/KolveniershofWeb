@@ -3,7 +3,8 @@ import { Observable, Subject, of } from "rxjs";
 import { map, catchError } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
-import { Workday } from "./domain/workday.model";
+import { Workday } from "../domain/workday.model";
+import { LunchUnit } from '../domain/lunchUnit.model';
 
 @Injectable({
   providedIn: "root"
@@ -11,7 +12,7 @@ import { Workday } from "./domain/workday.model";
 export class WorkDayDataService {
   public loadingError$ = new Subject<string>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   get workdays$(): Observable<Workday[]> {
     return this.http.get(`${environment.apiUrl}/API/Workdays`).pipe(
@@ -47,5 +48,9 @@ export class WorkDayDataService {
           }
         )
       );
+  }
+
+  updateLunch(lunch:LunchUnit){
+    return this.http.patch(`${environment.apiUrl}/API/units/${lunch.id}`,lunch.toJSON());
   }
 }

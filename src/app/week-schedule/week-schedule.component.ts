@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { Workday } from "../domain/workday.model";
-import { WorkDayDataService } from "../workDay.data.service";
+import { WorkDayDataService } from "../services/workDay.data.service";
 import {
   MatDatepickerInputEvent,
   MatDialogRef,

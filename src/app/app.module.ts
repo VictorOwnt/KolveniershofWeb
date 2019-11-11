@@ -30,7 +30,7 @@ import { CommonModule } from "@angular/common";
 import { MatDividerModule } from "@angular/material/divider";
 import { HttpClientModule } from "@angular/common/http";
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { WorkDayDataService } from "./workDay.data.service";
+import { WorkDayDataService } from "./services/workDay.data.service";
 import { WeekScheduleComponent } from "./week-schedule/week-schedule.component";
 import { DayOfWeekComponent } from "./picto-agenda/day-of-week/day-of-week.component";
 import { DayOfWeekendComponent } from "./picto-agenda/day-of-weekend/day-of-weekend.component";

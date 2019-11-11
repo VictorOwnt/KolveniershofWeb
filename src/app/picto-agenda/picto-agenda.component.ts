@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { UserDataService } from "../user/user.data.service";
 import { User } from "../user/user.model";
 import { Observable, Subject } from "rxjs";
-import { WorkDayDataService } from "../workDay.data.service";
 import { Workday } from "../domain/workday.model";
 import { StaticMethodsPicto } from "../domain/staticMethods";
+import { UserDataService } from '../services/user.data.service';
+import { WorkDayDataService } from '../services/workDay.data.service';
 
 @Component({
   selector: "app-picto-agenda",
@@ -27,7 +27,7 @@ export class PictoAgendaComponent implements OnInit {
     this.showPictoOfUser();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   get users$(): Observable<User[]> {
     return this._fetchUsers$;
@@ -74,7 +74,7 @@ export class PictoAgendaComponent implements OnInit {
     const week = [];
     for (let i = 1; i <= 7; i++) {
       const first = chosenDate.getDate() - chosenDate.getDay() + i;
-      const day = new Date(chosenDate.setDate(first)); 
+      const day = new Date(chosenDate.setDate(first));
 
       week.push(StaticMethodsPicto.formattedDate(day));
     }
@@ -94,12 +94,7 @@ export class PictoAgendaComponent implements OnInit {
     return this.workDays[param];
   }
 
-  // get monday$(): Workday {
-  //   return this.workDays[0];
-  // }
-  // get tuesday$(): Workday {
-  //   return this.workDays[1];
-  // }
+
 
   get clickedUser(): User {
     return this._clickedUser;

@@ -3,8 +3,11 @@ import { MAT_DIALOG_DATA } from "@angular/material";
 import { EditData } from "./editData";
 import { Observable } from "rxjs";
 import { User } from "../user/user.model";
-import { UserDataService } from "../user/user.data.service";
+import { UserDataService } from "../services/user.data.service";
 import { FormGroup, FormControl, FormArray } from "@angular/forms";
+import { StaticMethodsPicto } from '../domain/staticMethods';
+import { ActivityDataService } from '../services/activity.data.service';
+import { WorkDayDataService } from '../services/workDay.data.service';
 
 @Component({
   selector: "app-edit-week-schedule",
@@ -12,15 +15,16 @@ import { FormGroup, FormControl, FormArray } from "@angular/forms";
   styleUrls: ["./edit-week-schedule.component.css"]
 })
 export class EditWeekScheduleComponent implements OnInit {
-  private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
-  private _users = this._fetchUsers$.subscribe(users => (this._users = users));
+  private _fetchUsers$: Observable<User[]> = this._userDataService.users$; 
   public form: FormGroup;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: EditData,
-    private _userDataService: UserDataService
+    private _userDataService: UserDataService,
+    private _activityDataService: ActivityDataService,
+    private _workdayDataService: WorkDayDataService
   ) {
-    
+
   }
 
   ngOnInit() {
@@ -55,6 +59,7 @@ export class EditWeekScheduleComponent implements OnInit {
   handleAlgemeen() {
     this.form.value.absent.forEach(userAbsent => {
       userAbsent.absentDates.push(this.data$.planningDate);
+      this._userDataService.addAbsentDate(userAbsent, StaticMethodsPicto.formattedDate(this.data$.planningDate));
     });
   }
 
@@ -65,30 +70,36 @@ export class EditWeekScheduleComponent implements OnInit {
       if (typeof usersToAdd !== "string") {
         usersToAdd.forEach(user => amActivity.clients.push(user));
       }
+      this._activityDataService.updateActivityUnit(amActivity);
     });
   }
   updateActivityName(text: HTMLInputElement, index, type: string) {
     if (type === "am") {
       this.data$.workday.amActivities[index].activity.name = text.value;
+      this._activityDataService.updateActivityUnit(this.data$.workday.amActivities[index]);
+
     }
     if (type === "pm") {
       this.data$.workday.pmActivities[index].activity.name = text.value;
+      this._activityDataService.updateActivityUnit(this.data$.workday.pmActivities[index]);
     }
+    
   }
   handleNamiddag() {
     const value = this.form.value.pmActivities[0];
     this.data$.workday.pmActivities.forEach(pmActivity => {
       const usersToAdd = value[pmActivity.activity.name];
       usersToAdd.forEach(user => pmActivity.clients.push(user));
+      this._activityDataService.updateActivityUnit(pmActivity);
     });
-    // put request
+    
   }
   handleExtra() {
     this.data$.workday.lunch.lunch = this.form.value.lunch;
-    // put request
+    this._workdayDataService.updateLunch(this.data$.workday.lunch);
   }
-  get users$(): User[] {
-    return this._users;
+  get users$(): Observable<User[]> {
+    return this._fetchUsers$;
   }
   get data$(): EditData {
     return this.data;

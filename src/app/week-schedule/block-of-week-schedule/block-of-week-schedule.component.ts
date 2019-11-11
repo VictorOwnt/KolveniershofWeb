@@ -4,7 +4,7 @@ import { User } from "src/app/user/user.model";
 import { Workday } from "src/app/domain/workday.model";
 import { MatDialogRef, MatDialog } from "@angular/material";
 import { EditWeekScheduleComponent } from "src/app/edit-week-schedule/edit-week-schedule.component";
-import { UserDataService } from "src/app/user/user.data.service";
+import { UserDataService } from "src/app/services/user.data.service";
 
 @Component({
   selector: "app-block-of-week-schedule",
@@ -14,8 +14,8 @@ import { UserDataService } from "src/app/user/user.data.service";
 export class BlockOfWeekScheduleComponent implements OnInit {
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
   private _users: User[];
-  private userAbsents = User[10];
-  private help: User;
+  private userAbsents: User[];
+  
   @Input() public workday: Workday;
   @Input() public planningDate: Date;
   @Input() public name: string;
@@ -67,7 +67,7 @@ export class BlockOfWeekScheduleComponent implements OnInit {
       if (user.absentDates.length !== 0) {
         user.absentDates.forEach(absentDate => {
           if (absentDate === this.planningDate) {
-            this.userAbsents.add(this.help);
+            this.userAbsents.push(user);
           }
         });
       }
