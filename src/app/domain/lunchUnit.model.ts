@@ -28,7 +28,7 @@ export class LunchUnit {
     };
   }
 
-  get id():string {
+  get id(): string {
     return this._id
   }
   get mentors(): Array<User> {
