@@ -13,7 +13,6 @@ mat-card-subtitle {
 
 mat-card-content {
   padding: 3em;
-  /* padding-bottom: 0; */
   padding-bottom: 2em;
   background-color: white;
 }

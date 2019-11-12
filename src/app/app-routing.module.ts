@@ -11,9 +11,8 @@ import { BusschemaComponent } from "./busschema/busschema.component";
 
 const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
-  { path: "home", component: PictoAgendaComponent, canActivate: [AuthGuard] },
-  { path: "bus", component: BusschemaComponent, canActivate: [AuthGuard] },
-  { path: "dag", component: WeekScheduleComponent, canActivate: [AuthGuard] }, //
+  { path: "home", component: PictoAgendaComponent },
+  { path: "bus", component: BusschemaComponent },
   { path: "week", component: WeekScheduleComponent, canActivate: [AuthGuard] }, //
   { path: "picto", component: PictoAgendaComponent, canActivate: [AuthGuard] },
   { path: "", redirectTo: "home", pathMatch: "full" },

@@ -37,4 +37,7 @@ export class NavComponent implements OnInit {
       );
     }
   }
+  isAdmin(): boolean {
+    return User.fromJSON(JSON.parse(localStorage.getItem("currentUser"))).admin;
+  }
 }

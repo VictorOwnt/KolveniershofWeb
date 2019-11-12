@@ -4,18 +4,31 @@
   <div class="weekEnDagPicker">
     <h5>
       <mat-form-field>
-        <input matInput [matDatepicker]="picker"[(ngModel)]="planningDate" placeholder="Selecteer datum" (dateChange)="laadDagSchema($event)">
+        <input
+          matInput
+          [matDatepicker]="picker"
+          placeholder="Selecteer datum"
+          (dateChange)="laadDagSchema($event)"
+        />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </h5>
-    <button mat-raised-button>Save Week</button>
+    <div *ngIf="dayNr !== 0 && dayNr !== 6">
+      <button mat-raised-button>Save Week</button>
+    </div>
   </div>
-
-  <!-- het algemeen, voormiddag, namiddag, extra krijgen elk de volledige corresponderende workday voor een bepaalde datum -->
-  <app-algemeen-week-schedule [workday]="workday$" [planningDate]="planningDate$"></app-algemeen-week-schedule>
-  <app-voormiddag-week-schedule [workday]="workday$"></app-voormiddag-week-schedule>
-  <app-namiddag-week-schedule [workday]="workday$"></app-namiddag-week-schedule>
-  <app-extra-week-schedule [workday]="workday$"></app-extra-week-schedule>
+  <div *ngIf="dayNr !== 0 && dayNr !== 6; else weekend">
+    <div *ngFor="let i of namesOfBlocks">
+      <app-block-of-week-schedule
+        [workday]="workday$"
+        [planningDate]="planningDate$"
+        [name]="i"
+      ></app-block-of-week-schedule>
+    </div>
+  </div>
 </div>
+<ng-template #weekend>
+  <h1>Het is weekend</h1>
+</ng-template>
 <app-footer></app-footer>

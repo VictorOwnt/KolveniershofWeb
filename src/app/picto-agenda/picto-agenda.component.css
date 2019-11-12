@@ -1,3 +1,13 @@
+.floatLeft {
+  float: left;
+  width: 10%;
+}
+
+.floatRight {
+  float: right;
+  width: 90%;
+}
+
 .spaceUnder {
   margin-bottom: 15px;
 }
@@ -24,12 +34,13 @@ h5 span fa-icon {
   height: 100%;
   margin-bottom: 2em;
 }
+
 .containerDatePicker {
   max-width: 30%;
   margin-top: 1.5em;
   margin-bottom: 0;
 }
 
-.container{
+.container {
   text-align: center;
 }

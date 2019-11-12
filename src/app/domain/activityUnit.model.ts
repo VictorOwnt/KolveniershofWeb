@@ -1,8 +1,10 @@
 import { Activity } from "./activity.model";
 import { User } from "../user/user.model";
 
+
 export class ActivityUnit {
   constructor(
+    private _id : string,
     private _activity: Activity,
     private _mentors = new Array<User>(),
     private _clients = new Array<User>()
@@ -10,6 +12,7 @@ export class ActivityUnit {
 
   static fromJSON(json: any): ActivityUnit {
     const act = new ActivityUnit(
+      json._id,
       json.activity,
       json.mentors.map(User.fromJSON),
       json.clients.map(User.fromJSON)
@@ -19,12 +22,16 @@ export class ActivityUnit {
 
   toJSON(): any {
     return {
+      _id : this.id,
       activity: this.activity,
       mentors: this.mentors.map(ment => ment.toJSON()),
       clients: this.clients.map(client => client.toJSON())
     };
   }
 
+  get id(): string{
+    return this._id;
+  }
   get activity(): Activity {
     return this._activity;
   }

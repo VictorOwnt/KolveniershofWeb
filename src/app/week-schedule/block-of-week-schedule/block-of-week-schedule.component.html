@@ -1,0 +1,84 @@
+<div>
+  <table class="content-table">
+    <thead>
+      <tr>
+        <th colspan="2">{{ name }}</th>
+        <th>
+          <button mat-raised-button (click)="openEditWeekSchedule()">
+            Wijzig
+          </button>
+        </th>
+      </tr>
+    </thead>
+    <tbody *ngIf="workday != undefined && name === 'Algemeen'">
+      <tr>
+        <td>Vervoer</td>
+        <td>
+          <a routerLink="/bus">
+            <button class="buttons" mat-flat-button>Busschema</button>
+          </a>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Afwezig/Ziek</td>
+        <td>
+          <div *ngIf="users$">
+            <span *ngFor="let userAbsent of userAbsents$">
+              {{ userAbsent.firstName + " " + userAbsent.lastName + ", " }}
+            </span>
+          </div>
+        </td>
+        <td></td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="name === 'Voormiddag' && workday != undefined">
+      <tr *ngFor="let activity of workday.amActivities; let i = index">
+        <td>
+          {{ activity.activity.name }} <br />
+          Begeleiders:
+          <div *ngFor="let mentor of activity.mentors">
+            {{ mentor.firstName + " " + mentor.lastName + ", " }}
+          </div>
+        </td>
+        <td>
+          <span *ngFor="let client of activity.clients">
+            {{ client.firstName + " " + client.lastName + ", " }}
+          </span>
+        </td>
+        <td></td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="name === 'Namiddag' && workday != undefined">
+      <tr *ngFor="let activity of workday.pmActivities">
+        <td>
+          {{ activity.activity.name }} <br />
+          Begeleiders:
+          <div *ngFor="let mentor of activity.mentors">
+            {{ mentor.firstName + " " + mentor.lastName + ", " }}
+          </div>
+        </td>
+        <td>
+          <span *ngFor="let client of activity.clients">
+            {{ client.firstName + " " + client.lastName + ", " }}
+          </span>
+        </td>
+        <td></td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="workday != undefined && name === 'Extra'">
+      <tr>
+        <td>Lunch</td>
+        <td>{{ food }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="workday == undefined">
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
