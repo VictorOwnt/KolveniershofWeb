@@ -1,7 +1,7 @@
 <div>
   <mat-toolbar>
     <mat-toolbar-row>
-      <a routerLink="/picto"
+      <a id="logo" routerLink="/picto"
         ><img src="assets/images/logo.svg" height="40" alt="logo" />
       </a>
       <div *ngIf="isAdmin()">
@@ -16,18 +16,23 @@
       </a>
     </div>
       <span class="spacer"></span>
-      <span *ngIf="loggedInUser$ | async as user">{{ user }}</span>
-      <span>
-        <button class="buttons" mat-flat-button>
-          Gegevens wijzigen
+
+      <span *ngIf="loggedInUser$ | async as user">
+        <button [matMenuTriggerFor]="menu" class="buttons" mat-flat-button>
+          {{ user }}
         </button>
+
       </span>
-      <span>·</span>
-      <span>
-        <button (click)="logout()" mat-flat-button class="buttons">
-          Afmelden
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          gegevens wijzigen
         </button>
-      </span>
+        <button id="logout" (click)="logout()" mat-menu-item>
+          Uitloggen
+        </button>
+
+      </mat-menu>
+
     </mat-toolbar-row>
   </mat-toolbar>
 </div>
