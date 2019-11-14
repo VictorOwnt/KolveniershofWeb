@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Workday } from 'src/app/domain/workday.model';
+import { Workday } from 'src/app/shared/models/workday.model';
 import { FormControl } from '@angular/forms';
-import { ActivityUnit } from 'src/app/domain/activityUnit.model';
+import { ActivityUnit } from 'src/app/shared/models/activityUnit.model';
 import { StaticMethodsPicto } from 'src/app/domain/staticMethods';
 
 export class DayNameAndDate {

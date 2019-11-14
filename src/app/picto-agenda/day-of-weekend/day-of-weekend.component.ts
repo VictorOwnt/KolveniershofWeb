@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Workday } from 'src/app/domain/workday.model';
+import { Workday } from 'src/app/shared/models/workday.model';
 import { StaticMethodsPicto } from 'src/app/domain/staticMethods';
 import { DayNameAndDate } from '../day-of-week/day-of-week.component';
 

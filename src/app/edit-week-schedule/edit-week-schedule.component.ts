@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { EditData } from './editData';
 import { Observable } from 'rxjs';
-import { User } from '../user/user.model';
+import { User } from '../shared/models/user.model';
 import { UserDataService } from '../services/user.data.service';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { StaticMethodsPicto } from '../domain/staticMethods';

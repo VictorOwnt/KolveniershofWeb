@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../user/user.model';
+import { User } from '../shared/models/user.model';
 import { Observable, Subject } from 'rxjs';
-import { Workday } from '../domain/workday.model';
+import { Workday } from '../shared/models/workday.model';
 import { StaticMethodsPicto } from '../domain/staticMethods';
 import { UserDataService } from '../services/user.data.service';
 import { WorkDayDataService } from '../services/workDay.data.service';
