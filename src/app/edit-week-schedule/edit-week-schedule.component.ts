@@ -12,7 +12,7 @@ import { WorkDayDataService } from '../services/workDay.data.service';
 @Component({
   selector: "app-edit-week-schedule",
   templateUrl: "./edit-week-schedule.component.html",
-  styleUrls: ["./edit-week-schedule.component.css"]
+  styleUrls: ["./edit-week-schedule.component.scss"]
 })
 export class EditWeekScheduleComponent implements OnInit {
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$; 

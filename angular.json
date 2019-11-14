@@ -119,5 +119,10 @@
       }
     }
   },
-  "defaultProject": "Kolveniershof"
+  "defaultProject": "Kolveniershof",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

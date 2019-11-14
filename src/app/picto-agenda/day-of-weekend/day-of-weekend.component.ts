@@ -6,7 +6,7 @@ import { DayNameAndDate } from "../day-of-week/day-of-week.component";
 @Component({
   selector: "app-day-of-weekend",
   templateUrl: "./day-of-weekend.component.html",
-  styleUrls: ["./day-of-weekend.component.css"]
+  styleUrls: ["./day-of-weekend.component.scss"]
 })
 export class DayOfWeekendComponent implements OnInit {
   @Input() public weekDay: Workday; // voorlopig

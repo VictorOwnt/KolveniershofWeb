@@ -9,7 +9,7 @@ import { UserDataService } from "src/app/services/user.data.service";
 @Component({
   selector: "app-block-of-week-schedule",
   templateUrl: "./block-of-week-schedule.component.html",
-  styleUrls: ["./block-of-week-schedule.component.css"]
+  styleUrls: ["./block-of-week-schedule.component.scss"]
 })
 export class BlockOfWeekScheduleComponent implements OnInit {
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$;

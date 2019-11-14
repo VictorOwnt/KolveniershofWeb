@@ -18,7 +18,7 @@ export class DayNameAndDate {
 @Component({
   selector: "app-day-of-week",
   templateUrl: "./day-of-week.component.html",
-  styleUrls: ["./day-of-week.component.css"]
+  styleUrls: ["./day-of-week.component.scss"]
 })
 export class DayOfWeekComponent implements OnInit {
   @Input() public weekDay: Workday;

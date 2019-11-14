@@ -13,7 +13,7 @@ import { StaticMethodsPicto } from "../domain/staticMethods";
 @Component({
   selector: "app-week-schedule",
   templateUrl: "./week-schedule.component.html",
-  styleUrls: ["./week-schedule.component.css"]
+  styleUrls: ["./week-schedule.component.scss"]
 })
 export class WeekScheduleComponent implements OnInit {
   private namesOfBlocks = ["Algemeen", "Voormiddag", "Extra", "Namiddag"];

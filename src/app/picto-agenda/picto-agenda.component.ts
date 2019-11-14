@@ -9,7 +9,7 @@ import { WorkDayDataService } from '../services/workDay.data.service';
 @Component({
   selector: "app-picto-agenda",
   templateUrl: "./picto-agenda.component.html",
-  styleUrls: ["./picto-agenda.component.css"]
+  styleUrls: ["./picto-agenda.component.scss"]
 })
 export class PictoAgendaComponent implements OnInit {
   public chosenDate: Date;
