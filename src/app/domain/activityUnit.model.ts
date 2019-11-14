@@ -1,10 +1,10 @@
-import { Activity } from "./activity.model";
-import { User } from "../user/user.model";
+import { Activity } from './activity.model';
+import { User } from '../user/user.model';
 
 
 export class ActivityUnit {
   constructor(
-    private _id : string,
+    private _id: string,
     private _activity: Activity,
     private _mentors = new Array<User>(),
     private _clients = new Array<User>()
@@ -29,7 +29,7 @@ export class ActivityUnit {
     };
   }
 
-  get id(): string{
+  get id(): string {
     return this._id;
   }
   get activity(): Activity {

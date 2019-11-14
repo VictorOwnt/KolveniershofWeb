@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BlockOfWeekScheduleComponent } from "./block-of-week-schedule.component";
+import { BlockOfWeekScheduleComponent } from './block-of-week-schedule.component';
 
-describe("BlockOfWeekScheduleComponent", () => {
+describe('BlockOfWeekScheduleComponent', () => {
   let component: BlockOfWeekScheduleComponent;
   let fixture: ComponentFixture<BlockOfWeekScheduleComponent>;
 
@@ -18,7 +18,7 @@ describe("BlockOfWeekScheduleComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

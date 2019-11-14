@@ -1,8 +1,8 @@
-import { User } from "../user/user.model";
-import { ActivityUnit } from "./activityUnit.model";
-import { LunchUnit } from "./lunchUnit.model";
+import { User } from '../user/user.model';
+import { ActivityUnit } from './activityUnit.model';
+import { LunchUnit } from './lunchUnit.model';
 
-import { BusUnit } from "./busUnit.model";
+import { BusUnit } from './busUnit.model';
 
 export class Workday {
   constructor(

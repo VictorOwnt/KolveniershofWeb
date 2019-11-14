@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { Observable, Subject, of } from "rxjs";
-import { map, catchError } from "rxjs/operators";
-import { environment } from "src/environments/environment";
-import { HttpClient } from "@angular/common/http";
-import { Workday } from "../domain/workday.model";
+import { Injectable } from '@angular/core';
+import { Observable, Subject, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { API_URL } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Workday } from '../domain/workday.model';
 import { LunchUnit } from '../domain/lunchUnit.model';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class WorkDayDataService {
   public loadingError$ = new Subject<string>();
@@ -15,7 +15,7 @@ export class WorkDayDataService {
   constructor(private http: HttpClient) { }
 
   get workdays$(): Observable<Workday[]> {
-    return this.http.get(`${environment.apiUrl}/API/Workdays`).pipe(
+    return this.http.get(`${API_URL}/Workdays`).pipe(
       catchError(error => {
         this.loadingError$.next(error.statusText);
         return of(null);
@@ -27,20 +27,20 @@ export class WorkDayDataService {
   addNewWorkDay(workday: Workday) {
     // Als je deze werkdag wil opslaan, moet je hem toevoegen aan de databank.
     return this.http.post(
-      `${environment.apiUrl}/API/Workdays`,
+      `${API_URL}/Workdays`,
       workday.toJSON()
     );
   }
 
   getWorkDayById(id): Observable<Workday> {
     return this.http
-      .get(`${environment.apiUrl}/API/Workdays/${id}`)
+      .get(`${API_URL}/Workdays/${id}`)
       .pipe(map((workDay: any): Workday => Workday.fromJSON(workDay)));
   }
 
   getWorkDayByDate(date): Observable<Workday> {
     return this.http
-      .get(`${environment.apiUrl}/API/Workdays/date/${date}`)
+      .get(`${API_URL}/Workdays/date/${date}`)
       .pipe(
         map(
           (workDay: any): Workday => {
@@ -50,7 +50,7 @@ export class WorkDayDataService {
       );
   }
 
-  updateLunch(lunch:LunchUnit){
-    return this.http.patch(`${environment.apiUrl}/API/units/${lunch.id}`,lunch.toJSON());
+  updateLunch(lunch: LunchUnit) {
+    return this.http.patch(`${API_URL}/units/${lunch.id}`, lunch.toJSON());
   }
 }

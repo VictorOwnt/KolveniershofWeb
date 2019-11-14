@@ -1,4 +1,5 @@
 export const environment = {
-  production: true,
-  apiUrl: "https://kolv02-backend.herokuapp.com"
+  production: true
 };
+
+export const API_URL = 'https://kolv02-backend.herokuapp.com/API';

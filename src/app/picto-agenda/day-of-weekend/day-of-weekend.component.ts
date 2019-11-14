@@ -1,12 +1,12 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { Workday } from "src/app/domain/workday.model";
-import { StaticMethodsPicto } from "src/app/domain/staticMethods";
-import { DayNameAndDate } from "../day-of-week/day-of-week.component";
+import { Component, OnInit, Input } from '@angular/core';
+import { Workday } from 'src/app/domain/workday.model';
+import { StaticMethodsPicto } from 'src/app/domain/staticMethods';
+import { DayNameAndDate } from '../day-of-week/day-of-week.component';
 
 @Component({
-  selector: "app-day-of-weekend",
-  templateUrl: "./day-of-weekend.component.html",
-  styleUrls: ["./day-of-weekend.component.css"]
+  selector: 'app-day-of-weekend',
+  templateUrl: './day-of-weekend.component.html',
+  styleUrls: ['./day-of-weekend.component.scss']
 })
 export class DayOfWeekendComponent implements OnInit {
   @Input() public weekDay: Workday; // voorlopig

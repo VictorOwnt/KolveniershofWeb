@@ -1,15 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { User } from "../user/user.model";
-import { Observable, Subject } from "rxjs";
-import { Workday } from "../domain/workday.model";
-import { StaticMethodsPicto } from "../domain/staticMethods";
+import { Component, OnInit } from '@angular/core';
+import { User } from '../user/user.model';
+import { Observable, Subject } from 'rxjs';
+import { Workday } from '../domain/workday.model';
+import { StaticMethodsPicto } from '../domain/staticMethods';
 import { UserDataService } from '../services/user.data.service';
 import { WorkDayDataService } from '../services/workDay.data.service';
 
 @Component({
-  selector: "app-picto-agenda",
-  templateUrl: "./picto-agenda.component.html",
-  styleUrls: ["./picto-agenda.component.css"]
+  selector: 'app-picto-agenda',
+  templateUrl: './picto-agenda.component.html',
+  styleUrls: ['./picto-agenda.component.scss']
 })
 export class PictoAgendaComponent implements OnInit {
   public chosenDate: Date;
@@ -36,7 +36,7 @@ export class PictoAgendaComponent implements OnInit {
   showPictoOfUser(index?: number): void {
     this.workDays = [];
     this._clickedUser = User.fromJSON(
-      JSON.parse(localStorage.getItem("currentUser"))
+      JSON.parse(localStorage.getItem('currentUser'))
     );
 
     if (index) {
@@ -82,7 +82,7 @@ export class PictoAgendaComponent implements OnInit {
   }
 
   isAdmin(): boolean {
-    return User.fromJSON(JSON.parse(localStorage.getItem("currentUser"))).admin;
+    return User.fromJSON(JSON.parse(localStorage.getItem('currentUser'))).admin;
   }
 
   get workdays$(): Workday[] {
