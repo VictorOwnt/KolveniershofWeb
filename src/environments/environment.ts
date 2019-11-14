@@ -3,9 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  apiUrl: "https://kolv02-backend.herokuapp.com"
+  production: false
 };
+
+export const API_URL = 'https://kolv02-backend.herokuapp.com/API';
+// export const API_URL = 'localhost:3000/API';
 
 /*
  * For easier debugging in development mode, you can import the following file

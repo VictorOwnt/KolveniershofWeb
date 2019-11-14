@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable, BehaviorSubject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
-import { environment } from "../../environments/environment";
+import { API_URL } from '../../environments/environment';
 
 function parseJwt(token) {
   if (!token) {
@@ -59,7 +59,7 @@ export class AuthenticationService {
   login(email: string, password: string): Observable<boolean> {
     return this.http
       .post(
-        `${environment.apiUrl}/API/users/login`,
+        `${API_URL}/users/login`,
         { email, password },
         { responseType: "text" }
       )
@@ -92,7 +92,7 @@ export class AuthenticationService {
   ): Observable<boolean> {
     return this.http
       .post(
-        `${environment.apiUrl}/register`,
+        `${API_URL}/register`,
         {
           userName,
           firstname,
@@ -117,7 +117,7 @@ export class AuthenticationService {
   }
 
   checkUserNameAvailability = (email: string): Observable<boolean> => {
-    return this.http.get<boolean>(`${environment.apiUrl}/checkusername`, {
+    return this.http.get<boolean>(`${API_URL}/checkusername`, {
       params: { email }
     });
   };
