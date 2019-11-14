@@ -1,18 +1,18 @@
-export class Bus{
+export class Bus {
 constructor(
-    private _name : string,
-    private _color : string,
-    private _icon : string){}
+    private _name: string,
+    private _color: string,
+    private _icon: string) {}
 
-    get name() : string {
+    get name(): string {
         return this._name;
     }
 
-    get color() : string {
+    get color(): string {
         return this._color;
     }
 
-    get icon() : string {
+    get icon(): string {
         return this._icon;
     }
 }

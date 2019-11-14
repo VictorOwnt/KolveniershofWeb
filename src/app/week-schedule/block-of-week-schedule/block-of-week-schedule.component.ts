@@ -1,21 +1,21 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { Observable } from "rxjs";
-import { User } from "src/app/user/user.model";
-import { Workday } from "src/app/domain/workday.model";
-import { MatDialogRef, MatDialog } from "@angular/material";
-import { EditWeekScheduleComponent } from "src/app/edit-week-schedule/edit-week-schedule.component";
-import { UserDataService } from "src/app/services/user.data.service";
+import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/user/user.model';
+import { Workday } from 'src/app/domain/workday.model';
+import { MatDialogRef, MatDialog } from '@angular/material';
+import { EditWeekScheduleComponent } from 'src/app/edit-week-schedule/edit-week-schedule.component';
+import { UserDataService } from 'src/app/services/user.data.service';
 
 @Component({
-  selector: "app-block-of-week-schedule",
-  templateUrl: "./block-of-week-schedule.component.html",
-  styleUrls: ["./block-of-week-schedule.component.scss"]
+  selector: 'app-block-of-week-schedule',
+  templateUrl: './block-of-week-schedule.component.html',
+  styleUrls: ['./block-of-week-schedule.component.scss']
 })
 export class BlockOfWeekScheduleComponent implements OnInit {
   private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
   private _users: User[];
   private userAbsents: User[];
-  
+
   @Input() public workday: Workday;
   @Input() public planningDate: Date;
   @Input() public name: string;
@@ -47,13 +47,13 @@ export class BlockOfWeekScheduleComponent implements OnInit {
 
   setVariable() {
     switch (this.name) {
-      case "Algemeen":
+      case 'Algemeen':
         break;
-      case "Voormiddag":
+      case 'Voormiddag':
         break;
-      case "Extra":
+      case 'Extra':
         break;
-      case "Namiddag":
+      case 'Namiddag':
         break;
     }
   }
@@ -78,6 +78,6 @@ export class BlockOfWeekScheduleComponent implements OnInit {
     if (this.workday.lunch !== undefined) {
       return this.workday.lunch.lunch;
     }
-    return "";
+    return '';
   }
 }

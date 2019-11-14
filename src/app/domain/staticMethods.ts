@@ -1,16 +1,16 @@
-import { MatDialogRef, MatDialog } from "@angular/material";
+import { MatDialogRef, MatDialog } from '@angular/material';
 
-import { EditWeekScheduleComponent } from "../edit-week-schedule/edit-week-schedule.component";
+import { EditWeekScheduleComponent } from '../edit-week-schedule/edit-week-schedule.component';
 
 export class StaticMethodsPicto {
   static namesOfDays = [
-    "Zondag",
-    "Maandag",
-    "Dinsdag",
-    "Woensdag",
-    "Donderdag",
-    "Vrijdag",
-    "Zaterdag"
+    'Zondag',
+    'Maandag',
+    'Dinsdag',
+    'Woensdag',
+    'Donderdag',
+    'Vrijdag',
+    'Zaterdag'
   ];
 
   static formattedDate(d: Date) {
@@ -19,20 +19,20 @@ export class StaticMethodsPicto {
     const year = String(d.getFullYear());
 
     if (month.length < 2) {
-      month = "0" + month;
+      month = '0' + month;
     }
     if (day.length < 2) {
-      day = "0" + day;
+      day = '0' + day;
     }
     return `${day}_${month}_${year}`;
   }
 
   static unFormattedDate(date: any) {
-    date = date.split("-");
+    date = date.split('-');
     const year = date[0];
     const month = date[1] - 1;
     const day = date[2];
-    if (day.charAt(0) === "0") {
+    if (day.charAt(0) === '0') {
       return new Date(year, month, day.substring(1, 2));
     }
     return new Date(year, month, day.substring(0, 2));
@@ -44,7 +44,7 @@ export class StaticMethodsPicto {
 }
 
 export class DayNameAndDate {
-  constructor(private _date: Date, private _name: string, private _icon = "") {}
+  constructor(private _date: Date, private _name: string, private _icon = '') {}
 
   get date() {
     return this._date;

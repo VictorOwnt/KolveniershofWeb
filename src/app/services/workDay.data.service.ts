@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { Observable, Subject, of } from "rxjs";
-import { map, catchError } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { Observable, Subject, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { API_URL } from 'src/environments/environment';
-import { HttpClient } from "@angular/common/http";
-import { Workday } from "../domain/workday.model";
+import { HttpClient } from '@angular/common/http';
+import { Workday } from '../domain/workday.model';
 import { LunchUnit } from '../domain/lunchUnit.model';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class WorkDayDataService {
   public loadingError$ = new Subject<string>();
@@ -50,7 +50,7 @@ export class WorkDayDataService {
       );
   }
 
-  updateLunch(lunch:LunchUnit){
-    return this.http.patch(`${API_URL}/units/${lunch.id}`,lunch.toJSON());
+  updateLunch(lunch: LunchUnit) {
+    return this.http.patch(`${API_URL}/units/${lunch.id}`, lunch.toJSON());
   }
 }

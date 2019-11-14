@@ -1,20 +1,20 @@
-import { AuthenticationService } from "../authentication.service";
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { AuthenticationService } from '../authentication.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   AbstractControl,
   FormBuilder,
   FormGroup,
   ValidatorFn,
   Validators
-} from "@angular/forms";
-import { HttpErrorResponse } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+} from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 function comparePasswords(control: AbstractControl): { [key: string]: any } {
-  const password = control.get("password");
-  const confirmPassword = control.get("confirmPassword");
+  const password = control.get('password');
+  const confirmPassword = control.get('confirmPassword');
   return password.value === confirmPassword.value
     ? null
     : { passwordsDiffer: true };
@@ -36,9 +36,9 @@ function serverSideValidateUsername(
 }
 
 @Component({
-  selector: "app-register",
-  templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.scss"]
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
   public user: FormGroup;
@@ -52,17 +52,17 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.fb.group({
-      firstname: ["", Validators.required],
-      lastname: ["", Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
       email: [
-        "",
+        '',
         [Validators.required, Validators.email],
         serverSideValidateUsername(this.authService.checkUserNameAvailability)
       ],
       passwordGroup: this.fb.group(
         {
-          password: ["", [Validators.required, Validators.minLength(8)]],
-          confirmPassword: ["", Validators.required]
+          password: ['', [Validators.required, Validators.minLength(8)]],
+          confirmPassword: ['', Validators.required]
         },
         { validator: comparePasswords }
       )
@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
       return null;
     }
     if (errors.required) {
-      return "is required";
+      return 'is required';
     } else if (errors.minlength) {
       return `needs at least ${errors.minlength.requiredLength} characters (got ${errors.minlength.actualLength})`;
     } else if (errors.userAlreadyExists) {
@@ -102,7 +102,7 @@ export class RegisterComponent implements OnInit {
               this.router.navigateByUrl(this.authService.redirectUrl);
               this.authService.redirectUrl = undefined;
             } else {
-              this.router.navigate(["/user-list"]);
+              this.router.navigate(['/user-list']);
             }
           } else {
             this.errorMsg = `Could not login`;

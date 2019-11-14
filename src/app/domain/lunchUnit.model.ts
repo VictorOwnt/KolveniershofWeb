@@ -1,4 +1,4 @@
-import { User } from "../user/user.model";
+import { User } from '../user/user.model';
 
 export class LunchUnit {
   constructor(
@@ -6,7 +6,7 @@ export class LunchUnit {
     private _lunch: string,
     private _mentors = new Array<User>(),
     private _clients = new Array<User>(),
-    private _icon = "forkKnifeBlack.png"
+    private _icon = 'forkKnifeBlack.png'
   ) { }
 
   static fromJSON(json: any): LunchUnit {
@@ -29,7 +29,7 @@ export class LunchUnit {
   }
 
   get id(): string {
-    return this._id
+    return this._id;
   }
   get mentors(): Array<User> {
     return this._mentors;

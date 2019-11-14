@@ -1,14 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   Validators,
   ValidatorFn,
   AbstractControl
-} from "@angular/forms";
-import { AuthenticationService } from "../authentication.service";
-import { Router } from "@angular/router";
-import { HttpErrorResponse } from "@angular/common/http";
+} from '@angular/forms';
+import { AuthenticationService } from '../authentication.service';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 function passwordValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } => {
@@ -20,9 +20,9 @@ function passwordValidator(): ValidatorFn {
 }
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   public user: FormGroup;
@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.fb.group({
-      username: ["", Validators.required],
-      password: ["", Validators.required]
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
               this.router.navigateByUrl(this.authService.redirectUrl);
               this.authService.redirectUrl = undefined;
             } else {
-              this.router.navigate(["/home"]); // aanpassen naar gewnenste pagina
+              this.router.navigate(['/home']); // aanpassen naar gewnenste pagina
             }
           } else {
             this.errorMsg = `Could not login`;

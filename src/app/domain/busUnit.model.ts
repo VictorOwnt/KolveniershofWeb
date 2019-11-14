@@ -1,5 +1,5 @@
-import { Bus } from "./bus.model";
-import { User } from "../user/user.model";
+import { Bus } from './bus.model';
+import { User } from '../user/user.model';
 
 export class BusUnit {
   constructor(

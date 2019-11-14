@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { Workday } from "src/app/domain/workday.model";
-import { FormControl } from "@angular/forms";
-import { ActivityUnit } from "src/app/domain/activityUnit.model";
-import { StaticMethodsPicto } from "src/app/domain/staticMethods";
+import { Component, OnInit, Input } from '@angular/core';
+import { Workday } from 'src/app/domain/workday.model';
+import { FormControl } from '@angular/forms';
+import { ActivityUnit } from 'src/app/domain/activityUnit.model';
+import { StaticMethodsPicto } from 'src/app/domain/staticMethods';
 
 export class DayNameAndDate {
   constructor(private _date: Date, private _name: string) {}
@@ -16,14 +16,14 @@ export class DayNameAndDate {
 }
 
 @Component({
-  selector: "app-day-of-week",
-  templateUrl: "./day-of-week.component.html",
-  styleUrls: ["./day-of-week.component.scss"]
+  selector: 'app-day-of-week',
+  templateUrl: './day-of-week.component.html',
+  styleUrls: ['./day-of-week.component.scss']
 })
 export class DayOfWeekComponent implements OnInit {
   @Input() public weekDay: Workday;
 
-  public commentFormControl = new FormControl("", []);
+  public commentFormControl = new FormControl('', []);
 
   private _nameOfDay: DayNameAndDate;
 

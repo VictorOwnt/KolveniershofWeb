@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DayOfWeekComponent } from "./day-of-week.component";
+import { DayOfWeekComponent } from './day-of-week.component';
 
-describe("DayOfWeekComponent", () => {
+describe('DayOfWeekComponent', () => {
   let component: DayOfWeekComponent;
   let fixture: ComponentFixture<DayOfWeekComponent>;
 
@@ -18,7 +18,7 @@ describe("DayOfWeekComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

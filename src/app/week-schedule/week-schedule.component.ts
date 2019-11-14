@@ -1,22 +1,22 @@
-import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
-import { Workday } from "../domain/workday.model";
-import { WorkDayDataService } from "../services/workDay.data.service";
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Workday } from '../domain/workday.model';
+import { WorkDayDataService } from '../services/workDay.data.service';
 import {
   MatDatepickerInputEvent,
   MatDialogRef,
   MatDialog
-} from "@angular/material";
-import { EditWeekScheduleComponent } from "../edit-week-schedule/edit-week-schedule.component";
-import { StaticMethodsPicto } from "../domain/staticMethods";
+} from '@angular/material';
+import { EditWeekScheduleComponent } from '../edit-week-schedule/edit-week-schedule.component';
+import { StaticMethodsPicto } from '../domain/staticMethods';
 
 @Component({
-  selector: "app-week-schedule",
-  templateUrl: "./week-schedule.component.html",
-  styleUrls: ["./week-schedule.component.scss"]
+  selector: 'app-week-schedule',
+  templateUrl: './week-schedule.component.html',
+  styleUrls: ['./week-schedule.component.scss']
 })
 export class WeekScheduleComponent implements OnInit {
-  private namesOfBlocks = ["Algemeen", "Voormiddag", "Extra", "Namiddag"];
+  private namesOfBlocks = ['Algemeen', 'Voormiddag', 'Extra', 'Namiddag'];
   public loadingError$ = this._workDayDataService.loadingError$;
   private _fetchWorkday$: Observable<
     Workday
@@ -51,7 +51,7 @@ export class WeekScheduleComponent implements OnInit {
   }
 
   laadDagSchema(event: MatDatepickerInputEvent<Date>) {
-    this.planningDate= event.value;
+    this.planningDate = event.value;
     this._workDayDataService
       .getWorkDayByDate(StaticMethodsPicto.formattedDate(event.value))
       .subscribe(value => (this._workday = value));

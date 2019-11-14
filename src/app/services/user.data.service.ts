@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { Observable, Subject, of } from "rxjs";
-import { map, catchError } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { Observable, Subject, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { API_URL } from 'src/environments/environment';
-import { HttpClient } from "@angular/common/http";
-import { User } from "../user/user.model";
+import { HttpClient } from '@angular/common/http';
+import { User } from '../user/user.model';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class UserDataService {
   public loadingError$ = new Subject<string>();
