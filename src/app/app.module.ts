@@ -43,6 +43,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { RegisterComponent } from './user/register/register.component';
 import { BusschemaTableComponent } from './busschema/busschema-table/busschema-table.component';
 import { BlockOfWeekScheduleComponent } from './week-schedule/block-of-week-schedule/block-of-week-schedule.component';
+import { WeekdayComponent } from './weekday/weekday.component';
+import { ActivityComponent } from './weekday/activity/activity.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { BlockOfWeekScheduleComponent } from './week-schedule/block-of-week-sche
     BusschemaComponent,
     RegisterComponent,
     BusschemaTableComponent,
-    BlockOfWeekScheduleComponent
+    BlockOfWeekScheduleComponent,
+    WeekdayComponent,
+    ActivityComponent
   ],
   imports: [
     FlexLayoutModule,

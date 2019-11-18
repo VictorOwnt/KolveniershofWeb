@@ -5,6 +5,7 @@
   justify-content: center;
   align-content: center;
   align-items: center;
+  border-radius: 10px 10px 0px 0px !important;
 }
 
 mat-card-subtitle {
@@ -15,12 +16,14 @@ mat-card-content {
   padding: 3em;
   padding-bottom: 2em;
   background-color: white;
+  border-radius: 0px 0px 10px 10px !important;
 }
 
 mat-card {
   padding: 0;
   margin: 15px;
   background-color: #eff3f8;
+  border-radius: 10px !important;
 }
 
 .footerCard {
@@ -35,3 +38,4 @@ input,
 mat-form-field {
   width: 100%;
 }
+
