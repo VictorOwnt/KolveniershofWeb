@@ -1,5 +1,5 @@
-<div fxLayout="row" fxLayoutAlign="center center" class="login-main">
-  <mat-card>
+<div class="login-main">
+  <mat-card fxLayout="row" fxLayoutAlign="center" >
     <form [formGroup]="user" (ngSubmit)="onSubmit()">
       <mat-card-header style="margin-left: 24px;">
         <mat-card-title>Registreren</mat-card-title>
@@ -9,21 +9,21 @@
           <mat-form-field appearance="outline" style="margin-right: 5px;">
             <mat-label>Voornaam</mat-label>
             <input matInput placeholder="Voornaam" aria-label="first name" data-cy="register-firstName"
-              formControlName="firstname" />
+              formControlName="firstName" />
             <mat-error *ngIf="
-                user.get('firstname').errors && user.get('firstname').touched
+                user.get('firstName').errors && user.get('firstName').touched
               ">
-              {{ getErrorMessage(user.get('firstname').errors) }}
+              {{ getErrorMessage(user.get('firstName').errors) }}
             </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline" style="margin-left: 5px;">
             <mat-label>Achternaam</mat-label>
             <input matInput placeholder="Achternaam" aria-label="last name" data-cy="register-lastName"
-              formControlName="lastname" />
+              formControlName="lastName" />
             <mat-error *ngIf="
-                user.get('lastname').errors && user.get('lastname').touched
+                user.get('lastName').errors && user.get('lastName').touched
               ">
-              {{ getErrorMessage(user.get('lastname').errors) }}
+              {{ getErrorMessage(user.get('lastName').errors) }}
             </mat-error>
           </mat-form-field>
         </span>
@@ -73,6 +73,45 @@
             {{ getErrorMessage(user.get('passwordGroup').errors) }}
           </mat-error>
         </span>
+        <mat-form-field appearance="outline">
+            <mat-label>Adres</mat-label>
+            <input matInput placeholder="Adres" aria-label="street" data-cy="register-street"
+              formControlName="street" />
+            <mat-error *ngIf="
+                  user.get('street').errors && user.get('street').touched
+              ">
+              {{ getErrorMessage(user.get('street').errors) }}
+            </mat-error>
+          </mat-form-field>
+          <span fxLayout="row">
+              <mat-form-field appearance="outline" style="margin-right: 5px;">
+                <mat-label>Stad/Gemeente</mat-label>
+                <input matInput placeholder="Stad/Gemeente" aria-label="city" data-cy="register-city"
+                  formControlName="city" />
+                <mat-error *ngIf="
+                    user.get('city').errors && user.get('city').touched
+                  ">
+                  {{ getErrorMessage(user.get('city').errors) }}
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" style="margin-left: 5px;">
+                <mat-label>Postcode</mat-label>
+                <input matInput placeholder="Postcode" aria-label="postalCode" data-cy="register-postalCode"
+                  formControlName="postalCode" />
+                <mat-error *ngIf="
+                    user.get('postalCode').errors && user.get('postalCode').touched
+                  ">
+                  {{ getErrorMessage(user.get('postalCode').errors) }}
+                </mat-error>
+              </mat-form-field>
+          </span>
+          <mat-form-field appearance="outline">
+              <mat-label>Verjaardag</mat-label>
+                <input matInput [matDatepicker]="picker" placeholder="Verjaardag" aria-label="birthday" 
+                data-cy="register-birthday" formControlName="birthday">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker startView="multi-year" [startAt]="startDate"></mat-datepicker>
+              </mat-form-field>
       </mat-card-content>
 
       <mat-card-actions fxLayout="row" fxLayoutAlign="center">

@@ -83,22 +83,24 @@ export class AuthenticationService {
   }
 
   register(
-    userName: string,
-    firstname: string,
-    lastname: string,
     email: string,
-    password: string
+    password: string,
+    firstName: string,
+    lastName: string,
+    birthday: Date,
+    street: string,
+    city: string,
+    postalCode: string //insert picture
   ): Observable<boolean> {
     return this.http
       .post(
         `${API_URL}/register`,
         {
-          userName,
-          firstname,
-          lastname,
           email,
           password,
-          passwordConfirmation: password
+          firstName,
+          lastName,
+          birthday
         },
         { responseType: 'text' }
       )
@@ -115,9 +117,12 @@ export class AuthenticationService {
       );
   }
 
-  checkUserNameAvailability = (email: string): Observable<boolean> => {
-    return this.http.get<boolean>(`${API_URL}/checkusername`, {
-      params: { email }
-    });
+  checkUserNameAvailability(email: string): Observable<boolean>{
+    return this.http
+      .post<boolean>(`${API_URL}/checkusername`,
+      {
+        email
+      }
+    )
   }
 }

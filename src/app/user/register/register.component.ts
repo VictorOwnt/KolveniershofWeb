@@ -44,6 +44,7 @@ function serverSideValidateUsername(
 export class RegisterComponent implements OnInit {
   public user: FormGroup;
   public errorMsg: string;
+  public startDate = new Date();
 
   constructor(
     private authService: AuthenticationService,
@@ -53,11 +54,11 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.fb.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: [
         '',
-        [Validators.required, Validators.email],
+        [Validators.required, Validators.email], //checkt niet juist, test@a is geldig, gebruik maken van Validators.pattern()
         serverSideValidateUsername(this.authService.checkUserNameAvailability)
       ],
       passwordGroup: this.fb.group(
@@ -66,7 +67,11 @@ export class RegisterComponent implements OnInit {
           confirmPassword: ['', Validators.required]
         },
         { validator: comparePasswords }
-      )
+      ),
+      street: ['', Validators.required], //Validators.pattern() voor straat + nummer
+      city: ['', Validators.required],
+      postalCode: ['', Validators.required],
+      birthday: ['', Validators.required]
     });
   }
 
@@ -90,11 +95,14 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.authService
       .register(
-        this.user.value.userName,
-        this.user.value.firstname,
-        this.user.value.lastname,
         this.user.value.email,
-        this.user.value.passwordGroup.password
+        this.user.value.passwordGroup.password,
+        this.user.value.firstName,
+        this.user.value.lastName,
+        this.user.value.birthday,
+        this.user.value.street,
+        this.user.value.city,
+        this.user.value.postalCode
       )
       .subscribe(
         val => {
