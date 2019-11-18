@@ -45,6 +45,9 @@ import { BusschemaTableComponent } from './busschema/busschema-table/busschema-t
 import { BlockOfWeekScheduleComponent } from './week-schedule/block-of-week-schedule/block-of-week-schedule.component';
 import { WeekdayComponent } from './weekday/weekday.component';
 import { ActivityComponent } from './weekday/activity/activity.component';
+import { WeekendComponent } from './weekend/weekend.component';
+import { WeekendDayComponent } from './weekend/weekend-day/weekend-day.component';
+import { HolidayComponent } from './holiday/holiday.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,10 @@ import { ActivityComponent } from './weekday/activity/activity.component';
     BusschemaTableComponent,
     BlockOfWeekScheduleComponent,
     WeekdayComponent,
-    ActivityComponent
+    ActivityComponent,
+    WeekendComponent,
+    WeekendDayComponent,
+    HolidayComponent
   ],
   imports: [
     FlexLayoutModule,

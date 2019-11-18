@@ -52,7 +52,7 @@
     </div>
     <!-- part 1 of week -->
 
-    <div
+    <div class="test"
             fxLayout="row wrap"
             fxFlexFill
             fxLayoutAlign="space-between start"
@@ -60,28 +60,23 @@
 
 
     >
-        <div *ngFor="let workday of getWeekdays()"
+        <div class="day" *ngFor="let workday of getWeekdays()"
 
              fxFlex="0 0 calc(33%-0.5%)"
              fxFlex.xs="100%"
         >
-            <app-weekday [weekDay]="workday"></app-weekday>
+            <app-weekday *ngIf="!workday.holiday" [weekDay]="workday"></app-weekday>
+            <app-holiday *ngIf="workday.holiday" [weekDay]="workday"></app-holiday>
 
         </div>
 
-        <div
-
-                class="weekendday"
-                fxLayout="column"
-                fxFlexFill
-                fxLayoutAlign="start start"
-
-
+        <div class="day"
 
                 fxFlex="0 0 calc(33%-0.5%)"
                 fxFlex.xs="100%"
         >
-            <app-day-of-weekend *ngFor="let workday of getWeekenddays()" [weekDay]="workday"></app-day-of-weekend>
+            <app-weekend [weekDays]="getWeekenddays()"></app-weekend>
+            </div>
 
         </div>
     </div>
@@ -90,5 +85,5 @@
     <!-- part 2 of week -->
 
 
-</div>
+
 <app-footer></app-footer>

@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Workday } from 'src/app/shared/models/workday.model';
-import { StaticMethodsPicto } from 'src/app/domain/staticMethods';
+import {Component, Input, OnInit} from '@angular/core';
+import {Workday} from "../../shared/models/workday.model";
+import {StaticMethodsPicto} from "../../domain/staticMethods";
 
 
 export class DayNameAndDate {
@@ -14,27 +14,27 @@ export class DayNameAndDate {
   }
 }
 
-
 @Component({
-  selector: 'app-day-of-weekend',
-  templateUrl: './day-of-weekend.component.html',
-  styleUrls: ['./day-of-weekend.component.scss']
+  selector: 'app-weekend-day',
+  templateUrl: './weekend-day.component.html',
+  styleUrls: ['./weekend-day.component.scss']
 })
-export class DayOfWeekendComponent implements OnInit {
+export class WeekendDayComponent implements OnInit {
   @Input() public weekDay: Workday;
   private _nameOfDay: DayNameAndDate;
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     const date = StaticMethodsPicto.unFormattedDate(this.weekDay.date);
     this._nameOfDay = new DayNameAndDate(
-      date,
-      StaticMethodsPicto.getNameOfDay(date)
+        date,
+        StaticMethodsPicto.getNameOfDay(date)
     );
   }
 
   get nameOfDay(): DayNameAndDate {
     return this._nameOfDay;
   }
+
 }

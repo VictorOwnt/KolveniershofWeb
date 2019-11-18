@@ -98,6 +98,7 @@ export class PictoAgendaComponent implements OnInit {
     const weekdays = [];
     for (let i = 0; i < 5; i++) {
 
+      console.log(this.workDays);
 
       weekdays.push(this.workDays[i]);
     }
@@ -108,7 +109,7 @@ export class PictoAgendaComponent implements OnInit {
     const weekenddays = [];
     for (let i = 5; i < 7; i++) {
 
-
+      console.log("test");
       weekenddays.push(this.workDays[i]);
     }
     return weekenddays;
