@@ -1,14 +1,15 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>DagNaam</mat-card-title>
-        <mat-card-subtitle>Datum</mat-card-subtitle>
+        <mat-card-title>{{ nameOfDay.name }}</mat-card-title>
+        <mat-card-subtitle>{{ nameOfDay.date | date: "dd/MM/yyyy" }}</mat-card-subtitle>
     </mat-card-header>
 <mat-card-content>
     <div>
         <img src="assets/img/icons/icon-bus.svg" width="40" />
     </div>
     <hr>
-    <app-activity></app-activity>
+    <div *ngFor="let amActivity of weekDay.amActivities"><app-activity [activity]="amActivity"></app-activity></div>
+
     <hr>
     <div fxLayout="row" fxLayoutAlign="space-between">
         <div fxFlex="20" class="sec1" >
@@ -18,10 +19,10 @@
                 width="40"
         />
         </div>
-        <div style="text-align: left; width: 100%"><p>Middagmaal</p></div>
+        <div style="text-align: left; width: 100%"><p>{{ weekDay.lunch.lunch }}</p></div>
     </div>
     <hr>
-    <app-activity></app-activity>
+    <div *ngFor="let pmActivity of weekDay.pmActivities"><app-activity [activity]="pmActivity"></app-activity></div>
     <hr>
     <div>
         <img src="assets/img/icons/icon-bus.svg" width="40" />
