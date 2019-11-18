@@ -23,8 +23,8 @@ mat-card-actions {
 
 mat-card {
   padding: 0;
-  margin: 15px;
   height: 100%;
+  width: 100%;
 }
 
 textarea,
@@ -32,6 +32,3 @@ mat-form-field {
   width: 100%;
 }
 
-div {
-  height: 100%;
-}

@@ -44,3 +44,21 @@ h5 span fa-icon {
 .container {
   text-align: center;
 }
+
+.workday {
+  margin: 220px;
+}
+
+app-weekday, .weekendday {
+  margin: 2%;
+}
+
+.weekendday{
+  margin-left: 0px;
+  width: 100%;
+}
+
+app-day-of-weekend {
+  width: 100%;
+}
+

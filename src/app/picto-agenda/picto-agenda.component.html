@@ -21,14 +21,14 @@
   fxLayout="row"
   fxLayout.xs="row"
   fxLayout.sm="row"
-  fxLayoutGap=""
+  fxLayoutGap="2%"
   fxLayoutAlign="center"
 >
   <div
     fxLayout="column"
     fxLayout.xs="column"
     fxLayout.sm="column"
-    fxLayoutGap=""
+    fxLayoutGap="2%"
     fxLayoutAlign="flex-start center"
   >
     <div *ngIf="isAdmin()">
@@ -44,13 +44,7 @@
 </div>
 
 <div class="floatRight" *ngIf="getWorkday(6)">
-  <div
-    fxLayout="column"
-    fxLayout.xs="column"
-    fxLayout.sm="column"
-    fxLayoutGap=""
-    fxLayoutAlign="center"
-  >
+
     <div *ngIf="clickedUser">
       <mat-card-title>
         {{ clickedUser.firstName }} {{ clickedUser.lastName }}</mat-card-title
@@ -59,21 +53,44 @@
     <!-- part 1 of week -->
 
     <div
-      fxLayout="row"
-      fxLayout.xs="column"
-      fxLayout.sm="column"
-      fxLayoutWrap
-      fxLayoutGap="5%"
-      fxLayoutAlign="center"
+            fxLayout="row wrap"
+            fxFlexFill
+            fxLayoutAlign="space-between start"
+            fxLayout.xs="column"
+            fxLayoutGap="2%"
+
     >
-      <div>
-        <div *ngFor="let workday of workDays"><app-weekday [weekDay]="workday"></app-weekday></div>
+      <div *ngFor="let workday of getWeekdays()"
+
+              fxFlex="0 0 calc(33%-2%)"
+              fxFlex.xs="100%"
+      >
+        <app-weekday [weekDay]="workday"></app-weekday>
+
       </div>
 
-    </div>
+      <div
+              class="weekendday"
+              fxLayout="column"
+              fxFlexFill
+              fxLayoutAlign="start start"
+              fxLayoutGap="2%"
+
+
+             fxFlex="0 0 calc(33%-2%)"
+             fxFlex.xs="100%"
+      >
+          <app-day-of-weekend *ngFor="let workday of getWeekenddays()" [weekDay]="workday"></app-day-of-weekend>
+
+        </div>
+      </div>
+
+
+
+
 
     <!-- part 2 of week -->
 
-  </div>
+
 </div>
 <app-footer></app-footer>
