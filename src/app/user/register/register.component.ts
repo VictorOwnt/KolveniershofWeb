@@ -1,5 +1,5 @@
 import { AuthenticationService } from '../authentication.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   AbstractControl,
@@ -38,7 +38,8 @@ function serverSideValidateUsername(
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RegisterComponent implements OnInit {
   public user: FormGroup;
@@ -74,15 +75,15 @@ export class RegisterComponent implements OnInit {
       return null;
     }
     if (errors.required) {
-      return 'is required';
+      return 'is niet ingevuld';
     } else if (errors.minlength) {
-      return `needs at least ${errors.minlength.requiredLength} characters (got ${errors.minlength.actualLength})`;
+      return `moet minstens ${errors.minlength.requiredLength} karakters bevatten (bevat nu ${errors.minlength.actualLength})`;
     } else if (errors.userAlreadyExists) {
-      return `user already exists`;
+      return `gebruiker bestaat al`;
     } else if (errors.email) {
-      return `not a valid email address`;
+      return `is geen geldig emailadres`;
     } else if (errors.passwordsDiffer) {
-      return `passwords are not the same`;
+      return `wachtwoorden zijn het niet hetzelfde`;
     }
   }
 

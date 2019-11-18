@@ -1,13 +1,14 @@
 <div fxLayout="row" fxLayoutAlign="center center" class="login-main">
   <mat-card>
     <form [formGroup]="user" (ngSubmit)="onSubmit()">
-      <mat-card-header>
-        <mat-card-title>Register</mat-card-title>
+      <mat-card-header style="margin-left: 24px;">
+        <mat-card-title>Registreren</mat-card-title>
       </mat-card-header>
-      <mat-card-content fxLayout="column">
-        <span fxLayout="row" fxLayoutGap="2%">
-          <mat-form-field>
-            <input matInput placeholder="first name" aria-label="first name" data-cy="register-firstName"
+      <mat-card-content fxLayout="column" fxLayoutAlign="start" color="#FFF">
+        <span fxLayout="row">
+          <mat-form-field appearance="outline" style="margin-right: 5px;">
+            <mat-label>Voornaam</mat-label>
+            <input matInput placeholder="Voornaam" aria-label="first name" data-cy="register-firstName"
               formControlName="firstname" />
             <mat-error *ngIf="
                 user.get('firstname').errors && user.get('firstname').touched
@@ -15,8 +16,9 @@
               {{ getErrorMessage(user.get('firstname').errors) }}
             </mat-error>
           </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="last name" aria-label="last name" data-cy="register-lastName"
+          <mat-form-field appearance="outline" style="margin-left: 5px;">
+            <mat-label>Achternaam</mat-label>
+            <input matInput placeholder="Achternaam" aria-label="last name" data-cy="register-lastName"
               formControlName="lastname" />
             <mat-error *ngIf="
                 user.get('lastname').errors && user.get('lastname').touched
@@ -25,15 +27,17 @@
             </mat-error>
           </mat-form-field>
         </span>
-        <mat-form-field>
-          <input matInput placeholder="email" aria-label="email" data-cy="register-email" formControlName="email" />
+        <mat-form-field appearance="outline" >
+            <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" aria-label="email" data-cy="register-email" formControlName="email" />
           <mat-error data-cy="emailError" *ngIf="user.get('email').errors && user.get('email').touched">
             {{ getErrorMessage(user.get('email').errors) }}
           </mat-error>
         </mat-form-field>
         <span fxLayout="column" formGroupName="passwordGroup">
-          <mat-form-field>
-            <input type="password" matInput placeholder="password" aria-label="password" data-cy="register-password"
+          <mat-form-field appearance="outline">
+              <mat-label>Wachtwoord</mat-label>
+            <input type="password" matInput placeholder="Wachtwoord" aria-label="password" data-cy="register-password"
               formControlName="password" />
             <mat-error *ngIf="
                 user.get('passwordGroup').get('password').errors &&
@@ -46,8 +50,9 @@
               }}
             </mat-error>
           </mat-form-field>
-          <mat-form-field>
-            <input type="password" matInput placeholder="confirm password" aria-label="confirm password"
+          <mat-form-field appearance="outline">
+              <mat-label>Bevestig wachtwoord</mat-label>
+            <input type="password" matInput placeholder="Bevestig wachtwoord" aria-label="confirm password"
               data-cy="register-password-confirm" formControlName="confirmPassword" />
             <mat-error *ngIf="
                 user.get('passwordGroup').get('confirmPassword').errors &&
@@ -70,11 +75,9 @@
         </span>
       </mat-card-content>
 
-      <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
-        <a [routerLink]="['/login']">login</a>
-
+      <mat-card-actions fxLayout="row" fxLayoutAlign="center">
         <button mat-raised-button type="submit" color="primary" data-cy="register-button">
-          Register
+          Registreren
         </button>
       </mat-card-actions>
     </form>
