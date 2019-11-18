@@ -1,54 +1,54 @@
-<app-nav> </app-nav>
+<app-nav></app-nav>
 <!-- <app-date-picker>
   </app-date-picker> -->
 
 <div class="container containerDatePicker">
-  <br />
-  <!-- datepicker -->
-  <mat-form-field>
-    <input
-      matInput
-      [matDatepicker]="picker"
-      [(ngModel)]="chosenDate"
-      placeholder="Selecteer datum"
-    />
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+    <br/>
+    <!-- datepicker -->
+    <mat-form-field>
+        <input
+                matInput
+                [matDatepicker]="picker"
+                [(ngModel)]="chosenDate"
+                placeholder="Selecteer datum"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 </div>
 <div
-  class="floatLeft"
-  fxLayout="row"
-  fxLayout.xs="row"
-  fxLayout.sm="row"
-  fxLayoutGap="2%"
-  fxLayoutAlign="center"
+        class="floatLeft"
+        fxLayout="row"
+        fxLayout.xs="row"
+        fxLayout.sm="row"
+
+        fxLayoutAlign="center"
 >
-  <div
-    fxLayout="column"
-    fxLayout.xs="column"
-    fxLayout.sm="column"
-    fxLayoutGap="2%"
-    fxLayoutAlign="flex-start center"
-  >
-    <div *ngIf="isAdmin()">
-      <mat-list>
-        <mat-list-item *ngFor="let user of users$ | async; let i = index">
-          <button mat-raised-button (click)="showPictoOfUser(i)">
-            {{ user.firstName }}, {{ user.lastName }}
-          </button>
-        </mat-list-item>
-      </mat-list>
+    <div
+            fxLayout="column"
+            fxLayout.xs="column"
+            fxLayout.sm="column"
+
+            fxLayoutAlign="flex-start center"
+    >
+        <div *ngIf="isAdmin()">
+            <mat-list>
+                <mat-list-item *ngFor="let user of users$ | async; let i = index">
+                    <button mat-raised-button (click)="showPictoOfUser(i)">
+                        {{ user.firstName }}, {{ user.lastName }}
+                    </button>
+                </mat-list-item>
+            </mat-list>
+        </div>
     </div>
-  </div>
 </div>
 
 <div class="floatRight" *ngIf="getWorkday(6)">
 
     <div *ngIf="clickedUser">
-      <mat-card-title>
-        {{ clickedUser.firstName }} {{ clickedUser.lastName }}</mat-card-title
-      >
+        <mat-card-title>
+            {{ clickedUser.firstName }} {{ clickedUser.lastName }}</mat-card-title
+        >
     </div>
     <!-- part 1 of week -->
 
@@ -57,36 +57,34 @@
             fxFlexFill
             fxLayoutAlign="space-between start"
             fxLayout.xs="column"
-            fxLayoutGap="2%"
+
 
     >
-      <div *ngFor="let workday of getWeekdays()"
+        <div *ngFor="let workday of getWeekdays()"
 
-              fxFlex="0 0 calc(33%-2%)"
-              fxFlex.xs="100%"
-      >
-        <app-weekday [weekDay]="workday"></app-weekday>
-
-      </div>
-
-      <div
-              class="weekendday"
-              fxLayout="column"
-              fxFlexFill
-              fxLayoutAlign="start start"
-              fxLayoutGap="2%"
-
-
-             fxFlex="0 0 calc(33%-2%)"
+             fxFlex="0 0 calc(33%-0.5%)"
              fxFlex.xs="100%"
-      >
-          <app-day-of-weekend *ngFor="let workday of getWeekenddays()" [weekDay]="workday"></app-day-of-weekend>
+        >
+            <app-weekday [weekDay]="workday"></app-weekday>
 
         </div>
-      </div>
+
+        <div
+
+                class="weekendday"
+                fxLayout="column"
+                fxFlexFill
+                fxLayoutAlign="start start"
 
 
 
+                fxFlex="0 0 calc(33%-0.5%)"
+                fxFlex.xs="100%"
+        >
+            <app-day-of-weekend *ngFor="let workday of getWeekenddays()" [weekDay]="workday"></app-day-of-weekend>
+
+        </div>
+    </div>
 
 
     <!-- part 2 of week -->
