@@ -1,18 +1,1 @@
 @import "../../../variables.scss";
-
-.mat-form-field-appearance-outline .mat-form-field-outline,
-.mat-form-field-appearance-outline:hover .mat-form-field-outline:hover,
-.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick,
-.mat-form-field.mat-focused .mat-form-field-label 
- {
-    color: $color-primary-dark;
-}
-
-.mat-form-field.mat-form-field-invalid .mat-form-field-label
-{
-    color: #f44336 !important
-}
-
-
-  
-  

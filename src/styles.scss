@@ -1,7 +1,132 @@
+/**
+ * IMPORTS
+ */
+
 @import "~normalize.css";
 @import "variables.scss";
 
-/* You can add global styles to this file, and also import other style files */
+/**
+ * THEME
+ */
+
+@import '~@angular/material/theming';
+
+// Include the common styles for Angular Material.
+@include mat-core();
+
+// Color palettes.
+$palette-primary: (
+        50 : #e0effd,
+        100 : #b3d7fa,
+        200 : #80bdf7,
+        300 : #4da2f4,
+        400 : #268ef1,
+        500 : #007aef,
+        600 : #0072ed,
+        700 : #0067eb,
+        800 : #005de8,
+        900 : #004ae4,
+        A100 : #ffffff,
+        A200 : #d8e2ff,
+        A400 : #a5bcff,
+        A700 : #8ba9ff,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #000000,
+                400 : #ffffff,
+                500 : #ffffff,
+                600 : #ffffff,
+                700 : #ffffff,
+                800 : #ffffff,
+                900 : #ffffff,
+                A100 : #000000,
+                A200 : #000000,
+                A400 : #000000,
+                A700 : #000000,
+        )
+);
+$palette-accent: (
+        50 : #fae4ec,
+        100 : #f3bbcf,
+        200 : #ec8db0,
+        300 : #e45f90,
+        400 : #de3d78,
+        500 : #d81b60,
+        600 : #d41858,
+        700 : #ce144e,
+        800 : #c81044,
+        900 : #bf0833,
+        A100 : #ffe9ed,
+        A200 : #ffb6c4,
+        A400 : #ff839a,
+        A700 : #ff6986,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #000000,
+                400 : #ffffff,
+                500 : #ffffff,
+                600 : #ffffff,
+                700 : #ffffff,
+                800 : #ffffff,
+                900 : #ffffff,
+                A100 : #000000,
+                A200 : #000000,
+                A400 : #000000,
+                A700 : #000000,
+        )
+);
+$palette-primary-dark: (
+        50 : #e0e7ee,
+        100 : #b3c4d4,
+        200 : #809db8,
+        300 : #4d759b,
+        400 : #265885,
+        500 : #003a70,
+        600 : #003468,
+        700 : #002c5d,
+        800 : #002553,
+        900 : #001841,
+        A100 : #769aff,
+        A200 : #4375ff,
+        A400 : #104fff,
+        A700 : #0041f6,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #ffffff,
+                400 : #ffffff,
+                500 : #ffffff,
+                600 : #ffffff,
+                700 : #ffffff,
+                800 : #ffffff,
+                900 : #ffffff,
+                A100 : #000000,
+                A200 : #ffffff,
+                A400 : #ffffff,
+                A700 : #ffffff,
+        )
+);
+
+$kolveniershof-app-primary: mat-palette($palette-primary-dark, 500); // mat-palette($mat-indigo);
+$kolveniershof-app-accent:  mat-palette($palette-accent, 500); // mat-palette($mat-pink, A200, A100, A400);
+// The warn palette is optional (defaults to red).
+$kolveniershof-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$kolveniershof-app-theme: mat-light-theme($kolveniershof-app-primary, $kolveniershof-app-accent, $kolveniershof-app-warn);
+
+// Include theme styles for core and each component used in your app.
+@include angular-material-theme($kolveniershof-app-theme);
+
+/**
+ * CUSTOM STYLES
+ */
+
 html,
 body {
   height: 100%;
