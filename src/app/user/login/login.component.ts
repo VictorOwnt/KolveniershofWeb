@@ -2,9 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  Validators,
-  ValidatorFn,
-  AbstractControl, FormControl
+  Validators
 } from '@angular/forms';
 import {AuthenticationService} from '../authentication.service';
 import {Router} from '@angular/router';
@@ -20,8 +18,6 @@ export class LoginComponent implements OnInit {
   hidePassword = true;
   public user: FormGroup;
   public errorMsg = '';
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required]);
 
   constructor(
     private authService: AuthenticationService,
@@ -32,19 +28,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.fb.group({
-      email: this.email,
-      password: this.password
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
     });
   }
 
   getEmailErrorMessage() {
-    return this.email.hasError('required') ? 'Emailadres is verplicht.' :
-      this.email.hasError('email') ? 'Geen geldig emailadres.' :
+    return this.user.controls.email.hasError('required') ? 'Emailadres is verplicht.' :
+      this.user.controls.email.hasError('email') ? 'Geen geldig emailadres.' :
         '';
   }
 
   getPasswordErrorMessage() {
-    return this.password.hasError('required') ? 'Wachtwoord is verplicht.' : '';
+    return this.user.controls.password.hasError('required') ? 'Wachtwoord is verplicht.' : '';
   }
 
   login() {
