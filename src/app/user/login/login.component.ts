@@ -1,23 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  Validators,
-  ValidatorFn,
-  AbstractControl
+  Validators
 } from '@angular/forms';
-import { AuthenticationService } from '../authentication.service';
-import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
-
-function passwordValidator(): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: any } => {
-    console.log(control.value);
-    return control.value.length < 12
-      ? { passwordTooShort: { value: control.value.length } }
-      : null;
-  };
-}
+import {AuthenticationService} from '../authentication.service';
+import {Router} from '@angular/router';
+import {HttpErrorResponse} from '@angular/common/http';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-login',
@@ -25,25 +15,37 @@ function passwordValidator(): ValidatorFn {
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  hidePassword = true;
   public user: FormGroup;
-  public errorMsg: string;
+  public errorMsg = '';
 
   constructor(
     private authService: AuthenticationService,
     private router: Router,
     private fb: FormBuilder
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.user = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]], // TODO - Validators.pattern()
+      password: ['', [Validators.required]]
     });
   }
 
-  onSubmit() {
+  getEmailErrorMessage() {
+    return this.user.controls.email.hasError('required') ? 'Emailadres is verplicht.' :
+      this.user.controls.email.hasError('email') ? 'Geen geldig emailadres.' :
+        '';
+  }
+
+  getPasswordErrorMessage() {
+    return this.user.controls.password.hasError('required') ? 'Wachtwoord is verplicht.' : '';
+  }
+
+  login() {
     this.authService
-      .login(this.user.value.username, this.user.value.password)
+      .login(this.user.value.email, this.user.value.password)
       .subscribe(
         val => {
           if (val) {
@@ -51,19 +53,20 @@ export class LoginComponent implements OnInit {
               this.router.navigateByUrl(this.authService.redirectUrl);
               this.authService.redirectUrl = undefined;
             } else {
-              this.router.navigate(['/home']); // aanpassen naar gewnenste pagina
+              this.router.navigate(['/home']); // TODO
             }
           } else {
-            this.errorMsg = `Could not login`;
+            this.errorMsg = `Aanmelden mislukt`;
           }
         },
         (err: HttpErrorResponse) => {
-          console.log(err);
+          console.error(err);
           if (err.error instanceof Error) {
-            this.errorMsg = `Error while trying to login user ${this.user.value.username}: ${err.error.message}`;
+            this.errorMsg = `${err.error.message}`;
           } else {
-            this.errorMsg = `Error ${err.status} while trying to login user ${this.user.value.username}: ${err.error}`;
+            this.errorMsg = `${err.error}`;
           }
+          $('#errorMsg').slideDown(200);
         }
       );
   }

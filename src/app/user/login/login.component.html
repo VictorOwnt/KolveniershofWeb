@@ -1,31 +1,26 @@
+<form class="center" fxLayout="column" [formGroup]="user" (ngSubmit)="login()">
+    <img src="../../../assets/img/logo.svg" alt="Logo Kolveniershof">
+    
+    <h1 class="mat-display-1">Aanmelden</h1>
 
+    <mat-form-field appearance="outline">
+        <mat-label>Emailadres</mat-label>
+        <input matInput placeholder="ruben@mail.be" formControlName="email" required>
+        <mat-error *ngIf="user.controls.email.invalid">{{getEmailErrorMessage()}}</mat-error>
+    </mat-form-field>
 
-  <div class="container center ">
-    <div fxLayout="row" fxLayoutAlign="center center" class="login-main">
-      <mat-card>
-        <form [formGroup]="user" (ngSubmit)="onSubmit()">
-          <mat-card-title>Aanmelden</mat-card-title>
+    <mat-form-field appearance="outline">
+        <mat-label>Wachtwoord</mat-label>
+        <input matInput placeholder="abc123" [type]="hidePassword ? 'password' : 'text'" formControlName="password"
+               required>
+        <button mat-icon-button matSuffix (mousedown)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="user.controls.password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+    </mat-form-field>
 
-          <mat-card-content fxLayout="column">
-            <div>
-              <mat-form-field>
-                <input matInput placeholder="emailadres" aria-label="email" formControlName="username"
-                  data-cy="login-email" />
-              </mat-form-field>
-            </div>
-            <div>
-              <mat-form-field>
-                <input type="password" matInput placeholder="paswoord" aria-label="password" formControlName="password"
-                  data-cy="login-password" />
-              </mat-form-field>
-            </div>
-          </mat-card-content>
-          <mat-card-actions fxLayout="row" fxLayoutAlign="center center">
-            <button class="blue-button " mat-raised-button type="submit" data-cy="login-button">
-              Meld aan
-            </button>
-          </mat-card-actions>
-        </form>
-      </mat-card>
-    </div>
-  </div>
+    <p id="errorMsg" class="mat-error" style="display: none !important;">{{ errorMsg }}</p>
+
+    <button class="btn-pink" type="submit" [disabled]='!user.valid' data-cy="login-button">Meld aan</button>
+</form>

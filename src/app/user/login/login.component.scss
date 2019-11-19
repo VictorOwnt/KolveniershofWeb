@@ -1,43 +1,57 @@
-.container {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+@import "../../../variables.scss";
+
+form {
+  max-width: 800px;
+  background: #FFF;
+  padding: 40px;
+  width: 55%;
+  height: auto;
+  border-radius: 8px;
+  -webkit-box-shadow: $shadow-subtle;
+  box-shadow: $shadow-subtle;
 }
 
-@media (min-width: 768px) {
-  .container {
-    width: 750px;
+img {
+  margin-bottom: 20px;
+  height: 70px;
+}
+
+h1 {
+  margin: 0 0 30px 0;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+h1, p {
+  margin-left: 2px !important;
+  margin-right: 2px !important;
+}
+
+.btn, .btn-pink {
+  margin: 20px 0 0 0;
+}
+
+@media only screen and (max-width: 1024px) {
+  form {
+    width: 70%;
+    padding: 30px
   }
 }
 
-@media (min-width: 992px) {
-  .container {
-    width: 970px;
+@media only screen and (max-width: 767px) {
+  form {
+    width: 90%;
+    padding: 20px;
   }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    width: 1170px;
+  h1 {
+    margin: 0 0 20px 0;
+    text-align: center !important;
   }
-}
-
-::ng-deep mat-card-title {
-  background-color: #2e7be8;
-  color: white;
-  padding: 15px;
-}
-
-mat-form-field {
-  margin-bottom: 15px;
-}
-
-mat-card {
-  padding: 0;
-}
-
-.blue-button {
-  background-color: #2e7be8;
-  color: white;
+  .btn, .btn-pink {
+    margin: 10px 0 0 0;
+  }
+  img {
+    margin-bottom: 10px;
+    height: 50px;
+  }
 }
