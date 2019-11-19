@@ -33,8 +33,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { WorkDayDataService } from './services/workDay.data.service';
 import { WeekScheduleComponent } from './week-schedule/week-schedule.component';
-import { DayOfWeekComponent } from './picto-agenda/day-of-week/day-of-week.component';
-import { DayOfWeekendComponent } from './picto-agenda/day-of-weekend/day-of-weekend.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { EditWeekScheduleComponent } from './edit-week-schedule/edit-week-schedule.component';
