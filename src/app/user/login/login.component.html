@@ -22,30 +22,3 @@
 
     <button class="btn-pink" type="submit" [disabled]='!user.valid' data-cy="login-button">Meld aan</button>
 </form>
-
-<!--<div class="container center ">
-    <div fxLayout="row" fxLayoutAlign="center center" class="login-main">
-        <mat-card>
-            <form [formGroup]="user" (ngSubmit)="onSubmit()">
-                <mat-card-title>Aanmelden</mat-card-title>
-                <mat-card-content fxLayout="column">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Emailadres</mat-label>
-                        <input matInput placeholder="naam@email.be" aria-label="email" formControlName="username"
-                               data-cy="login-email" />
-                    </mat-form-field>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Wachtwoord</mat-label>
-                        <input type="password" matInput placeholder="abc123" aria-label="password" formControlName="password"
-                               data-cy="login-password" />
-                    </mat-form-field>
-                </mat-card-content>
-                <mat-card-actions fxLayout="row" fxLayoutAlign="center center">
-                    <button class="blue-button " mat-raised-button type="submit" data-cy="login-button">
-                        Meld aan
-                    </button>
-                </mat-card-actions>
-            </form>
-        </mat-card>
-    </div>
-</div>-->
