@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/user/user.model';
-import { Workday } from 'src/app/domain/workday.model';
+import { User } from 'src/app/shared/models/user.model';
+import { Workday } from 'src/app/shared/models/workday.model';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { EditWeekScheduleComponent } from 'src/app/edit-week-schedule/edit-week-schedule.component';
 import { UserDataService } from 'src/app/services/user.data.service';

@@ -1,6 +1,6 @@
 import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { ActivityUnit } from '../domain/activityUnit.model';
+import { ActivityUnit } from '../shared/models/activityUnit.model';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../../environments/environment';
 

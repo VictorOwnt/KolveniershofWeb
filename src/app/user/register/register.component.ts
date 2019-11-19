@@ -1,5 +1,5 @@
 import { AuthenticationService } from '../authentication.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   AbstractControl,
@@ -11,6 +11,8 @@ import {
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import * as zxcvbn from 'zxcvbn';
+import * as $ from 'jquery';
 
 function comparePasswords(control: AbstractControl): { [key: string]: any } {
   const password = control.get('password');
@@ -20,11 +22,9 @@ function comparePasswords(control: AbstractControl): { [key: string]: any } {
     : { passwordsDiffer: true };
 }
 
-function serverSideValidateUsername(
-  checkAvailabilityFn: (n: string) => Observable<boolean>
-): ValidatorFn {
+function serverSideValidateEmail(authService: AuthenticationService): ValidatorFn {
   return (control: AbstractControl): Observable<{ [key: string]: any }> => {
-    return checkAvailabilityFn(control.value).pipe(
+    return authService.checkEmailAvailability(control.value).pipe(
       map(available => {
         if (available) {
           return null;
@@ -35,6 +35,14 @@ function serverSideValidateUsername(
   };
 }
 
+function passwordStrength(control: AbstractControl) { // TODO
+  if (zxcvbn(control.value).score < 2) {
+    return { passwordStrenght: true };
+  } else {
+    return null;
+  }
+}
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -42,7 +50,10 @@ function serverSideValidateUsername(
 })
 export class RegisterComponent implements OnInit {
   public user: FormGroup;
-  public errorMsg: string;
+  public errorMsg = '';
+  public startDate = new Date();
+  hidePassword = true;
+  hideConfirmPassword = true;
 
   constructor(
     private authService: AuthenticationService,
@@ -52,48 +63,64 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.fb.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: [
         '',
-        [Validators.required, Validators.email],
-        serverSideValidateUsername(this.authService.checkUserNameAvailability)
+        [Validators.required, Validators.email], // TODO - Validators.pattern()
+        serverSideValidateEmail(this.authService)
       ],
       passwordGroup: this.fb.group(
         {
-          password: ['', [Validators.required, Validators.minLength(8)]],
+          password: ['', [Validators.required, passwordStrength]],
           confirmPassword: ['', Validators.required]
         },
-        { validator: comparePasswords }
-      )
+        { validators: [Validators.required, comparePasswords] }
+      ),
+      street: [''],
+      city: [''],
+      postalCode: [''],
+      birthday: ['', Validators.required]
     });
   }
 
-  getErrorMessage(errors: any) {
-    if (!errors) {
-      return null;
-    }
-    if (errors.required) {
-      return 'is required';
-    } else if (errors.minlength) {
-      return `needs at least ${errors.minlength.requiredLength} characters (got ${errors.minlength.actualLength})`;
-    } else if (errors.userAlreadyExists) {
-      return `user already exists`;
-    } else if (errors.email) {
-      return `not a valid email address`;
-    } else if (errors.passwordsDiffer) {
-      return `passwords are not the same`;
-    }
+  getNameErrorMessage() {
+    return (this.user.controls.firstName.hasError('required') || this.user.controls.lastName.hasError('required'))
+      ? 'Volledige naam is verplicht.' : '';
   }
 
-  onSubmit() {
+  getEmailErrorMessage() {
+    return this.user.controls.email.hasError('required') ? 'Emailadres is verplicht.' :
+      this.user.controls.email.hasError('email') ? 'Geen geldig emailadres.' :
+        this.user.controls.email.hasError('userAlreadyExists') ? 'Er bestaat al een gebruiker met dit emailadres.' :
+        '';
+  }
+
+  getPasswordErrorMessage() {
+    return this.user.controls.passwordGroup.hasError('required')
+      ? 'Wachtwoord is verplicht' :
+      this.user.controls.passwordGroup.get('password').hasError('passwordStrength')
+        ? 'Wachtwoord is niet sterk genoeg.' :
+          this.user.controls.passwordGroup.hasError('passwordsDiffer')
+            ? 'Wachtwoorden komen niet overeen.' : '';
+  }
+
+  getBirthdayErrorMessage() {
+    return this.user.controls.birthday.hasError('required') ? 'Geboortedatum is verplicht.' : '';
+  }
+
+  register() {
     this.authService
       .register(
-        this.user.value.userName,
-        this.user.value.firstname,
-        this.user.value.lastname,
         this.user.value.email,
-        this.user.value.passwordGroup.password
+        this.user.value.passwordGroup.password,
+        this.user.value.firstName,
+        this.user.value.lastName,
+        // this.user.value.picture, // TODO - Picture
+        this.user.value.birthday, // TODO - Correct date
+        this.user.value.street,
+        this.user.value.city,
+        this.user.value.postalCode
       )
       .subscribe(
         val => {
@@ -102,19 +129,20 @@ export class RegisterComponent implements OnInit {
               this.router.navigateByUrl(this.authService.redirectUrl);
               this.authService.redirectUrl = undefined;
             } else {
-              this.router.navigate(['/user-list']);
+              this.router.navigate(['/user-list']); // TODO
             }
           } else {
-            this.errorMsg = `Could not login`;
+            this.errorMsg = `Registreren mislukt`;
           }
         },
         (err: HttpErrorResponse) => {
           console.log(err);
           if (err.error instanceof Error) {
-            this.errorMsg = `Error while trying to login user ${this.user.value.email}: ${err.error.message}`;
+            this.errorMsg = `${err.error.message}`;
           } else {
-            this.errorMsg = `Error ${err.status} while trying to login user ${this.user.value.email}: ${err.error}`;
+            this.errorMsg = `${err.error}`;
           }
+          $('#errorMsg').slideDown(200);
         }
       );
   }

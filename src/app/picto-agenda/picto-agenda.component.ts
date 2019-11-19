@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../user/user.model';
+import { User } from '../shared/models/user.model';
 import { Observable, Subject } from 'rxjs';
-import { Workday } from '../domain/workday.model';
+import { Workday } from '../shared/models/workday.model';
 import { StaticMethodsPicto } from '../domain/staticMethods';
 import { UserDataService } from '../services/user.data.service';
 import { WorkDayDataService } from '../services/workDay.data.service';
@@ -92,6 +92,27 @@ export class PictoAgendaComponent implements OnInit {
   getWorkday(param: string | number) {
     this.sortByDate();
     return this.workDays[param];
+  }
+
+  getWeekdays(): Workday[]{
+    const weekdays = [];
+    for (let i = 0; i < 5; i++) {
+
+      console.log(this.workDays);
+
+      weekdays.push(this.workDays[i]);
+    }
+    return weekdays;
+  }
+
+  getWeekenddays(): Workday[]{
+    const weekenddays = [];
+    for (let i = 5; i < 7; i++) {
+
+      console.log("test");
+      weekenddays.push(this.workDays[i]);
+    }
+    return weekenddays;
   }
 
 

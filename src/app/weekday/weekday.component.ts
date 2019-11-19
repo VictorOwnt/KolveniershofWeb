@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Workday } from 'src/app/domain/workday.model';
+import { Workday } from 'src/app/shared/models/workday.model';
 import { FormControl } from '@angular/forms';
-import { ActivityUnit } from 'src/app/domain/activityUnit.model';
+import { ActivityUnit } from 'src/app/shared/models/activityUnit.model';
 import { StaticMethodsPicto } from 'src/app/domain/staticMethods';
 
 export class DayNameAndDate {
@@ -16,11 +16,11 @@ export class DayNameAndDate {
 }
 
 @Component({
-  selector: 'app-day-of-week',
-  templateUrl: './day-of-week.component.html',
-  styleUrls: ['./day-of-week.component.scss']
+  selector: 'app-weekday',
+  templateUrl: './weekday.component.html',
+  styleUrls: ['./weekday.component.scss']
 })
-export class DayOfWeekComponent implements OnInit {
+export class WeekdayComponent implements OnInit {
   @Input() public weekDay: Workday;
 
   public commentFormControl = new FormControl('', []);
@@ -29,19 +29,12 @@ export class DayOfWeekComponent implements OnInit {
 
   constructor() {}
 
-  getMentors(activity: ActivityUnit): string {
-    const mentors = new Array();
-    activity.mentors.forEach(mentor =>
-      mentors.push(`${mentor.firstName} ${mentor.lastName}`)
-    );
-    return mentors.toString();
-  }
 
   ngOnInit() {
     const date = StaticMethodsPicto.unFormattedDate(this.weekDay.date);
     this._nameOfDay = new DayNameAndDate(
-      date,
-      StaticMethodsPicto.getNameOfDay(date)
+        date,
+        StaticMethodsPicto.getNameOfDay(date)
     );
   }
 

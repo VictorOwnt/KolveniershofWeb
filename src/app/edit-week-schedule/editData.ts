@@ -1,4 +1,4 @@
-import { Workday } from '../domain/workday.model';
+import { Workday } from '../shared/models/workday.model';
 
 export interface EditData {
   workday: Workday;
