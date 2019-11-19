@@ -46,6 +46,10 @@ import { ActivityComponent } from './weekday/activity/activity.component';
 import { WeekendComponent } from './weekend/weekend.component';
 import { WeekendDayComponent } from './weekend/weekend-day/weekend-day.component';
 import { HolidayComponent } from './holiday/holiday.component';
+import { AdminActivitiesComponent } from './admin-activities/admin-activities.component';
+import { ActivityListComponent } from './admin-activities/activity-list/activity-list.component';
+import { ActivityNewComponent } from './admin-activities/activity-new/activity-new.component';
+import { AdminActivityComponent } from "./admin-activities/activity-list/admin-activity/admin-activity.component";
 
 @NgModule({
   declarations: [
@@ -65,7 +69,11 @@ import { HolidayComponent } from './holiday/holiday.component';
     ActivityComponent,
     WeekendComponent,
     WeekendDayComponent,
-    HolidayComponent
+    HolidayComponent,
+    AdminActivitiesComponent,
+    ActivityListComponent,
+    ActivityNewComponent,
+    AdminActivityComponent
   ],
   imports: [
     FlexLayoutModule,
