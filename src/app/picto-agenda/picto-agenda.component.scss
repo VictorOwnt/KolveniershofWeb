@@ -1,11 +1,12 @@
 .floatLeft {
   float: left;
-  width: 10%;
+  width: 20%;
+  text-align: left;
 }
 
 .floatRight {
   float: right;
-  width: 90%;
+  width: 80%;
 }
 
 .spaceUnder {
@@ -44,3 +45,33 @@ h5 span fa-icon {
 .container {
   text-align: center;
 }
+
+.workday {
+  margin: 220px;
+}
+
+app-weekday, app-holiday, app-weekend {
+  margin: 0.5%;
+}
+
+.weekendday{
+
+  margin-top: 2%;
+}
+
+app-day-of-weekend {
+  width: 100%;
+  margin-bottom:5%;
+
+}
+
+.bus {
+  padding-left: 0px;
+}
+
+.containerDatePicker {
+  text-align: left;
+  margin-left: 3%;
+}
+
+

@@ -94,6 +94,27 @@ export class PictoAgendaComponent implements OnInit {
     return this.workDays[param];
   }
 
+  getWeekdays(): Workday[]{
+    const weekdays = [];
+    for (let i = 0; i < 5; i++) {
+
+      console.log(this.workDays);
+
+      weekdays.push(this.workDays[i]);
+    }
+    return weekdays;
+  }
+
+  getWeekenddays(): Workday[]{
+    const weekenddays = [];
+    for (let i = 5; i < 7; i++) {
+
+      console.log("test");
+      weekenddays.push(this.workDays[i]);
+    }
+    return weekenddays;
+  }
+
 
 
   get clickedUser(): User {
