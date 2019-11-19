@@ -94,7 +94,7 @@ export class AuthenticationService {
   ): Observable<boolean> {
     return this.http
       .post(
-        `${API_URL}/register`,
+        `${API_URL}/users/register`,
         {
           email,
           password,
@@ -117,9 +117,9 @@ export class AuthenticationService {
       );
   }
 
-  checkUserNameAvailability(email: string): Observable<boolean>{
+  checkEmailAvailability(email: string): Observable<boolean>{
     return this.http
-      .post<boolean>(`${API_URL}/checkusername`,
+      .post<boolean>(`${API_URL}/users/isvalidemail`,
       {
         email
       }

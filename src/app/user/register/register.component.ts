@@ -20,11 +20,9 @@ function comparePasswords(control: AbstractControl): { [key: string]: any } {
     : { passwordsDiffer: true };
 }
 
-function serverSideValidateUsername(
-  checkAvailabilityFn: (n: string) => Observable<boolean>
-): ValidatorFn {
+function serverSideValidateEmail(authService: AuthenticationService): ValidatorFn {
   return (control: AbstractControl): Observable<{ [key: string]: any }> => {
-    return checkAvailabilityFn(control.value).pipe(
+    return authService.checkEmailAvailability(control.value).pipe(
       map(available => {
         if (available) {
           return null;
@@ -59,7 +57,7 @@ export class RegisterComponent implements OnInit {
       email: [
         '',
         [Validators.required, Validators.email], //checkt niet juist, test@a is geldig, gebruik maken van Validators.pattern()
-        serverSideValidateUsername(this.authService.checkUserNameAvailability)
+        serverSideValidateEmail(this.authService)
       ],
       passwordGroup: this.fb.group(
         {
