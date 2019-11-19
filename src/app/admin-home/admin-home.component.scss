@@ -1,0 +1,58 @@
+@import "../../variables.scss";
+
+.container {
+  margin: 20px;
+}
+
+.card {
+  &-header {
+    background-color: $color-primary;
+    margin: -20px -20px 20px;
+    padding: 20px;
+    border-radius: 8px 8px 0 0;
+    text-align: center;
+    > i {
+      color: #FFF;
+      font-size: 100px;
+    }
+  }
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  transition: all 0.4s ease-in-out;
+  -webkit-box-shadow: $shadow-subtle;
+  box-shadow: $shadow-subtle;
+  > h1 {
+    margin-bottom: 0;
+  }
+  > .btn {
+    margin: 10px 0;
+  }
+  &:hover {
+    background: #FFF;
+    -webkit-box-shadow: $shadow-hard;
+    box-shadow: $shadow-hard;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .card {
+    &:nth-child(3n) {
+      margin-right: 0 !important;
+    }
+  }
+}
+
+@media screen and (max-width: 959px) {
+  .card {
+    &:nth-child(2n) {
+      margin-right: 0 !important;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .card {
+    margin-bottom: 20px;
+  }
+}

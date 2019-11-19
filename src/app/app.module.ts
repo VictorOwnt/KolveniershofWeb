@@ -46,6 +46,7 @@ import { ActivityComponent } from './weekday/activity/activity.component';
 import { WeekendComponent } from './weekend/weekend.component';
 import { WeekendDayComponent } from './weekend/weekend-day/weekend-day.component';
 import { HolidayComponent } from './holiday/holiday.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { HolidayComponent } from './holiday/holiday.component';
     ActivityComponent,
     WeekendComponent,
     WeekendDayComponent,
-    HolidayComponent
+    HolidayComponent,
+    AdminHomeComponent
   ],
   imports: [
     FlexLayoutModule,
