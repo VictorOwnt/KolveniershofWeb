@@ -1,0 +1,52 @@
+mat-card {
+  padding: 0px;
+  margin: 0px !important;
+}
+
+mat-card-content {
+  padding: 5%;
+}
+
+mat-card-header {
+  padding: 5%;
+  justify-content: center;
+  align-items: center;
+  text-align:center;
+  color: white;
+  background-color: #007AEF;
+  border-radius: 4px 4px 0px 0px;
+
+  mat-card-subtitle {
+    color: white;
+    margin: auto;
+  }
+}
+
+hr {
+  border: 0.5px solid #CECECE;
+}
+
+mat-card-actions {
+  width: 100%;
+  margin: auto;
+  background: rgba(46,123,232,0.20);
+  border-radius: 0 0 4px 4px;
+
+  font-family: Helvetica;
+  font-size: 8px;
+  color: #A2A2A2;
+  text-align: center;
+
+}
+
+mat-form-field {
+  width: 90%;
+  margin: 5%;
+  padding: 0px;
+}
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background: white;
+}
+
+
+
