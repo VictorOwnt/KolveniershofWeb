@@ -58,8 +58,6 @@ import { HolidayComponent } from './holiday/holiday.component';
     FooterComponent,
     WeekScheduleComponent,
     PictoAgendaComponent,
-    DayOfWeekComponent,
-    DayOfWeekendComponent,
     EditWeekScheduleComponent,
     BusschemaComponent,
     RegisterComponent,
