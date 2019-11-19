@@ -1,124 +1,82 @@
-<div class="login-main">
-  <mat-card fxLayout="row" fxLayoutAlign="center" >
-    <form [formGroup]="user" (ngSubmit)="onSubmit()">
-      <mat-card-header  style="margin-left: -15px;">
-        <mat-card-title>Registreren</mat-card-title>
-      </mat-card-header>
-      <mat-card-content fxLayout="column" fxLayoutAlign="start" color="#FFF">
-        <span fxLayout="row">
-          <mat-form-field appearance="outline" style="margin-right: 5px;">
-            <mat-label>Voornaam</mat-label>
-            <input matInput placeholder="Voornaam" aria-label="first name" data-cy="register-firstName"
-              formControlName="firstName" />
-            <mat-error *ngIf="
-                user.get('firstName').errors && user.get('firstName').touched
-              ">
-              {{ getErrorMessage(user.get('firstName').errors) }}
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field appearance="outline" style="margin-left: 5px;">
-            <mat-label>Achternaam</mat-label>
-            <input matInput placeholder="Achternaam" aria-label="last name" data-cy="register-lastName"
-              formControlName="lastName" />
-            <mat-error *ngIf="
-                user.get('lastName').errors && user.get('lastName').touched
-              ">
-              {{ getErrorMessage(user.get('lastName').errors) }}
-            </mat-error>
-          </mat-form-field>
-        </span>
-        <mat-form-field appearance="outline" >
-            <mat-label>Email</mat-label>
-          <input matInput placeholder="Email" aria-label="email" data-cy="register-email" formControlName="email" />
-          <mat-error data-cy="emailError" *ngIf="user.get('email').errors && user.get('email').touched">
-            {{ getErrorMessage(user.get('email').errors) }}
-          </mat-error>
+<div fxLayoutAlign="center center" fxFlexFill>
+    <form fxLayout="column" [formGroup]="user" (ngSubmit)="register()">
+        <img src="../../../assets/img/logo.svg" alt="Logo Kolveniershof">
+
+        <h1 class="mat-display-1">Registreren</h1>
+        <p class="subtitle">Welkom bij het digitale platform van Het Kolveniershof</p>
+
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="3%" fxLayout.lt-md="column" fxLayoutGap.lt-md="0">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Voornaam</mat-label>
+                <input matInput placeholder="Jan" formControlName="firstName" required>
+                <mat-error *ngIf="user.controls.firstName.invalid">{{getNameErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Familienaam</mat-label>
+                <input matInput placeholder="Janssens" formControlName="lastName" required>
+                <mat-error *ngIf="user.controls.lastName.invalid">{{getNameErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Emailadres</mat-label>
+            <input matInput placeholder="ruben@mail.be" formControlName="email" required>
+            <mat-error *ngIf="user.controls.email.invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
-        <span fxLayout="column" formGroupName="passwordGroup">
-          <mat-form-field appearance="outline">
-              <mat-label>Wachtwoord</mat-label>
-            <input type="password" matInput placeholder="Wachtwoord" aria-label="password" data-cy="register-password"
-              formControlName="password" />
-            <mat-error *ngIf="
-                user.get('passwordGroup').get('password').errors &&
-                user.get('passwordGroup').get('password').touched
-              ">
-              {{
-                getErrorMessage(
-                  user.get('passwordGroup').get('password').errors
-                )
-              }}
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-              <mat-label>Bevestig wachtwoord</mat-label>
-            <input type="password" matInput placeholder="Bevestig wachtwoord" aria-label="confirm password"
-              data-cy="register-password-confirm" formControlName="confirmPassword" />
-            <mat-error *ngIf="
-                user.get('passwordGroup').get('confirmPassword').errors &&
-                user.get('passwordGroup').get('confirmPassword').touched
-              ">
-              {{
-                getErrorMessage(
-                  user.get('passwordGroup').get('confirmPassword').errors
-                )
-              }}
-            </mat-error>
-          </mat-form-field>
-          <mat-error *ngIf="
-              user.get('passwordGroup').errors &&
-              user.get('passwordGroup').get('confirmPassword').touched &&
-              user.get('passwordGroup').get('password').touched
-            ">
-            {{ getErrorMessage(user.get('passwordGroup').errors) }}
-          </mat-error>
-        </span>
+
+        <div formGroupName="passwordGroup" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="3%" fxLayout.lt-md="column" fxLayoutGap.lt-md="0">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Wachtwoord</mat-label>
+                <input matInput placeholder="abc123" [type]="hidePassword ? 'password' : 'text'" formControlName="password"
+                       required>
+                <button mat-icon-button matSuffix (mousedown)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hidePassword">
+                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="user.controls.passwordGroup.invalid">{{getPasswordErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Wachtwoord herhalen</mat-label>
+                <input matInput placeholder="abc123" [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword"
+                       required>
+                <button mat-icon-button matSuffix (mousedown)="hideConfirmPassword = !hideConfirmPassword" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hideConfirmPassword">
+                    <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="user.controls.passwordGroup.invalid">{{getPasswordErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Geboortedatum</mat-label>
+            <input matInput [matDatepicker]="picker" placeholder="01/01/1990" formControlName="birthday" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="multi-year" [startAt]="startDate"></mat-datepicker>
+            <mat-error *ngIf="user.controls.city.invalid">{{getBirthdayErrorMessage()}}</mat-error>
+        </mat-form-field>
+
         <mat-form-field appearance="outline">
             <mat-label>Adres</mat-label>
-            <input matInput placeholder="Adres" aria-label="street" data-cy="register-street"
-              formControlName="street" />
-            <mat-error *ngIf="
-                  user.get('street').errors && user.get('street').touched
-              ">
-              {{ getErrorMessage(user.get('street').errors) }}
-            </mat-error>
-          </mat-form-field>
-          <span fxLayout="row">
-              <mat-form-field appearance="outline" style="margin-right: 5px;">
-                <mat-label>Stad/Gemeente</mat-label>
-                <input matInput placeholder="Stad/Gemeente" aria-label="city" data-cy="register-city"
-                  formControlName="city" />
-                <mat-error *ngIf="
-                    user.get('city').errors && user.get('city').touched
-                  ">
-                  {{ getErrorMessage(user.get('city').errors) }}
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="outline" style="margin-left: 5px;">
-                <mat-label>Postcode</mat-label>
-                <input matInput placeholder="Postcode" aria-label="postalCode" data-cy="register-postalCode"
-                  formControlName="postalCode" />
-                <mat-error *ngIf="
-                    user.get('postalCode').errors && user.get('postalCode').touched
-                  ">
-                  {{ getErrorMessage(user.get('postalCode').errors) }}
-                </mat-error>
-              </mat-form-field>
-          </span>
-          <mat-form-field appearance="outline">
-              <mat-label>Verjaardag</mat-label>
-                <input matInput [matDatepicker]="picker" placeholder="Verjaardag" aria-label="birthday" 
-                data-cy="register-birthday" formControlName="birthday">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker startView="multi-year" [startAt]="startDate"></mat-datepicker>
-              </mat-form-field>
-      </mat-card-content>
+            <input matInput placeholder="Veldstraat 1a" formControlName="street">
+        </mat-form-field>
 
-      <mat-card-actions fxLayout="row" fxLayoutAlign="center">
-        <button mat-raised-button type="submit" color="primary" data-cy="register-button">
-          Registreren
-        </button>
-      </mat-card-actions>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="3%" fxLayout.lt-md="column" fxLayoutGap.lt-md="0">
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Postcode</mat-label>
+              <input matInput placeholder="9000" formControlName="postalCode">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Gemeente</mat-label>
+              <input matInput placeholder="Gent" formControlName="city">
+            </mat-form-field>
+          </div>
+
+        <p id="errorMsg" class="mat-error" style="display: none !important;">{{ errorMsg }}</p>
+
+        <button class="btn-pink" type="submit" [disabled]='!user.valid'>Creëer account</button>
+
     </form>
-  </mat-card>
 </div>
