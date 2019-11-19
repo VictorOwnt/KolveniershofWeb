@@ -66,29 +66,6 @@
   font-weight: 300;
 }
 
-.notfound a {
-  font-family: 'Montserrat', sans-serif;
-  display: inline-block;
-  padding: 12px 30px;
-  font-weight: 700;
-  background-color: $color-accent;
-  color: #fff;
-  border-radius: 40px;
-  text-decoration: none;
-  transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  -webkit-box-shadow: $shadow-pink;
-  -moz-box-shadow: $shadow-pink;
-  box-shadow: $shadow-pink;
-}
-
-.notfound a:hover {
-  opacity: 0.8;
-  -webkit-box-shadow: $shadow-pink-hover;
-  -moz-box-shadow: $shadow-pink-hover;
-  box-shadow: $shadow-pink-hover;
-}
-
 @media only screen and (max-width: 767px) {
   .notfound .notfound-404 {
     height: 115px;
