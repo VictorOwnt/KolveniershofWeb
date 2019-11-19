@@ -4,8 +4,10 @@
         <mat-card-subtitle>{{ nameOfDay.date | date: "dd/MM/yyyy" }}</mat-card-subtitle>
     </mat-card-header>
 <mat-card-content>
-    <div>
-        <img src="assets/img/icons/icon-bus.svg" width="40" />
+    <div class="bus" fxLayout="row" fxLayoutAlign="start">
+        <div fxFlex="20" class="sec1" >
+        <img src="assets/img/icons/icon-bus.svg" width="40"/>
+        </div>
     </div>
     <hr>
     <div *ngFor="let amActivity of weekDay.amActivities"><app-activity [activity]="amActivity"></app-activity></div>
@@ -24,8 +26,10 @@
     <hr>
     <div *ngFor="let pmActivity of weekDay.pmActivities"><app-activity [activity]="pmActivity"></app-activity></div>
     <hr>
-    <div>
-        <img src="assets/img/icons/icon-bus.svg" width="40" />
+    <div class="bus" fxLayout="row" fxLayoutAlign="start">
+        <div fxFlex="20" class="sec1" >
+            <img src="assets/img/icons/icon-bus.svg" width="40"/>
+        </div>
     </div>
 </mat-card-content>
     <mat-card-actions>

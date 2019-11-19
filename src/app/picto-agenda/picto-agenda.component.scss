@@ -1,11 +1,12 @@
 .floatLeft {
   float: left;
-  width: 10%;
+  width: 20%;
+  text-align: left;
 }
 
 .floatRight {
   float: right;
-  width: 90%;
+  width: 80%;
 }
 
 .spaceUnder {
@@ -62,6 +63,15 @@ app-day-of-weekend {
   width: 100%;
   margin-bottom:5%;
 
+}
+
+.bus {
+  padding-left: 0px;
+}
+
+.containerDatePicker {
+  text-align: left;
+  margin-left: 3%;
 }
 
 

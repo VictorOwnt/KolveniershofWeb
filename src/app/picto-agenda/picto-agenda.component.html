@@ -1,7 +1,7 @@
 <app-nav></app-nav>
 <!-- <app-date-picker>
   </app-date-picker> -->
-
+<div class="container">
 <div class="container containerDatePicker">
     <br/>
     <!-- datepicker -->
@@ -14,6 +14,7 @@
         />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+
     </mat-form-field>
 </div>
 <div
@@ -24,13 +25,19 @@
 
         fxLayoutAlign="center"
 >
+
     <div
             fxLayout="column"
             fxLayout.xs="column"
             fxLayout.sm="column"
 
-            fxLayoutAlign="flex-start center"
+            fxLayoutAlign="flex-start"
     >
+        <div>
+            <mat-card-title style="margin-left: 15%">
+                Cliënten</mat-card-title
+            >
+        </div>
         <div *ngIf="isAdmin()">
             <mat-list>
                 <mat-list-item *ngFor="let user of users$ | async; let i = index">
@@ -85,5 +92,5 @@
     <!-- part 2 of week -->
 
 
-
+</div>
 <app-footer></app-footer>
