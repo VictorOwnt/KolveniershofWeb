@@ -3,6 +3,7 @@ import { AuthenticationService } from '../user/authentication.service';
 import { Router } from '@angular/router';
 import { User } from '../shared/models/user.model';
 import { BehaviorSubject } from 'rxjs';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    $('.hamburger--squeeze').click(function() {
+      $(this).toggleClass('is-active');
+    });
   }
 
   setCurrentUserFromLocalStorage() {
