@@ -1,1 +1,15 @@
-<p>activity-new works!</p>
+<div class="header" mat-dialog-title>Activiteit aanmaken</div>
+<div class="content" mat-dialog-content>
+    <mat-form-field appearance="outline">
+        <mat-label>Naam</mat-label>
+        <input matInput placeholder="Naam van de activiteit">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+    <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+    <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
+</div>
+<div mat-dialog-actions align="center">
+    <button class="btn" type="submit">Opslaan</button>
+    <button class="btn-pink" type="submit">Annuleren</button>
+
+</div>

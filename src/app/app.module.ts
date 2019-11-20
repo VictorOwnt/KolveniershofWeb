@@ -103,7 +103,7 @@ import { AdminActivityComponent } from "./admin-activities/activity-list/admin-a
     FormsModule,
     MatSelectModule
   ],
-  entryComponents: [EditWeekScheduleComponent],
+  entryComponents: [EditWeekScheduleComponent, ActivityNewComponent],
   providers: [
     httpInterceptorProviders,
     WorkDayDataService,
