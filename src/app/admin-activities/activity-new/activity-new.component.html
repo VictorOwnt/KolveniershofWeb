@@ -1,23 +1,28 @@
 <div class="header" mat-dialog-title>Activiteit aanmaken</div>
-<div class="content" mat-dialog-content>
-    <mat-form-field appearance="outline">
-        <mat-label>Naam</mat-label>
-        <input matInput placeholder="Naam van de activiteit">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    </mat-form-field>
-    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="6%" fxLayout.lt-md="column" fxLayoutGap.lt-md="3%">
-        <div>
-            <label for="icon">
-                <svg class="iconupload" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-            </label>
-            <br/>
-            <input id="icon" accept='image/*' type="file" (change)="preview($event)"/>
+<form [formGroup]="activity" (ngSubmit)="save()">
+    <div class="content" mat-dialog-content>
+        <mat-form-field appearance="outline">
+            <mat-label>Naam</mat-label>
+            <input matInput placeholder="Naam van de activiteit" formControlName="name" required>
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-error *ngIf="activity.controls.name.invalid">{{getNameErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="6%" fxLayout.lt-md="column"
+             fxLayoutGap.lt-md="3%">
+            <div>
+                <label for="icon">
+                    <img class="iconupload" [src]="imageUrl ? imageUrl: '../../../assets/img/icons/add_circle.svg'"/>
+                </label>
+                <br/>
+                <input id="icon" accept='image/*' type="file" (change)="preview($event)" formControlName="icon" required/>
+            </div>
         </div>
+        <p fxLayoutAlign="center center" class="subtitle">Klik hier om een icoon toe te voegen.</p>
+        <mat-error *ngIf="activity.controls.icon.invalid" fxLayoutAlign="center center">{{getIconErrorMessage()}}</mat-error>
     </div>
-    <p fxLayoutAlign="center center" class="subtitle">Klik hier om een icoon toe te voegen.</p>
-</div>
-<div mat-dialog-actions align="center">
-    <button class="btn" type="submit">Opslaan</button>
-    <button class="btn-pink" (click)="onNoClick()" type="submit">Annuleren</button>
+    <div mat-dialog-actions align="center">
+        <button class="btn" type="submit" [disabled]='!activity.valid'>Opslaan</button>
+        <button class="btn-pink" (click)="onNoClick()">Annuleren</button>
 
-</div>
+    </div>
+</form>

@@ -6,6 +6,7 @@ import { API_URL } from '../../environments/environment';
 import {Activity} from "../shared/models/activity.model";
 import {catchError, map} from "rxjs/operators";
 import {User} from "../shared/models/user.model";
+import {icon} from "@fortawesome/fontawesome-svg-core";
 
 @Injectable({
     providedIn: 'root'
@@ -27,5 +28,19 @@ export class ActivityDataService {
             }),
         map((list: any[]): Activity[] => list.map(Activity.fromJSON))
         );
+    }
+
+    postActivity(name: String, icon: String): Observable<Activity> {
+        return this.http
+            .post(
+                `${API_URL}/users/register`,
+                {
+                    name,
+                    icon,
+                },
+                { responseType: 'text' }
+            )
+            .pipe(
+                map(Activity.fromJSON));
     }
 }
