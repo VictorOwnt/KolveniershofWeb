@@ -46,6 +46,10 @@ import { ActivityComponent } from './weekday/activity/activity.component';
 import { WeekendComponent } from './weekend/weekend.component';
 import { WeekendDayComponent } from './weekend/weekend-day/weekend-day.component';
 import { HolidayComponent } from './holiday/holiday.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule} from '@angular/fire/storage';
+import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -93,7 +97,9 @@ import { HolidayComponent } from './holiday/holiday.component';
     MatNativeDateModule,
     MatDialogModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule
   ],
   entryComponents: [EditWeekScheduleComponent],
   providers: [

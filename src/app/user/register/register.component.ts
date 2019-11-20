@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as zxcvbn from 'zxcvbn';
 import * as $ from 'jquery';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 
 function comparePasswords(control: AbstractControl): { [key: string]: any } {
   const password = control.get('password');
@@ -56,12 +57,15 @@ export class RegisterComponent implements OnInit {
   hideConfirmPassword = true;
   imageUrl: any = null;
   fileData: File = null;
-  uploadedFilePath: string = null;
+  filePath: string = null;
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
 
   constructor(
     private authService: AuthenticationService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private storage: AngularFireStorage
   ) {}
 
   ngOnInit() {
@@ -129,13 +133,16 @@ export class RegisterComponent implements OnInit {
 }
 
   register() {
+    this.filePath = 'users/' + this.user.value.firstName + '_' + this.user.value.lastName + '_' + new Date().toISOString().split('T')[0];
+    this.ref = this.storage.ref(this.filePath);
+    this.task = this.ref.put(this.fileData);
     this.authService
       .register(
         this.user.value.email,
         this.user.value.passwordGroup.password,
         this.user.value.firstName,
         this.user.value.lastName,
-        this.user.value.picture, // TODO - Picture
+        this.filePath,
         this.user.value.birthday, // TODO - Correct date
         this.user.value.street,
         this.user.value.city,
