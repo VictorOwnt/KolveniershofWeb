@@ -1,26 +1,34 @@
-mat-toolbar {
-  background-color: white;
+@import "../../variables.scss";
+
+$hamburger-types: (squeeze);
+$hamburger-layer-color: $color-primary-dark;
+$hamburger-padding-y: 10px;
+$hamburger-layer-width: 30px;
+$hamburger-layer-height: 2px;
+$hamburger-layer-spacing: 5px;
+@import "~hamburgers/_sass/hamburgers/hamburgers.scss";
+
+.navbar {
+  width: 100%;
+  padding: 20px;
+  background-color: #FFF;
+  overflow: hidden;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  margin-bottom: 35px;
+  box-shadow: $shadow-hard;
+  img {
+    display: block;
+    position: absolute;
+    top: 50%;
+    height: calc(100% - 36px);
+    transform: translateY(-50%);
+  }
 }
 
-.spacer {
-  flex: 1 1 auto;
-}
-
-span {
-  padding: 0 7.5px;
-  color: #2e7be8;
-  font-size: 0.75em;
-}
-
-button {
-  color: #2e7be8;
-}
-
-#logout{
-  color:red
-}
-
-#logo{
-  margin-top: 10px;
-  margin-right: 20px;
+@media screen and (min-width: 1024px) {
+  .navbar {
+    padding: 30px;
+  }
 }
