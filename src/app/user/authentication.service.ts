@@ -105,8 +105,8 @@ export class AuthenticationService {
           birthday,
           address: {
             street,
-            city,
-            postalCode
+            postalCode,
+            city
           }
         },
         { responseType: 'text' }
