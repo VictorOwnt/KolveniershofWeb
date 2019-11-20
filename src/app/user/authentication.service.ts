@@ -101,7 +101,13 @@ export class AuthenticationService {
           password,
           firstName,
           lastName,
-          birthday
+          picture,
+          birthday,
+          address: {
+            street,
+            city,
+            postalCode
+          }
         },
         { responseType: 'text' }
       )

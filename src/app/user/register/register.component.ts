@@ -75,7 +75,7 @@ export class RegisterComponent implements OnInit {
       email: [
         '',
         [Validators.required, Validators.email], // TODO - Validators.pattern()
-        serverSideValidateEmail(this.authService)
+        serverSideValidateEmail(this.authService) // TODO - Async
       ],
       passwordGroup: this.fb.group(
         {
