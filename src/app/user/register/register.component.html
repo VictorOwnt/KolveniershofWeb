@@ -4,7 +4,17 @@
 
         <h1 class="mat-display-1">Registreren</h1>
         <p class="subtitle">Welkom bij het digitale platform van Het Kolveniershof</p>
-
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="6%" fxLayout.lt-md="column" fxLayoutGap.lt-md="3%">     
+            <div>
+                <label for="picture">
+                    <img class="profilePicture" [src]="imageUrl ? imageUrl: '../../../assets/img/avatar_circle_grey_512dp.png'" />
+                </label>
+                <br/>
+                <input id="picture" accept='image/*' type="file" (change)="preview($event)"/>
+            </div>
+        </div>
+        <p fxLayoutAlign="center center" class="subtitle">Klik op het kader om een foto toe te voegen.</p>
+        <br/>
         <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="3%" fxLayout.lt-md="column" fxLayoutGap.lt-md="0">
             <mat-form-field appearance="outline" style="width: 100%;">
                 <mat-label>Voornaam</mat-label>
@@ -48,7 +58,6 @@
                 <mat-error *ngIf="user.controls.passwordGroup.invalid">{{getPasswordErrorMessage()}}</mat-error>
             </mat-form-field>
         </div>
-
         <mat-form-field appearance="outline">
             <mat-label>Geboortedatum</mat-label>
             <input matInput [matDatepicker]="picker" placeholder="01/01/1990" formControlName="birthday" required>
@@ -77,6 +86,6 @@
         <p id="errorMsg" class="mat-error" style="display: none !important;">{{ errorMsg }}</p>
 
         <button class="btn-pink" type="submit" [disabled]='!user.valid'>Creëer account</button>
-
+        
     </form>
 </div>

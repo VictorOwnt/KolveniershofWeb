@@ -54,6 +54,9 @@ export class RegisterComponent implements OnInit {
   public startDate = new Date();
   hidePassword = true;
   hideConfirmPassword = true;
+  imageUrl: any = null;
+  fileData: File = null;
+  uploadedFilePath: string = null;
 
   constructor(
     private authService: AuthenticationService,
@@ -109,6 +112,22 @@ export class RegisterComponent implements OnInit {
     return this.user.controls.birthday.hasError('required') ? 'Geboortedatum is verplicht.' : '';
   }
 
+  preview(fileInput: any) {
+    this.fileData = (fileInput.target.files[0] as File);
+
+    const fileType = this.fileData.type;
+    if (fileType.match(/image\/*/) == null) {
+      console.log('no image');
+      return;
+    }
+    const reader = new FileReader();
+    reader.readAsDataURL(this.fileData);
+    // tslint:disable-next-line: variable-name
+    reader.onload = (_event) => {
+      this.imageUrl = reader.result;
+    };
+}
+
   register() {
     this.authService
       .register(
@@ -116,7 +135,7 @@ export class RegisterComponent implements OnInit {
         this.user.value.passwordGroup.password,
         this.user.value.firstName,
         this.user.value.lastName,
-        // this.user.value.picture, // TODO - Picture
+        this.user.value.picture, // TODO - Picture
         this.user.value.birthday, // TODO - Correct date
         this.user.value.street,
         this.user.value.city,
