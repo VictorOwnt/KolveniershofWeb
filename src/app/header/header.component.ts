@@ -9,35 +9,36 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-  loggedInUser$ = new BehaviorSubject<string>('');
 export class HeaderComponent implements OnInit {
+  loggedInUser = new BehaviorSubject<string>('');
 
   constructor(
     private router: Router,
-    private _authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService
   ) {
     this.setCurrentUserFromLocalStorage();
   }
 
-  logout() {
-    this._authenticationService.logout();
-    this.router.navigateByUrl('login');
-    if (localStorage.getItem('currentUser')) {
-      // om cookie te verwijderen in local storage
-      localStorage.removeItem('currentUser');
-    }
+  ngOnInit() {
   }
-
-  ngOnInit() {}
 
   setCurrentUserFromLocalStorage() {
     if (localStorage.getItem('currentUser')) {
-      this.loggedInUser$ = new BehaviorSubject<string>(
+      this.loggedInUser = new BehaviorSubject<string>(
         User.fromJSON(JSON.parse(localStorage.getItem('currentUser'))).email
       );
     }
   }
+
   isAdmin(): boolean {
     return User.fromJSON(JSON.parse(localStorage.getItem('currentUser'))).admin;
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigateByUrl('login');
+    if (localStorage.getItem('currentUser')) {
+      localStorage.removeItem('currentUser');
+    }
   }
 }
