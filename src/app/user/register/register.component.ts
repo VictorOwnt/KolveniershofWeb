@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as zxcvbn from 'zxcvbn';
 import * as $ from 'jquery';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 
 function comparePasswords(control: AbstractControl) {
   return new Promise( resolve => {
@@ -67,12 +68,17 @@ export class RegisterComponent implements OnInit {
   public startDate = new Date();
   hidePassword = true;
   hideConfirmPassword = true;
-  public url: string;
+  imageUrl: any = null;
+  fileData: File = null;
+  filePath: string = null;
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
 
   constructor(
     private authService: AuthenticationService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private storage: AngularFireStorage
   ) {}
 
   ngOnInit() {
@@ -122,14 +128,33 @@ export class RegisterComponent implements OnInit {
     return this.user.controls.birthday.hasError('required') ? 'Geboortedatum is verplicht.' : '';
   }
 
+  preview(fileInput: any) {
+    this.fileData = (fileInput.target.files[0] as File);
+
+    const fileType = this.fileData.type;
+    if (fileType.match(/image\/*/) == null) {
+      console.log('no image');
+      return;
+    }
+    const reader = new FileReader();
+    reader.readAsDataURL(this.fileData);
+    // tslint:disable-next-line: variable-name
+    reader.onload = (_event) => {
+      this.imageUrl = reader.result;
+    };
+}
+
   register() {
+    this.filePath = 'users/' + this.user.value.firstName + '_' + this.user.value.lastName + '_' + new Date().toISOString().split('T')[0];
+    this.ref = this.storage.ref(this.filePath);
+    this.task = this.ref.put(this.fileData);
     this.authService
       .register(
         this.user.value.email,
         this.user.value.passwordGroup.password,
         this.user.value.firstName,
         this.user.value.lastName,
-        //this.user.value.picture, // TODO - Picture
+        this.filePath,
         this.user.value.birthday, // TODO - Correct date
         this.user.value.street,
         this.user.value.city,
