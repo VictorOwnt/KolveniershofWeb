@@ -10,6 +10,7 @@ $hamburger-layer-spacing: 5px;
 @import "~hamburgers/_sass/hamburgers/hamburgers.scss";
 
 .navbar {
+  z-index: 1000;
   width: 100%;
   padding: 20px;
   background-color: #FFF;
