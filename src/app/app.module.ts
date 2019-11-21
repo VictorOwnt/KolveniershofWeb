@@ -53,6 +53,8 @@ import { AdminActivityComponent } from "./admin-activities/activity-list/admin-a
 import { AdminBussesComponent } from './admin-busses/admin-busses.component';
 import { BusListComponent } from './admin-busses/bus-list/bus-list.component';
 import { AdminBusComponent } from './admin-busses/bus-list/admin-bus/admin-bus.component';
+import { BusNewComponent } from './admin-busses/bus-new/bus-new.component';
+import { MatColorPickerModule } from "mat-color-picker";
 
 @NgModule({
   declarations: [
@@ -79,7 +81,8 @@ import { AdminBusComponent } from './admin-busses/bus-list/admin-bus/admin-bus.c
     AdminActivityComponent,
     AdminBussesComponent,
     BusListComponent,
-    AdminBusComponent
+    AdminBusComponent,
+    BusNewComponent
   ],
   imports: [
     FlexLayoutModule,
