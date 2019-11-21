@@ -128,6 +128,12 @@ $hamburger-layer-spacing: 5px;
     position: absolute;
     right: 0;
 
+    p {
+      margin: 30px 10px;
+      color: #FFF;
+      font-size: 24px;
+    }
+
     ul {
       display: inline-block;
       list-style: none;
@@ -152,6 +158,11 @@ $hamburger-layer-spacing: 5px;
   }
 
   @media screen and (max-width: 374px) {
+    .menu-footer {
+      p {
+        margin-bottom: 15px;
+      }
+    }
     .footer-nav {
       display: none;
     }

@@ -52,8 +52,8 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  isAdmin(): boolean {
-    return User.fromJSON(JSON.parse(localStorage.getItem('currentUser'))).admin;
+  getUserFirstName(): string {
+    return User.fromJSON(JSON.parse((localStorage.getItem('currentUser')))).firstName;
   }
 
   logout() {
