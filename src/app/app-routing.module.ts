@@ -9,11 +9,12 @@ import { WeekScheduleComponent } from './week-schedule/week-schedule.component';
 import { AuthGuard } from './user/auth.guard';
 import { BusschemaComponent } from './busschema/busschema.component';
 import {RegisterComponent} from './user/register/register.component';
+import {AdminBussesComponent} from "./admin-busses/admin-busses.component";
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: PictoAgendaComponent },
-  { path: 'bus', component: BusschemaComponent },
+  { path: 'bus', component: AdminBussesComponent },
   { path: 'week', component: WeekScheduleComponent, canActivate: [AuthGuard] },
   { path: 'picto', component: PictoAgendaComponent, canActivate: [AuthGuard] },
   { path: 'r', component: RegisterComponent },

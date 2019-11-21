@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {Activity} from "../shared/models/activity.model";
+import {ActivityNewComponent} from "../admin-activities/activity-new/activity-new.component";
+import {Bus} from "../shared/models/bus.model";
 
 @Component({
   selector: 'app-admin-busses',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminBussesComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) {}
+
+  openDialog(b : Bus = null): void {
+    const dialogRef = this.dialog.open(ActivityNewComponent, {
+      width: '1000px',
+      data: b
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+    });
+  }
+
 
   ngOnInit() {
   }
+
+
 
 }
