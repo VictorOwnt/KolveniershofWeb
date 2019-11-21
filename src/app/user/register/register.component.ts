@@ -15,12 +15,14 @@ import * as zxcvbn from 'zxcvbn';
 import * as $ from 'jquery';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 
-function comparePasswords(control: AbstractControl): { [key: string]: any } {
-  const password = control.get('password');
-  const confirmPassword = control.get('confirmPassword');
-  return password.value === confirmPassword.value
-    ? null
-    : { passwordsDiffer: true };
+function comparePasswords(control: AbstractControl) {
+  return new Promise( resolve => {
+    const password = control.parent.controls['password'].value;
+    const confirmPassword = control.value;
+    return password === confirmPassword
+      ? resolve(null)
+      : resolve({ passwordsDiffer: true });
+  });
 }
 
 function serverSideValidateEmail(authService: AuthenticationService): ValidatorFn {
@@ -36,9 +38,20 @@ function serverSideValidateEmail(authService: AuthenticationService): ValidatorF
   };
 }
 
-function passwordStrength(control: AbstractControl) { // TODO
-  if (zxcvbn(control.value).score < 2) {
-    return { passwordStrenght: true };
+function emailPatternValid(pattern: string): ValidatorFn {
+  return (control: AbstractControl) => {
+    const urlRegEx: string = pattern;
+    if (control.value && !control.value.match(urlRegEx)) {
+      return { emailInvalid: true};
+    } else {
+      return null;
+    }
+  };
+}
+
+function passwordStrength(control: AbstractControl): { [key: string]: any }  {
+  if (zxcvbn(String(control.value)).score < 2) {
+    return { passwordStrenghtValue: true };
   } else {
     return null;
   }
@@ -72,22 +85,21 @@ export class RegisterComponent implements OnInit {
     this.user = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: [
-        '',
-        [Validators.required, Validators.email], // TODO - Validators.pattern()
-        serverSideValidateEmail(this.authService) // TODO - Async
+      email: ['', [Validators.required,
+        emailPatternValid('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
+        serverSideValidateEmail(this.authService) // TODO - async
       ],
       passwordGroup: this.fb.group(
         {
           password: ['', [Validators.required, passwordStrength]],
-          confirmPassword: ['', Validators.required]
-        },
-        { validators: [Validators.required, comparePasswords] }
+          confirmPassword: ['', Validators.required, comparePasswords]
+        }
       ),
+      birthday: ['', Validators.required],
       street: [''],
       city: [''],
       postalCode: [''],
-      birthday: ['', Validators.required]
+      picture: ['']
     });
   }
 
@@ -98,18 +110,18 @@ export class RegisterComponent implements OnInit {
 
   getEmailErrorMessage() {
     return this.user.controls.email.hasError('required') ? 'Emailadres is verplicht.' :
-      this.user.controls.email.hasError('email') ? 'Geen geldig emailadres.' :
+      this.user.controls.email.hasError('emailInvalid') ? 'Geen geldig emailadres.' :
         this.user.controls.email.hasError('userAlreadyExists') ? 'Er bestaat al een gebruiker met dit emailadres.' :
         '';
   }
 
   getPasswordErrorMessage() {
-    return this.user.controls.passwordGroup.hasError('required')
+    return this.user.controls.passwordGroup.hasError('required', 'password')
       ? 'Wachtwoord is verplicht' :
-      this.user.controls.passwordGroup.get('password').hasError('passwordStrength')
-        ? 'Wachtwoord is niet sterk genoeg.' :
-          this.user.controls.passwordGroup.hasError('passwordsDiffer')
-            ? 'Wachtwoorden komen niet overeen.' : '';
+        this.user.controls.passwordGroup.hasError('passwordStrenghtValue', 'password')
+          ? 'Wachtwoord is niet sterk genoeg.' :
+            this.user.controls.passwordGroup.hasError('passwordsDiffer', 'confirmPassword')
+              ? 'Wachtwoorden komen niet overeen.' : '';
   }
 
   getBirthdayErrorMessage() {
