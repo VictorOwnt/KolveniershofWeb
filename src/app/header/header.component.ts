@@ -42,6 +42,11 @@ export class HeaderComponent implements OnInit {
         clearAllBodyScrollLocks();
       }
     });
+    // Pyro easter egg
+    // tslint:disable-next-line:only-arrow-functions
+    $('#boom_click').click(function() {
+      $('#boom').toggleClass('pyro');
+    });
   }
 
   setCurrentUserFromLocalStorage() {
