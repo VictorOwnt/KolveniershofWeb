@@ -8,7 +8,7 @@ import { LoginComponent } from './user/login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
-import { NavComponent } from './nav/nav.component';
+import { HeaderComponent } from './header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
@@ -46,17 +46,21 @@ import { ActivityComponent } from './weekday/activity/activity.component';
 import { WeekendComponent } from './weekend/weekend.component';
 import { WeekendDayComponent } from './weekend/weekend-day/weekend-day.component';
 import { HolidayComponent } from './holiday/holiday.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule} from '@angular/fire/storage';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { environment } from '../environments/environment';
 import { AdminActivitiesComponent } from './admin-activities/admin-activities.component';
 import { ActivityListComponent } from './admin-activities/activity-list/activity-list.component';
 import { ActivityNewComponent } from './admin-activities/activity-new/activity-new.component';
-import { AdminActivityComponent } from "./admin-activities/activity-list/admin-activity/admin-activity.component";
+import { AdminActivityComponent } from './admin-activities/activity-list/admin-activity/admin-activity.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
-    NavComponent,
+    HeaderComponent,
     FooterComponent,
     WeekScheduleComponent,
     PictoAgendaComponent,
@@ -70,10 +74,11 @@ import { AdminActivityComponent } from "./admin-activities/activity-list/admin-a
     WeekendComponent,
     WeekendDayComponent,
     HolidayComponent,
-    AdminActivitiesComponent,
     ActivityListComponent,
     ActivityNewComponent,
-    AdminActivityComponent
+    AdminActivityComponent,
+    AdminActivitiesComponent,
+    AdminHomeComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -101,7 +106,9 @@ import { AdminActivityComponent } from "./admin-activities/activity-list/admin-a
     MatNativeDateModule,
     MatDialogModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule
   ],
   entryComponents: [EditWeekScheduleComponent, ActivityNewComponent],
   providers: [

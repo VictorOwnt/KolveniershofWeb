@@ -87,10 +87,11 @@ export class AuthenticationService {
     password: string,
     firstName: string,
     lastName: string,
+    picture: string,
     birthday: Date,
     street: string,
     city: string,
-    postalCode: string //insert picture
+    postalCode: string
   ): Observable<boolean> {
     return this.http
       .post(
@@ -100,7 +101,13 @@ export class AuthenticationService {
           password,
           firstName,
           lastName,
-          birthday
+          picture,
+          birthday,
+          address: {
+            street,
+            postalCode,
+            city
+          }
         },
         { responseType: 'text' }
       )
