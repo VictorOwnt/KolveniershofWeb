@@ -14,10 +14,10 @@ import {ActivityNewComponent} from "./activity-new/activity-new.component";
 export class AdminActivitiesComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
 
-  openDialog(): void {
+  openDialog(a : Activity = null): void {
     const dialogRef = this.dialog.open(ActivityNewComponent, {
       width: '1000px',
-      data: {}
+      data: a
     });
 
     dialogRef.afterClosed().subscribe(result => {

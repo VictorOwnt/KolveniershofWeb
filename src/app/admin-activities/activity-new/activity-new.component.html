@@ -1,11 +1,12 @@
-<div class="header" mat-dialog-title>Activiteit aanmaken</div>
-<form [formGroup]="activity" (ngSubmit)="save()">
+<div *ngIf="!activity" class="header" mat-dialog-title>Activiteit aanmaken</div>
+<div *ngIf="activity" class="header" mat-dialog-title>Activiteit aanpassen</div>
+<form [formGroup]="activityForm" (ngSubmit)="save()">
     <div class="content" mat-dialog-content>
         <mat-form-field appearance="outline">
             <mat-label>Naam</mat-label>
-            <input matInput placeholder="Naam van de activiteit" formControlName="name" required>
+            <input matInput [value]="activity ? activity.name : ''" placeholder="Naam van de activiteit" formControlName="name" required>
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-error *ngIf="activity.controls.name.invalid">{{getNameErrorMessage()}}</mat-error>
+            <mat-error *ngIf="activityForm.controls.name.invalid">{{getNameErrorMessage()}}</mat-error>
         </mat-form-field>
         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="6%" fxLayout.lt-md="column"
              fxLayoutGap.lt-md="3%">
@@ -14,14 +15,14 @@
                     <img class="iconupload" [src]="imageUrl ? imageUrl: '../../../assets/img/icons/add_circle.svg'"/>
                 </label>
                 <br/>
-                <input id="icon" accept='image/*' type="file" (change)="preview($event)" formControlName="icon" required/>
+                <input id="icon" accept='image/*' type="file" (change)="preview($event)" formControlName="icon" validate/>
             </div>
         </div>
         <p fxLayoutAlign="center center" class="subtitle">Klik hier om een icoon toe te voegen.</p>
-        <mat-error *ngIf="activity.controls.icon.invalid" fxLayoutAlign="center center">{{getIconErrorMessage()}}</mat-error>
+        <mat-error *ngIf="activityForm.controls.icon.invalid" fxLayoutAlign="center center">{{getIconErrorMessage()}}</mat-error>
     </div>
     <div mat-dialog-actions align="center">
-        <button class="btn" type="submit" [disabled]='!activity.valid'>Opslaan</button>
+        <button class="btn" type="submit" [disabled]='!activityForm.valid'>Opslaan</button>
         <button class="btn-pink" (click)="onNoClick()">Annuleren</button>
 
     </div>
