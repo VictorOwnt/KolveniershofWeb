@@ -27,7 +27,7 @@ context('Traversal', () => {
 
   it('.filter() - get DOM elements that match the selector', () => {
     // https://on.cypress.io/filter
-    cy.get('.traversal-nav>li')
+    cy.get('.traversal-header>li')
       .filter('.active').should('contain', 'About')
   })
 
@@ -89,9 +89,9 @@ context('Traversal', () => {
 
   it('.parentsUntil() - get parent DOM elements from DOM elements until el', () => {
     // https://on.cypress.io/parentsuntil
-    cy.get('.clothes-nav')
+    cy.get('.clothes-header')
       .find('.active')
-      .parentsUntil('.clothes-nav')
+      .parentsUntil('.clothes-header')
       .should('have.length', 2)
   })
 
