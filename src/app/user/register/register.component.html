@@ -7,7 +7,7 @@
         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="6%" fxLayout.lt-md="column" fxLayoutGap.lt-md="3%">     
             <div>
                 <label for="picture">
-                    <img class="profilePicture" [src]="imageUrl ? imageUrl: '../../../assets/img/avatar_circle_grey_512dp.png'" />
+                    <img class="profilePicture" [src]="imageUrl ? imageUrl: '../../../assets/img/profile_picture_empty.png'" />
                 </label>
                 <br/>
                 <input id="picture" accept='image/*' type="file" (change)="preview($event)"/>
