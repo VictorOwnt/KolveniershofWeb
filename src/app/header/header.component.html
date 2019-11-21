@@ -13,18 +13,27 @@
     <nav class="main-nav">
       <ul>
         <li>
-          <a href="#">
-            About
+          <a routerLink="/home">
+            <i class="material-icons">
+              home
+            </i>
+            Home
           </a>
         </li>
         <li>
-          <a href="#">
-            Pricing
+          <a (click)="logout()" style="cursor: pointer;">
+            <i class="material-icons">
+              exit_to_app
+            </i>
+            Afmelden
           </a>
         </li>
 
         <li>
-          <a href="#">
+          <a href="https://www.averegina.be/contacteer-ons.html" target="_blank">
+            <i class="material-icons">
+              mail_outline
+            </i>
             Contact
           </a>
         </li>
@@ -35,15 +44,19 @@
       <nav class="footer-nav">
         <ul>
           <li>
-            <a href="#">
-              <i class="fa fa-twitter fa-fw"></i>
-              Twitter
+            <a href="https://www.averegina.be/" target="_blank">
+              <i class="material-icons">
+                web
+              </i>
+              Ave Regina
             </a>
           </li>
           <li>
-            <a href="#">
-              <i class="fa fa-envelope fa-fw"></i>
-              Subscribe
+            <a href="https://www.hogent.be/opleidingen/bachelors/toegepaste-informatica/" target="_blank">
+              <i class="material-icons">
+                school
+              </i>
+              HoGent
             </a>
           </li>
         </ul>
