@@ -30,7 +30,7 @@
                 <mat-label>Wachtwoord</mat-label>
                 <input matInput placeholder="abc123" [type]="hidePassword ? 'password' : 'text'" formControlName="password"
                        required>
-                <button mat-icon-button matSuffix (mousedown)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+                <button type="button" mat-icon-button matSuffix (mousedown)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
                         [attr.aria-pressed]="hidePassword">
                     <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
@@ -41,7 +41,7 @@
                 <mat-label>Wachtwoord herhalen</mat-label>
                 <input matInput placeholder="abc123" [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword"
                        required>
-                <button mat-icon-button matSuffix (mousedown)="hideConfirmPassword = !hideConfirmPassword" [attr.aria-label]="'Hide password'"
+                <button type="button" mat-icon-button matSuffix (mousedown)="hideConfirmPassword = !hideConfirmPassword" [attr.aria-label]="'Hide password'"
                         [attr.aria-pressed]="hideConfirmPassword">
                     <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
@@ -54,7 +54,7 @@
             <input matInput [matDatepicker]="picker" placeholder="01/01/1990" formControlName="birthday" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker startView="multi-year" [startAt]="startDate"></mat-datepicker>
-            <mat-error *ngIf="user.controls.city.invalid">{{getBirthdayErrorMessage()}}</mat-error>
+            <mat-error *ngIf="user.controls.birthday.invalid">{{getBirthdayErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">

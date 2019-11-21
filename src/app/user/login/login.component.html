@@ -13,7 +13,7 @@
         <mat-label>Wachtwoord</mat-label>
         <input matInput placeholder="abc123" [type]="hidePassword ? 'password' : 'text'" formControlName="password"
                required>
-        <button mat-icon-button matSuffix (mousedown)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+        <button type="button" mat-icon-button matSuffix (mousedown)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hidePassword">
             <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
