@@ -205,3 +205,8 @@ body {
     border: 2px solid $color-primary-dark;
   }
 }
+
+// Changes color to #003A70 (color-text)
+img.svgTextColor {
+  filter: invert(11%) sepia(73%) saturate(4067%) hue-rotate(197deg) brightness(97%) contrast(101%);
+}
