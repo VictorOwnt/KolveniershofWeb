@@ -50,6 +50,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule} from '@angular/fire/storage';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { environment } from '../environments/environment';
+import { ScheduleItemComponent } from './admin/schedule/schedule-item/schedule-item.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { environment } from '../environments/environment';
     WeekendComponent,
     WeekendDayComponent,
     HolidayComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    ScheduleItemComponent
   ],
   imports: [
     FlexLayoutModule,
