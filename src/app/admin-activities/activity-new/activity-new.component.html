@@ -15,7 +15,7 @@
                     <img class="iconupload" [src]="imageUrl ? imageUrl: '../../../assets/img/icons/add_circle.svg'"/>
                 </label>
                 <br/>
-                <input id="icon" accept='image/*' type="file" (change)="preview($event)" formControlName="icon" validate/>
+                <input id="icon" accept='.svg,image/*' type="file" (change)="preview($event)" formControlName="icon" validate/>
             </div>
         </div>
         <p fxLayoutAlign="center center" class="subtitle">Klik hier om een icoon toe te voegen.</p>

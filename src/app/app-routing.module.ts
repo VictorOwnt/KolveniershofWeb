@@ -10,6 +10,7 @@ import { AuthGuard } from './user/auth.guard';
 import { BusschemaComponent } from './busschema/busschema.component';
 import {RegisterComponent} from './user/register/register.component';
 import {AdminHomeComponent} from './admin-home/admin-home.component';
+import { AdminActivitiesComponent } from './admin-activities/admin-activities.component';
 
 const appRoutes: Routes = [ // TODO - Fix all routes
   { path: 'admin', component: AdminHomeComponent, canActivate: [AuthGuard] },
@@ -19,6 +20,7 @@ const appRoutes: Routes = [ // TODO - Fix all routes
   { path: 'week', component: WeekScheduleComponent, canActivate: [AuthGuard] },
   { path: 'picto', component: PictoAgendaComponent, canActivate: [AuthGuard] },
   { path: 'r', component: RegisterComponent },
+  { path: 'a', component: AdminActivitiesComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

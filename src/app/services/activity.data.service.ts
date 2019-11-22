@@ -5,14 +5,13 @@ import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../../environments/environment';
 import {Activity} from "../shared/models/activity.model";
 import {catchError, map} from "rxjs/operators";
-import {User} from "../shared/models/user.model";
-import {icon} from "@fortawesome/fontawesome-svg-core";
 
 @Injectable({
     providedIn: 'root'
   })
 export class ActivityDataService {
     public loadingError$ = new Subject<string>();
+    public iconDownloadUrls: any[];
 
     constructor(private http: HttpClient) {}
 
@@ -21,7 +20,7 @@ export class ActivityDataService {
     }
 
     get activities$(): Observable<Activity[]> {
-        return this.http.get(`${API_URL}/Activities`).pipe(
+        return this.http.get(`${API_URL}/activities`).pipe(
             catchError(error => {
                 this.loadingError$.next(error.statusText);
                 return of(null);
@@ -30,13 +29,13 @@ export class ActivityDataService {
         );
     }
 
-    postActivity(name: String, icon: String): Observable<Activity> {
+    postActivity(name: string, icon: string): Observable<Activity> {
         return this.http
             .post(
-                `${API_URL}/users/register`,
+                `${API_URL}/activities`,
                 {
                     name,
-                    icon,
+                    icon
                 },
                 { responseType: 'text' }
             )
