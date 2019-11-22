@@ -1,7 +1,7 @@
 import { Subject} from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { API_URL } from '../../environments/environment';
+import { API_URL} from '../../environments/environment';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 
 @Injectable({
@@ -32,26 +32,34 @@ export class FirebaseService {
         }
     }
 
+    get IconDownloadUrls$(): string[] {
+        return null;
+    }
+
     async uploadFile(filePath: string) {
         if (this.fileData) {
             this.filePath = filePath;
             const snap = await this.storage.upload(filePath, this.fileData);
-            if (this.filePath.match('^users\/')) {
-                this.getUrl(snap, 'icon');
-            } else if (this.filePath.match('^icons\/')) {
+            if (this.filePath.match(/^users/)) {
                 this.getUrl(snap, 'user');
+            } else if (this.filePath.match(/^icons/)) {
+                this.getUrl(snap, 'icon');
             }
           } else {alert('Selecteer een foto/icoon'); }
     }
 
-    private async getUrl(snap: firebase.storage.UploadTaskSnapshot, type: string) {     // TODO - pusht alles op imageDownloadUrls nu
+    private async getUrl(snap: firebase.storage.UploadTaskSnapshot, type: string) {
         const url = await snap.ref.getDownloadURL();
         if (type === 'user') {
             this.imageDownloadUrls.push(url);
             console.log('pushed image');
         } else {
             this.iconDownloadUrls.push(url);
+            // let iconDownloadUrl: string[];
+            // this.iconDownloadUrls.subscribe(downloadUrls => (iconDownloadUrl = downloadUrls));
             console.log('pushed icon');
+            console.log(this.iconDownloadUrls[0]);
+            // console.log(iconDownloadUrl[0]);
         }
       }
 }
