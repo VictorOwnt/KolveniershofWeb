@@ -4,20 +4,27 @@ $font-stack: 'Roboto', Arial, Helvetica, sans-serif;
 
 // COLORS
 
-$color-primary: #007AEF;
-$color-primary-dark: #003A70;
+$color-primary: #007AEF !default;
+$color-primary-dark: #003A70 !default;
 $color-accent: #D81B60;
 
-$color-background: #EEF3F8;
-$color-text: #003A70;
+$color-danger: #FF4444 !default;
+$color-danger-dark: #CC0000 !default;
+$color-warning: #FFBB33 !default;
+$color-warning-dark: #FF8800 !default;
+$color-success: #00C851 !default;
+$color-success-dark: #007E33 !default;
 
-$gradient-blue: linear-gradient(90deg, #007AEF, #003A70);
+$color-background: #EEF3F8 !default;
+$color-text: $color-primary-dark !default;
+
+$gradient-blue: linear-gradient(90deg, $color-primary, $color-primary-dark) !default;
 
 // SHADOWS
 
-$shadow-blue: 0px 17px 40px 0px rgba(0, 122, 239, .3);
-$shadow-pink: 0px 17px 40px 0px rgba(216, 27, 96, .3);
-$shadow-blue-hover: 0px 17px 40px 0px rgba(0, 122, 239, .5);
-$shadow-pink-hover: 0px 17px 40px 0px rgba(216, 27, 96, .5);
-$shadow-subtle: 0 -20px 85px rgba(0, 0, 0, 0.05);
-$shadow-hard: 0 0px 85px rgba(0, 0, 0, 0.2);
+$shadow-blue: 0px 17px 40px 0px rgba(0, 122, 239, .3) !default;
+$shadow-pink: 0px 17px 40px 0px rgba(216, 27, 96, .3) !default;
+$shadow-blue-hover: 0px 17px 40px 0px rgba(0, 122, 239, .5) !default;
+$shadow-pink-hover: 0px 17px 40px 0px rgba(216, 27, 96, .5) !default;
+$shadow-subtle: 0 -20px 85px rgba(0, 0, 0, 0.05) !default;
+$shadow-hard: 0 0px 85px rgba(0, 0, 0, 0.2) !default;
