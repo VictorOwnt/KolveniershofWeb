@@ -12,7 +12,6 @@
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             <mat-error *ngIf="busForm.controls.name.invalid">{{getNameErrorMessage()}}</mat-error>
         </mat-form-field>
-        <mat-color-picker></mat-color-picker>
     </div>
     <div mat-dialog-actions align="center">
         <button class="btn" type="submit" [disabled]='!busForm.valid'>Opslaan</button>
