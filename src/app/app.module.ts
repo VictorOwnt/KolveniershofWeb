@@ -32,15 +32,12 @@ import { MatDividerModule } from '@angular/material/divider';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { WorkDayDataService } from './services/workDay.data.service';
-import { WeekScheduleComponent } from './week-schedule/week-schedule.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { EditWeekScheduleComponent } from './edit-week-schedule/edit-week-schedule.component';
 import { BusschemaComponent } from './busschema/busschema.component';
 import { MatSelectModule } from '@angular/material/select';
 import { RegisterComponent } from './user/register/register.component';
 import { BusschemaTableComponent } from './busschema/busschema-table/busschema-table.component';
-import { BlockOfWeekScheduleComponent } from './week-schedule/block-of-week-schedule/block-of-week-schedule.component';
 import { WeekdayComponent } from './weekday/weekday.component';
 import { ActivityComponent } from './weekday/activity/activity.component';
 import { WeekendComponent } from './weekend/weekend.component';
@@ -64,13 +61,10 @@ registerLocaleData(localeNl, 'nl-BE');
     PageNotFoundComponent,
     HeaderComponent,
     FooterComponent,
-    WeekScheduleComponent,
     PictoAgendaComponent,
-    EditWeekScheduleComponent,
     BusschemaComponent,
     RegisterComponent,
     BusschemaTableComponent,
-    BlockOfWeekScheduleComponent,
     WeekdayComponent,
     ActivityComponent,
     WeekendComponent,
@@ -112,7 +106,7 @@ registerLocaleData(localeNl, 'nl-BE');
     AngularFireStorageModule,
     MatCheckboxModule
   ],
-  entryComponents: [EditWeekScheduleComponent],
+  entryComponents: [],
   providers: [
     { provide: LOCALE_ID, useValue: 'nl-BE' },
     httpInterceptorProviders,

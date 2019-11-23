@@ -1,7 +1,3 @@
-import { MatDialogRef, MatDialog } from '@angular/material';
-
-import { EditWeekScheduleComponent } from '../edit-week-schedule/edit-week-schedule.component';
-
 export class StaticMethodsPicto {
   static namesOfDays = [
     'Zondag',
