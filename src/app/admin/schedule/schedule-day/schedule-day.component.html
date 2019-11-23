@@ -1,0 +1,48 @@
+<div class="card" fxLayout="column">
+    <div class="card_header">
+        <h1 class="mat-display-1" fxLayoutAlign="center center">{{ workday.date | date:'EEEE' | titlecase }}</h1>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <img class="svgWhiteColor" src="../../../../assets/img/icons/icon-moon.svg" alt="Day icon">
+            <span class="mat-h3" style="margin: auto 10px; ">&middot;</span>
+            <h2 class="mat-h2">{{ workday.date | date:'d/MM' }}</h2>
+        </div>
+    </div>
+    <div class="card_content" fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayout.lt-md="column">
+        <div class="card_content" fxLayout="column"
+             fxFlex="0 1 50%"
+             fxFlex.lt-md="100%">
+            <div id="general">
+                <h2>Algemeen</h2>
+                <p *ngIf="workday.originalTemplateName">Deze planning komt van het template {{ workday.originalTemplateName }}, week {{ workday.originalWeekNumber }}.</p>
+                <mat-checkbox>Vrijaf</mat-checkbox>
+            </div>
+            <div id="amActivities" *ngIf="!workday.holiday">
+                <h2>Voormiddag</h2>
+                <app-schedule-unit *ngFor="let activityUnit of workday.amActivities" [unit]="activityUnit" class="activity"></app-schedule-unit>
+                <div [style.margin-top]="workday.amActivities.length > 0 ? '' : '30px'" class="add-activity">
+                    <button type="button" class="btn-white" (click)="newUnit('activity',true)">Nieuwe activiteit toevoegen</button>
+                </div>
+            </div>
+        </div>
+        <div class="card_content" fxLayout="column"
+             fxFlex="0 1 50%"
+             fxFlex.lt-md="100%">
+            <div id="lunch" *ngIf="!workday.holiday">
+                <h2>Lunch</h2>
+                <app-schedule-unit *ngIf="workday.lunch; else addLunch" [unit]="workday.lunch" class="lunch"></app-schedule-unit>
+                <ng-template #addLunch>
+                    <div [style.margin-top]="workday.lunch ? '' : '30px'" class="add-lunch">
+                        <button type="button" class="btn-white" (click)="newUnit('lunch')">Lunch toevoegen</button>
+                    </div>
+                </ng-template>
+            </div>
+            <div id="pmActivities" *ngIf="!workday.holiday">
+                <h2>Namiddag</h2>
+                <app-schedule-unit *ngFor="let activityUnit of workday.pmActivities" [unit]="activityUnit" class="activity"></app-schedule-unit>
+                <div [style.margin-top]="workday.pmActivities.length > 0 ? '' : '30px'" class="add-activity">
+                    <button type="button" class="btn-white" (click)="newUnit('activity',false)">Nieuwe activiteit toevoegen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

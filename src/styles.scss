@@ -206,7 +206,17 @@ body {
   }
 }
 
-// Changes color to #003A70 (color-text)
-img.svgTextColor {
-  filter: invert(11%) sepia(73%) saturate(4067%) hue-rotate(197deg) brightness(97%) contrast(101%);
+// SVG color changer in img tag ( !!! SVG MUST BE BLACK !!! )
+img {
+  // Changes color to #003A70 (color-text)
+  &.svgTextColor {
+    filter: invert(11%) sepia(73%) saturate(4067%) hue-rotate(197deg) brightness(97%) contrast(101%);
+    -webkit-filter: invert(11%) sepia(73%) saturate(4067%) hue-rotate(197deg) brightness(97%) contrast(101%);
+  }
+
+  // Changes color to #FFF (white)
+  &.svgWhiteColor {
+    filter: invert(100%);
+    -webkit-filter: invert(100%);
+  }
 }

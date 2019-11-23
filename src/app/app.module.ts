@@ -1,6 +1,6 @@
 // everything still has to be put in seperate modules
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +15,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatNativeDateModule,
-  MatDialogModule
+  MatDialogModule, MatCheckboxModule
 } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -27,7 +27,7 @@ import { httpInterceptorProviders } from './http-interceptors';
 import { PictoAgendaComponent } from './picto-agenda/picto-agenda.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { CommonModule } from '@angular/common';
+import {CommonModule, registerLocaleData} from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -50,7 +50,11 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule} from '@angular/fire/storage';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { environment } from '../environments/environment';
+import { ScheduleDayComponent } from './admin/schedule/schedule-day/schedule-day.component';
 import { ScheduleUnitComponent } from './admin/schedule/schedule-unit/schedule-unit.component';
+import localeNl from '@angular/common/locales/nl';
+
+registerLocaleData(localeNl, 'nl-BE');
 
 @NgModule({
   declarations: [
@@ -72,6 +76,7 @@ import { ScheduleUnitComponent } from './admin/schedule/schedule-unit/schedule-u
     WeekendDayComponent,
     HolidayComponent,
     AdminHomeComponent,
+    ScheduleDayComponent,
     ScheduleUnitComponent
   ],
   imports: [
@@ -102,10 +107,12 @@ import { ScheduleUnitComponent } from './admin/schedule/schedule-unit/schedule-u
     FormsModule,
     MatSelectModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    MatCheckboxModule
   ],
   entryComponents: [EditWeekScheduleComponent],
   providers: [
+    { provide: LOCALE_ID, useValue: 'nl-BE' },
     httpInterceptorProviders,
     WorkDayDataService,
     MatDatepickerModule

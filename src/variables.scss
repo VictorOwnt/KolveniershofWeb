@@ -6,7 +6,7 @@ $font-stack: 'Roboto', Arial, Helvetica, sans-serif;
 
 $color-primary: #007AEF !default;
 $color-primary-dark: #003A70 !default;
-$color-accent: #D81B60;
+$color-accent: #D81B60 !default;
 
 $color-danger: #FF4444 !default;
 $color-danger-dark: #CC0000 !default;
@@ -17,6 +17,8 @@ $color-success-dark: #007E33 !default;
 
 $color-background: #EEF3F8 !default;
 $color-text: $color-primary-dark !default;
+
+$color-divider: rgba(0, 58, 112, 0.5) !default; // $color-primary-dark 50% opacity
 
 $gradient-blue: linear-gradient(90deg, $color-primary, $color-primary-dark) !default;
 
