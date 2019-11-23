@@ -1,0 +1,5 @@
+<app-header></app-header>
+
+<div fxLayout="column" fxLayoutGap="20px">
+    <app-schedule-day *ngFor="let workday of workdays" [workday]="workday"></app-schedule-day>
+</div>

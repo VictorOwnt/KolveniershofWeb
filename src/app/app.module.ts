@@ -50,6 +50,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule} from '@angular/fire/storage';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { environment } from '../environments/environment';
+import { ScheduleComponent } from './admin/schedule/schedule.component';
 import { ScheduleDayComponent } from './admin/schedule/schedule-day/schedule-day.component';
 import { ScheduleUnitComponent } from './admin/schedule/schedule-unit/schedule-unit.component';
 import localeNl from '@angular/common/locales/nl';
@@ -76,6 +77,7 @@ registerLocaleData(localeNl, 'nl-BE');
     WeekendDayComponent,
     HolidayComponent,
     AdminHomeComponent,
+    ScheduleComponent,
     ScheduleDayComponent,
     ScheduleUnitComponent
   ],
