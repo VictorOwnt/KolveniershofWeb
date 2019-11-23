@@ -7,7 +7,7 @@ import {Workday} from '../../../shared/models/workday.model';
   styleUrls: ['./schedule-day.component.scss']
 })
 export class ScheduleDayComponent implements OnInit {
-  @Input() private workday: Workday;
+  @Input() workday: Workday;
 
   constructor() {}
 

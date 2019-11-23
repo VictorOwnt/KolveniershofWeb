@@ -10,9 +10,9 @@ import {User} from '../../../shared/models/user.model';
 })
 export class ScheduleUnitComponent implements OnInit {
   @Input() private unit: any;
-  private title: string;
-  private mentors: User[] = [];
-  private clients: User[] = [];
+  title: string;
+  mentors: User[] = [];
+  clients: User[] = [];
 
   constructor() { }
 

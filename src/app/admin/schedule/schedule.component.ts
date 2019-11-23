@@ -8,7 +8,7 @@ import {WorkDayDataService} from '../../services/workDay.data.service';
   styleUrls: ['./schedule.component.scss']
 })
 export class ScheduleComponent implements OnInit {
-  private workdays: any[] | Workday[] = [];
+  workdays: Workday[] = [];
 
   constructor(private workdayDataService: WorkDayDataService) {
     // TODO - real data
