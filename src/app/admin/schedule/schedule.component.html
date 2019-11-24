@@ -1,5 +1,10 @@
 <app-header></app-header>
 
 <div fxLayout="column" fxLayoutGap="20px">
+    <div class="weekselector" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <button (click)="prevWeek()"><i class="material-icons">navigate_before</i></button>
+        <p>Week {{ dates[0] | date: 'w' }}<br>({{ dates[0] | date: 'd LLL' }} tot {{ dates[4] | date: 'd LLL' }})</p>
+        <button (click)="nextWeek()"><i class="material-icons">navigate_next</i></button>
+    </div>
     <app-schedule-day *ngFor="let workday of workdays" [workday]="workday"></app-schedule-day>
 </div>
