@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivityUnit} from "../../../shared/models/activityUnit.model";
 import {Activity} from "../../../shared/models/activity.model";
-import {ActivityNewComponent} from "../../activity-new/activity-new.component";
 import {AdminActivitiesComponent} from "../../admin-activities.component";
+import { Observable } from 'rxjs';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-admin-activity',
@@ -11,11 +11,18 @@ import {AdminActivitiesComponent} from "../../admin-activities.component";
 })
 export class AdminActivityComponent implements OnInit {
 
-  @Input() public activity: Activity;
+  @Input()
+  public activity: Activity;
+  public iconImage: Observable<string | null>;
 
-  constructor(public _a : AdminActivitiesComponent) { }
+  constructor(
+    public _a : AdminActivitiesComponent,
+    private _firebaseService: FirebaseService,
+    ) {
+     }
 
   ngOnInit() {
+    this.iconImage = this._firebaseService.lookupFileDownloadUrl(this.activity.icon);
   }
 
   edit(): void {

@@ -11,7 +11,6 @@ import {catchError, map} from "rxjs/operators";
   })
 export class ActivityDataService {
     public loadingError$ = new Subject<string>();
-    public iconDownloadUrls: any[];
 
     constructor(private http: HttpClient) {}
 

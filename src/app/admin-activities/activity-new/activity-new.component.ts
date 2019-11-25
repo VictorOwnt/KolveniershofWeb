@@ -86,7 +86,7 @@ export class ActivityNewComponent implements OnInit {
   }
 
   save() {                                            // TODO - doesn't update without refresh
-    const filePath = 'icons/icon-' + this.activityForm.value.name;
+    const filePath = 'icons/icon-' + this.activityForm.value.name + '.svg';
     this.firebaseService.uploadFile(filePath);
     this._activityDataService.postActivity(this.activityForm.value.name, filePath).subscribe(
       val => {
