@@ -10,6 +10,9 @@ h1, h2, h3, p {
   background-color: #FFF;
   padding: $card-padding $card-padding 0;
   border-radius: 8px;
+  -webkit-box-shadow: $shadow-card;
+  -moz-box-shadow: $shadow-card;
+  box-shadow: $shadow-card;
 }
 
 .card_header {
@@ -53,7 +56,7 @@ h1, h2, h3, p {
   }
 
   .add-activity, .add-lunch {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 }
 
