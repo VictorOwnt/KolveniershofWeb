@@ -27,7 +27,7 @@ import { httpInterceptorProviders } from './http-interceptors';
 import { PictoAgendaComponent } from './picto-agenda/picto-agenda.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {CommonModule, registerLocaleData} from '@angular/common';
+import {CommonModule, DatePipe, registerLocaleData} from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -48,9 +48,10 @@ import { AngularFireStorageModule} from '@angular/fire/storage';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { environment } from '../environments/environment';
 import { ScheduleComponent } from './admin/schedule/schedule.component';
-import { ScheduleDayComponent } from './admin/schedule/schedule-day/schedule-day.component';
+import { ScheduleWeekdayComponent } from './admin/schedule/schedule-weekday/schedule-weekday.component';
 import { ScheduleUnitComponent } from './admin/schedule/schedule-unit/schedule-unit.component';
 import localeNl from '@angular/common/locales/nl';
+import { ScheduleWeekendComponent } from './admin/schedule/schedule-weekend/schedule-weekend.component';
 
 registerLocaleData(localeNl, 'nl-BE');
 
@@ -72,8 +73,9 @@ registerLocaleData(localeNl, 'nl-BE');
     HolidayComponent,
     AdminHomeComponent,
     ScheduleComponent,
-    ScheduleDayComponent,
-    ScheduleUnitComponent
+    ScheduleWeekdayComponent,
+    ScheduleUnitComponent,
+    ScheduleWeekendComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -110,6 +112,7 @@ registerLocaleData(localeNl, 'nl-BE');
   providers: [
     { provide: LOCALE_ID, useValue: 'nl-BE' },
     httpInterceptorProviders,
+    DatePipe,
     WorkDayDataService,
     MatDatepickerModule
   ],

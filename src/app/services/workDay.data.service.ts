@@ -52,5 +52,9 @@ export class WorkDayDataService {
 
   updateLunch(lunch: LunchUnit) {
     return this.http.patch(`${API_URL}/units/${lunch.id}`, lunch.toJSON());
+  getWorkdaysByWeek(weekdate: Date): Observable<Workday[]> {
+    return this.http
+      .get(`${API_URL}/workdays/week/${this.datesService.backendFormatDate(weekdate)}`)
+      .pipe(map((list: any[]): Workday[] => list.map(Workday.fromJSON)));
   }
 }

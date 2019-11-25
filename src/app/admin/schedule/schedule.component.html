@@ -7,5 +7,7 @@
         <button (click)="nextWeek()"><i class="material-icons">navigate_next</i></button>
     </div>
     <div class="day" *ngFor="let workday of workdays">
+        <app-schedule-weekday *ngIf="!datesService.isWeekend(workday.date)" [workday]="workday"></app-schedule-weekday>
+        <app-schedule-weekend *ngIf="datesService.isWeekend(workday.date)" [workday]="workday"></app-schedule-weekend>
     </div>
 </div>
