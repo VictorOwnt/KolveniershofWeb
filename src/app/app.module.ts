@@ -34,10 +34,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { WorkdayDataService } from './services/workday.data.service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { BusschemaComponent } from './busschema/busschema.component';
 import { MatSelectModule } from '@angular/material/select';
 import { RegisterComponent } from './user/register/register.component';
-import { BusschemaTableComponent } from './busschema/busschema-table/busschema-table.component';
 import { WeekdayComponent } from './weekday/weekday.component';
 import { ActivityComponent } from './weekday/activity/activity.component';
 import { WeekendComponent } from './weekend/weekend.component';
@@ -63,9 +61,7 @@ registerLocaleData(localeNl, 'nl-BE');
     HeaderComponent,
     FooterComponent,
     PictoAgendaComponent,
-    BusschemaComponent,
     RegisterComponent,
-    BusschemaTableComponent,
     WeekdayComponent,
     ActivityComponent,
     WeekendComponent,

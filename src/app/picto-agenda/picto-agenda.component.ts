@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../shared/models/user.model';
 import { Observable, Subject } from 'rxjs';
 import { Workday } from '../shared/models/workday.model';
-import { StaticMethodsPicto } from '../domain/staticMethods';
 import { UserDataService } from '../services/user.data.service';
 import { WorkdayDataService } from '../services/workday.data.service';
+import {DatesService} from '../services/dates.service';
 
 @Component({
   selector: 'app-picto-agenda',
@@ -20,6 +20,7 @@ export class PictoAgendaComponent implements OnInit {
   private _clickedUser: User;
 
   constructor(
+    private datesService: DatesService,
     private _userDataService: UserDataService,
     private _workdayDataService: WorkdayDataService
   ) {
@@ -42,10 +43,10 @@ export class PictoAgendaComponent implements OnInit {
     if (index) {
       this._clickedUser = this._users[index];
     }
-    let currentWeek = this.getCurrentWeek();
+    let currentWeek = this.datesService.weekDays(new Date());
 
     if (this.chosenDate) {
-      currentWeek = this.getCurrentWeek(this.chosenDate);
+      currentWeek = this.datesService.weekDays(this.chosenDate);
     }
     let workday: Workday;
     for (const date of currentWeek) {
@@ -65,22 +66,6 @@ export class PictoAgendaComponent implements OnInit {
     }
   }
 
-  getCurrentWeek(date?: Date): Date[] {
-    let chosenDate: Date = new Date();
-    if (date) {
-      chosenDate = date;
-    }
-
-    const week = [];
-    for (let i = 1; i <= 7; i++) {
-      const first = chosenDate.getDate() - chosenDate.getDay() + i;
-      const day = new Date(chosenDate.setDate(first));
-
-      week.push(StaticMethodsPicto.formattedDate(day));
-    }
-    return week;
-  }
-
   isAdmin(): boolean {
     return User.fromJSON(JSON.parse(localStorage.getItem('currentUser'))).admin;
   }
@@ -94,7 +79,7 @@ export class PictoAgendaComponent implements OnInit {
     return this.workDays[param];
   }
 
-  getWeekdays(): Workday[]{
+  getWeekdays(): Workday[] {
     const weekdays = [];
     for (let i = 0; i < 5; i++) {
 
@@ -105,11 +90,11 @@ export class PictoAgendaComponent implements OnInit {
     return weekdays;
   }
 
-  getWeekenddays(): Workday[]{
+  getWeekenddays(): Workday[] {
     const weekenddays = [];
     for (let i = 5; i < 7; i++) {
 
-      console.log("test");
+      console.log('test');
       weekenddays.push(this.workDays[i]);
     }
     return weekenddays;
