@@ -30,7 +30,7 @@
   }
 }
 
-app-schedule-day {
+.day {
   margin: 0 10%;
   &:last-child {
     margin-bottom: 20px;
@@ -38,19 +38,19 @@ app-schedule-day {
 }
 
 @media screen and (max-width: 1440px) {
-  app-schedule-day {
+  .day {
     margin: 0 5%;
   }
 }
 
 @media screen and (max-width: 768px) {
-  app-schedule-day {
+  .day {
     margin: 0 20px;
   }
 }
 
 @media screen and (max-width: 425px) {
-  app-schedule-day {
+  .day {
     margin: 0 10px;
   }
 }
