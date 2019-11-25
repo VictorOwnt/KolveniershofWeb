@@ -19,6 +19,8 @@ $hamburger-layer-spacing: 5px;
   position: -webkit-sticky;
   top: 0;
   margin-bottom: 35px;
+  -webkit-box-shadow: $shadow-hard;
+  -moz-box-shadow: $shadow-hard;
   box-shadow: $shadow-hard;
   img {
     display: block;

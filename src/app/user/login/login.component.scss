@@ -8,6 +8,7 @@ form {
   height: auto;
   border-radius: 8px;
   -webkit-box-shadow: $shadow-subtle;
+  -moz-box-shadow: $shadow-subtle;
   box-shadow: $shadow-subtle;
 }
 
