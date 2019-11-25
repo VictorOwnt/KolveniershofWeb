@@ -13,7 +13,7 @@ export class ScheduleComponent implements OnInit {
   dates: Date[] = [];
   private date: Date = new Date();
 
-  constructor(private datesService: DatesService, private workdayDataService: WorkdayDataService) {
+  constructor(public datesService: DatesService, private workdayDataService: WorkdayDataService) {
     this.loadWorkdays(this.date);
   }
 
