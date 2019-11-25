@@ -84,7 +84,8 @@ export class ActivityNewComponent implements OnInit {
   save() {                                            // TODO - doesn't update without refresh
     const filePath = 'icons/icon-' + this.activityForm.value.name;
     this.firebaseService.uploadFile(filePath);
-    this._activityDataService.postActivity(this.activityForm.value.name, filePath).subscribe(
+    const activity = new Activity(this.activityForm.value.name, filePath);
+    this._activityDataService.postActivity(activity).subscribe(
       val => {
         if (val) {
           if (this.authService.redirectUrl) {
