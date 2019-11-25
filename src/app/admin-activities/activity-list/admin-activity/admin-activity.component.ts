@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Activity} from "../../../shared/models/activity.model";
-import {AdminActivitiesComponent} from "../../admin-activities.component";
+import {Activity} from '../../../shared/models/activity.model';
+import {AdminActivitiesComponent} from '../../admin-activities.component';
 import { Observable } from 'rxjs';
 import { FirebaseService } from 'src/app/services/firebase.service';
 

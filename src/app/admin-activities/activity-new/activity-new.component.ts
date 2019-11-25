@@ -55,7 +55,7 @@ export class ActivityNewComponent implements OnInit {
   ngOnInit() {
     if(this.data) {
       this.activity = Activity.fromJSON(this.data);
-      this.imageUrl = 'assets/img/icons/icon-' + this.activity.icon + '.svg';
+      this.imageUrl = 'assets/img/icons/icon-' + this.activity.icon;
     }
     this.activityForm = this.fb.group({
       name: ['', Validators.required],
@@ -86,7 +86,7 @@ export class ActivityNewComponent implements OnInit {
   }
 
   save() {                                            // TODO - doesn't update without refresh
-    const filePath = 'icons/icon-' + this.activityForm.value.name + '.svg';
+    const filePath = 'icons/icon-' + this.activityForm.value.name;
     this.firebaseService.uploadFile(filePath);
     this._activityDataService.postActivity(this.activityForm.value.name, filePath).subscribe(
       val => {

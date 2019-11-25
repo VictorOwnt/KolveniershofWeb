@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from "rxjs";
-import {User} from "../shared/models/user.model";
-import {ActivityDataService} from '../services/activity.data.service';
-import {Activity} from "../shared/models/activity.model";
-import {MatDialog} from "@angular/material/dialog";
-import {ActivityNewComponent} from "./activity-new/activity-new.component";
+import {Activity} from '../shared/models/activity.model';
+import {MatDialog} from '@angular/material/dialog';
+import {ActivityNewComponent} from './activity-new/activity-new.component';
 
 @Component({
   selector: 'app-admin-activities',
