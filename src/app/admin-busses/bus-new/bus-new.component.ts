@@ -8,7 +8,8 @@ import {ActivityDataService} from "../../services/activity.data.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import * as $ from "jquery";
 import {Bus} from "../../shared/models/bus.model";
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {BusDataService} from "../../services/bus.data.service";
+
 
 
 @Component({
@@ -19,6 +20,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 })
 export class BusNewComponent implements OnInit {
 
+  public color = '#000000';
   public bus: Bus = null;
   public busForm: FormGroup;
   public errorMsg = '';
@@ -29,7 +31,7 @@ export class BusNewComponent implements OnInit {
       private authService: AuthenticationService,
       private router: Router,
       private fb: FormBuilder,
-      private _activityDataService: ActivityDataService) {}
+      private _busDataService: BusDataService) {}
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -38,6 +40,7 @@ export class BusNewComponent implements OnInit {
   ngOnInit() {
     if(this.data) {
       this.bus = Bus.fromJSON(this.data);
+      this.color = this.bus.color;
     }
     this.busForm = this.fb.group({
       name: ['', Validators.required]
@@ -51,7 +54,15 @@ export class BusNewComponent implements OnInit {
         ? 'Naam is verplicht.' : '';
   }
 
-  save() {
-
+  save(){
+    if(this.bus) {
+      this.bus.color = this.color;
+      this._busDataService.patchBus(this.bus);
+    }
+    else{
+      const bus = new Bus(this.busForm.value.name, this.color);
+      this._busDataService.postBus(bus);
+      console.log(bus);
+    }
   }
 }

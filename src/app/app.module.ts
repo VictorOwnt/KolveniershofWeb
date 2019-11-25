@@ -54,7 +54,7 @@ import { AdminBussesComponent } from './admin-busses/admin-busses.component';
 import { BusListComponent } from './admin-busses/bus-list/bus-list.component';
 import { AdminBusComponent } from './admin-busses/bus-list/admin-bus/admin-bus.component';
 import { BusNewComponent } from './admin-busses/bus-new/bus-new.component';
-import { MatColorPickerModule } from "mat-color-picker";
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
   declarations: [
@@ -110,9 +110,10 @@ import { MatColorPickerModule } from "mat-color-picker";
     MatNativeDateModule,
     MatDialogModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    ColorPickerModule
   ],
-  entryComponents: [EditWeekScheduleComponent, ActivityNewComponent],
+  entryComponents: [EditWeekScheduleComponent, ActivityNewComponent, BusNewComponent],
   providers: [
     httpInterceptorProviders,
     WorkDayDataService,

@@ -24,4 +24,16 @@ export class BusDataService {
         map((list: any[]): Bus[] => list.map(Bus.fromJSON))
     );
   }
+
+  postBus(bus: Bus): Observable<Bus> {
+      return this.http.post(`${API_URL}/busses/`, bus)
+          .pipe(map(Bus.fromJSON));
+
+  }
+
+    patchBus(bus: Bus): Observable<Bus> {
+        return this.http
+            .patch(`${API_URL}/busses/id/${bus.id}`, bus)
+            .pipe(map(Bus.fromJSON));
+    }
 }
