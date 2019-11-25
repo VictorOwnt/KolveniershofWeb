@@ -48,10 +48,6 @@ export class ActivityNewComponent implements OnInit {
       private sanitizer: DomSanitizer
       ) {}
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
   ngOnInit() {
     if(this.data) {
       this.activity = Activity.fromJSON(this.data);

@@ -41,4 +41,13 @@ export class ActivityDataService {
             .pipe(
                 map(Activity.fromJSON));
     }
+
+    deleteActivity(id: String) : void {
+        this.http.delete(
+            `${API_URL}/activities/` + id,
+            { responseType: 'text' }
+        )
+            .pipe(
+                map(Activity.fromJSON));
+    }
 }

@@ -24,5 +24,8 @@ export class ActivityListComponent implements OnInit {
     return this._fetchActivities$;
   }
 
+  delete(id: String): void {
+    this._activityDataService.deleteActivity(id);
+  }
 
 }

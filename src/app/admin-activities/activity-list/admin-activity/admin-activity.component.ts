@@ -3,6 +3,7 @@ import {Activity} from '../../../shared/models/activity.model';
 import {AdminActivitiesComponent} from '../../admin-activities.component';
 import { Observable } from 'rxjs';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import {ActivityListComponent} from "../activity-list.component";
 
 @Component({
   selector: 'app-admin-activity',
@@ -17,6 +18,7 @@ export class AdminActivityComponent implements OnInit {
 
   constructor(
     public _a : AdminActivitiesComponent,
+  public _al : ActivityListComponent,
     private _firebaseService: FirebaseService,
     ) {
      }
@@ -27,6 +29,10 @@ export class AdminActivityComponent implements OnInit {
 
   edit(): void {
     this._a.openDialog(this.activity);
+  }
+
+  delete(): void {
+    this._al.delete(this.activity.id);
   }
 
 }
