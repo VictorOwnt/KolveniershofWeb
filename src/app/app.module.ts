@@ -31,7 +31,7 @@ import {CommonModule, DatePipe, registerLocaleData} from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { WorkDayDataService } from './services/workDay.data.service';
+import { WorkdayDataService } from './services/workday.data.service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { BusschemaComponent } from './busschema/busschema.component';
@@ -113,7 +113,7 @@ registerLocaleData(localeNl, 'nl-BE');
     { provide: LOCALE_ID, useValue: 'nl-BE' },
     httpInterceptorProviders,
     DatePipe,
-    WorkDayDataService,
+    WorkdayDataService,
     MatDatepickerModule
   ],
   bootstrap: [AppComponent]

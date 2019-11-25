@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Workday } from '../shared/models/workday.model';
 import { StaticMethodsPicto } from '../domain/staticMethods';
 import { UserDataService } from '../services/user.data.service';
-import { WorkDayDataService } from '../services/workDay.data.service';
+import { WorkdayDataService } from '../services/workday.data.service';
 
 @Component({
   selector: 'app-picto-agenda',
@@ -21,7 +21,7 @@ export class PictoAgendaComponent implements OnInit {
 
   constructor(
     private _userDataService: UserDataService,
-    private _workdayDataService: WorkDayDataService
+    private _workdayDataService: WorkdayDataService
   ) {
     this._fetchUsers$.subscribe(users => (this._users = users));
     this.showPictoOfUser();
@@ -49,7 +49,7 @@ export class PictoAgendaComponent implements OnInit {
     }
     let workday: Workday;
     for (const date of currentWeek) {
-      this._workdayDataService.getWorkDayByDate(date).subscribe({
+      this._workdayDataService.getWorkdayByDate(date).subscribe({
         next: (result: Workday) => {
           if (result) {
             workday = result;

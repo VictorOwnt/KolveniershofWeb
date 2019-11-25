@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Workday} from '../../shared/models/workday.model';
-import {WorkDayDataService} from '../../services/workDay.data.service';
+import {WorkdayDataService} from '../../services/workday.data.service';
 import {DatesService} from '../../services/dates.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class ScheduleComponent implements OnInit {
   dates: Date[] = [];
   private date: Date = new Date();
 
-  constructor(private datesService: DatesService, private workdayDataService: WorkDayDataService) {
+  constructor(private datesService: DatesService, private workdayDataService: WorkdayDataService) {
     this.loadWorkdays(this.date);
   }
 
