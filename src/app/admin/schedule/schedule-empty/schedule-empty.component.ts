@@ -1,6 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {WorkdayDataService} from '../../../services/workday.data.service';
-import {Observable} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({

@@ -10,7 +10,7 @@ import {Observable} from 'rxjs';
   styleUrls: ['./schedule.component.scss']
 })
 export class ScheduleComponent implements OnInit {
-  workdays: Observable<Workday[]>;
+  workdays$: Observable<Workday[]>;
   dates: Date[] = [];
   private date: Date = new Date();
 
@@ -26,7 +26,7 @@ export class ScheduleComponent implements OnInit {
     // Get all days in week for today's week
     this.dates = this.datesService.weekDays(date);
     // Get all workdays for this week
-    this.workdays = this.workdayDataService.getWorkdaysByWeek(this.dates[0]);
+    this.workdays$ = this.workdayDataService.getWorkdaysByWeek(this.dates[0]);
   }
 
   // Load next week
