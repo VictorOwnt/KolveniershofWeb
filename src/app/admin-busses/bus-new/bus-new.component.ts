@@ -39,7 +39,7 @@ export class BusNewComponent implements OnInit {
       this.color = this.bus.color;
     }
     this.busForm = this.fb.group({
-      name: ['', Validators.required]
+      name: [this.bus.name, Validators.required]
     });
   }
 
