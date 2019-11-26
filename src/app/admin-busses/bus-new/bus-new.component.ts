@@ -52,14 +52,58 @@ export class BusNewComponent implements OnInit {
 
   save(){
     if(this.bus) {
+      this.bus.name = this.busForm.value.name;
       this.bus.color = this.color;
       console.log(this.bus);
-      this._busDataService.patchBus(this.bus).subscribe();
+      this._busDataService.patchBus(this.bus).subscribe(
+          val => {
+            if (val) {
+              if (this.authService.redirectUrl) {
+                this.router.navigateByUrl(this.authService.redirectUrl);
+                this.authService.redirectUrl = undefined;
+              } else {
+                this.dialogRef.close();
+              }
+            } else {
+              this.errorMsg = `Activiteit aanmaken mislukt`;
+            }
+          },
+          (err: HttpErrorResponse) => {
+            console.log(err);
+            if (err.error instanceof Error) {
+              this.errorMsg = `${err.error.message}`;
+            } else {
+              this.errorMsg = `${err.error}`;
+            }
+            $('#errorMsg').slideDown(200);
+          }
+      );
     }
     else{
       const bus = new Bus(this.busForm.value.name, this.color);
-      this._busDataService.postBus(bus).subscribe();
-      console.log(bus);
+      this._busDataService.postBus(bus).subscribe(
+          val => {
+            if (val) {
+              if (this.authService.redirectUrl) {
+                this.router.navigateByUrl(this.authService.redirectUrl);
+                this.authService.redirectUrl = undefined;
+              } else {
+                this.dialogRef.close();
+              }
+            } else {
+              this.errorMsg = `Activiteit aanmaken mislukt`;
+            }
+          },
+          (err: HttpErrorResponse) => {
+            console.log(err);
+            if (err.error instanceof Error) {
+              this.errorMsg = `${err.error.message}`;
+            } else {
+              this.errorMsg = `${err.error}`;
+            }
+            $('#errorMsg').slideDown(200);
+          }
+      );
     }
   }
 }

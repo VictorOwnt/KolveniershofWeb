@@ -92,7 +92,29 @@ console.log(this.activity.icon);
         this.firebaseService.uploadFile(filePath);
       }
       this.activity.name = this.activityForm.value.name;
-      this._activityDataService.patchActivity(this.activity).subscribe();
+      this._activityDataService.patchActivity(this.activity).subscribe(
+          val => {
+            if (val) {
+              if (this.authService.redirectUrl) {
+                this.router.navigateByUrl(this.authService.redirectUrl);
+                this.authService.redirectUrl = undefined;
+              } else {
+                this.dialogRef.close();
+              }
+            } else {
+              this.errorMsg = `Activiteit aanmaken mislukt`;
+            }
+          },
+          (err: HttpErrorResponse) => {
+            console.log(err);
+            if (err.error instanceof Error) {
+              this.errorMsg = `${err.error.message}`;
+            } else {
+              this.errorMsg = `${err.error}`;
+            }
+            $('#errorMsg').slideDown(200);
+          }
+      );
     } else {// TODO - doesn't update without refresh
       const filePath = 'icons/icon-' + this.activityForm.value.name;
       this.firebaseService.uploadFile(filePath);
