@@ -1,0 +1,26 @@
+@import "../../../../variables.scss";
+
+p {
+  margin-bottom: 20px;
+}
+
+.templateForm {
+  background-color: #FFF;
+  padding: 20px;
+  width: 80%;
+  margin: 40px 0;
+  border-radius: 8px;
+  -webkit-box-shadow: $shadow-card;
+  -moz-box-shadow: $shadow-card;
+  box-shadow: $shadow-card;
+  transition: all .2s ease-in-out;
+  opacity: .7;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+mat-radio-group > :first-child {
+  margin-bottom: 10px;
+}

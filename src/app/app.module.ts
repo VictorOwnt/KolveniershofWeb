@@ -51,6 +51,7 @@ import { ScheduleUnitComponent } from './admin/schedule/schedule-unit/schedule-u
 import localeNl from '@angular/common/locales/nl';
 import { ScheduleWeekendComponent } from './admin/schedule/schedule-weekend/schedule-weekend.component';
 import { WorkdayFilterPipe } from './pipes/workday-filter.pipe';
+import { ScheduleEmptyComponent } from './admin/schedule/schedule-empty/schedule-empty.component';
 
 registerLocaleData(localeNl, 'nl-BE');
 
@@ -73,7 +74,8 @@ registerLocaleData(localeNl, 'nl-BE');
     ScheduleWeekdayComponent,
     ScheduleUnitComponent,
     ScheduleWeekendComponent,
-    WorkdayFilterPipe
+    WorkdayFilterPipe,
+    ScheduleEmptyComponent
   ],
   imports: [
     FlexLayoutModule,
