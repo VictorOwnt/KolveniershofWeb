@@ -39,4 +39,16 @@ export class BusDataService {
             .patch(`${API_URL}/busses/id/${bus.id}`, bus)
             .pipe(map(Bus.fromJSON));
     }
+
+    delete(id: String) : Observable<Boolean> {
+        return this.http.delete(`${API_URL}/busses/id/${id}`).pipe(
+            map((token: any) => {
+                if (token) {
+                    return true;
+                } else {
+                    return false;
+                }
+            })
+        );
+    }
 }

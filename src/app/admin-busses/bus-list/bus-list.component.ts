@@ -4,6 +4,7 @@ import {Activity} from "../../shared/models/activity.model";
 import {ActivityDataService} from "../../services/activity.data.service";
 import {Bus} from "../../shared/models/bus.model";
 import {BusDataService} from "../../services/bus.data.service";
+import {AdminBussesComponent} from "../admin-busses.component";
 
 @Component({
   selector: 'app-bus-list',
@@ -13,10 +14,13 @@ import {BusDataService} from "../../services/bus.data.service";
 export class BusListComponent implements OnInit {
 
   @Input() public busses: Observable<Bus[]>;
-  constructor() {}
+  constructor(public _b : AdminBussesComponent) {}
 
   ngOnInit() {
   }
 
+  delete(id : String) : void {
+    this._b.delete(id);
+  }
 
 }
