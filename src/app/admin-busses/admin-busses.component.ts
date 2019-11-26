@@ -4,6 +4,8 @@ import {Activity} from "../shared/models/activity.model";
 import {ActivityNewComponent} from "../admin-activities/activity-new/activity-new.component";
 import {Bus} from "../shared/models/bus.model";
 import {BusNewComponent} from "./bus-new/bus-new.component";
+import {Observable} from "rxjs";
+import {BusDataService} from "../services/bus.data.service";
 
 @Component({
   selector: 'app-admin-busses',
@@ -12,7 +14,13 @@ import {BusNewComponent} from "./bus-new/bus-new.component";
 })
 export class AdminBussesComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
+  private _fetchBusses$: Observable<Bus[]> = this._busDataService.busses$;
+  public _busses: Bus[];
+
+
+  constructor(public dialog: MatDialog, private _busDataService: BusDataService) {
+  this._fetchBusses$.subscribe(busses => (this._busses = busses));
+}
 
   openDialog(b : Bus = null): void {
     const dialogRef = this.dialog.open(BusNewComponent, {
@@ -29,6 +37,10 @@ export class AdminBussesComponent implements OnInit {
 
   ngOnInit() {
   }
+
+get busses$(): Observable<Bus[]> {
+  return this._fetchBusses$;
+}
 
 
 

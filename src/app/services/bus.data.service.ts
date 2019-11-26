@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {Observable, of, Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {User} from "../shared/models/user.model";
 import {API_URL} from "../../environments/environment";
 import {catchError, map} from "rxjs/operators";
 import {Bus} from "../shared/models/bus.model";
+
 
 
 @Injectable({
@@ -13,7 +13,7 @@ import {Bus} from "../shared/models/bus.model";
 export class BusDataService {
 
   public loadingError$ = new Subject<string>();
-  constructor(private http: HttpClient) { }
+  constructor(protected http: HttpClient) { }
 
   get busses$(): Observable<Bus[]> {
     return this.http.get(`${API_URL}/busses/`).pipe(
@@ -26,9 +26,12 @@ export class BusDataService {
   }
 
   postBus(bus: Bus): Observable<Bus> {
-      return this.http.post(`${API_URL}/busses/`, bus)
-          .pipe(map(Bus.fromJSON));
-
+      return this.http.post<Bus>(`${API_URL}/busses/`, bus)
+          .pipe(
+              catchError(error => {
+                  this.loadingError$.next(error.statusText);
+                  return of(null);
+              }),map(Bus.fromJSON));
   }
 
     patchBus(bus: Bus): Observable<Bus> {

@@ -5,7 +5,7 @@
     <mat-card-content>
         <div fxFlex="column">
 
-            <div class="row" *ngFor="let bus of busses$ | async;">
+            <div class="row" *ngFor="let bus of busses | async;">
                 <app-admin-bus [bus]="bus"></app-admin-bus>
             </div>
         </div>

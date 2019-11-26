@@ -9,6 +9,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import * as $ from "jquery";
 import {Bus} from "../../shared/models/bus.model";
 import {BusDataService} from "../../services/bus.data.service";
+import {AdminBussesComponent} from "../admin-busses.component";
 
 
 
@@ -57,11 +58,11 @@ export class BusNewComponent implements OnInit {
   save(){
     if(this.bus) {
       this.bus.color = this.color;
-      this._busDataService.patchBus(this.bus);
+      this._busDataService.patchBus(this.bus).subscribe();
     }
     else{
       const bus = new Bus(this.busForm.value.name, this.color);
-      this._busDataService.postBus(bus);
+      this._busDataService.postBus(bus).subscribe();
       console.log(bus);
     }
   }
