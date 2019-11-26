@@ -52,6 +52,7 @@ import localeNl from '@angular/common/locales/nl';
 import { ScheduleWeekendComponent } from './admin/schedule/schedule-weekend/schedule-weekend.component';
 import { WorkdayFilterPipe } from './pipes/workday-filter.pipe';
 import { ScheduleEmptyComponent } from './admin/schedule/schedule-empty/schedule-empty.component';
+import {WorkdayTemplateDataService} from './services/workdayTemplate.data.service';
 
 registerLocaleData(localeNl, 'nl-BE');
 
@@ -117,6 +118,7 @@ registerLocaleData(localeNl, 'nl-BE');
     httpInterceptorProviders,
     DatePipe,
     WorkdayDataService,
+    WorkdayTemplateDataService,
     MatDatepickerModule
   ],
   bootstrap: [AppComponent]

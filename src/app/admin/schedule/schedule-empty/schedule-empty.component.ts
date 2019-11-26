@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {WorkdayTemplateDataService} from '../../../services/workdayTemplate.data.service';
 
 @Component({
   selector: 'app-schedule-empty',
@@ -11,10 +12,8 @@ export class ScheduleEmptyComponent implements OnInit {
   templateNames$: string[] = []; // TODO - Observable<string[]>;
   public template: FormGroup;
 
-  constructor(
-    private fb: FormBuilder/*,
-    private workdayTemplateDataService: WorkdayTemplateDataService*/) {
     // TODO - load templateNames
+  constructor(private fb: FormBuilder, private workdayTemplateDataService: WorkdayTemplateDataService) {
   }
 
   ngOnInit() {
