@@ -15,7 +15,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatNativeDateModule,
-  MatDialogModule, MatCheckboxModule
+  MatDialogModule, MatCheckboxModule, MatSliderModule, MatSlideToggleModule, MatRadioModule
 } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -104,7 +104,10 @@ registerLocaleData(localeNl, 'nl-BE');
     MatSelectModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatRadioModule
   ],
   entryComponents: [],
   providers: [

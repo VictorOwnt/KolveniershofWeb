@@ -11,10 +11,10 @@
         <div class="card_content" fxLayout="column"
              fxFlex="0 1 50%"
              fxFlex.lt-md="100%">
-            <div id="general">
+            <div id="general" [style.border-bottom]="workday.holiday ? 'none' : ''">
                 <h2>Algemeen</h2>
                 <p *ngIf="workday.originalTemplateName">Deze planning komt van het template {{ workday.originalTemplateName }}, week {{ workday.originalWeekNumber }}.</p>
-                <mat-checkbox>Vrijaf</mat-checkbox>
+                <mat-slide-toggle id="holidayCheckbox" [checked]="workday.holiday" (change)="changeHoliday($event.checked)">Vrijaf</mat-slide-toggle> <!-- TODO - onclick -->
             </div>
             <div id="amActivities" *ngIf="!workday.holiday">
                 <h2>Voormiddag</h2>
