@@ -11,7 +11,7 @@ import {AdminHomeComponent} from './admin-home/admin-home.component';
 import {ScheduleComponent} from './admin/schedule/schedule.component';
 
 const appRoutes: Routes = [ // TODO - Fix all routes
-  { path: 's', component: ScheduleComponent },
+  { path: 's', component: ScheduleComponent, canActivate: [AuthGuard]},
   { path: 'admin', component: AdminHomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: PictoAgendaComponent },
