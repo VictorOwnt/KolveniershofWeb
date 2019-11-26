@@ -41,8 +41,16 @@ export class ActivityDataService {
         .pipe(map(Activity.fromJSON));
     }
 
-    deleteActivity(id: string): void {
-        this.http.delete(`${API_URL}/activities/id/${id}`);
+    deleteActivity(id: string): Observable<boolean> {
+        return this.http.delete(`${API_URL}/activities/id/${id}`).pipe(
+            map((token: any) => {
+                if (token) {
+                    return true;
+                } else {
+                    return false;
+                }
+            })
+        );
     }
 
     get activityUnits(): Observable<ActivityUnit[]> {
@@ -72,7 +80,15 @@ export class ActivityDataService {
         .pipe(map(ActivityUnit.fromJSON));
     }
 
-    deleteActivityUnit(id: string): void {
-      this.http.delete(`${API_URL}/activities/units/id/${id}`);
+    deleteActivityUnit(id: string): Observable<Boolean> {
+      return this.http.delete(`${API_URL}/activities/units/id/${id}`).pipe(
+          map((token: any) => {
+              if (token) {
+                  return true;
+              } else {
+                  return false;
+              }
+          })
+      );
     }
 }

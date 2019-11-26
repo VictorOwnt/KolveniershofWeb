@@ -24,8 +24,8 @@ export class ActivityListComponent implements OnInit {
     return this._fetchActivities$;
   }
 
-  delete(id: String): void {
-    this._activityDataService.deleteActivity(id);
+  delete(id: string): void { //todo enkel delete bij 2 keer klikken
+    this._activityDataService.deleteActivity(id).subscribe();
   }
 
 }

@@ -42,7 +42,7 @@ get busses$(): Observable<Bus[]> {
   return this._fetchBusses$;
 }
 
-delete(id: String) : void {
+delete(id: string) : void {
     this._busDataService.delete(id).subscribe();
 }
 

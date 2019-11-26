@@ -19,7 +19,7 @@ export class BusListComponent implements OnInit {
   ngOnInit() {
   }
 
-  delete(id : String) : void {
+  delete(id : string) : void {
     this._b.delete(id);
   }
 

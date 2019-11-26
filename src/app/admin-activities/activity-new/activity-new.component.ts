@@ -32,13 +32,14 @@ function validate(url: any){
   encapsulation: ViewEncapsulation.None
 })
 export class ActivityNewComponent implements OnInit {
-  public activity: Activity = null;
+
   public activityForm: FormGroup;
   public errorMsg = '';
   imageUrl: any = null;
+  public nieuweData : boolean = false;
 
   constructor(
-      @Inject(MAT_DIALOG_DATA) public data: Activity,
+      @Inject(MAT_DIALOG_DATA) public activity: Activity,
       public dialogRef: MatDialogRef<ActivityNewComponent>,
       private authService: AuthenticationService,
       private router: Router,
@@ -49,12 +50,12 @@ export class ActivityNewComponent implements OnInit {
       ) {}
 
   ngOnInit() {
-    if(this.data) {
-      this.activity = Activity.fromJSON(this.data);
-      this.imageUrl = 'assets/img/icons/icon-' + this.activity.icon;
+    if(this.activity) {
+      this.imageUrl = " ";
+      this.firebaseService.lookupFileDownloadUrl(this.activity.icon).subscribe(img => this.imageUrl = img);
     }
     this.activityForm = this.fb.group({
-      name: ['', Validators.required],
+      name: [this.activity ? this.activity.name : '', Validators.required],
       icon: ['', validate(this.imageUrl)]
     });
   }
@@ -78,25 +79,36 @@ export class ActivityNewComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     reader.onload = (_event) => {
       this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(reader.result as string);
+      this.nieuweData = true;
     };
   }
 
-  save() {                                            // TODO - doesn't update without refresh
-    const filePath = 'icons/icon-' + this.activityForm.value.name;
-    this.firebaseService.uploadFile(filePath);
-    const activity = new Activity(this.activityForm.value.name, filePath);
-    this._activityDataService.postActivity(activity).subscribe(
-      val => {
-        if (val) {
-          if (this.authService.redirectUrl) {
-            this.router.navigateByUrl(this.authService.redirectUrl);
-            this.authService.redirectUrl = undefined;
-          } else {
-            this.dialogRef.close();
-          }
-          } else {
-            this.errorMsg = `Activiteit aanmaken mislukt`;
-          }
+  save() {
+    if (this.activity) {
+console.log(this.activity.icon);
+      console.log('icons/icon-' + this.activityForm.value.name);
+      if(this.nieuweData){
+        const filePath = 'icons/icon-' + this.activityForm.value.name;
+        this.firebaseService.uploadFile(filePath);
+      }
+      this.activity.name = this.activityForm.value.name;
+      this._activityDataService.patchActivity(this.activity).subscribe();
+    } else {// TODO - doesn't update without refresh
+      const filePath = 'icons/icon-' + this.activityForm.value.name;
+      this.firebaseService.uploadFile(filePath);
+      const activity = new Activity(this.activityForm.value.name, filePath);
+      this._activityDataService.postActivity(activity).subscribe(
+          val => {
+            if (val) {
+              if (this.authService.redirectUrl) {
+                this.router.navigateByUrl(this.authService.redirectUrl);
+                this.authService.redirectUrl = undefined;
+              } else {
+                this.dialogRef.close();
+              }
+            } else {
+              this.errorMsg = `Activiteit aanmaken mislukt`;
+            }
           },
           (err: HttpErrorResponse) => {
             console.log(err);
@@ -108,6 +120,6 @@ export class ActivityNewComponent implements OnInit {
             $('#errorMsg').slideDown(200);
           }
       );
+    }
   }
-
 }

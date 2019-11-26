@@ -53,7 +53,6 @@ import { environment } from '../environments/environment';
 import { AdminActivitiesComponent } from './admin-activities/admin-activities.component';
 import { ActivityListComponent } from './admin-activities/activity-list/activity-list.component';
 import { ActivityNewComponent } from './admin-activities/activity-new/activity-new.component';
-import { AdminActivityComponent } from "./admin-activities/activity-list/admin-activity/admin-activity.component";
 import { AdminBussesComponent } from './admin-busses/admin-busses.component';
 import { BusListComponent } from './admin-busses/bus-list/bus-list.component';
 import { AdminBusComponent } from './admin-busses/bus-list/admin-bus/admin-bus.component';
