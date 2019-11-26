@@ -22,25 +22,20 @@ import {AdminBussesComponent} from "../admin-busses.component";
 export class BusNewComponent implements OnInit {
 
   public color = '#000000';
-  public bus: Bus = null;
   public busForm: FormGroup;
   public errorMsg = '';
 
   constructor(
-      @Inject(MAT_DIALOG_DATA) public data: Activity,
+      @Inject(MAT_DIALOG_DATA) public bus: Bus,
       public dialogRef: MatDialogRef<BusNewComponent>,
       private authService: AuthenticationService,
       private router: Router,
       private fb: FormBuilder,
       private _busDataService: BusDataService) {}
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
 
   ngOnInit() {
-    if(this.data) {
-      this.bus = Bus.fromJSON(this.data);
+    if(this.bus) {
       this.color = this.bus.color;
     }
     this.busForm = this.fb.group({
@@ -58,6 +53,7 @@ export class BusNewComponent implements OnInit {
   save(){
     if(this.bus) {
       this.bus.color = this.color;
+      console.log(this.bus);
       this._busDataService.patchBus(this.bus).subscribe();
     }
     else{
