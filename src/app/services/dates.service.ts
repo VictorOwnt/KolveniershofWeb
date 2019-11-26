@@ -35,8 +35,7 @@ export class DatesService {
    * @param date Date to check
    */
   isWeekend(date: Date) {
-    console.warn(date);
-    return date.getDay() > 5;
+    return date.getDay() > 5 || date.getDay() === 0;
   }
 
   /**

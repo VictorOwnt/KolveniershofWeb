@@ -57,7 +57,7 @@ export class Workday {
     holiday: boolean,
     comments: Comment[]
   ) {
-    this.date = date;
+    this.date = new Date(date);
     this.originalTemplateName = originalTemplateName;
     this.originalWeekNumber = originalWeekNumber;
     this.daycareMentors = daycareMentors;
