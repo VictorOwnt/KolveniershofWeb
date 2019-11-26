@@ -1,0 +1,35 @@
+div {
+  padding: 0.5%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.action {
+  padding-left: 0%;
+}
+
+.naam {
+  width: 95%;
+  font-size: 130%;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-left: 5%;
+}
+
+svg {
+  fill: red;
+}
+
+.icon {
+  width: fit-content;
+  height: 100%;
+  margin: auto;
+  padding: auto;
+}
+
+.row {
+  box-shadow:none;
+}
+.row:hover {
+  box-shadow: inset 0 0 2px #002c5d, 0 0 2px #002c5d;
+}

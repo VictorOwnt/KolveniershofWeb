@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as zxcvbn from 'zxcvbn';
 import * as $ from 'jquery';
-import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
+import { FirebaseService } from '../../services/firebase.service';
 
 function comparePasswords(control: AbstractControl) {
   return new Promise( resolve => {
@@ -69,16 +69,12 @@ export class RegisterComponent implements OnInit {
   hidePassword = true;
   hideConfirmPassword = true;
   imageUrl: any = null;
-  fileData: File = null;
-  filePath: string = null;
-  ref: AngularFireStorageReference;
-  task: AngularFireUploadTask;
 
   constructor(
     private authService: AuthenticationService,
     private router: Router,
     private fb: FormBuilder,
-    private storage: AngularFireStorage
+    private firebaseService: FirebaseService
   ) {}
 
   ngOnInit() {
@@ -129,32 +125,26 @@ export class RegisterComponent implements OnInit {
   }
 
   preview(fileInput: any) {
-    this.fileData = (fileInput.target.files[0] as File);
-
-    const fileType = this.fileData.type;
-    if (fileType.match(/image\/*/) == null) {
-      console.log('no image');
-      return;
-    }
+    const fileData = this.firebaseService.handleFile(fileInput);
     const reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
+    reader.readAsDataURL(fileData);
     // tslint:disable-next-line: variable-name
     reader.onload = (_event) => {
       this.imageUrl = reader.result;
     };
-}
+  }
+
 
   register() {
-    this.filePath = 'users/' + this.user.value.firstName + '_' + this.user.value.lastName + '_' + new Date().toISOString().split('T')[0];
-    this.ref = this.storage.ref(this.filePath);
-    this.task = this.ref.put(this.fileData);
+    const filePath = 'users/' + this.user.value.firstName + '_' + this.user.value.lastName + '_' + new Date().toISOString().split('T')[0];
+    this.firebaseService.uploadFile(filePath);
     this.authService
       .register(
         this.user.value.email,
         this.user.value.passwordGroup.password,
         this.user.value.firstName,
         this.user.value.lastName,
-        this.filePath,
+        filePath,
         this.user.value.birthday, // TODO - Correct date
         this.user.value.street,
         this.user.value.city,

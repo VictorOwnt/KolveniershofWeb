@@ -9,16 +9,19 @@ import { WeekScheduleComponent } from './week-schedule/week-schedule.component';
 import { AuthGuard } from './user/auth.guard';
 import { BusschemaComponent } from './busschema/busschema.component';
 import {RegisterComponent} from './user/register/register.component';
-import {AdminHomeComponent} from './admin-home/admin-home.component';
+import { AdminBussesComponent } from "./admin-busses/admin-busses.component";
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { AdminActivitiesComponent } from './admin-activities/admin-activities.component';
 
 const appRoutes: Routes = [ // TODO - Fix all routes
   { path: 'admin', component: AdminHomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: PictoAgendaComponent },
-  { path: 'bus', component: BusschemaComponent },
+  { path: 'bus', component: AdminBussesComponent },
   { path: 'week', component: WeekScheduleComponent, canActivate: [AuthGuard] },
   { path: 'picto', component: PictoAgendaComponent, canActivate: [AuthGuard] },
   { path: 'r', component: RegisterComponent },
+  { path: 'a', component: AdminActivitiesComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

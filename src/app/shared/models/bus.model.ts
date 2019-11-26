@@ -2,7 +2,6 @@ export class Bus {
   id: string;
   name: string;
   color: string;
-  icon: string;
 
   constructor(name: string, color: string) {
     this.name = name;

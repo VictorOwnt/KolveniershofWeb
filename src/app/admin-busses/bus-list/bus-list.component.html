@@ -1,0 +1,13 @@
+<mat-card>
+    <mat-card-header>
+        Bussen
+    </mat-card-header>
+    <mat-card-content>
+        <div fxFlex="column">
+
+            <div class="row" *ngFor="let bus of busses | async;">
+                <app-admin-bus [bus]="bus"></app-admin-bus>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

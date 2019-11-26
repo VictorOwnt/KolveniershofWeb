@@ -50,6 +50,15 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule} from '@angular/fire/storage';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { environment } from '../environments/environment';
+import { AdminActivitiesComponent } from './admin-activities/admin-activities.component';
+import { ActivityListComponent } from './admin-activities/activity-list/activity-list.component';
+import { ActivityNewComponent } from './admin-activities/activity-new/activity-new.component';
+import { AdminBussesComponent } from './admin-busses/admin-busses.component';
+import { BusListComponent } from './admin-busses/bus-list/bus-list.component';
+import { AdminBusComponent } from './admin-busses/bus-list/admin-bus/admin-bus.component';
+import { BusNewComponent } from './admin-busses/bus-new/bus-new.component';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { AdminActivityComponent } from './admin-activities/activity-list/admin-activity/admin-activity.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +79,14 @@ import { environment } from '../environments/environment';
     WeekendComponent,
     WeekendDayComponent,
     HolidayComponent,
+    ActivityListComponent,
+    ActivityNewComponent,
+    AdminActivityComponent,
+    AdminBussesComponent,
+    BusListComponent,
+    AdminBusComponent,
+    BusNewComponent,
+    AdminActivitiesComponent,
     AdminHomeComponent
   ],
   imports: [
@@ -99,10 +116,11 @@ import { environment } from '../environments/environment';
     MatDialogModule,
     FormsModule,
     MatSelectModule,
+    ColorPickerModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule
   ],
-  entryComponents: [EditWeekScheduleComponent],
+  entryComponents: [EditWeekScheduleComponent, ActivityNewComponent, BusNewComponent],
   providers: [
     httpInterceptorProviders,
     WorkDayDataService,
