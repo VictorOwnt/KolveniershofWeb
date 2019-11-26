@@ -1,26 +1,26 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import {ViewEncapsulation} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import * as zxcvbn from 'zxcvbn';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import * as $ from 'jquery';
-import {AuthenticationService} from "../../user/authentication.service";
-import {Router} from "@angular/router";
-import {ActivityDataService} from "../../services/activity.data.service";
-import {UserDataService} from "../../services/user.data.service";
-import {HttpErrorResponse} from "@angular/common/http";
-import {Activity} from "../../shared/models/activity.model";
+import {AuthenticationService} from '../../user/authentication.service';
+import {Router} from '@angular/router';
+import {ActivityDataService} from '../../services/activity.data.service';
+import {HttpErrorResponse} from '@angular/common/http';
+import { Activity } from 'src/app/shared/models/activity.model';
+import { FirebaseService } from '../../services/firebase.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
-function validate(url : any){
+function validate(url: any){
   return (c: FormControl) => {
     console.log(c);
-    if(url || c.value != ""){
-      console.log("test");
-     return true;
-    }else return {validate: {
+    if (url || c.value !== ''){
+      return true;
+    } else { return {validate: {
         valid: false
       }
     };
+    }
   }
 
 }
@@ -36,8 +36,6 @@ export class ActivityNewComponent implements OnInit {
   public activityForm: FormGroup;
   public errorMsg = '';
   imageUrl: any = null;
-  fileData: File = null;
-  filePath: string = null;
 
   constructor(
       @Inject(MAT_DIALOG_DATA) public data: Activity,
@@ -45,16 +43,15 @@ export class ActivityNewComponent implements OnInit {
       private authService: AuthenticationService,
       private router: Router,
       private fb: FormBuilder,
-      private _activityDataService: ActivityDataService) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+      private _activityDataService: ActivityDataService,
+      private firebaseService: FirebaseService,
+      private sanitizer: DomSanitizer
+      ) {}
 
   ngOnInit() {
     if(this.data) {
       this.activity = Activity.fromJSON(this.data);
-      this.imageUrl = "assets/img/icons/icon-" + this.activity.icon + ".svg";
+      this.imageUrl = 'assets/img/icons/icon-' + this.activity.icon;
     }
     this.activityForm = this.fb.group({
       name: ['', Validators.required],
@@ -75,45 +72,42 @@ export class ActivityNewComponent implements OnInit {
   }
 
   preview(fileInput: any) {
-    this.fileData = (fileInput.target.files[0] as File);
-
-    const fileType = this.fileData.type;
-    if (fileType.match(/image\/*/) == null) {
-      console.log('no image');
-      return;
-    }
+    const fileData = this.firebaseService.handleFile(fileInput);
     const reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
+    reader.readAsDataURL(fileData);
     // tslint:disable-next-line: variable-name
     reader.onload = (_event) => {
-      this.imageUrl = reader.result;
+      this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(reader.result as string);
     };
   }
 
-  save() {
-        this._activityDataService.postActivity(this.activityForm.value.name, this.imageUrl).subscribe(
-            val => {
-              if (val) {
-                if (this.authService.redirectUrl) {
-                  this.router.navigateByUrl(this.authService.redirectUrl);
-                  this.authService.redirectUrl = undefined;
-                } else {
-                  this.router.navigate(['/activities']); // TODO
-                }
-              } else {
-                this.errorMsg = `Activiteit aanmaken mislukt`;
-              }
-            },
-            (err: HttpErrorResponse) => {
-              console.log(err);
-              if (err.error instanceof Error) {
-                this.errorMsg = `${err.error.message}`;
-              } else {
-                this.errorMsg = `${err.error}`;
-              }
-              $('#errorMsg').slideDown(200);
+  save() {                                            // TODO - doesn't update without refresh
+    const filePath = 'icons/icon-' + this.activityForm.value.name;
+    this.firebaseService.uploadFile(filePath);
+    const activity = new Activity(this.activityForm.value.name, filePath);
+    this._activityDataService.postActivity(activity).subscribe(
+      val => {
+        if (val) {
+          if (this.authService.redirectUrl) {
+            this.router.navigateByUrl(this.authService.redirectUrl);
+            this.authService.redirectUrl = undefined;
+          } else {
+            this.dialogRef.close();
+          }
+          } else {
+            this.errorMsg = `Activiteit aanmaken mislukt`;
+          }
+          },
+          (err: HttpErrorResponse) => {
+            console.log(err);
+            if (err.error instanceof Error) {
+              this.errorMsg = `${err.error.message}`;
+            } else {
+              this.errorMsg = `${err.error}`;
             }
-        );
+            $('#errorMsg').slideDown(200);
+          }
+      );
   }
 
 }

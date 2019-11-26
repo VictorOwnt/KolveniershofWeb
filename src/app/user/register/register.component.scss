@@ -18,3 +18,18 @@ h1 {
     text-align: center !important;
   }
 }
+
+input[type="file"] {
+  display: none;
+}   
+
+.profilePicture {
+  margin-bottom: 0%;
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+

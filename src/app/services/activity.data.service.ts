@@ -3,10 +3,8 @@ import { Injectable } from '@angular/core';
 import { ActivityUnit } from '../shared/models/activityUnit.model';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../../environments/environment';
-import {Activity} from "../shared/models/activity.model";
-import {catchError, map} from "rxjs/operators";
-import {User} from "../shared/models/user.model";
-import {icon} from "@fortawesome/fontawesome-svg-core";
+import {Activity} from '../shared/models/activity.model';
+import {catchError, map} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -16,31 +14,65 @@ export class ActivityDataService {
 
     constructor(private http: HttpClient) {}
 
-    updateActivityUnit(activityUnit: ActivityUnit) {
-        return this.http.patch(`${API_URL}/units/${activityUnit.id}`, activityUnit.toJSON());
-    }
-
-    get activities$(): Observable<Activity[]> {
-        return this.http.get(`${API_URL}/Activities`).pipe(
-            catchError(error => {
+    get activities(): Observable<Activity[]> {
+        return this.http
+          .get(`${API_URL}/activities`)
+          .pipe(catchError(error => {
                 this.loadingError$.next(error.statusText);
                 return of(null);
-            }),
-        map((list: any[]): Activity[] => list.map(Activity.fromJSON))
-        );
+          }), map((list: any[]): Activity[] => list.map(Activity.fromJSON)));
     }
 
-    postActivity(name: String, icon: String): Observable<Activity> {
+    getActivityById(id: string): Observable<Activity> {
+      return this.http
+        .get(`${API_URL}/activities/id/${id}`)
+        .pipe(map(Activity.fromJSON));
+    }
+
+    postActivity(activity: Activity): Observable<Activity> {
         return this.http
-            .post(
-                `${API_URL}/users/register`,
-                {
-                    name,
-                    icon,
-                },
-                { responseType: 'text' }
-            )
-            .pipe(
-                map(Activity.fromJSON));
+            .post(`${API_URL}/activities`, activity)
+            .pipe(map(Activity.fromJSON));
+    }
+
+    patchActivity(activity: Activity): Observable<Activity> {
+      return this.http
+        .patch(`${API_URL}/activities/id/${activity.id}`, activity)
+        .pipe(map(Activity.fromJSON));
+    }
+
+    deleteActivity(id: string): void {
+        this.http.delete(`${API_URL}/activities/id/${id}`);
+    }
+
+    get activityUnits(): Observable<ActivityUnit[]> {
+      return this.http
+        .get(`${API_URL}/activities/units`)
+        .pipe(catchError(error => {
+          this.loadingError$.next(error.statusText);
+          return of(null);
+        }), map((list: any[]): ActivityUnit[] => list.map(ActivityUnit.fromJSON)));
+    }
+
+    getActivityUnitById(id: string): Observable<ActivityUnit> {
+      return this.http
+        .get(`${API_URL}/activities/units/id/${id}`)
+        .pipe(map(ActivityUnit.fromJSON));
+    }
+
+    postActivityUnit(activityUnit: ActivityUnit): Observable<ActivityUnit> {
+      return this.http
+        .post(`${API_URL}/activities/units`, activityUnit)
+        .pipe(map(ActivityUnit.fromJSON));
+    }
+
+    patchActivityUnit(activityUnit: ActivityUnit): Observable<ActivityUnit> {
+      return this.http
+        .patch(`${API_URL}/activities/units/id/${activityUnit.id}`, activityUnit)
+        .pipe(map(ActivityUnit.fromJSON));
+    }
+
+    deleteActivityUnit(id: string): void {
+      this.http.delete(`${API_URL}/activities/units/id/${id}`);
     }
 }

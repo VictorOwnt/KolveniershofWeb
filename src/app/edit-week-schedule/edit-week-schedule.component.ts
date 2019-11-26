@@ -70,18 +70,18 @@ export class EditWeekScheduleComponent implements OnInit {
       if (typeof usersToAdd !== 'string') {
         usersToAdd.forEach(user => amActivity.clients.push(user));
       }
-      this._activityDataService.updateActivityUnit(amActivity);
+      this._activityDataService.patchActivityUnit(amActivity);
     });
   }
   updateActivityName(text: HTMLInputElement, index, type: string) {
     if (type === 'am') {
       this.data$.workday.amActivities[index].activity.name = text.value;
-      this._activityDataService.updateActivityUnit(this.data$.workday.amActivities[index]);
+      this._activityDataService.patchActivityUnit(this.data$.workday.amActivities[index]);
 
     }
     if (type === 'pm') {
       this.data$.workday.pmActivities[index].activity.name = text.value;
-      this._activityDataService.updateActivityUnit(this.data$.workday.pmActivities[index]);
+      this._activityDataService.patchActivityUnit(this.data$.workday.pmActivities[index]);
     }
 
   }
@@ -90,7 +90,7 @@ export class EditWeekScheduleComponent implements OnInit {
     this.data$.workday.pmActivities.forEach(pmActivity => {
       const usersToAdd = value[pmActivity.activity.name];
       usersToAdd.forEach(user => pmActivity.clients.push(user));
-      this._activityDataService.updateActivityUnit(pmActivity);
+      this._activityDataService.patchActivityUnit(pmActivity);
     });
 
   }

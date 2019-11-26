@@ -1,0 +1,80 @@
+<app-header></app-header>
+
+<div class="container"
+     fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayoutGap="20px"
+     fxLayout.lt-sm="column">
+    <div class="card"
+         fxLayout="column"
+         fxFlex="0 1 calc(33.3% - 13.444px)"
+         fxFlex.lt-md="0 1 calc(50% - 10px)"
+         fxFlex.lt-sm="100%">
+        <div class="card-header">
+            <i class="material-icons">
+                supervised_user_circle
+            </i>
+        </div>
+        <h1 class="mat-display-1">Gebruikers</h1>
+        <p fxFlex="grow">Beheer alle gebruikers.<br>
+            Voeg nieuwe gebruikers toe, deactiveer accounts of wijzig gegevens.</p>
+        <a class="btn" routerLink="">Gebruikers beheren</a> <!-- TODO - routing -->
+    </div>
+    <div class="card"
+         fxLayout="column"
+         fxFlex="0 1 calc(33.3% - 13.444px)"
+         fxFlex.lt-md="0 1 calc(50% - 10px)"
+         fxFlex.lt-sm="100%">
+        <div class="card-header">
+            <i class="material-icons">
+                today
+            </i>
+        </div>
+        <h1 class="mat-display-1">Planning</h1>
+        <p fxFlex="grow">Bekijk en bewerk de planning.<br>
+            Maak een nieuwe planning of kopieer een planning uit de template.<br>
+            Je kan hier ook de planning van cliënten bekijken.</p>
+        <a class="btn" routerLink="">Planning beheren</a> <!-- TODO - routing -->
+    </div>
+    <div class="card"
+         fxLayout="column"
+         fxFlex="0 1 calc(33.3% - 13.444px)"
+         fxFlex.lt-md="0 1 calc(50% - 10px)"
+         fxFlex.lt-sm="100%">
+        <div class="card-header">
+            <i class="material-icons">
+                file_copy
+            </i>
+        </div>
+        <h1 class="mat-display-1">Templates</h1>
+        <p fxFlex="grow">Bekijk en bewerk alle templates (4-wekenschema's).</p>
+        <a class="btn" routerLink="">Templates beheren</a> <!-- TODO - routing -->
+    </div>
+    <div class="card"
+         fxLayout="column"
+         fxFlex="0 1 calc(33.3% - 13.444px)"
+         fxFlex.lt-md="0 1 calc(50% - 10px)"
+         fxFlex.lt-sm="100%">
+        <div class="card-header">
+            <i class="material-icons">
+                local_activity
+            </i>
+        </div>
+        <h1 class="mat-display-1">Activiteiten</h1>
+        <p fxFlex="grow">Wijzig activiteiten, verander de naam van een activiteit of upload een nieuw icoon.<br>
+        Hier voeg je nieuwe activiteiten toe.</p>
+        <a class="btn" routerLink="">Activiteiten beheren</a> <!-- TODO - routing -->
+    </div>
+    <div class="card"
+         fxLayout="column"
+         fxFlex="0 1 calc(33.3% - 13.444px)"
+         fxFlex.lt-md="0 1 calc(50% - 10px)"
+         fxFlex.lt-sm="100%">
+        <div class="card-header">
+            <i class="material-icons">
+                directions_bus
+            </i>
+        </div>
+        <h1 class="mat-display-1">Bussen</h1>
+        <p fxFlex="grow">Wijzig de naam en/of kleuren van de bussen.</p>
+        <a class="btn" routerLink="">Bussen beheren</a> <!-- TODO - routing -->
+    </div>
+</div>

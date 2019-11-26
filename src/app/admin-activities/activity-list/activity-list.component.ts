@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivityUnit} from "../../shared/models/activityUnit.model";
-import {Observable} from "rxjs";
-import {Activity} from "../../shared/models/activity.model";
-import {ActivityDataService} from "../../services/activity.data.service";
+import {Observable} from 'rxjs';
+import {Activity} from '../../shared/models/activity.model';
+import {ActivityDataService} from '../../services/activity.data.service';
 
 @Component({
   selector: 'app-activity-list',
@@ -10,7 +9,7 @@ import {ActivityDataService} from "../../services/activity.data.service";
   styleUrls: ['./activity-list.component.scss']
 })
 export class ActivityListComponent implements OnInit {
-  private _fetchActivities$: Observable<Activity[]> = this._activityDataService.activities$;
+  private _fetchActivities$: Observable<Activity[]> = this._activityDataService.activities;
   private _activities: Activity[];
   constructor(
       private _activityDataService: ActivityDataService
@@ -25,5 +24,8 @@ export class ActivityListComponent implements OnInit {
     return this._fetchActivities$;
   }
 
+  delete(id: String): void {
+    this._activityDataService.deleteActivity(id);
+  }
 
 }
