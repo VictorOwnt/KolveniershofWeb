@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {WorkdayTemplateDataService} from '../../../services/workdayTemplate.data.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-schedule-empty',
@@ -9,11 +10,12 @@ import {WorkdayTemplateDataService} from '../../../services/workdayTemplate.data
 })
 export class ScheduleEmptyComponent implements OnInit {
   @Input() dates: Date[];
-  templateNames$: string[] = []; // TODO - Observable<string[]>;
+  templateNames$: Observable<string[]>;
   public template: FormGroup;
 
-    // TODO - load templateNames
   constructor(private fb: FormBuilder, private workdayTemplateDataService: WorkdayTemplateDataService) {
+    // Load templateNames
+    this.templateNames$ = workdayTemplateDataService.templateNames$;
   }
 
   ngOnInit() {
@@ -21,6 +23,10 @@ export class ScheduleEmptyComponent implements OnInit {
       name: ['', Validators.required],
       week: ['', Validators.required]
     });
+  }
+
+  numberArray(n: number): number[] {
+    return [...Array(n).keys()];
   }
 
   generateWeek(template: boolean = false) {

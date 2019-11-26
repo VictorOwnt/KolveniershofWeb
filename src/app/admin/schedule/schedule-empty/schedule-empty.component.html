@@ -7,15 +7,12 @@
 
         <label for="templateName">Selecteer een template:</label>
         <mat-select id="templateName" placeholder="Naam van het template" formControlName="name" required> <!-- TODO - blue text -->
-            <mat-option *ngFor="let templateName of templateNames$" [value]="templateName">{{ templateName | titlecase }}</mat-option>
+            <mat-option *ngFor="let templateName of templateNames$ | async" [value]="templateName">{{ templateName | titlecase }}</mat-option>
         </mat-select>
 
         <label for="templateWeek">Selecteer een week uit de template:</label>
         <mat-radio-group id="templateWeek" formControlName="week" aria-label="Selecteer een week uit de template" fxLayout="row wrap" fxLayoutAlign="space-between" required>
-            <mat-radio-button value="1" fxFlex="calc(50% - 10px)">Week 1</mat-radio-button>
-            <mat-radio-button value="2" fxFlex="calc(50% - 10px)">Week 2</mat-radio-button>
-            <mat-radio-button value="3" fxFlex="calc(50% - 10px)">Week 3</mat-radio-button>
-            <mat-radio-button value="4" fxFlex="calc(50% - 10px)">Week 4</mat-radio-button>
+            <mat-radio-button *ngFor="let i of numberArray(4)" value="{{ i+1 }}" fxFlex="calc(50% - 10px)">Week {{ i+1 }}</mat-radio-button>
         </mat-radio-group>
 
         <button type="submit" class="btn" [disabled]='!template.valid'>Gebruik een template</button>
