@@ -7,16 +7,20 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PictoAgendaComponent } from './picto-agenda/picto-agenda.component';
 import { AuthGuard } from './user/auth.guard';
 import {RegisterComponent} from './user/register/register.component';
-import {AdminHomeComponent} from './admin-home/admin-home.component';
 import {ScheduleComponent} from './admin/schedule/schedule.component';
+import { AdminBussesComponent } from './admin-busses/admin-busses.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { AdminActivitiesComponent } from './admin-activities/admin-activities.component';
 
 const appRoutes: Routes = [ // TODO - Fix all routes
   { path: 's', component: ScheduleComponent, canActivate: [AuthGuard]},
   { path: 'admin', component: AdminHomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: PictoAgendaComponent },
+  { path: 'bus', component: AdminBussesComponent },
   { path: 'picto', component: PictoAgendaComponent, canActivate: [AuthGuard] },
   { path: 'r', component: RegisterComponent },
+  { path: 'a', component: AdminActivitiesComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

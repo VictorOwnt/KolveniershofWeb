@@ -45,6 +45,15 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule} from '@angular/fire/storage';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { environment } from '../environments/environment';
+import { AdminActivitiesComponent } from './admin-activities/admin-activities.component';
+import { ActivityListComponent } from './admin-activities/activity-list/activity-list.component';
+import { ActivityNewComponent } from './admin-activities/activity-new/activity-new.component';
+import { AdminBussesComponent } from './admin-busses/admin-busses.component';
+import { BusListComponent } from './admin-busses/bus-list/bus-list.component';
+import { AdminBusComponent } from './admin-busses/bus-list/admin-bus/admin-bus.component';
+import { BusNewComponent } from './admin-busses/bus-new/bus-new.component';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { AdminActivityComponent } from './admin-activities/activity-list/admin-activity/admin-activity.component';
 import { ScheduleComponent } from './admin/schedule/schedule.component';
 import { ScheduleWeekdayComponent } from './admin/schedule/schedule-weekday/schedule-weekday.component';
 import { ScheduleUnitComponent } from './admin/schedule/schedule-unit/schedule-unit.component';
@@ -70,6 +79,14 @@ registerLocaleData(localeNl, 'nl-BE');
     WeekendComponent,
     WeekendDayComponent,
     HolidayComponent,
+    ActivityListComponent,
+    ActivityNewComponent,
+    AdminActivityComponent,
+    AdminBussesComponent,
+    BusListComponent,
+    AdminBusComponent,
+    BusNewComponent,
+    AdminActivitiesComponent,
     AdminHomeComponent,
     ScheduleComponent,
     ScheduleWeekdayComponent,
@@ -105,6 +122,7 @@ registerLocaleData(localeNl, 'nl-BE');
     MatDialogModule,
     FormsModule,
     MatSelectModule,
+    ColorPickerModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
     MatCheckboxModule,
@@ -112,7 +130,7 @@ registerLocaleData(localeNl, 'nl-BE');
     MatSlideToggleModule,
     MatRadioModule
   ],
-  entryComponents: [],
+  entryComponents: [ActivityNewComponent, BusNewComponent],
   providers: [
     { provide: LOCALE_ID, useValue: 'nl-BE' },
     httpInterceptorProviders,

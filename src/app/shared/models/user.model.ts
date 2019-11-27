@@ -16,9 +16,9 @@ export class User {
     lastName: string,
     email: string,
     picture: string,
-    street: string,
+    /*street: string,
     postalCode: string,
-    city: string,
+    city: string,*/
     admin: boolean,
     birthday: Date,
     absentDates: Date[]
@@ -27,9 +27,9 @@ export class User {
     this.lastName = lastName;
     this.email = email;
     this.picture = picture;
-    this.street = street;
+    /*this.street = street;
     this.postalCode = postalCode;
-    this.city = city;
+    this.city = city;*/
     this.admin = admin;
     this.birthday = birthday;
     this.absentDates = absentDates;
@@ -41,9 +41,9 @@ export class User {
       json.lastName,
       json.email,
       json.picture,
-      json.address.street,
+      /*json.address.street,
       json.address.postalCode,
-      json.address.city,
+      json.address.city,*/
       json.admin,
       json.birthday,
       json.absentDates
@@ -59,11 +59,11 @@ export class User {
       lastName: this.lastName,
       email: this.email,
       picture: this.picture,
-      address: {
+      /*address: {
         street: this.street,
         postalCode: this.postalCode,
         city: this.city
-      },
+      },*/
       admin: this.admin,
       birthday: this.birthday,
       absentDates: this.absentDates
