@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {WorkdayTemplate} from '../shared/models/workdayTemplate.model';
 import {API_URL} from '../../environments/environment';
 import {map} from 'rxjs/operators';
+import {Workday} from '../shared/models/workday.model';
 
 @Injectable({
   providedIn: 'root'
@@ -61,10 +62,10 @@ export class WorkdayTemplateDataService {
     this.http.delete<boolean>(`${API_URL}/workdayTemplates/id/${id}`);
   }
 
-  createWeek(templateName: string, weekNumber: number, date: Date): Observable<WorkdayTemplate[]> {
+  createWeek(templateName: string, weekNumber: number, date: Date): Observable<Workday[]> {
     return this.http
       .post(`${API_URL}/workdayTemplates/createWeek/${templateName}/${weekNumber}/${this.datesService.backendFormatDate(date)}`, null)
-      .pipe(map((list: any[]): WorkdayTemplate[] => list.map(WorkdayTemplate.fromJSON)));
+      .pipe(map((list: any[]): Workday[] => list.map(Workday.fromJSON)));
   }
 
 }

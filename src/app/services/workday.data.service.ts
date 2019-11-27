@@ -15,7 +15,7 @@ export class WorkdayDataService {
 
   constructor(private http: HttpClient, private datesService: DatesService) { }
 
-  get workdays(): Observable<Workday[]> {
+  get workdays$(): Observable<Workday[]> {
     return this.http.get(`${API_URL}/Workdays`).pipe(
       catchError(error => {
         this.loadingError.next(error.statusText);
@@ -44,6 +44,12 @@ export class WorkdayDataService {
   getWorkdaysByWeek(weekdate: Date): Observable<Workday[]> {
     return this.http
       .get(`${API_URL}/workdays/week/${this.datesService.backendFormatDate(weekdate)}`)
+      .pipe(map((list: any[]): Workday[] => list.map(Workday.fromJSON)));
+  }
+
+  createEmptyWeek(weekdate: Date): Observable<Workday[]> {
+    return this.http
+      .post(`${API_URL}/workdays/week/${this.datesService.backendFormatDate(weekdate)}`, null)
       .pipe(map((list: any[]): Workday[] => list.map(Workday.fromJSON)));
   }
 }
