@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Comment} from '../../../shared/models/workday.model';
+import {AuthenticationService} from '../../../user/authentication.service';
 
 @Component({
   selector: 'app-comment-list',
@@ -6,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comment-list.component.scss']
 })
 export class CommentListComponent implements OnInit {
+  @Input() comments: Comment[];
 
-  constructor() { }
+  constructor(private auth: AuthenticationService) {}
 
   ngOnInit() {
   }
