@@ -61,6 +61,7 @@ import { WorkdayFilterPipe } from './pipes/workday-filter.pipe';
 import { ScheduleEmptyComponent } from './admin/schedule/schedule-empty/schedule-empty.component';
 import {WorkdayTemplateDataService} from './services/workdayTemplate.data.service';
 import { EditUnitComponent } from './admin/schedule/schedule-unit/edit-unit/edit-unit.component';
+import { CommentListComponent } from './admin/schedule/comment-list/comment-list.component';
 
 registerLocaleData(localeNl, 'nl-BE');
 
@@ -93,7 +94,8 @@ registerLocaleData(localeNl, 'nl-BE');
     ScheduleWeekendComponent,
     WorkdayFilterPipe,
     ScheduleEmptyComponent,
-    EditUnitComponent
+    EditUnitComponent,
+    CommentListComponent
   ],
   imports: [
     FlexLayoutModule,
