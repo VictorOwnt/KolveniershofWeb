@@ -69,4 +69,8 @@ export class User {
       absentDates: this.absentDates
     };
   }
+
+  get fullName() {
+    return this.firstName + ' ' + this.lastName;
+  }
 }
