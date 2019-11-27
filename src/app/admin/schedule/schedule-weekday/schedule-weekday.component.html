@@ -15,7 +15,7 @@
                 <div id="general" [style.border-bottom]="workday.holiday ? 'none' : ''">
                     <h2>Algemeen</h2>
                     <p *ngIf="workday.originalTemplateName">Deze planning komt van het template {{ workday.originalTemplateName }}, week {{ workday.originalWeekNumber }}.</p>
-                    <mat-slide-toggle id="holidayCheckbox" [checked]="workday.holiday" (change)="changeHoliday($event.checked)" [aria-label]="'Vrijaf ' + (workday.date | date: 'dd/MM/yyyy')">Vrijaf</mat-slide-toggle>
+                    <mat-slide-toggle [checked]="workday.holiday" (change)="changeHoliday($event.checked)" [aria-label]="'Vrijaf ' + (workday.date | date: 'dd/MM/yyyy')">Vrijaf</mat-slide-toggle>
                 </div>
                 <div id="amActivities" *ngIf="!workday.holiday">
                     <h2>Voormiddag</h2>
