@@ -14,11 +14,23 @@ export class UserDataService {
 
   get users$(): Observable<User[]> {
     return this.http
-      .get(`${API_URL}/Users/`)
+      .get(`${API_URL}/users/`)
       .pipe(catchError(error => {
         this.loadingError$.next(error.statusText);
         return of(null);
       }), map((list: any[]): User[] => list.map(User.fromJSON))
     );
+  }
+
+  get mentors$(): Observable<User[]> {
+    return this.http
+      .get(`${API_URL}/users/mentors`)
+      .pipe(map((list: any[]): User[] => list.map(User.fromJSON)));
+  }
+
+  get clients$(): Observable<User[]> {
+    return this.http
+      .get(`${API_URL}/users/clients`)
+      .pipe(map((list: any[]): User[] => list.map(User.fromJSON)));
   }
 }
