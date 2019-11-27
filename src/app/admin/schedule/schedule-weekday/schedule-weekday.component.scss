@@ -31,6 +31,10 @@ h1, h2, h3, p {
 }
 
 .card_content {
+  > .card_content {
+    border-bottom: none;
+  }
+
   > div:not(.card_content) {
     padding-top: $card-padding;
     padding-bottom: $card-padding;
@@ -60,20 +64,41 @@ h1, h2, h3, p {
   }
 }
 
-@media screen and (min-width: 960px) {
-  .card_content > .card_content {
+.card_footer {
+  border-top: 2px solid $color-divider;
+  padding-top: $card-padding;
+  padding-bottom: $card-padding;
+
+  > * {
+    margin-bottom: 10px;
+    margin-top: 10px;
     &:first-child {
-      border-right: 1px solid $color-divider;
-      padding-right: $card-padding;
+      margin-top: 0;
+      margin-bottom: 20px;
     }
+  }
+}
 
-    &:last-child {
-      padding-left: $card-padding;
-    }
+@media screen and (min-width: 960px) {
+  .card_content {
+    > .card_content {
+      &:first-child {
+        border-right: 1px solid $color-divider;
+        padding-right: $card-padding;
+      }
 
-    & > #amActivities {
-      border-bottom: unset;
+      &:last-child {
+        padding-left: $card-padding;
+      }
+
+      & > #amActivities {
+        border-bottom: unset;
+      }
     }
+  }
+
+  .card_footer {
+    border-top: 1px solid $color-divider;
   }
 }
 

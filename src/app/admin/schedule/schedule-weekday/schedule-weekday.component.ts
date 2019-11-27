@@ -23,4 +23,8 @@ export class ScheduleWeekdayComponent implements OnInit {
     // TODO - this.workdayDataService.patchWorkday(this.workday);
   }
 
+  viewComments() {
+    // TODO
+  }
+
 }
