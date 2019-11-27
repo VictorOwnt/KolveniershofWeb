@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivityUnit} from '../../../shared/models/activityUnit.model';
-import {LunchUnit} from '../../../shared/models/lunchUnit.model';
 import {User} from '../../../shared/models/user.model';
+import {LunchUnit} from '../../../shared/models/lunchUnit.model';
 
 @Component({
   selector: 'app-schedule-unit',
@@ -19,13 +19,11 @@ export class ScheduleUnitComponent implements OnInit {
   ngOnInit() {
     if (this.unit instanceof ActivityUnit) {
       this.title = this.unit.activity.name;
-      this.mentors = this.unit.mentors;
-      this.clients = this.unit.clients;
     } else if (this.unit instanceof LunchUnit) {
       this.title = this.unit.lunch;
-      this.mentors = this.unit.mentors;
-      this.clients = this.unit.clients;
     }
+    this.mentors = this.unit.mentors;
+    this.clients = this.unit.clients;
   }
 
   edit() {

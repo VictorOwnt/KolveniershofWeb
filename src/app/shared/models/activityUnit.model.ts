@@ -15,7 +15,7 @@ export class ActivityUnit {
 
   static fromJSON(json: any): ActivityUnit {
     const activityUnit = new ActivityUnit(
-      json.activity,
+      Activity.fromJSON(json.activity),
       json.mentors.map(User.fromJSON),
       json.clients.map(User.fromJSON)
     );
@@ -26,7 +26,7 @@ export class ActivityUnit {
   toJSON() {
     return {
       _id : this.id,
-      activity: this.activity,
+      activity: this.activity.toJSON(),
       mentors: this.mentors.map(mentor => mentor.toJSON()),
       clients: this.clients.map(client => client.toJSON())
     };

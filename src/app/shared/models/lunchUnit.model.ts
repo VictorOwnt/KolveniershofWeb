@@ -6,11 +6,11 @@ export class LunchUnit {
   mentors: User[];
   clients: User[];
 
-  constructor(
-    lunch: string,
-    mentors: User[],
-    clients: User[]
-  ) { }
+  constructor(lunch: string, mentors: User[], clients: User[]) {
+    this.lunch = lunch;
+    this.mentors = mentors;
+    this.clients = clients;
+  }
 
   static fromJSON(json: any): LunchUnit {
     const lunchUnit = new LunchUnit(
