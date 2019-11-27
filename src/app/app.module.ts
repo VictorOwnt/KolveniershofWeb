@@ -12,10 +12,8 @@ import { HeaderComponent } from './header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
-  MatFormFieldModule,
-  MatInputModule,
-  MatNativeDateModule,
-  MatDialogModule, MatCheckboxModule, MatSliderModule, MatSlideToggleModule, MatRadioModule
+  MatFormFieldModule, MatInputModule, MatNativeDateModule, MatDialogModule, MatCheckboxModule, MatSliderModule, MatSlideToggleModule,
+  MatRadioModule
 } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -62,6 +60,7 @@ import { ScheduleWeekendComponent } from './admin/schedule/schedule-weekend/sche
 import { WorkdayFilterPipe } from './pipes/workday-filter.pipe';
 import { ScheduleEmptyComponent } from './admin/schedule/schedule-empty/schedule-empty.component';
 import {WorkdayTemplateDataService} from './services/workdayTemplate.data.service';
+import { EditUnitComponent } from './admin/schedule/schedule-unit/edit-unit/edit-unit.component';
 
 registerLocaleData(localeNl, 'nl-BE');
 
@@ -93,7 +92,8 @@ registerLocaleData(localeNl, 'nl-BE');
     ScheduleUnitComponent,
     ScheduleWeekendComponent,
     WorkdayFilterPipe,
-    ScheduleEmptyComponent
+    ScheduleEmptyComponent,
+    EditUnitComponent
   ],
   imports: [
     FlexLayoutModule,
