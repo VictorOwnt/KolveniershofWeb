@@ -13,6 +13,7 @@ export class LunchUnit {
   }
 
   static fromJSON(json: any): LunchUnit {
+    if ((json === undefined) || (json === null)) { return null; }
     const lunchUnit = new LunchUnit(
       json.lunch,
       json.mentors.map(User.fromJSON),

@@ -71,6 +71,7 @@ export class Workday {
   }
 
   static fromJSON(json: any): Workday {
+    if ((json === undefined) || (json === null)) { return null; }
     const workday = new Workday(
       json.date,
       json.originalTemplateName,
