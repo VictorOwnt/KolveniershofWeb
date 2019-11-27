@@ -14,7 +14,7 @@ export class ActivityDataService {
 
   constructor(private http: HttpClient) {}
 
-  get activities(): Observable<Activity[]> {
+  get activities$(): Observable<Activity[]> {
     return this.http
       .get(`${API_URL}/activities`)
       .pipe(catchError(error => {
@@ -45,7 +45,7 @@ export class ActivityDataService {
     return this.http.delete<boolean>(`${API_URL}/activities/id/${id}`);
   }
 
-  get activityUnits(): Observable<ActivityUnit[]> {
+  get activityUnits$(): Observable<ActivityUnit[]> {
     return this.http
       .get(`${API_URL}/activities/units`)
       .pipe(catchError(error => {

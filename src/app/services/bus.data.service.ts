@@ -45,7 +45,7 @@ export class BusDataService {
     return this.http.delete<boolean>(`${API_URL}/busses/id/${id}`);
   }
 
-  get busUnits(): Observable<BusUnit[]> {
+  get busUnits$(): Observable<BusUnit[]> {
     return this.http
       .get(`${API_URL}/busses/units`)
       .pipe(catchError(error => {
