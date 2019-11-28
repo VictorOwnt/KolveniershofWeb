@@ -132,7 +132,7 @@ registerLocaleData(localeNl, 'nl-BE');
     MatSlideToggleModule,
     MatRadioModule
   ],
-  entryComponents: [ActivityNewComponent, BusNewComponent],
+  entryComponents: [ActivityNewComponent, BusNewComponent, CommentListComponent],
   providers: [
     { provide: LOCALE_ID, useValue: 'nl-BE' },
     httpInterceptorProviders,

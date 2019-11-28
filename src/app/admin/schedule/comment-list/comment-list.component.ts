@@ -1,6 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Comment} from '../../../shared/models/workday.model';
+import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Comment, Workday} from '../../../shared/models/workday.model';
 import {AuthenticationService} from '../../../user/authentication.service';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {Bus} from "../../../shared/models/bus.model";
 
 @Component({
   selector: 'app-comment-list',
@@ -8,11 +10,15 @@ import {AuthenticationService} from '../../../user/authentication.service';
   styleUrls: ['./comment-list.component.scss']
 })
 export class CommentListComponent implements OnInit {
-  @Input() comments: Comment[];
 
-  constructor(private auth: AuthenticationService) {}
+  constructor(
+      @Inject(MAT_DIALOG_DATA) public comments: Comment[],
+      public dialogRef: MatDialogRef<CommentListComponent>, private auth: AuthenticationService) {
+    console.log(this.comments);
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   mailto(comment: Comment): string {
     const mailContent = [];
@@ -21,7 +27,7 @@ export class CommentListComponent implements OnInit {
       'Uw opmerking werd beantwoord.',
       'Uw opmerking:\n' + comment.comment,
       'Antwoord:\n' + 'HIER ANTWOORDEN',
-      'Met vriendelijke groeten\n' + this.auth.currentUser.fullName + '\nHet Kolveniershof'
+      'Met vriendelijke groeten\n' + '\nHet Kolveniershof'
     );
 
     const recepient = encodeURI(comment.client.email);
