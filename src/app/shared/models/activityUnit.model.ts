@@ -14,6 +14,7 @@ export class ActivityUnit {
   }
 
   static fromJSON(json: any): ActivityUnit {
+    if ((json === undefined) || (json === null)) { return null; }
     const activityUnit = new ActivityUnit(
       Activity.fromJSON(json.activity),
       json.mentors.map(User.fromJSON),

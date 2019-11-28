@@ -14,6 +14,7 @@ export class BusUnit {
   }
 
   static fromJSON(json: any): BusUnit {
+    if ((json === undefined) || (json === null)) { return null; }
     const busUnit = new BusUnit(
       Bus.fromJSON(json.bus),
       json.mentors.map(User.fromJSON),

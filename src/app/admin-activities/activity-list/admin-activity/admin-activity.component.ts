@@ -17,22 +17,22 @@ export class AdminActivityComponent implements OnInit {
   public iconImage: Observable<string | null>;
 
   constructor(
-    public _a : AdminActivitiesComponent,
-  public _al : ActivityListComponent,
-    private _firebaseService: FirebaseService,
+    public a: AdminActivitiesComponent,
+    public al: ActivityListComponent,
+    private firebaseService: FirebaseService,
     ) {
      }
 
   ngOnInit() {
-    this.iconImage = this._firebaseService.lookupFileDownloadUrl(this.activity.icon);
+    this.iconImage = this.firebaseService.lookupFileDownloadUrl(this.activity.icon);
   }
 
   edit(): void {
-    this._a.openDialog(this.activity);
+    this.a.openDialog(this.activity);
   }
 
   delete(): void {
-    this._al.delete(this.activity.id);
+    this.al.delete(this.activity.id);
   }
 
 }

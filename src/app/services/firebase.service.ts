@@ -31,8 +31,16 @@ export class FirebaseService {
     }
 
     lookupFileDownloadUrl(ref: string): Observable<string | null> {
-        this.ref = this.storage.ref(ref);
-        return this.ref.getDownloadURL();
+        if (ref === '') {
+            this.ref = this.storage.ref('/users/profile_picture_empty.png');
+        } else {
+            this.ref = this.storage.ref(ref);
+        }
+        let returnvalue = this.ref.getDownloadURL();
+        if (returnvalue === null) {
+            returnvalue = this.storage.ref('/users/profile_picture_empty.png').getDownloadURL();
+        }
+        return returnvalue;
     }
 
     uploadFile(filePath: string) {

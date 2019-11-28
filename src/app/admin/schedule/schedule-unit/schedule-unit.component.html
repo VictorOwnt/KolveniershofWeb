@@ -13,7 +13,7 @@
         <div class="mentors">
             <div *ngFor="let mentor of mentors; let i=index">
                 <div *ngIf="i<2" fxLayout="row" fxLayoutAlign="flex-start center">
-                    <img fxFlex="none" class="user_picture" src="../../../../assets/img/profile_picture_empty.png" alt="Profile picture">
+                    <img fxFlex="none" class="user_picture" [src]="mentor.picture" alt="Profile picture">
                     <p>{{ mentor.fullName }}</p>
                 </div>
             </div>
@@ -27,7 +27,7 @@
         <div class="clients">
             <div *ngFor="let client of clients; let i=index">
                 <div *ngIf="i<2" fxLayout="row" fxLayoutAlign="flex-start center">
-                    <img fxFlex="none" class="user_picture" src="../../../../assets/img/profile_picture_empty.png" alt="Profile picture">
+                    <img fxFlex="none" class="user_picture" [src]="client.picture" alt="Profile picture">
                     <p>{{ client.fullName }}</p>
                 </div>
             </div>
