@@ -135,7 +135,7 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  register() {
+  register() { // TODO geen foutmedling wanneer geen afbeelding + afbeelding path moet ' ' zijn bij geen afbeelding
     const filePath = 'users/' + this.user.value.firstName + '_' + this.user.value.lastName + '_' + new Date().toISOString().split('T')[0];
     this.firebaseService.uploadFile(filePath);
     this.authService

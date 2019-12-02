@@ -25,17 +25,29 @@ export class ScheduleUnitComponent implements OnInit {
       this.title = this.unit.lunch;
     }
     this.mentors = this.unit.mentors;
+    this.mentors.forEach(async mentor => {
+      await this.getImageUrl(mentor);
+      // this.firebaseService.lookupFileDownloadUrl(mentor.picture).subscribe(img => mentor.picture = img);
+   });
+
     this.clients = this.unit.clients;
-    this.mentors.forEach(mentor => {
-       this.getImageUrl(mentor.picture).subscribe(url => mentor.picture = url);
-    });
-    this.clients.forEach(client => {
-      this.getImageUrl(client.picture).subscribe(url => client.picture = url);
-    });
+    this.clients.forEach(async client => {
+      await this.getImageUrl(client);
+      // this.firebaseService.lookupFileDownloadUrl(mentor.picture).subscribe(img => mentor.picture = img);
+   });
   }
 
-  getImageUrl(ref: string): Observable<string | null> {
-    return this.firebaseService.lookupFileDownloadUrl(ref);
+  async getImageUrl(user: User) {
+    return new Promise( (resolve, reject) => {
+      this.firebaseService.lookupFileDownloadUrl(user.picture).toPromise()
+      .then(image => resolve(user.picture = image))
+      .catch((e) => reject(e));
+    })
+    .catch((err) => console.log(err));
+      // reject('../../../assets/img/profile_picture_empty.png');
+    // return this.firebaseService.lookupFileDownloadUrl(ref); // .pipe(onerror);
+    // this.firebaseService.lookupFileDownloadUrl(ref);
+    // console.log(this.firebaseService.lookupFileDownloadUrl(ref));
   }
 
   edit() {

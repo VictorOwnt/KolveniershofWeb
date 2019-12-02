@@ -43,6 +43,7 @@ import { WeekendDayComponent } from './weekend/weekend-day/weekend-day.component
 import { HolidayComponent } from './holiday/holiday.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule} from '@angular/fire/storage';
+import { ImgFallbackModule } from 'ngx-img-fallback';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { environment } from '../environments/environment';
 import { AdminActivitiesComponent } from './admin-activities/admin-activities.component';
@@ -128,7 +129,8 @@ registerLocaleData(localeNl, 'nl-BE');
     MatCheckboxModule,
     MatSliderModule,
     MatSlideToggleModule,
-    MatRadioModule
+    MatRadioModule,
+    ImgFallbackModule
   ],
   entryComponents: [ActivityNewComponent, BusNewComponent],
   providers: [
