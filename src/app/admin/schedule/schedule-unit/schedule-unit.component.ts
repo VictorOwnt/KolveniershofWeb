@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 export class ScheduleUnitComponent implements OnInit {
   @Input() private unit: any;
   title: string;
+  icon: string;
   mentors: User[] = [];
   clients: User[] = [];
 
@@ -21,8 +22,10 @@ export class ScheduleUnitComponent implements OnInit {
   ngOnInit() {
     if (this.unit instanceof ActivityUnit) {
       this.title = this.unit.activity.name;
+      this.getIconUrl(this.unit.activity.icon);
     } else if (this.unit instanceof LunchUnit) {
       this.title = this.unit.lunch;
+      this.getIconUrl('icons/icon-restaurant.svg');
     }
     this.mentors = this.unit.mentors;
     this.mentors.forEach(async mentor => {
@@ -41,6 +44,19 @@ export class ScheduleUnitComponent implements OnInit {
     return new Promise( (resolve, reject) => {
       this.firebaseService.lookupFileDownloadUrl(user.picture).toPromise()
       .then(image => resolve(user.picture = image))
+      .catch((e) => reject(e));
+    })
+    .catch((err) => console.log(err));
+      // reject('../../../assets/img/profile_picture_empty.png');
+    // return this.firebaseService.lookupFileDownloadUrl(ref); // .pipe(onerror);
+    // this.firebaseService.lookupFileDownloadUrl(ref);
+    // console.log(this.firebaseService.lookupFileDownloadUrl(ref));
+  }
+
+  async getIconUrl(ref: string) {
+    return new Promise( (resolve, reject) => {
+      this.firebaseService.lookupFileDownloadUrl(ref).toPromise()
+      .then(icon => resolve(this.icon = icon))
       .catch((e) => reject(e));
     })
     .catch((err) => console.log(err));
