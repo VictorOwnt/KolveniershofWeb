@@ -24,7 +24,7 @@ export class AdminActivityComponent implements OnInit {
      }
 
   ngOnInit() {
-    this.iconImage = this.firebaseService.lookupFileDownloadUrl(this.activity.icon);
+    this.iconImage = this.firebaseService.lookupFileDownloadUrl(this.activity.icon, 'icon');
   }
 
   edit(): void {

@@ -2,7 +2,7 @@
     <div class="card_header">
         <h1 class="mat-display-1" fxLayoutAlign="center center">{{ workday.date | date:'EEEE' | titlecase }}</h1>
         <div fxLayout="row" fxLayoutAlign="center center">
-            <img class="svgWhiteColor" src="../../../../assets/img/icons/icon-moon.svg" alt="Day icon">
+            <img class="svgWhiteColor" [src]="icon | async" src-fallback='../../../../assets/img/icons/icon-moon.svg' alt="Day icon">
             <span class="mat-h3" style="margin: auto 10px; ">&middot;</span>
             <h2 class="mat-h2">{{ workday.date | date:'d/MM' }}</h2>
         </div>

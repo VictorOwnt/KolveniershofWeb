@@ -36,7 +36,7 @@ export class ActivityNewComponent implements OnInit {
   public activityForm: FormGroup;
   public errorMsg = '';
   imageUrl: any = null;
-  public nieuweData : boolean = false;
+  public nieuweData = false;
 
   constructor(
       @Inject(MAT_DIALOG_DATA) public activity: Activity,
@@ -51,8 +51,8 @@ export class ActivityNewComponent implements OnInit {
 
   ngOnInit() {
     if(this.activity) {
-      this.imageUrl = " ";
-      this.firebaseService.lookupFileDownloadUrl(this.activity.icon).subscribe(img => this.imageUrl = img);
+      this.imageUrl = '';
+      this.firebaseService.lookupFileDownloadUrl(this.activity.icon, 'icon').subscribe(img => this.imageUrl = img);
     }
     this.activityForm = this.fb.group({
       name: [this.activity ? this.activity.name : '', Validators.required],
@@ -85,7 +85,7 @@ export class ActivityNewComponent implements OnInit {
 
   save() {
     if (this.activity) {
-console.log(this.activity.icon);
+      console.log(this.activity.icon);
       console.log('icons/icon-' + this.activityForm.value.name);
       if(this.nieuweData){
         const filePath = 'icons/icon-' + this.activityForm.value.name;

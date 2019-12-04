@@ -3,6 +3,9 @@ import {Workday} from '../../../shared/models/workday.model';
 import {MatDialog} from "@angular/material/dialog";
 import {BusNewComponent} from "../../../admin-busses/bus-new/bus-new.component";
 import {CommentListComponent} from "../comment-list/comment-list.component";
+import { Observable } from 'rxjs';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { WorkdayDataService } from 'src/app/services/workday.data.service';
 
 @Component({
   selector: 'app-schedule-weekend',
@@ -11,11 +14,17 @@ import {CommentListComponent} from "../comment-list/comment-list.component";
 })
 export class ScheduleWeekendComponent implements OnInit {
   @Input() workday: Workday;
+  icon: Observable<string | null>;
+  
+  constructor(
+    public dialog: MatDialog,
+    private workdayDataService: WorkdayDataService,
+    private firebaseService: FirebaseService
+   ) {}
 
-
-  constructor(public dialog: MatDialog) { }
-
-  ngOnInit() { }
+  ngOnInit() {
+    this.icon = this.firebaseService.lookupFileDownloadUrl(this.workdayDataService.getDayIcon(this.workday.date.getDay()), 'icon');
+   }
 
   viewComments() {
     console.log(this.workday);
