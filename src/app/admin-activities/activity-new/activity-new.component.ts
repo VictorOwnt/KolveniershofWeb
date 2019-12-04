@@ -11,17 +11,17 @@ import { Activity } from 'src/app/shared/models/activity.model';
 import { FirebaseService } from '../../services/firebase.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
-function validate(url: any){
+function validate(url: any) {
   return (c: FormControl) => {
     console.log(c);
-    if (url || c.value !== ''){
+    if (url || c.value !== '') {
       return true;
     } else { return {validate: {
         valid: false
       }
     };
     }
-  }
+  };
 
 }
 
@@ -44,13 +44,13 @@ export class ActivityNewComponent implements OnInit {
       private authService: AuthenticationService,
       private router: Router,
       private fb: FormBuilder,
-      private _activityDataService: ActivityDataService,
+      private activityDataService: ActivityDataService,
       private firebaseService: FirebaseService,
       private sanitizer: DomSanitizer
       ) {}
 
   ngOnInit() {
-    if(this.activity) {
+    if (this.activity) {
       this.imageUrl = '';
       this.firebaseService.lookupFileDownloadUrl(this.activity.icon, 'icon').subscribe(img => this.imageUrl = img);
     }
@@ -87,12 +87,12 @@ export class ActivityNewComponent implements OnInit {
     if (this.activity) {
       console.log(this.activity.icon);
       console.log('icons/icon-' + this.activityForm.value.name);
-      if(this.nieuweData){
+      if (this.nieuweData) {
         const filePath = 'icons/icon-' + this.activityForm.value.name;
         this.firebaseService.uploadFile(filePath);
       }
       this.activity.name = this.activityForm.value.name;
-      this._activityDataService.patchActivity(this.activity).subscribe(
+      this.activityDataService.patchActivity(this.activity).subscribe(
           val => {
             if (val) {
               if (this.authService.redirectUrl) {
@@ -119,7 +119,7 @@ export class ActivityNewComponent implements OnInit {
       const filePath = 'icons/icon-' + this.activityForm.value.name;
       this.firebaseService.uploadFile(filePath);
       const activity = new Activity(this.activityForm.value.name, filePath);
-      this._activityDataService.postActivity(activity).subscribe(
+      this.activityDataService.postActivity(activity).subscribe(
           val => {
             if (val) {
               if (this.authService.redirectUrl) {

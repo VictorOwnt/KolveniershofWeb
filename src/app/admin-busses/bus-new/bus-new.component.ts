@@ -1,15 +1,12 @@
 import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
-import {Activity} from "../../shared/models/activity.model";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {AuthenticationService} from "../../user/authentication.service";
-import {Router} from "@angular/router";
-import {ActivityDataService} from "../../services/activity.data.service";
-import {HttpErrorResponse} from "@angular/common/http";
-import * as $ from "jquery";
-import {Bus} from "../../shared/models/bus.model";
-import {BusDataService} from "../../services/bus.data.service";
-import {AdminBussesComponent} from "../admin-busses.component";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {AuthenticationService} from '../../user/authentication.service';
+import {Router} from '@angular/router';
+import {HttpErrorResponse} from '@angular/common/http';
+import * as $ from 'jquery';
+import {Bus} from '../../shared/models/bus.model';
+import {BusDataService} from '../../services/bus.data.service';
 
 
 
@@ -31,11 +28,11 @@ export class BusNewComponent implements OnInit {
       private authService: AuthenticationService,
       private router: Router,
       private fb: FormBuilder,
-      private _busDataService: BusDataService) {}
+      private busDataService: BusDataService) {}
 
 
   ngOnInit() {
-    if(this.bus) {
+    if (this.bus) {
       this.color = this.bus.color;
     }
     this.busForm = this.fb.group({
@@ -50,12 +47,12 @@ export class BusNewComponent implements OnInit {
         ? 'Naam is verplicht.' : '';
   }
 
-  save(){
-    if(this.bus) {
+  save() {
+    if (this.bus) {
       this.bus.name = this.busForm.value.name;
       this.bus.color = this.color;
       console.log(this.bus);
-      this._busDataService.patchBus(this.bus).subscribe(
+      this.busDataService.patchBus(this.bus).subscribe(
           val => {
             if (val) {
               if (this.authService.redirectUrl) {
@@ -78,10 +75,9 @@ export class BusNewComponent implements OnInit {
             $('#errorMsg').slideDown(200);
           }
       );
-    }
-    else{
+    } else {
       const bus = new Bus(this.busForm.value.name, this.color);
-      this._busDataService.postBus(bus).subscribe(
+      this.busDataService.postBus(bus).subscribe(
           val => {
             if (val) {
               if (this.authService.redirectUrl) {

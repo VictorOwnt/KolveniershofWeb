@@ -1,8 +1,7 @@
 import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {Workday} from '../../../shared/models/workday.model';
-import {MatDialog} from "@angular/material/dialog";
-import {BusNewComponent} from "../../../admin-busses/bus-new/bus-new.component";
-import {CommentListComponent} from "../comment-list/comment-list.component";
+import {MatDialog} from '@angular/material/dialog';
+import {CommentListComponent} from '../comment-list/comment-list.component';
 import { Observable } from 'rxjs';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { WorkdayDataService } from 'src/app/services/workday.data.service';
@@ -15,7 +14,7 @@ import { WorkdayDataService } from 'src/app/services/workday.data.service';
 export class ScheduleWeekendComponent implements OnInit {
   @Input() workday: Workday;
   icon: Observable<string | null>;
-  
+
   constructor(
     public dialog: MatDialog,
     private workdayDataService: WorkdayDataService,

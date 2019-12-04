@@ -64,7 +64,7 @@ import {WorkdayTemplateDataService} from './services/workdayTemplate.data.servic
 import { EditUnitComponent } from './admin/schedule/schedule-unit/edit-unit/edit-unit.component';
 import { CommentListComponent } from './admin/schedule/comment-list/comment-list.component';
 import { ScheduleEditComponent } from './admin/schedule/schedule-edit/schedule-edit.component';
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 registerLocaleData(localeNl, 'nl-BE');
 

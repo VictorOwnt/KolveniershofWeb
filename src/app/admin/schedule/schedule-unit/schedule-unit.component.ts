@@ -3,9 +3,8 @@ import {ActivityUnit} from '../../../shared/models/activityUnit.model';
 import {User} from '../../../shared/models/user.model';
 import {LunchUnit} from '../../../shared/models/lunchUnit.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { Observable } from 'rxjs';
-import {ScheduleEditComponent} from "../schedule-edit/schedule-edit.component";
-import {MatDialog} from "@angular/material/dialog";
+import {ScheduleEditComponent} from '../schedule-edit/schedule-edit.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-schedule-unit',
