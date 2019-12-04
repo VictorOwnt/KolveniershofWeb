@@ -44,8 +44,8 @@ export class ScheduleEditComponent implements OnInit {
       name: [this.activityUnit ? this.activityUnit.activity.name : '', Validators.required],
     });
 
-    this.activityDataService.activities.subscribe( a => a.forEach(act => this.options.push(act.name)));
-    this.activityDataService.activities.subscribe(ac => this.activities = ac);
+    this.activityDataService.activities$.subscribe( a => a.forEach(act => this.options.push(act.name)));
+    this.activityDataService.activities$.subscribe(ac => this.activities = ac);
 
     this.filteredOptions = this.myControl.valueChanges
         .pipe(
