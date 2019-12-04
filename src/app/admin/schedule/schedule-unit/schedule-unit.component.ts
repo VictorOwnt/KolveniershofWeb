@@ -30,40 +30,30 @@ export class ScheduleUnitComponent implements OnInit {
     this.mentors = this.unit.mentors;
     this.mentors.forEach(async mentor => {
       await this.getImageUrl(mentor);
-      // this.firebaseService.lookupFileDownloadUrl(mentor.picture).subscribe(img => mentor.picture = img);
    });
 
     this.clients = this.unit.clients;
     this.clients.forEach(async client => {
       await this.getImageUrl(client);
-      // this.firebaseService.lookupFileDownloadUrl(mentor.picture).subscribe(img => mentor.picture = img);
    });
   }
 
   async getImageUrl(user: User) {
     return new Promise( (resolve, reject) => {
-      this.firebaseService.lookupFileDownloadUrl(user.picture).toPromise()
+      this.firebaseService.lookupFileDownloadUrl(user.picture, 'user').toPromise()
       .then(image => resolve(user.picture = image))
       .catch((e) => reject(e));
     })
     .catch((err) => console.log(err));
-      // reject('../../../assets/img/profile_picture_empty.png');
-    // return this.firebaseService.lookupFileDownloadUrl(ref); // .pipe(onerror);
-    // this.firebaseService.lookupFileDownloadUrl(ref);
-    // console.log(this.firebaseService.lookupFileDownloadUrl(ref));
   }
 
   async getIconUrl(ref: string) {
     return new Promise( (resolve, reject) => {
-      this.firebaseService.lookupFileDownloadUrl(ref).toPromise()
+      this.firebaseService.lookupFileDownloadUrl(ref, 'icon').toPromise()
       .then(icon => resolve(this.icon = icon))
       .catch((e) => reject(e));
     })
     .catch((err) => console.log(err));
-      // reject('../../../assets/img/profile_picture_empty.png');
-    // return this.firebaseService.lookupFileDownloadUrl(ref); // .pipe(onerror);
-    // this.firebaseService.lookupFileDownloadUrl(ref);
-    // console.log(this.firebaseService.lookupFileDownloadUrl(ref));
   }
 
   edit() {

@@ -52,7 +52,7 @@ export class ActivityNewComponent implements OnInit {
   ngOnInit() {
     if(this.activity) {
       this.imageUrl = '';
-      this.firebaseService.lookupFileDownloadUrl(this.activity.icon).subscribe(img => this.imageUrl = img);
+      this.firebaseService.lookupFileDownloadUrl(this.activity.icon, 'icon').subscribe(img => this.imageUrl = img);
     }
     this.activityForm = this.fb.group({
       name: [this.activity ? this.activity.name : '', Validators.required],

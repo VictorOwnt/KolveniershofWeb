@@ -1,6 +1,8 @@
 import {Component, Inject, Input, LOCALE_ID, OnInit} from '@angular/core';
 import {Workday} from '../../../shared/models/workday.model';
 import {WorkdayDataService} from '../../../services/workday.data.service';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-schedule-weekday',
@@ -9,10 +11,16 @@ import {WorkdayDataService} from '../../../services/workday.data.service';
 })
 export class ScheduleWeekdayComponent implements OnInit {
   @Input() workday: Workday;
+  icon: Observable<string | null>;
 
-  constructor(private workdayDataService: WorkdayDataService) {}
+  constructor(
+    private workdayDataService: WorkdayDataService,
+    private firebaseService: FirebaseService
+    ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.icon = this.firebaseService.lookupFileDownloadUrl(this.workdayDataService.getDayIcon(this.workday.date.getDay()), 'icon');
+  }
 
   newUnit(type: string, isAm: boolean = null) {
     // TODO
