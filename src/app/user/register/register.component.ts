@@ -66,6 +66,7 @@ export class RegisterComponent implements OnInit {
   public user: FormGroup;
   public errorMsg = '';
   public startDate = new Date();
+  public nieuweData = false;
   hidePassword = true;
   hideConfirmPassword = true;
   imageUrl: any = null;
@@ -131,13 +132,17 @@ export class RegisterComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     reader.onload = (_event) => {
       this.imageUrl = reader.result;
+      this.nieuweData = true;
     };
   }
 
 
-  register() { // TODO geen foutmedling wanneer geen afbeelding + afbeelding path moet ' ' zijn bij geen afbeelding
-    const filePath = 'users/' + this.user.value.firstName + '_' + this.user.value.lastName + '_' + new Date().toISOString().split('T')[0];
-    this.firebaseService.uploadFile(filePath);
+  register() {
+    let filePath = '';
+    if (this.nieuweData) {
+      filePath = 'users/' + this.user.value.firstName + '_' + this.user.value.lastName + '_' + new Date().toISOString().split('T')[0];
+      this.firebaseService.uploadFile(filePath);
+    }
     this.authService
       .register(
         this.user.value.email,
