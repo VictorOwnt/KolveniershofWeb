@@ -4,6 +4,8 @@ import {User} from '../../../shared/models/user.model';
 import {LunchUnit} from '../../../shared/models/lunchUnit.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { Observable } from 'rxjs';
+import {ScheduleEditComponent} from "../schedule-edit/schedule-edit.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-schedule-unit',
@@ -16,7 +18,7 @@ export class ScheduleUnitComponent implements OnInit {
   mentors: User[] = [];
   clients: User[] = [];
 
-  constructor(private firebaseService: FirebaseService) { }
+  constructor(private firebaseService: FirebaseService, public dialog: MatDialog) { }
 
   ngOnInit() {
     if (this.unit instanceof ActivityUnit) {
@@ -39,7 +41,15 @@ export class ScheduleUnitComponent implements OnInit {
   }
 
   edit() {
-    // TODO - edit
+    const dialogRef = this.dialog.open(ScheduleEditComponent, {
+      width: '1000px',
+      data: this.unit
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+    });
   }
 
   delete() {

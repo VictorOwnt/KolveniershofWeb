@@ -1,0 +1,23 @@
+<div *ngIf="!activityUnit" class="header" mat-dialog-title>Activiteit aanmaken</div>
+<div *ngIf="activityUnit" class="header" mat-dialog-title>Activiteit aanpassen</div>
+<form [formGroup]="activityUnitForm" (ngSubmit)="save()">
+    <div class="content" mat-dialog-content>
+
+
+
+    <mat-form-field appearance="outline">
+        <input type="text" placeholder="activiteit" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-icon matSuffix><img class="icon" [src]="imageUrl ? imageUrl: '../../../assets/img/icons/add_circle.svg'"/></mat-icon>
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (onSelectionChange)='preview(option)'>
+                {{option}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    </div>
+    <div mat-dialog-actions align="center">
+        <button class="btn" type="submit">Opslaan</button>
+        <button class="btn-pink" matDialogClose>Annuleren</button>
+
+    </div>
+</form>

@@ -7,8 +7,7 @@ import {CommentListComponent} from "../comment-list/comment-list.component";
 @Component({
   selector: 'app-schedule-weekend',
   templateUrl: './schedule-weekend.component.html',
-  styleUrls: ['./schedule-weekend.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./schedule-weekend.component.scss']
 })
 export class ScheduleWeekendComponent implements OnInit {
   @Input() workday: Workday;
