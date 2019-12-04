@@ -15,7 +15,6 @@ import {map, startWith} from "rxjs/operators";
   selector: 'app-schedule-edit',
   templateUrl: './schedule-edit.component.html',
   styleUrls: ['./schedule-edit.component.scss'],
-  encapsulation: ViewEncapsulation.None
 })
 export class ScheduleEditComponent implements OnInit {
   activities: Activity[]
@@ -39,7 +38,7 @@ export class ScheduleEditComponent implements OnInit {
   ngOnInit() {
     if(this.activityUnit) {
       this.imageUrl = " ";
-      this.firebaseService.lookupFileDownloadUrl(this.activityUnit.activity.icon).subscribe(img => this.imageUrl = img);
+      this.firebaseService.lookupFileDownloadUrl(this.activityUnit.activity.icon, 'icon').subscribe(img => this.imageUrl = img);
     }
 
     this.activityUnitForm = this.fb.group({
@@ -64,7 +63,7 @@ export class ScheduleEditComponent implements OnInit {
 
   preview(fileInput: any) {
     let activity = this.activities.filter( function(a) {return  a.name == fileInput.valueOf()});
-    this.firebaseService.lookupFileDownloadUrl(activity[0].icon).subscribe(x => this.imageUrl = x);
+    this.firebaseService.lookupFileDownloadUrl(activity[0].icon, 'icon').subscribe(x => this.imageUrl = x);
 
   }
 
