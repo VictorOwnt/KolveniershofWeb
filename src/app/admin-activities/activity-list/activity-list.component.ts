@@ -24,7 +24,7 @@ export class ActivityListComponent implements OnInit {
     return this._fetchActivities$;
   }
 
-  delete(id: string): void { //todo enkel delete bij 2 keer klikken
+  delete(id: string): void { // TODO - real time
     this._activityDataService.deleteActivity(id).subscribe();
   }
 
