@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Workday} from '../../../shared/models/workday.model';
 import {MatDialog} from '@angular/material/dialog';
 import {CommentListComponent} from '../comment-list/comment-list.component';

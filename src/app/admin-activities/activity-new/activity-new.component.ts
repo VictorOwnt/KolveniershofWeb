@@ -1,6 +1,5 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
-import {ViewEncapsulation} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import * as $ from 'jquery';
 import {AuthenticationService} from '../../user/authentication.service';
@@ -28,8 +27,7 @@ function validate(url: any) {
 @Component({
   selector: 'app-activity-new',
   templateUrl: './activity-new.component.html',
-  styleUrls: ['./activity-new.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./activity-new.component.scss']
 })
 export class ActivityNewComponent implements OnInit {
 

@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {AuthenticationService} from '../../user/authentication.service';
@@ -13,8 +13,7 @@ import {BusDataService} from '../../services/bus.data.service';
 @Component({
   selector: 'app-bus-new',
   templateUrl: './bus-new.component.html',
-  styleUrls: ['./bus-new.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./bus-new.component.scss']
 })
 export class BusNewComponent implements OnInit {
 
