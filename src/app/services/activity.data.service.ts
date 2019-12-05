@@ -4,7 +4,7 @@ import { ActivityUnit } from '../shared/models/activityUnit.model';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../../environments/environment';
 import {Activity} from '../shared/models/activity.model';
-import {catchError, map} from 'rxjs/operators';
+import {catchError, filter, map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -66,13 +66,8 @@ export class ActivityDataService {
       .pipe(map(ActivityUnit.fromJSON));
   }
 
-  patchActivityUnit(activityUnit: ActivityUnit): Observable<ActivityUnit> {
-    return this.http
-      .patch(`${API_URL}/activities/units/id/${activityUnit.id}`, activityUnit)
-      .pipe(map(ActivityUnit.fromJSON));
-  }
+  // TODO - patch unit
 
-  deleteActivityUnit(id: string): Observable<boolean> {
-    return this.http.delete<boolean>(`${API_URL}/activities/units/id/${id}`);
-  }
+  // TODO - delete unit
+
 }

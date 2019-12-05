@@ -6,8 +6,6 @@ import {catchError, map} from 'rxjs/operators';
 import {Bus} from '../shared/models/bus.model';
 import {BusUnit} from '../shared/models/busUnit.model';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -66,13 +64,8 @@ export class BusDataService {
       .pipe(map(BusUnit.fromJSON));
   }
 
-  patchBusUnit(busUnit: BusUnit): Observable<BusUnit> {
-    return this.http
-      .patch(`${API_URL}/busses/units/id/${busUnit.id}`, busUnit)
-      .pipe(map(BusUnit.fromJSON));
-  }
+  // TODO - patch unit
 
-  deleteBusUnit(id: string): Observable<boolean> {
-    return this.http.delete<boolean>(`${API_URL}/busses/units/id/${id}`);
-  }
+  // TODO - delete unit
+
 }
