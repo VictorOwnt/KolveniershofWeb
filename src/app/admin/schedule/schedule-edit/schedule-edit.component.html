@@ -47,7 +47,7 @@
     </div>
 
     <div mat-dialog-actions align="center"> <!-- TODO - FxFlex -->
-        <button class="btn" type="submit" [disabled]="!unitFormGroup.valid || !unitFormGroup.dirty">Opslaan</button>
+        <button class="btn" type="submit" [disabled]="!unitFormGroup.valid || !unitFormGroup.dirty">{{ isActivity ? "Activiteit opslaan" : "Lunch opslaan" }}</button>
         <button class="btn-pink" matDialogClose>Annuleren</button>
     </div>
 </form>
