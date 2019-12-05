@@ -12,7 +12,7 @@
     <div class="card_content">
         <div class="mentors">
             <div *ngFor="let mentor of mentors; let i=index">
-                <div *ngIf="i<2" fxLayout="row" fxLayoutAlign="flex-start center">
+                <div *ngIf="i<2 || expandMentors" fxLayout="row" fxLayoutAlign="flex-start center">
                     <img fxFlex="none" class="user_picture" [src]="mentor.picture" src-fallback='../../../assets/img/profile_picture_empty.png' alt="Profile picture">
                     <!--<img *ngIf="(mentor.picture == ''); else loadPicture" fxFlex="none" class="user_picture" src='../../../assets/img/profile_picture_empty.png' alt="Profile picture">
                     <ng-template #loadPicture>
@@ -21,16 +21,16 @@
                     <p>{{ mentor.fullName }}</p>
                 </div>
             </div>
-            <a *ngIf="mentors.length>2" fxLayout="row" fxLayoutAlign="flex-start center">
+            <a *ngIf="mentors.length>2" fxLayout="row" fxLayoutAlign="flex-start center" (click)="expandMentors ? expandMentors = false : expandMentors = true">
                 <i fxFlex="none" fxLayoutAlign="center center" class="material-icons more">
                     more_horiz
                 </i>
-                <p>Meer weergeven</p>
+                <p>{{ expandMentors ? "Minder" : "Meer" }} weergeven</p>
             </a>
         </div>
         <div class="clients">
             <div *ngFor="let client of clients; let i=index">
-                <div *ngIf="i<2" fxLayout="row" fxLayoutAlign="flex-start center">
+                <div *ngIf="i<2 || expandClients" fxLayout="row" fxLayoutAlign="flex-start center">
                     <img fxFlex="none" class="user_picture" [src]="client.picture" src-fallback='../../../assets/img/profile_picture_empty.png' alt="Profile picture">
                     <!--<img *ngIf="(client.picture == ''); else loadPicture" fxFlex="none" class="user_picture" src='../../../assets/img/profile_picture_empty.png' alt="Profile picture">
                     <ng-template #loadPicture>
@@ -39,11 +39,11 @@
                     <p>{{ client.fullName }}</p>
                 </div>
             </div>
-            <a *ngIf="clients.length>2" fxLayout="row" fxLayoutAlign="flex-start center">
+            <a *ngIf="clients.length>2" fxLayout="row" fxLayoutAlign="flex-start center" (click)="expandClients ? expandClients = false : expandClients = true">
                 <i fxFlex="none" fxLayoutAlign="center center" class="material-icons more">
                     more_horiz
                 </i>
-                <p>Meer weergeven</p>
+                <p>{{ expandClients ? "Minder" : "Meer" }} weergeven</p>
             </a>
         </div>
     </div>

@@ -16,6 +16,8 @@ export class ScheduleUnitComponent implements OnInit {
   icon: string;
   mentors: User[] = [];
   clients: User[] = [];
+  expandClients = true;
+  expandMentors = true;
 
   constructor(private firebaseService: FirebaseService) { }
 
@@ -31,11 +33,16 @@ export class ScheduleUnitComponent implements OnInit {
     this.mentors.forEach(async mentor => {
       await this.getImageUrl(mentor);
    });
+    if(this.mentors.length > 2)
+      this.expandMentors = false;
 
     this.clients = this.unit.clients;
     this.clients.forEach(async client => {
       await this.getImageUrl(client);
    });
+
+    if(this.clients.length > 2)
+      this.expandClients = false;
   }
 
   async getImageUrl(user: User) {
