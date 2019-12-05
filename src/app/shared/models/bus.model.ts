@@ -23,3 +23,7 @@ export class Bus {
     };
   }
 }
+
+Bus.prototype.toString = function() {
+  return this.name;
+};

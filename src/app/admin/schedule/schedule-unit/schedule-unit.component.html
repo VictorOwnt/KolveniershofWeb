@@ -14,11 +14,7 @@
             <div *ngFor="let mentor of mentors; let i=index">
                 <div *ngIf="i<2" fxLayout="row" fxLayoutAlign="flex-start center">
                     <img fxFlex="none" class="user_picture" [src]="mentor.picture" src-fallback='../../../assets/img/profile_picture_empty.png' alt="Profile picture">
-                    <!--<img *ngIf="(mentor.picture == ''); else loadPicture" fxFlex="none" class="user_picture" src='../../../assets/img/profile_picture_empty.png' alt="Profile picture">
-                    <ng-template #loadPicture>
-                        <img fxFlex="none" class="user_picture" [src]="mentor.picture" src-fallback='../../../assets/img/profile_picture_empty.png' alt="Profile picture">
-                    </ng-template>-->
-                    <p>{{ mentor.fullName }}</p>
+                    <p>{{ mentor.firstName }}</p>
                 </div>
             </div>
             <a *ngIf="mentors.length>2" fxLayout="row" fxLayoutAlign="flex-start center">
@@ -32,11 +28,7 @@
             <div *ngFor="let client of clients; let i=index">
                 <div *ngIf="i<2" fxLayout="row" fxLayoutAlign="flex-start center">
                     <img fxFlex="none" class="user_picture" [src]="client.picture" src-fallback='../../../assets/img/profile_picture_empty.png' alt="Profile picture">
-                    <!--<img *ngIf="(client.picture == ''); else loadPicture" fxFlex="none" class="user_picture" src='../../../assets/img/profile_picture_empty.png' alt="Profile picture">
-                    <ng-template #loadPicture>
-                        <img fxFlex="none" class="user_picture" [src]="client.picture" src-fallback='../../../assets/img/profile_picture_empty.png' alt="Profile picture">
-                    </ng-template>-->
-                    <p>{{ client.fullName }}</p>
+                    <p>{{ client.firstName }}</p>
                 </div>
             </div>
             <a *ngIf="clients.length>2" fxLayout="row" fxLayoutAlign="flex-start center">

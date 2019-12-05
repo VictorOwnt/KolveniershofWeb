@@ -75,3 +75,7 @@ export class User {
     return this.firstName + ' ' + this.lastName;
   }
 }
+
+User.prototype.toString = function() {
+  return this.firstName + ' ' + this.lastName;
+};

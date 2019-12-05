@@ -32,3 +32,7 @@ export class LunchUnit {
     };
   }
 }
+
+LunchUnit.prototype.toString = function() {
+  return this.lunch;
+};

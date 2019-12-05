@@ -23,3 +23,7 @@ export class Activity {
     };
   }
 }
+
+Activity.prototype.toString = function() {
+  return this.name;
+};

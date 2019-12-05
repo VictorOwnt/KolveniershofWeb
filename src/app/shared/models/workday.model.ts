@@ -47,7 +47,6 @@ export class Workday {
   holiday: boolean;
   comments: Comment[];
 
-
   constructor(
     date: Date,
     originalTemplateName: string,
