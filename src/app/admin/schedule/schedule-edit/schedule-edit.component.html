@@ -1,6 +1,13 @@
-<div *ngIf="!activityUnit" class="header" mat-dialog-title>Activiteit aanmaken</div>
-<div *ngIf="activityUnit" class="header" mat-dialog-title>Activiteit aanpassen</div>
-<form [formGroup]="activityUnitForm" (ngSubmit)="save()">
+<form [formGroup]="unitFormGroup" (ngSubmit)="submitUnit()" fxLayout="column" fxLayoutGap="15px">
+    <div class="header" *ngIf="unit === null">
+        <h1 mat-dialog-title *ngIf="isActivity">Nieuw atelier</h1>
+        <h1 mat-dialog-title *ngIf="!isActivity">Nieuwe lunch</h1>
+    </div>
+    <div class="header" *ngIf="unit !== null">
+        <h1 mat-dialog-title *ngIf="isActivity">Atelier bewerken</h1>
+        <h1 mat-dialog-title *ngIf="!isActivity">Lunch bewerken</h1>
+    </div>
+
     <div class="content" mat-dialog-content>
 
 
@@ -15,9 +22,9 @@
         </mat-autocomplete>
     </mat-form-field>
     </div>
-    <div mat-dialog-actions align="center">
-        <button class="btn" type="submit">Opslaan</button>
-        <button class="btn-pink" matDialogClose>Annuleren</button>
 
+    <div mat-dialog-actions align="center"> <!-- TODO - FxFlex -->
+        <button class="btn" type="submit" [disabled]="!unitFormGroup.valid || !unitFormGroup.dirty">Opslaan</button>
+        <button class="btn-pink" matDialogClose>Annuleren</button>
     </div>
 </form>

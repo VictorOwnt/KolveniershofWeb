@@ -63,7 +63,10 @@ export class ScheduleEditComponent implements OnInit {
   preview(fileInput: any) {
     const activity = this.activities.filter( a => a.name === fileInput.valueOf() );
     this.firebaseService.lookupFileDownloadUrl(activity[0].icon, 'icon').subscribe(x => this.imageUrl = x);
+  }
 
+  submitUnit() {
+    console.warn(this.unitFormGroup);
   }
 
 }
