@@ -9,18 +9,20 @@
     </div>
 
     <div class="content" mat-dialog-content>
+        <!-- Select activity -->
+        <mat-form-field appearance="outline" *ngIf="isActivity">
+            <mat-label>Atelier</mat-label>
+            <input type="text" placeholder="Atelier" aria-label="Atelier" matInput formControlName="activity" [matAutocomplete]="auto">
+            <mat-icon matSuffix><img class="icon svgTextColor" [src]="activityImgUrl ? activityImgUrl: '../../../assets/img/icons/add_circle.svg'"/></mat-icon>
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let activity of filteredActivities | async" [value]="activity" (onSelectionChange)='previewActivity(activity)'>
+                    {{ activity.name }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
 
 
 
-    <mat-form-field appearance="outline">
-        <input type="text" placeholder="activiteit" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-        <mat-icon matSuffix><img class="icon" [src]="imageUrl ? imageUrl: '../../../assets/img/icons/add_circle.svg'"/></mat-icon>
-        <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (onSelectionChange)='preview(option)'>
-                {{option}}
-            </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
     </div>
 
     <div mat-dialog-actions align="center"> <!-- TODO - FxFlex -->
