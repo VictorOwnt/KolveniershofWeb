@@ -1,6 +1,6 @@
 // everything still has to be put in seperate modules
 import { BrowserModule } from '@angular/platform-browser';
-import {LOCALE_ID, NgModule} from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +25,7 @@ import { httpInterceptorProviders } from './http-interceptors';
 import { PictoAgendaComponent } from './picto-agenda/picto-agenda.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {CommonModule, DatePipe, registerLocaleData} from '@angular/common';
+import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -60,11 +60,10 @@ import localeNl from '@angular/common/locales/nl';
 import { ScheduleWeekendComponent } from './admin/schedule/schedule-weekend/schedule-weekend.component';
 import { WorkdayFilterPipe } from './pipes/workday-filter.pipe';
 import { ScheduleEmptyComponent } from './admin/schedule/schedule-empty/schedule-empty.component';
-import {WorkdayTemplateDataService} from './services/workdayTemplate.data.service';
-import { EditUnitComponent } from './admin/schedule/schedule-unit/edit-unit/edit-unit.component';
+import { WorkdayTemplateDataService } from './services/workdayTemplate.data.service';
 import { CommentListComponent } from './admin/schedule/comment-list/comment-list.component';
 import { ScheduleEditComponent } from './admin/schedule/schedule-edit/schedule-edit.component';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 registerLocaleData(localeNl, 'nl-BE');
 
@@ -97,7 +96,6 @@ registerLocaleData(localeNl, 'nl-BE');
     ScheduleWeekendComponent,
     WorkdayFilterPipe,
     ScheduleEmptyComponent,
-    EditUnitComponent,
     CommentListComponent,
     ScheduleEditComponent
   ],
@@ -134,11 +132,16 @@ registerLocaleData(localeNl, 'nl-BE');
     MatCheckboxModule,
     MatSliderModule,
     MatSlideToggleModule,
-    MatRadioModule,
+    ImgFallbackModule,
     MatAutocompleteModule,
-    ImgFallbackModule
+    MatRadioModule
   ],
-  entryComponents: [ActivityNewComponent, BusNewComponent, CommentListComponent, ScheduleEditComponent],
+  entryComponents: [
+    ActivityNewComponent,
+    BusNewComponent,
+    CommentListComponent,
+    ScheduleEditComponent
+  ],
   providers: [
     { provide: LOCALE_ID, useValue: 'nl-BE' },
     httpInterceptorProviders,
