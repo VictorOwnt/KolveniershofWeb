@@ -3,7 +3,7 @@ import {ActivityUnit} from '../../../shared/models/activityUnit.model';
 import {User} from '../../../shared/models/user.model';
 import {LunchUnit} from '../../../shared/models/lunchUnit.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import {ScheduleEditComponent} from '../schedule-edit/schedule-edit.component';
+import {EditUnitModalComponent} from './edit-unit-modal/edit-unit-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 
 @Component({
@@ -58,14 +58,13 @@ export class ScheduleUnitComponent implements OnInit {
   }
 
   edit() {
-    const dialogRef = this.dialog.open(ScheduleEditComponent, {
+    const dialogRef = this.dialog.open(EditUnitModalComponent, {
       width: '1000px',
       data: this.unit
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-
     });
   }
 

@@ -1,22 +1,22 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {AuthenticationService} from '../../../user/authentication.service';
-import {ActivityUnit} from '../../../shared/models/activityUnit.model';
+import {AuthenticationService} from '../../../../user/authentication.service';
+import {ActivityUnit} from '../../../../shared/models/activityUnit.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {FirebaseService} from '../../../services/firebase.service';
+import {FirebaseService} from '../../../../services/firebase.service';
 import {Observable} from 'rxjs';
-import {ActivityDataService} from '../../../services/activity.data.service';
-import {Activity} from '../../../shared/models/activity.model';
+import {ActivityDataService} from '../../../../services/activity.data.service';
+import {Activity} from '../../../../shared/models/activity.model';
 import {map, startWith} from 'rxjs/operators';
-import {User} from '../../../shared/models/user.model';
-import {UserDataService} from '../../../services/user.data.service';
+import {User} from '../../../../shared/models/user.model';
+import {UserDataService} from '../../../../services/user.data.service';
 
 @Component({
   selector: 'app-schedule-edit',
-  templateUrl: './schedule-edit.component.html',
-  styleUrls: ['./schedule-edit.component.scss'],
+  templateUrl: './edit-unit-modal.component.html',
+  styleUrls: ['./edit-unit-modal.component.scss'],
 })
-export class ScheduleEditComponent implements OnInit {
+export class EditUnitModalComponent implements OnInit {
   unit: any = null;
   activities: Activity[] = [];
   activityImgUrl: any = null;

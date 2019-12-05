@@ -62,7 +62,7 @@ import { WorkdayFilterPipe } from './pipes/workday-filter.pipe';
 import { ScheduleEmptyComponent } from './admin/schedule/schedule-empty/schedule-empty.component';
 import { WorkdayTemplateDataService } from './services/workdayTemplate.data.service';
 import { CommentListComponent } from './admin/schedule/comment-list/comment-list.component';
-import { ScheduleEditComponent } from './admin/schedule/schedule-edit/schedule-edit.component';
+import { EditUnitModalComponent } from './admin/schedule/schedule-unit/edit-unit-modal/edit-unit-modal.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 registerLocaleData(localeNl, 'nl-BE');
@@ -97,7 +97,7 @@ registerLocaleData(localeNl, 'nl-BE');
     WorkdayFilterPipe,
     ScheduleEmptyComponent,
     CommentListComponent,
-    ScheduleEditComponent
+    EditUnitModalComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -140,7 +140,7 @@ registerLocaleData(localeNl, 'nl-BE');
     ActivityNewComponent,
     BusNewComponent,
     CommentListComponent,
-    ScheduleEditComponent
+    EditUnitModalComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'nl-BE' },
