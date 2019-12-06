@@ -13,17 +13,24 @@ export class UserDataService {
   constructor(private http: HttpClient) { }
 
   get users$(): Observable<User[]> {
-    return this.http.get(`${API_URL}/Users/`).pipe(
-      catchError(error => {
+    return this.http
+      .get(`${API_URL}/users/`)
+      .pipe(catchError(error => {
         this.loadingError$.next(error.statusText);
         return of(null);
-      }),
-      map((list: any[]): User[] => list.map(User.fromJSON))
+      }), map((list: any[]): User[] => list.map(User.fromJSON))
     );
   }
 
-  addAbsentDate(user: User, absentDate: string) {
+  get mentors$(): Observable<User[]> {
+    return this.http
+      .get(`${API_URL}/users/mentors`)
+      .pipe(map((list: any[]): User[] => list.map(User.fromJSON)));
+  }
 
-    return this.http.post(`${API_URL}/users/addAbsentDate/${user.id}`, absentDate);
+  get clients$(): Observable<User[]> {
+    return this.http
+      .get(`${API_URL}/users/clients`)
+      .pipe(map((list: any[]): User[] => list.map(User.fromJSON)));
   }
 }

@@ -13,35 +13,35 @@ import {DatesService} from '../services/dates.service';
 })
 export class PictoAgendaComponent implements OnInit {
   public chosenDate: Date;
+  clickedUser: User;
 
-  private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
-  private _users: User[];
+  private fetchUsers$: Observable<User[]> = this.userDataService.users$;
+  private users: User[];
   private workDays: any[] | Workday[];
-  private _clickedUser: User;
 
   constructor(
     private datesService: DatesService,
-    private _userDataService: UserDataService,
-    private _workdayDataService: WorkdayDataService
+    private userDataService: UserDataService,
+    private workdayDataService: WorkdayDataService
   ) {
-    this._fetchUsers$.subscribe(users => (this._users = users));
+    this.fetchUsers$.subscribe(users => (this.users = users));
     this.showPictoOfUser();
   }
 
   ngOnInit() { }
 
   get users$(): Observable<User[]> {
-    return this._fetchUsers$;
+    return this.fetchUsers$;
   }
 
   showPictoOfUser(index?: number): void {
     this.workDays = [];
-    this._clickedUser = User.fromJSON(
+    this.clickedUser = User.fromJSON(
       JSON.parse(localStorage.getItem('currentUser'))
     );
 
     if (index) {
-      this._clickedUser = this._users[index];
+      this.clickedUser = this.users[index];
     }
     let currentWeek = this.datesService.weekDays(new Date());
 
@@ -50,7 +50,7 @@ export class PictoAgendaComponent implements OnInit {
     }
     let workday: Workday;
     for (const date of currentWeek) {
-      this._workdayDataService.getWorkdayByDate(date).subscribe({
+      this.workdayDataService.getWorkdayByDate(date).subscribe({
         next: (result: Workday) => {
           if (result) {
             workday = result;
@@ -98,12 +98,6 @@ export class PictoAgendaComponent implements OnInit {
       weekenddays.push(this.workDays[i]);
     }
     return weekenddays;
-  }
-
-
-
-  get clickedUser(): User {
-    return this._clickedUser;
   }
 
   private getTime(dateString: string | number | Date) {

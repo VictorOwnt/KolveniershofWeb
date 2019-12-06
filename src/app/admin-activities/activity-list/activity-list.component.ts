@@ -2,30 +2,20 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Activity} from '../../shared/models/activity.model';
 import {ActivityDataService} from '../../services/activity.data.service';
-
 @Component({
   selector: 'app-activity-list',
   templateUrl: './activity-list.component.html',
   styleUrls: ['./activity-list.component.scss']
 })
 export class ActivityListComponent implements OnInit {
-  private _fetchActivities$: Observable<Activity[]> = this._activityDataService.activities;
-  private _activities: Activity[];
-  constructor(
-      private _activityDataService: ActivityDataService
-  ) {
-    this._fetchActivities$.subscribe(activities => (this._activities = activities));
-  }
+  activities$: Observable<Activity[]>;
 
+  constructor(private activityDataService: ActivityDataService) {
+    this.activities$ = activityDataService.activities$;
+  }
   ngOnInit() {
   }
-
-  get activities$(): Observable<Activity[]> {
-    return this._fetchActivities$;
+  delete(id: string): void { // TODO - enkel delete bij 2 keer klikken
+    this.activityDataService.deleteActivity(id).subscribe();
   }
-
-  delete(id: string): void { // TODO - real time
-    this._activityDataService.deleteActivity(id).subscribe();
-  }
-
 }

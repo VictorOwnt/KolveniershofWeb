@@ -17,6 +17,7 @@ import { FirebaseService } from '../../services/firebase.service';
 
 function comparePasswords(control: AbstractControl) {
   return new Promise( resolve => {
+    // tslint:disable-next-line: no-string-literal
     const password = control.parent.controls['password'].value;
     const confirmPassword = control.value;
     return password === confirmPassword

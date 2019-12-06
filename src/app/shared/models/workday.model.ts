@@ -15,7 +15,11 @@ export class Comment {
   }
 
   static fromJSON(json: any): Comment {
-    const comment = new Comment(json.comment, json.user);
+    if ((json === undefined) || (json === null)) { return null; }
+    const comment = new Comment(
+        json.comment,
+        User.fromJSON(json.client)
+    );
     comment.id = json._id;
     return comment;
   }
@@ -42,7 +46,6 @@ export class Workday {
   eveningBusses: BusUnit[];
   holiday: boolean;
   comments: Comment[];
-
 
   constructor(
     date: Date,

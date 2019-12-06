@@ -3,7 +3,15 @@ import {ActivityUnit} from '../../../shared/models/activityUnit.model';
 import {User} from '../../../shared/models/user.model';
 import {LunchUnit} from '../../../shared/models/lunchUnit.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { Observable } from 'rxjs';
+import {EditUnitModalComponent} from './edit-unit-modal/edit-unit-modal.component';
+import {MatDialog} from '@angular/material/dialog';
+import {ActivityDataService} from '../../../services/activity.data.service';
+import {LunchDataService} from '../../../services/lunch.data.service';
+import {DeleteModalComponent} from '../../../shared/delete-modal/delete-modal.component';
+import {SuccessModalComponent} from '../../../shared/success-modal/success-modal.component';
+import {ErrorModalComponent} from '../../../shared/error-modal/error-modal.component';
+import {Workday} from '../../../shared/models/workday.model';
+import {WorkdayTemplate} from '../../../shared/models/workdayTemplate.model';
 
 @Component({
   selector: 'app-schedule-unit',
@@ -12,6 +20,9 @@ import { Observable } from 'rxjs';
 })
 export class ScheduleUnitComponent implements OnInit {
   @Input() private unit: any;
+  @Input() private workday?: Workday;
+  @Input() private workdayTemplate?: WorkdayTemplate;
+  @Input() private isAm?: boolean;
   title: string;
   icon: string;
   mentors: User[] = [];
@@ -19,7 +30,12 @@ export class ScheduleUnitComponent implements OnInit {
   expandClients = true;
   expandMentors = true;
 
-  constructor(private firebaseService: FirebaseService) { }
+  constructor(
+    private firebaseService: FirebaseService,
+    public dialog: MatDialog,
+    private activityDataService: ActivityDataService,
+    private lunchDataService: LunchDataService
+  ) { }
 
   ngOnInit() {
     if (this.unit instanceof ActivityUnit) {
@@ -64,11 +80,64 @@ export class ScheduleUnitComponent implements OnInit {
   }
 
   edit() {
-    // TODO - edit
+    this.dialog.open(EditUnitModalComponent, {
+      width: '1000px',
+      data: {
+        unit: this.unit,
+        workday: this.workday,
+        workdayTemplate: this.workdayTemplate,
+        isAm: this.isAm
+      }
+    }).afterClosed().subscribe(message => {
+      this.dialog.open(SuccessModalComponent, {
+        width: '300px',
+        data: { message }
+      });
+    });
   }
 
   delete() {
-    // TODO - delete
+    if (this.unit instanceof ActivityUnit) {
+      // Open delete dialog
+      this.dialog.open(DeleteModalComponent, {
+        width: '500px',
+        data: { itemToDelete: 'atelier' }
+      }).afterClosed().subscribe(canDelete => {
+        if (canDelete) {
+          // Delete unit & open modal
+          this.activityDataService.deleteActivityUnit(this.unit, this.workday.id, this.workdayTemplate.id)
+            .subscribe(hasSucceeded => this.openAfterDeleteModal(hasSucceeded));
+        }
+      });
+    } else if (this.unit instanceof LunchUnit) {
+      // Open delete dialog
+      this.dialog.open(DeleteModalComponent, {
+        width: '500px',
+        data: { itemToDelete: 'lunch' }
+      }).afterClosed().subscribe(canDelete => {
+        if (canDelete) {
+          // Delete unit & open modal
+          this.lunchDataService.deleteLunchUnit(this.unit, this.workday.id, this.workdayTemplate.id)
+            .subscribe(hasSucceeded => this.openAfterDeleteModal(hasSucceeded));
+        }
+      });
+    }
+  }
+
+  openAfterDeleteModal(hasSucceeded: boolean) {
+    if (hasSucceeded) {
+      // Success dialog
+      this.dialog.open(SuccessModalComponent, {
+        width: '300px',
+        data: { message: 'Verwijderen compleet.' }
+      });
+    } else {
+      // Error dialog
+      this.dialog.open(ErrorModalComponent, {
+        width: '300px',
+        data: { message: 'Verwijderen niet gelukt. Probeer het later opnieuw.' }
+      });
+    }
   }
 
 }

@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Opmerkingen</h1>
+
+<div mat-dialog-content>
+    <div class="comment" *ngFor="let comment of comments">
+        <div class="comment_user" fxLayout="row" fxLayoutAlign="flex-start center">
+            <img fxFlex="none" class="user_picture" src="../../../../assets/img/profile_picture_empty.png" alt="Profile picture">
+            <p>{{ comment.client }}</p>
+        </div>
+        <div class="comment_comment" fxLayout="row" fxLayoutAlign="flex-start start">
+            <p fxFlex="grow">{{ comment.comment }}</p>
+            <a [href]="mailto(comment)" fxFlex="none" fxLayoutAlign="center center" title="Beantwoord opmerking">
+                <i class="material-icons">reply</i>
+            </a>
+        </div>
+    </div>
+</div>

@@ -70,8 +70,8 @@ export class User {
       absentDates: this.absentDates
     };
   }
-
-  get fullName() {
-    return this.firstName + ' ' + this.lastName;
-  }
 }
+
+User.prototype.toString = function() {
+  return this.firstName + ' ' + this.lastName;
+};

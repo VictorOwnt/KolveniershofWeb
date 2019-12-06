@@ -25,10 +25,6 @@ export class WorkdayDataService {
     );
   }
 
-  postWorkday(workday: Workday) {
-    return this.http.post(`${API_URL}/workdays`, workday.toJSON());
-  }
-
   getWorkdayById(id: string): Observable<Workday> {
     return this.http
       .get(`${API_URL}/workdays/id/${id}`)
@@ -45,6 +41,18 @@ export class WorkdayDataService {
     return this.http
       .get(`${API_URL}/workdays/week/${this.datesService.backendFormatDate(weekdate)}`)
       .pipe(map((list: any[]): Workday[] => list.map(Workday.fromJSON)));
+  }
+
+  postWorkday(workday: Workday): Observable<Workday> {
+    return this.http
+      .post(`${API_URL}/workdays`, workday.toJSON())
+      .pipe(map(Workday.fromJSON));
+  }
+
+  patchWorkday(workday: Workday): Observable<Workday> {
+    return this.http
+      .patch(`${API_URL}/workdays/id/${workday.id}`, workday)
+      .pipe(map(Workday.fromJSON));
   }
 
   createEmptyWeek(weekdate: Date): Observable<Workday[]> {

@@ -1,28 +1,24 @@
-describe('Check ateliers', function () {
-    it('Check the length of the atelier', function () {
-        cy.visit('http://localhost:4200/a');
+describe("Check ateliers", function() {
+  it("mock ateliers get", function() {
+    cy.server();
+    cy.route({
+      method: "GET",
+      url: "/API/activities",
+      status: 200,
+      response: "fixture:activities.json"
     });
 
-    it('mock activities get', function () {
-        cy.server();
-        cy.route({
-            method: 'GET',
-            url: 'https://kolv02-backend.herokuapp.com/API/activities',
-            status: 204,
-            response: [{
-                    "_id": "5dce5258fb69c00affb083f4",
-                    "name": "Bakken",
-                    "icon": "icons/icon-mixer.svg"
-                },
-                {
-                    "_id": "5dce5258fb69c00affb083f5",
-                    "name": "Balanske",
-                    "icon": "icons/icon-sofa.svg"
-                }
-            ]
-        });
+    // login should happen somewhere else
+    cy.visit("http://localhost:4200/login");
+    cy.get("[data-cy=login-email]").type("client10@gmail.com");
+    cy.get("[data-cy=login-password]").type("test00##");
+    cy.get("[data-cy=login-button").click();
 
-        cy.get('[data-cy=Activities]').should('have.length', 2);
-    });
+    cy.wait(200);
+    cy.visit("http://localhost:4200/a");
+    cy.wait(200);
 
-})
+    // length is 3 because of the 2 mocked responses and 1 title above the 2
+    cy.get("[data-cy=Activities]").should("have.length", 3);
+  });
+});

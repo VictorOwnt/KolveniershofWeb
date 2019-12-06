@@ -3,7 +3,7 @@ import {Activity} from '../../../shared/models/activity.model';
 import {AdminActivitiesComponent} from '../../admin-activities.component';
 import { Observable } from 'rxjs';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import {ActivityListComponent} from "../activity-list.component";
+import {ActivityListComponent} from '../activity-list.component';
 
 @Component({
   selector: 'app-admin-activity',

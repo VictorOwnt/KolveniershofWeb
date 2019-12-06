@@ -3,7 +3,7 @@ import { AuthenticationService } from '../user/authentication.service';
 import { Router } from '@angular/router';
 import { User } from '../shared/models/user.model';
 import { BehaviorSubject } from 'rxjs';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import * as $ from 'jquery';
 
 @Component({
@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     const menu = $('#menu');
     // Open menu on hamburger click
+    // tslint:disable-next-line:only-arrow-functions & deprecation
     $('.hamburger').click(function() {
       $(this).toggleClass('is-active');
       menu.toggleClass('open');
@@ -34,7 +35,7 @@ export class HeaderComponent implements OnInit {
       }
     });
     // Escape key closes menu
-    // tslint:disable-next-line:only-arrow-functions
+    // tslint:disable-next-line:only-arrow-functions & deprecation
     $('*').keyup(function(e) {
       if (e.key === 'Escape' && menu.hasClass('open')) {
         $('.hamburger').removeClass('is-active');
@@ -43,7 +44,7 @@ export class HeaderComponent implements OnInit {
       }
     });
     // Pyro easter egg
-    // tslint:disable-next-line:only-arrow-functions
+    // tslint:disable-next-line:only-arrow-functions & deprecation
     $('#boom_click').click(function() {
       $('#boom').toggleClass('pyro');
     });
