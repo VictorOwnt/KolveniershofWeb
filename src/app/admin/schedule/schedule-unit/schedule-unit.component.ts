@@ -5,6 +5,13 @@ import {LunchUnit} from '../../../shared/models/lunchUnit.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import {EditUnitModalComponent} from './edit-unit-modal/edit-unit-modal.component';
 import {MatDialog} from '@angular/material/dialog';
+import {ActivityDataService} from '../../../services/activity.data.service';
+import {LunchDataService} from '../../../services/lunch.data.service';
+import {DeleteModalComponent} from '../../../shared/delete-modal/delete-modal.component';
+import {SuccessModalComponent} from '../../../shared/success-modal/success-modal.component';
+import {ErrorModalComponent} from '../../../shared/error-modal/error-modal.component';
+import {Workday} from '../../../shared/models/workday.model';
+import {WorkdayTemplate} from '../../../shared/models/workdayTemplate.model';
 
 @Component({
   selector: 'app-schedule-unit',
@@ -13,12 +20,20 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class ScheduleUnitComponent implements OnInit {
   @Input() private unit: any;
+  @Input() private workday?: Workday;
+  @Input() private workdayTemplate?: WorkdayTemplate;
+  @Input() private isAm?: boolean;
   title: string;
   icon: string;
   mentors: User[] = [];
   clients: User[] = [];
 
-  constructor(private firebaseService: FirebaseService, public dialog: MatDialog) { }
+  constructor(
+    private firebaseService: FirebaseService,
+    public dialog: MatDialog,
+    private activityDataService: ActivityDataService,
+    private lunchDataService: LunchDataService
+  ) { }
 
   ngOnInit() {
     if (this.unit instanceof ActivityUnit) {
@@ -60,11 +75,16 @@ export class ScheduleUnitComponent implements OnInit {
   edit() {
     const dialogRef = this.dialog.open(EditUnitModalComponent, {
       width: '1000px',
-      data: this.unit
+      data: {
+        unit: this.unit,
+        workday: this.workday,
+        workdayTemplate: this.workdayTemplate,
+        isAm: this.isAm
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log('The dialog was closed'); // TODO
     });
   }
 
