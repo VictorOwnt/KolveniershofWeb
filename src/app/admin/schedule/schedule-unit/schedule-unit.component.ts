@@ -73,7 +73,7 @@ export class ScheduleUnitComponent implements OnInit {
   }
 
   edit() {
-    const dialogRef = this.dialog.open(EditUnitModalComponent, {
+    this.dialog.open(EditUnitModalComponent, {
       width: '1000px',
       data: {
         unit: this.unit,
@@ -81,10 +81,11 @@ export class ScheduleUnitComponent implements OnInit {
         workdayTemplate: this.workdayTemplate,
         isAm: this.isAm
       }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed'); // TODO
+    }).afterClosed().subscribe(message => {
+      this.dialog.open(SuccessModalComponent, {
+        width: '300px',
+        data: { message }
+      });
     });
   }
 
