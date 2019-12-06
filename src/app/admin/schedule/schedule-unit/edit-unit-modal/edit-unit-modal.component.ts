@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {AuthenticationService} from '../../../../user/authentication.service';
 import {ActivityUnit} from '../../../../shared/models/activityUnit.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -10,6 +10,12 @@ import {Activity} from '../../../../shared/models/activity.model';
 import {map, startWith} from 'rxjs/operators';
 import {User} from '../../../../shared/models/user.model';
 import {UserDataService} from '../../../../services/user.data.service';
+import {LunchDataService} from '../../../../services/lunch.data.service';
+import {LunchUnit} from '../../../../shared/models/lunchUnit.model';
+import {Workday} from '../../../../shared/models/workday.model';
+import {WorkdayTemplate} from '../../../../shared/models/workdayTemplate.model';
+import {WorkdayDataService} from '../../../../services/workday.data.service';
+import {WorkdayTemplateDataService} from '../../../../services/workdayTemplate.data.service';
 
 @Component({
   selector: 'app-schedule-edit',
@@ -18,6 +24,9 @@ import {UserDataService} from '../../../../services/user.data.service';
 })
 export class EditUnitModalComponent implements OnInit {
   unit: any = null;
+  workday: Workday = null;
+  workdayTemplate: WorkdayTemplate = null;
+  isAm: boolean = null;
   activities: Activity[] = [];
   activityImgUrl: any = null;
   mentors: User[] = [];
@@ -27,16 +36,22 @@ export class EditUnitModalComponent implements OnInit {
   public unitFormGroup: FormGroup;
 
   constructor(
+    public dialogRef: MatDialogRef<EditUnitModalComponent>,
     @Inject(MAT_DIALOG_DATA) data: any,
     private auth: AuthenticationService,
     private fb: FormBuilder,
     private firebaseService: FirebaseService,
     private activityDataService: ActivityDataService,
-    /*private lunchDataService: LunchDataService,*/
-    private userDataService: UserDataService
+    private lunchDataService: LunchDataService,
+    private userDataService: UserDataService,
+    private workdayDataService: WorkdayDataService,
+    private workdayTemplateDataService: WorkdayTemplateDataService
   ) {
-    this.unit = data;
-    this.isActivity = data instanceof ActivityUnit;
+    this.unit = data.unit;
+    this.workday = data.workday;
+    this.workdayTemplate = data.workdayTemplate;
+    this.isAm = data.isAm;
+    this.isActivity = data.unit instanceof ActivityUnit;
     activityDataService.activities$.subscribe(activities => this.activities = activities);
     userDataService.mentors$.subscribe(mentors => this.mentors = mentors);
     userDataService.clients$.subscribe(clients => this.clients = clients);
