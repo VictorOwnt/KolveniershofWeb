@@ -13,7 +13,7 @@
         <mat-form-field appearance="outline" *ngIf="isActivity">
             <mat-label>Atelier</mat-label>
             <input type="text" placeholder="Atelier" aria-label="Atelier" matInput formControlName="activity" [matAutocomplete]="auto">
-            <mat-icon matSuffix><img class="icon svgTextColor" [src]="activityImgUrl ? activityImgUrl: '../../../assets/img/icons/add_circle.svg'"/></mat-icon>
+            <mat-icon matSuffix><img class="icon svgTextColor" [src]="activityImgUrl ? activityImgUrl: '../../../assets/img/icons/add_circle.svg'" alt="Icoon atelier"/></mat-icon>
             <mat-autocomplete #auto="matAutocomplete">
                 <mat-option *ngFor="let activity of filteredActivities | async" [value]="activity" (onSelectionChange)='previewActivity(activity)'>
                     {{ activity.name }}
@@ -46,8 +46,8 @@
         </mat-form-field>
     </div>
 
-    <div mat-dialog-actions align="center"> <!-- TODO - FxFlex -->
-        <button class="btn" type="submit" [disabled]="!unitFormGroup.valid || !unitFormGroup.dirty">{{ isActivity ? "Activiteit opslaan" : "Lunch opslaan" }}</button>
-        <button class="btn-pink" matDialogClose>Annuleren</button>
+    <div mat-dialog-actions fxLayoutAlign="end" fxFlexAlign="end" fxLayout="row" fxLayoutGap="20px" fxLayout.lt-sm="column">
+        <button class="btn-pink" type="submit" [disabled]="!unitFormGroup.valid || !unitFormGroup.dirty">{{ isActivity ? "Activiteit opslaan" : "Lunch opslaan" }}</button>
+        <button class="btn-pink-outline" matDialogClose>Annuleren</button>
     </div>
 </form>

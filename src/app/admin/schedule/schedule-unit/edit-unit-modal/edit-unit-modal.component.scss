@@ -1,7 +1,7 @@
-@import "../../../../../variables";
+@import "../../../../../variables.scss";
 
 .header {
-  padding: 2%;
+  padding: 12px;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -11,17 +11,13 @@
   font-size: 175%;
 }
 
-.mat-dialog-container {
-  padding: 0 !important;
-
-}
-
 .mat-dialog-content {
-  margin: 0 !important;
+  margin: 0 5%;
+  padding: 0 4px;
 }
 
-.content {
-  padding: 5%
+.mat-dialog-actions {
+  margin: 0 5% 20px;
 }
 
 .mat-dialog-title {
@@ -30,15 +26,6 @@
 
 mat-form-field {
   width: 100%;
-}
-
-.mat-dialog-actions {
-  margin: 0;
-  text-align: center;
-}
-
-button {
-  margin: 0 5% 5%;
 }
 
 input[type="file"] {
