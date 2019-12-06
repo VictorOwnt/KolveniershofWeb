@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable, of, Subject} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {API_URL} from '../../environments/environment';
 import {catchError, map} from 'rxjs/operators';
 import {Bus} from '../shared/models/bus.model';
@@ -64,8 +64,23 @@ export class BusDataService {
       .pipe(map(BusUnit.fromJSON));
   }
 
-  // TODO - patch unit
+  patchBusUnit(busUnit: BusUnit, workdayId: string = null, workdayTemplateId: string = null): Observable<BusUnit> {
+    const jsonData = { workdayId, workdayTemplateId, ...busUnit };
+    return this.http
+      .patch(`${API_URL}/busses/units/id/${busUnit.id}`, jsonData)
+      .pipe(map(BusUnit.fromJSON));
+  }
 
-  // TODO - delete unit
+  deleteBusUnit(busUnit: BusUnit, workdayId: string = null, workdayTemplateId: string = null): Observable<boolean> {
+    const jsonData = { workdayId, workdayTemplateId };
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: jsonData,
+    };
+    return this.http
+      .delete<boolean>(`${API_URL}/activities/units/id/${busUnit.id}`, options);
+  }
 
 }
