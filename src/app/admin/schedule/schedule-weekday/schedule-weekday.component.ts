@@ -28,7 +28,7 @@ export class ScheduleWeekdayComponent implements OnInit {
 
   changeHoliday(holiday: boolean) {
     this.workday.holiday = holiday;
-    // TODO - this.workdayDataService.patchWorkday(this.workday);
+    this.workdayDataService.patchWorkday(this.workday);
   }
 
   viewComments() {
