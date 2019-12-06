@@ -13,11 +13,11 @@ import {DatesService} from '../services/dates.service';
 })
 export class PictoAgendaComponent implements OnInit {
   public chosenDate: Date;
+  clickedUser: User;
 
   private fetchUsers$: Observable<User[]> = this.userDataService.users$;
   private users: User[];
   private workDays: any[] | Workday[];
-  private clickedUser: User;
 
   constructor(
     private datesService: DatesService,

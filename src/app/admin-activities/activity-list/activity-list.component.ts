@@ -8,7 +8,8 @@ import {ActivityDataService} from '../../services/activity.data.service';
   styleUrls: ['./activity-list.component.scss']
 })
 export class ActivityListComponent implements OnInit {
-  private activities$: Observable<Activity[]>;
+  activities$: Observable<Activity[]>;
+
   constructor(private activityDataService: ActivityDataService) {
     this.activities$ = activityDataService.activities$;
   }
