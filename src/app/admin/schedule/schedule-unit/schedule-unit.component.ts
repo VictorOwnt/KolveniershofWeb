@@ -89,7 +89,47 @@ export class ScheduleUnitComponent implements OnInit {
   }
 
   delete() {
-    // TODO - delete
+    if (this.unit instanceof ActivityUnit) {
+      // Open delete dialog
+      this.dialog.open(DeleteModalComponent, {
+        width: '500px',
+        data: { itemToDelete: 'atelier' }
+      }).afterClosed().subscribe(canDelete => {
+        if (canDelete) {
+          // Delete unit & open modal
+          this.activityDataService.deleteActivityUnit(this.unit, this.workday.id, this.workdayTemplate.id)
+            .subscribe(hasSucceeded => this.openAfterDeleteModal(hasSucceeded));
+        }
+      });
+    } else if (this.unit instanceof LunchUnit) {
+      // Open delete dialog
+      this.dialog.open(DeleteModalComponent, {
+        width: '500px',
+        data: { itemToDelete: 'lunch' }
+      }).afterClosed().subscribe(canDelete => {
+        if (canDelete) {
+          // Delete unit & open modal
+          this.lunchDataService.deleteLunchUnit(this.unit, this.workday.id, this.workdayTemplate.id)
+            .subscribe(hasSucceeded => this.openAfterDeleteModal(hasSucceeded));
+        }
+      });
+    }
+  }
+
+  openAfterDeleteModal(hasSucceeded: boolean) {
+    if (hasSucceeded) {
+      // Success dialog
+      this.dialog.open(SuccessModalComponent, {
+        width: '300px',
+        data: { message: 'Verwijderen compleet.' }
+      });
+    } else {
+      // Error dialog
+      this.dialog.open(ErrorModalComponent, {
+        width: '300px',
+        data: { message: 'Verwijderen niet gelukt. Probeer het later opnieuw.' }
+      });
+    }
   }
 
 }

@@ -65,6 +65,9 @@ import { CommentListComponent } from './admin/schedule/comment-list/comment-list
 import { DeleteModalComponent } from './shared/delete-modal/delete-modal.component';
 import { EditUnitModalComponent } from './admin/schedule/schedule-unit/edit-unit-modal/edit-unit-modal.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {BusDataService} from './services/bus.data.service';
+import {LunchDataService} from './services/lunch.data.service';
+import {ActivityDataService} from './services/activity.data.service';
 import { SuccessModalComponent } from './shared/success-modal/success-modal.component';
 import { ErrorModalComponent } from './shared/error-modal/error-modal.component';
 
@@ -155,9 +158,12 @@ registerLocaleData(localeNl, 'nl-BE');
     { provide: LOCALE_ID, useValue: 'nl-BE' },
     httpInterceptorProviders,
     DatePipe,
+    MatDatepickerModule,
     WorkdayDataService,
     WorkdayTemplateDataService,
-    MatDatepickerModule
+    ActivityDataService,
+    BusDataService,
+    LunchDataService
   ],
   bootstrap: [AppComponent]
 })
