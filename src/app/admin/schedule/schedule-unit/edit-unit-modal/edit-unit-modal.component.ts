@@ -97,7 +97,78 @@ export class EditUnitModalComponent implements OnInit {
   }
 
   submitUnit() {
-    console.warn(this.unitFormGroup);
+    if (this.unit) {
+      // Patch unit
+      if (this.isActivity) {
+        // Create patched unit
+        const patchedUnit = this.unit as ActivityUnit;
+        patchedUnit.activity = this.unitFormGroup.value.activity;
+        patchedUnit.mentors = this.unitFormGroup.value.mentors;
+        patchedUnit.clients = this.unitFormGroup.value.clients;
+        // Patch ActivityUnit
+        this.activityDataService.patchActivityUnit(patchedUnit, this.workday.id, this.workdayTemplate.id);
+        this.dialogRef.close('Atelier aangepast');
+      } else {
+        // Create patched unit
+        const patchedUnit = this.unit as LunchUnit;
+        patchedUnit.lunch = this.unitFormGroup.value.lunch;
+        patchedUnit.mentors = this.unitFormGroup.value.mentors;
+        patchedUnit.clients = this.unitFormGroup.value.clients;
+        // Patch LunchUnit
+        this.lunchDataService.patchLunchUnit(patchedUnit, this.workday.id, this.workdayTemplate.id);
+        this.dialogRef.close('Lunch aangepast');
+      }
+    } else {
+      if (this.isActivity) {
+        // Create new unit
+        const newUnit = new ActivityUnit(
+          this.unitFormGroup.value.activity,
+          this.unitFormGroup.value.mentors,
+          this.unitFormGroup.value.clients
+        );
+        // Post unit
+        this.activityDataService.postActivityUnit(newUnit).subscribe(activityUnit => {
+          if (this.workday) {
+            // Add unit to workday
+            if (this.isAm) {
+              this.workday.amActivities.push(activityUnit);
+            } else {
+              this.workday.pmActivities.push(activityUnit);
+            }
+            this.workdayDataService.patchWorkday(this.workday);
+          } else if (this.workdayTemplate) {
+            // Add unit to workday template
+            if (this.isAm) {
+              this.workdayTemplate.amActivities.push(activityUnit);
+            } else {
+              this.workdayTemplate.pmActivities.push(activityUnit);
+            }
+            this.workdayTemplateDataService.patchWorkdayTemplate(this.workdayTemplate);
+          }
+        });
+        this.dialogRef.close('Atelier toegevoegd');
+      } else {
+        // Create new unit
+        const newUnit = new LunchUnit(
+          this.unitFormGroup.value.lunch,
+          this.unitFormGroup.value.mentors,
+          this.unitFormGroup.value.clients
+        );
+        // Post unit
+        this.lunchDataService.postLunchUnit(newUnit).subscribe(lunchUnit => {
+          if (this.workday) {
+            // Add unit to workday
+            this.workday.lunch = lunchUnit;
+            this.workdayDataService.patchWorkday(this.workday);
+          } else if (this.workdayTemplate) {
+            // Add unit to workday template
+            this.workdayTemplate.lunch = lunchUnit;
+            this.workdayTemplateDataService.patchWorkdayTemplate(this.workdayTemplate);
+          }
+        });
+        this.dialogRef.close('Lunch toegevoegd');
+      }
+    }
   }
 
 }
