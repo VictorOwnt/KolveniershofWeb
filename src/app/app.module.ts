@@ -65,6 +65,7 @@ import { CommentListComponent } from './admin/schedule/comment-list/comment-list
 import { DeleteModalComponent } from './shared/delete-modal/delete-modal.component';
 import { EditUnitModalComponent } from './admin/schedule/schedule-unit/edit-unit-modal/edit-unit-modal.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ErrorModalComponent } from './shared/error-modal/error-modal.component';
 
 registerLocaleData(localeNl, 'nl-BE');
 
@@ -100,6 +101,7 @@ registerLocaleData(localeNl, 'nl-BE');
     CommentListComponent,
     DeleteModalComponent,
     EditUnitModalComponent,
+    ErrorModalComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -144,6 +146,7 @@ registerLocaleData(localeNl, 'nl-BE');
     CommentListComponent,
     EditUnitModalComponent,
     DeleteModalComponent,
+    ErrorModalComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'nl-BE' },
