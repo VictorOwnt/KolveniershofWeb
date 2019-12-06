@@ -5,7 +5,7 @@
     <mat-card-content>
         <div fxFlex="column" data-cy=Activities>
 
-            <div class="row" *ngFor="let activity of activities$ | async;">
+            <div class="row" *ngFor="let activity of activities$ | async;" data-cy=Activities>
                 <app-admin-activity [activity]="activity"></app-admin-activity>
             </div>
         </div>
