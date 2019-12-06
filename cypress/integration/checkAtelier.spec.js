@@ -1,25 +1,24 @@
-describe('Check ateliers', function () {
-    beforeEach(function () {
-        cy.login();
-    });
-    // it('Check the length of the atelier', function () {
-    //     cy.visit('http://localhost:4200/a');
-    // });
-
-    it('mock activities get', function () {
-        cy.server();
-        cy.route({
-            delay: 2000,
-            method: 'GET',
-            url: '/activities',
-            status: 200,
-            response: 'fixture:activities.json'
-        });
-
-        it('Check the length of the atelier', function () {
-            cy.visit('http://localhost:4200/a');
-        });
-        cy.get('[data-cy=Activities]').should('have.length', 2);
+describe("Check ateliers", function() {
+  it("mock ateliers get", function() {
+    cy.server();
+    cy.route({
+      method: "GET",
+      url: "/API/activities",
+      status: 200,
+      response: "fixture:activities.json"
     });
 
-})
+    // login should happen somewhere else
+    cy.visit("http://localhost:4200/login");
+    cy.get("[data-cy=login-email]").type("client10@gmail.com");
+    cy.get("[data-cy=login-password]").type("test00##");
+    cy.get("[data-cy=login-button").click();
+
+    cy.wait(200);
+    cy.visit("http://localhost:4200/a");
+    cy.wait(200);
+
+    // length is 3 because of the 2 mocked responses and 1 title above the 2
+    cy.get("[data-cy=Activities]").should("have.length", 3);
+  });
+});

@@ -25,8 +25,8 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('login', () => {
+    cy.visit("http://localhost:4200/login");
     const email = 'admin1@gmail.com';
-
     cy.request({
         method: 'POST',
         url: '/Users/login',
