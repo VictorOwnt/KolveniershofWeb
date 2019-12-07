@@ -31,39 +31,24 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { WeekdayComponent } from './weekday/weekday.component';
-import { ActivityComponent } from './weekday/activity/activity.component';
 import { WeekendComponent } from './weekend/weekend.component';
 import { WeekendDayComponent } from './weekend/weekend-day/weekend-day.component';
 import { HolidayComponent } from './holiday/holiday.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule} from '@angular/fire/storage';
 import { ImgFallbackModule } from 'ngx-img-fallback';
-import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { environment } from '../environments/environment';
-import { AdminActivitiesComponent } from './admin-activities/admin-activities.component';
-import { ActivityListComponent } from './admin-activities/activity-list/activity-list.component';
-import { ActivityNewComponent } from './admin-activities/activity-new/activity-new.component';
-import { AdminBussesComponent } from './admin-busses/admin-busses.component';
-import { BusListComponent } from './admin-busses/bus-list/bus-list.component';
-import { AdminBusComponent } from './admin-busses/bus-list/admin-bus/admin-bus.component';
-import { BusNewComponent } from './admin-busses/bus-new/bus-new.component';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { AdminActivityComponent } from './admin-activities/activity-list/admin-activity/admin-activity.component';
-import { ScheduleComponent } from './admin/schedule/schedule.component';
-import { ScheduleWeekdayComponent } from './admin/schedule/schedule-weekday/schedule-weekday.component';
-import { ScheduleUnitComponent } from './admin/schedule/schedule-unit/schedule-unit.component';
 import localeNl from '@angular/common/locales/nl';
-import { ScheduleWeekendComponent } from './admin/schedule/schedule-weekend/schedule-weekend.component';
-import { WorkdayFilterPipe } from './pipes/workday-filter.pipe';
-import { ScheduleEmptyComponent } from './admin/schedule/schedule-empty/schedule-empty.component';
 import { WorkdayTemplateDataService } from './services/workdayTemplate.data.service';
-import { CommentListComponent } from './admin/schedule/comment-list/comment-list.component';
-import { EditUnitModalComponent } from './admin/schedule/schedule-unit/edit-unit-modal/edit-unit-modal.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {BusDataService} from './services/bus.data.service';
 import {LunchDataService} from './services/lunch.data.service';
 import {ActivityDataService} from './services/activity.data.service';
 import {SharedModule} from './shared/shared.module';
+import {AdminModule} from './admin/admin.module';
+import {ScheduleModule} from './schedule/schedule.module';
+import {PictoActivityComponent} from './weekday/activity/picto-activity.component';
 
 registerLocaleData(localeNl, 'nl-BE');
 
@@ -73,27 +58,10 @@ registerLocaleData(localeNl, 'nl-BE');
     PageNotFoundComponent,
     PictoAgendaComponent,
     WeekdayComponent,
-    ActivityComponent,
     WeekendComponent,
     WeekendDayComponent,
-    HolidayComponent,
-    ActivityListComponent,
-    ActivityNewComponent,
-    AdminActivityComponent,
-    AdminBussesComponent,
-    BusListComponent,
-    AdminBusComponent,
-    BusNewComponent,
-    AdminActivitiesComponent,
-    AdminHomeComponent,
-    ScheduleComponent,
-    ScheduleWeekdayComponent,
-    ScheduleUnitComponent,
-    ScheduleWeekendComponent,
-    WorkdayFilterPipe,
-    ScheduleEmptyComponent,
-    CommentListComponent,
-    EditUnitModalComponent
+    PictoActivityComponent,
+    HolidayComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -131,16 +99,12 @@ registerLocaleData(localeNl, 'nl-BE');
     MatAutocompleteModule,
     MatRadioModule,
     AuthenticationModule,
-    SharedModule
-  ],
-  entryComponents: [
-    ActivityNewComponent,
-    BusNewComponent,
-    CommentListComponent,
-    EditUnitModalComponent
+    SharedModule,
+    AdminModule,
+    ScheduleModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'nl-BE' },
+    {provide: LOCALE_ID, useValue: 'nl-BE'},
     httpInterceptorProviders,
     DatePipe,
     MatDatepickerModule,

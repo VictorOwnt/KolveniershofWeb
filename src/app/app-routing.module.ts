@@ -6,10 +6,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PictoAgendaComponent } from './picto-agenda/picto-agenda.component';
 import { AuthGuard } from './authentication/auth.guard';
 import { RegisterComponent } from './authentication/register/register.component';
-import { ScheduleComponent } from './admin/schedule/schedule.component';
-import { AdminBussesComponent } from './admin-busses/admin-busses.component';
-import { AdminHomeComponent } from './admin-home/admin-home.component';
-import { AdminActivitiesComponent } from './admin-activities/admin-activities.component';
+import { ScheduleComponent } from './schedule/schedule.component';
+import { AdminBussesComponent } from './admin/admin-busses/admin-busses.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { AdminActivitiesComponent } from './admin/admin-activities/admin-activities.component';
 
 const appRoutes: Routes = [
   // TODO - Fix all routes

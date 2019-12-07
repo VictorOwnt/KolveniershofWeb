@@ -1,0 +1,54 @@
+<form [formGroup]="unitFormGroup" (ngSubmit)="submitUnit()" fxLayout="column" fxLayoutGap="15px">
+    <div class="header" *ngIf="unit === null">
+        <h1 mat-dialog-title *ngIf="isActivity">Nieuw atelier</h1>
+        <h1 mat-dialog-title *ngIf="!isActivity">Nieuwe lunch</h1>
+    </div>
+    <div class="header" *ngIf="unit !== null">
+        <h1 mat-dialog-title *ngIf="isActivity">Atelier bewerken</h1>
+        <h1 mat-dialog-title *ngIf="!isActivity">Lunch bewerken</h1>
+    </div>
+
+    <div class="content" mat-dialog-content>
+        <!-- Select activity -->
+        <mat-form-field appearance="outline" *ngIf="isActivity">
+            <mat-label>Atelier</mat-label>
+            <input type="text" placeholder="Atelier" aria-label="Atelier" matInput formControlName="activity" [matAutocomplete]="auto">
+            <mat-icon matSuffix><img class="icon svgTextColor" [src]="activityImgUrl ? activityImgUrl: '../../../assets/img/icons/add_circle.svg'" alt="Icoon atelier"/></mat-icon>
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let activity of filteredActivities | async" [value]="activity" (onSelectionChange)='previewActivity(activity)'>
+                    {{ activity.name }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <!-- Enter lunch -->
+        <mat-form-field *ngIf="!isActivity">
+            <input formControlName="lunch" type="text" aria-label="Lunch" matInput placeholder="Maaltijd" required>
+            <button mat-button type="button" *ngIf="unit.lunch" matSuffix mat-icon-button aria-label="Maak leeg" (mousedown)="unit.lunch=''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <!-- Select mentors -->
+        <mat-form-field>
+            <mat-label>Begeleiders</mat-label>
+            <mat-select formControlName="mentors" multiple [compareWith]="compareUsers" required>
+                <mat-option *ngFor="let mentor of mentors" [value]="mentor">{{ mentor }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Select clients -->
+        <mat-form-field>
+            <mat-label>Cliënten</mat-label>
+            <mat-select formControlName="clients" multiple [compareWith]="compareUsers" required>
+                <mat-option *ngFor="let client of clients" [value]="client">{{ client }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions fxLayoutAlign="end" fxFlexAlign="end" fxLayout="row" fxLayoutGap="20px"
+         fxLayout.lt-sm="column" fxLayoutAlign.lt-sm="center" fxFlexAlign.lt-sm="center">
+        <button class="btn-pink" type="submit" [disabled]="!unitFormGroup.valid || !unitFormGroup.dirty">{{ isActivity ? "Activiteit opslaan" : "Lunch opslaan" }}</button>
+        <button class="btn-pink-outline" matDialogClose>Annuleren</button>
+    </div>
+</form>
