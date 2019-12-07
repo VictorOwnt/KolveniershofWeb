@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
-import { HeaderComponent } from './header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
@@ -17,7 +16,6 @@ import {
 import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
-import { FooterComponent } from './footer/footer.component';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { httpInterceptorProviders } from './http-interceptors';
@@ -60,14 +58,12 @@ import { WorkdayFilterPipe } from './pipes/workday-filter.pipe';
 import { ScheduleEmptyComponent } from './admin/schedule/schedule-empty/schedule-empty.component';
 import { WorkdayTemplateDataService } from './services/workdayTemplate.data.service';
 import { CommentListComponent } from './admin/schedule/comment-list/comment-list.component';
-import { DeleteModalComponent } from './shared/delete-modal/delete-modal.component';
 import { EditUnitModalComponent } from './admin/schedule/schedule-unit/edit-unit-modal/edit-unit-modal.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {BusDataService} from './services/bus.data.service';
 import {LunchDataService} from './services/lunch.data.service';
 import {ActivityDataService} from './services/activity.data.service';
-import { SuccessModalComponent } from './shared/success-modal/success-modal.component';
-import { ErrorModalComponent } from './shared/error-modal/error-modal.component';
+import {SharedModule} from './shared/shared.module';
 
 registerLocaleData(localeNl, 'nl-BE');
 
@@ -75,8 +71,6 @@ registerLocaleData(localeNl, 'nl-BE');
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    HeaderComponent,
-    FooterComponent,
     PictoAgendaComponent,
     WeekdayComponent,
     ActivityComponent,
@@ -99,10 +93,7 @@ registerLocaleData(localeNl, 'nl-BE');
     WorkdayFilterPipe,
     ScheduleEmptyComponent,
     CommentListComponent,
-    DeleteModalComponent,
-    EditUnitModalComponent,
-    SuccessModalComponent,
-    ErrorModalComponent
+    EditUnitModalComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -140,15 +131,13 @@ registerLocaleData(localeNl, 'nl-BE');
     MatAutocompleteModule,
     MatRadioModule,
     AuthenticationModule,
+    SharedModule
   ],
   entryComponents: [
     ActivityNewComponent,
     BusNewComponent,
     CommentListComponent,
-    EditUnitModalComponent,
-    DeleteModalComponent,
-    SuccessModalComponent,
-    ErrorModalComponent
+    EditUnitModalComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'nl-BE' },

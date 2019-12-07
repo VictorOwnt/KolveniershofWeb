@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Bus} from '../../shared/models/bus.model';
+import {Bus} from '../../models/bus.model';
 import {AdminBussesComponent} from '../admin-busses.component';
 
 @Component({

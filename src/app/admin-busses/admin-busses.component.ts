@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {Bus} from '../shared/models/bus.model';
+import {Bus} from '../models/bus.model';
 import {BusNewComponent} from './bus-new/bus-new.component';
 import {Observable} from 'rxjs';
 import {BusDataService} from '../services/bus.data.service';

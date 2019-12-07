@@ -1,19 +1,19 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {AuthenticationService} from '../../../../authentication/authentication.service';
-import {ActivityUnit} from '../../../../shared/models/activityUnit.model';
+import {ActivityUnit} from '../../../../models/activityUnit.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FirebaseService} from '../../../../services/firebase.service';
 import {Observable} from 'rxjs';
 import {ActivityDataService} from '../../../../services/activity.data.service';
-import {Activity} from '../../../../shared/models/activity.model';
+import {Activity} from '../../../../models/activity.model';
 import {map, startWith} from 'rxjs/operators';
-import {User} from '../../../../shared/models/user.model';
+import {User} from '../../../../models/user.model';
 import {UserDataService} from '../../../../services/user.data.service';
 import {LunchDataService} from '../../../../services/lunch.data.service';
-import {LunchUnit} from '../../../../shared/models/lunchUnit.model';
-import {Workday} from '../../../../shared/models/workday.model';
-import {WorkdayTemplate} from '../../../../shared/models/workdayTemplate.model';
+import {LunchUnit} from '../../../../models/lunchUnit.model';
+import {Workday} from '../../../../models/workday.model';
+import {WorkdayTemplate} from '../../../../models/workdayTemplate.model';
 import {WorkdayDataService} from '../../../../services/workday.data.service';
 import {WorkdayTemplateDataService} from '../../../../services/workdayTemplate.data.service';
 

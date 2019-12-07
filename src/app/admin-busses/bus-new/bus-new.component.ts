@@ -5,7 +5,7 @@ import {AuthenticationService} from '../../authentication/authentication.service
 import {Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
 import * as $ from 'jquery';
-import {Bus} from '../../shared/models/bus.model';
+import {Bus} from '../../models/bus.model';
 import {BusDataService} from '../../services/bus.data.service';
 
 

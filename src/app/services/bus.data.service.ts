@@ -3,8 +3,8 @@ import {Observable, of, Subject} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {API_URL} from '../../environments/environment';
 import {catchError, map} from 'rxjs/operators';
-import {Bus} from '../shared/models/bus.model';
-import {BusUnit} from '../shared/models/busUnit.model';
+import {Bus} from '../models/bus.model';
+import {BusUnit} from '../models/busUnit.model';
 
 @Injectable({
   providedIn: 'root'

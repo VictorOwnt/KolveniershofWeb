@@ -3,8 +3,8 @@ import { Observable, Subject, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { API_URL } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Workday } from '../shared/models/workday.model';
-import { LunchUnit } from '../shared/models/lunchUnit.model';
+import { Workday } from '../models/workday.model';
+import { LunchUnit } from '../models/lunchUnit.model';
 import {DatesService} from './dates.service';
 
 @Injectable({

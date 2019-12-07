@@ -1,5 +1,5 @@
 import {Component, Inject, Input, LOCALE_ID, OnInit} from '@angular/core';
-import {Workday} from '../../../shared/models/workday.model';
+import {Workday} from '../../../models/workday.model';
 import {WorkdayDataService} from '../../../services/workday.data.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { Observable } from 'rxjs';

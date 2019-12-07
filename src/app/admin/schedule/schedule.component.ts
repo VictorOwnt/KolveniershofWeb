@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Workday} from '../../shared/models/workday.model';
+import {Workday} from '../../models/workday.model';
 import {WorkdayDataService} from '../../services/workday.data.service';
 import {DatesService} from '../../services/dates.service';
 import {Observable} from 'rxjs';

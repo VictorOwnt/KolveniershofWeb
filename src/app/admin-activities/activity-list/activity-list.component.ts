@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Activity} from '../../shared/models/activity.model';
+import {Activity} from '../../models/activity.model';
 import {ActivityDataService} from '../../services/activity.data.service';
 @Component({
   selector: 'app-activity-list',

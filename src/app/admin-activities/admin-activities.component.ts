@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Activity} from '../shared/models/activity.model';
+import {Activity} from '../models/activity.model';
 import {MatDialog} from '@angular/material/dialog';
 import {ActivityNewComponent} from './activity-new/activity-new.component';
 

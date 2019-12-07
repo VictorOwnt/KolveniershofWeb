@@ -3,7 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { API_URL } from '../../environments/environment';
-import { User } from '../shared/models/user.model';
+import { User } from '../models/user.model';
 
 function parseJwt(token) {
   if (!token) {

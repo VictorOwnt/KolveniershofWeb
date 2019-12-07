@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivityUnit} from '../../../shared/models/activityUnit.model';
-import {User} from '../../../shared/models/user.model';
-import {LunchUnit} from '../../../shared/models/lunchUnit.model';
+import {ActivityUnit} from '../../../models/activityUnit.model';
+import {User} from '../../../models/user.model';
+import {LunchUnit} from '../../../models/lunchUnit.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import {EditUnitModalComponent} from './edit-unit-modal/edit-unit-modal.component';
 import {MatDialog} from '@angular/material/dialog';
@@ -10,8 +10,8 @@ import {LunchDataService} from '../../../services/lunch.data.service';
 import {DeleteModalComponent} from '../../../shared/delete-modal/delete-modal.component';
 import {SuccessModalComponent} from '../../../shared/success-modal/success-modal.component';
 import {ErrorModalComponent} from '../../../shared/error-modal/error-modal.component';
-import {Workday} from '../../../shared/models/workday.model';
-import {WorkdayTemplate} from '../../../shared/models/workdayTemplate.model';
+import {Workday} from '../../../models/workday.model';
+import {WorkdayTemplate} from '../../../models/workdayTemplate.model';
 
 @Component({
   selector: 'app-schedule-unit',

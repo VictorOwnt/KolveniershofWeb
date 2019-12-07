@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../authentication/authentication.service';
+import { AuthenticationService } from '../../authentication/authentication.service';
 import { Router } from '@angular/router';
-import { User } from '../shared/models/user.model';
-import { BehaviorSubject } from 'rxjs';
+import { User } from '../../models/user.model';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import * as $ from 'jquery';
 

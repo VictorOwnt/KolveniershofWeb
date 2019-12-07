@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Workday} from '../shared/models/workday.model';
+import {Workday} from '../models/workday.model';
 import {DatesService} from '../services/dates.service';
 
 @Pipe({

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Workday} from '../../shared/models/workday.model';
+import {Workday} from '../../models/workday.model';
 
 @Component({
   selector: 'app-weekend-day',

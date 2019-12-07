@@ -6,7 +6,7 @@ import {AuthenticationService} from '../../authentication/authentication.service
 import {Router} from '@angular/router';
 import {ActivityDataService} from '../../services/activity.data.service';
 import {HttpErrorResponse} from '@angular/common/http';
-import { Activity } from 'src/app/shared/models/activity.model';
+import { Activity } from 'src/app/models/activity.model';
 import { FirebaseService } from '../../services/firebase.service';
 import { DomSanitizer } from '@angular/platform-browser';
 

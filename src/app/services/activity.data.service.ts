@@ -1,9 +1,9 @@
 import {Observable, of, Subject} from 'rxjs';
 import { Injectable } from '@angular/core';
-import { ActivityUnit } from '../shared/models/activityUnit.model';
+import { ActivityUnit } from '../models/activityUnit.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { API_URL } from '../../environments/environment';
-import {Activity} from '../shared/models/activity.model';
+import {Activity} from '../models/activity.model';
 import {catchError, map} from 'rxjs/operators';
 
 @Injectable({
