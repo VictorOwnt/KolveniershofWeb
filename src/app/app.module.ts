@@ -4,7 +4,6 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './user/login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,7 +19,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { FooterComponent } from './footer/footer.component';
 import { MatButtonModule } from '@angular/material/button';
-import { UserModule } from './user/user.module';
+import { AuthenticationModule } from './authentication/authentication.module';
 import { httpInterceptorProviders } from './http-interceptors';
 import { PictoAgendaComponent } from './picto-agenda/picto-agenda.component';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -33,7 +32,6 @@ import { WorkdayDataService } from './services/workday.data.service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
-import { RegisterComponent } from './user/register/register.component';
 import { WeekdayComponent } from './weekday/weekday.component';
 import { ActivityComponent } from './weekday/activity/activity.component';
 import { WeekendComponent } from './weekend/weekend.component';
@@ -76,12 +74,10 @@ registerLocaleData(localeNl, 'nl-BE');
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     PageNotFoundComponent,
     HeaderComponent,
     FooterComponent,
     PictoAgendaComponent,
-    RegisterComponent,
     WeekdayComponent,
     ActivityComponent,
     WeekendComponent,
@@ -125,7 +121,6 @@ registerLocaleData(localeNl, 'nl-BE');
     MatCardModule,
     MatButtonModule,
     MatInputModule,
-    UserModule,
     HttpClientModule,
     FontAwesomeModule,
     MatListModule,
@@ -143,7 +138,8 @@ registerLocaleData(localeNl, 'nl-BE');
     MatSlideToggleModule,
     ImgFallbackModule,
     MatAutocompleteModule,
-    MatRadioModule
+    MatRadioModule,
+    AuthenticationModule,
   ],
   entryComponents: [
     ActivityNewComponent,

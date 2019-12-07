@@ -1,19 +1,13 @@
-import { AuthenticationService } from '../authentication.service';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  ValidatorFn,
-  Validators
-} from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {AuthenticationService} from '../authentication.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 import * as zxcvbn from 'zxcvbn';
 import * as $ from 'jquery';
-import { FirebaseService } from '../../services/firebase.service';
+import {FirebaseService} from '../../services/firebase.service';
 
 function comparePasswords(control: AbstractControl) {
   return new Promise( resolve => {
@@ -41,8 +35,7 @@ function serverSideValidateEmail(authService: AuthenticationService): ValidatorF
 
 function emailPatternValid(pattern: string): ValidatorFn {
   return (control: AbstractControl) => {
-    const urlRegEx: string = pattern;
-    if (control.value && !control.value.match(urlRegEx)) {
+    if (control.value && !control.value.match(pattern)) {
       return { emailInvalid: true};
     } else {
       return null;

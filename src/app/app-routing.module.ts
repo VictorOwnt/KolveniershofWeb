@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from 'src/app/user/login/login.component';
+import { LoginComponent } from 'src/app/authentication/login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PictoAgendaComponent } from './picto-agenda/picto-agenda.component';
-import { AuthGuard } from './user/auth.guard';
-import { RegisterComponent } from './user/register/register.component';
+import { AuthGuard } from './authentication/auth.guard';
+import { RegisterComponent } from './authentication/register/register.component';
 import { ScheduleComponent } from './admin/schedule/schedule.component';
 import { AdminBussesComponent } from './admin-busses/admin-busses.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';

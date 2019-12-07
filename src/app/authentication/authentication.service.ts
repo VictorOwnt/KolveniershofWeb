@@ -3,6 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { API_URL } from '../../environments/environment';
+import { User } from '../shared/models/user.model';
 
 function parseJwt(token) {
   if (!token) {
@@ -18,18 +19,11 @@ function parseJwt(token) {
 })
 export class AuthenticationService {
   private readonly tokenKey = 'currentUser';
-  private user$: BehaviorSubject<string>;
-  private tokenString: '';
+  private readonly user$: BehaviorSubject<string>;
   public redirectUrl: string;
 
   constructor(private http: HttpClient) {
-
-    const currentUser = localStorage.getItem(this.tokenKey);
-    if (currentUser) {
-    let parsedToken = (JSON.parse(currentUser)).token;
-    this.tokenString = (JSON.parse(currentUser)).token;
-    // parseJwt(localStorage.getItem(this._tokenKey));
-    parsedToken = parseJwt(parsedToken);
+    let parsedToken = parseJwt(localStorage.getItem(this.tokenKey));
     if (parsedToken) {
       const expires =
         new Date(parseInt(parsedToken.exp, 10) * 1000) < new Date();
@@ -39,27 +33,41 @@ export class AuthenticationService {
       }
     }
     this.user$ = new BehaviorSubject<string>(
-      parsedToken && parsedToken.unique_name
+      parsedToken && parsedToken.username
     );
-  } else {
-      this.user$ = new BehaviorSubject<string>(null);
-
-    }
   }
 
   get token(): string {
-    return this.tokenString;
+    const localToken = localStorage.getItem(this.tokenKey);
+    return !!localToken ? localToken : '';
+  }
+
+  get currentUser(): User {
+    if (!this.token) {
+      return null;
+    }
+    const fromLocalStorage = parseJwt(localStorage.getItem(this.tokenKey));
+    const user = new User(
+      fromLocalStorage.firstName,
+      fromLocalStorage.lastName,
+      fromLocalStorage.email,
+      fromLocalStorage.picture,
+      /*fromLocalStorage.street,
+      fromLocalStorage.postalCode,
+      fromLocalStorage.city,*/
+      fromLocalStorage.admin,
+      fromLocalStorage.birthday,
+      fromLocalStorage.absentDates
+    );
+    user.id = fromLocalStorage._id;
+    return user;
   }
 
   login(email: string, password: string): Observable<boolean> {
     return this.http
-      .post(
-        `${API_URL}/users/login`,
-        { email, password },
-        { responseType: 'text' }
-      )
-      .pipe(
-        map((token: any) => {
+      .post(`${API_URL}/users/login`, { email, password })
+      .pipe(map((res: any) => {
+          const token = res.token;
           if (token) {
             localStorage.setItem(this.tokenKey, token);
             this.user$.next(email);
@@ -74,7 +82,7 @@ export class AuthenticationService {
   logout() {
     if (this.user$.getValue()) {
       localStorage.removeItem(this.tokenKey);
-      this.user$.next(null);
+      setTimeout(() => this.user$.next(null));
     }
   }
 
@@ -90,25 +98,22 @@ export class AuthenticationService {
     postalCode: string
   ): Observable<boolean> {
     return this.http
-      .post(
-        `${API_URL}/users/register`,
-        {
-          email,
-          password,
-          firstName,
-          lastName,
-          picture,
-          birthday,
-          address: {
-            street,
-            postalCode,
-            city
-          }
-        },
-        { responseType: 'text' }
-      )
+      .post(`${API_URL}/users/register`, {
+        email,
+        password,
+        firstName,
+        lastName,
+        picture,
+        birthday,
+        address: {
+          street,
+          postalCode,
+          city
+        }
+      })
       .pipe(
-        map((token: any) => {
+        map((res: any) => {
+          const token = res.token;
           if (token) {
             localStorage.setItem(this.tokenKey, token);
             this.user$.next(email);
@@ -121,11 +126,6 @@ export class AuthenticationService {
   }
 
   checkEmailAvailability(email: string): Observable<boolean> {
-    return this.http
-      .post<boolean>(`${API_URL}/users/isvalidemail`,
-      {
-        email
-      }
-    );
+    return this.http.post<boolean>(`${API_URL}/users/isvalidemail`, email);
   }
 }

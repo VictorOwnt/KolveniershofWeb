@@ -9,7 +9,7 @@
             <div>
                 <label for="picture">
                     <img class="profilePicture"
-                        [src]="imageUrl ? imageUrl: '../../../assets/img/profile_picture_empty.png'" />
+                        [src]="imageUrl ? imageUrl: '../../../assets/img/profile_picture_empty.png'"  alt="Profielfoto"/>
                 </label>
                 <br />
                 <input id="picture" accept='image/*' type="file" (change)="preview($event)" />

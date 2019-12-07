@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import * as $ from 'jquery';
-import {AuthenticationService} from '../../user/authentication.service';
+import {AuthenticationService} from '../../authentication/authentication.service';
 import {Router} from '@angular/router';
 import {ActivityDataService} from '../../services/activity.data.service';
 import {HttpErrorResponse} from '@angular/common/http';

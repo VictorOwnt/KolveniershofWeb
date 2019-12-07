@@ -5,6 +5,7 @@ import { Workday } from '../shared/models/workday.model';
 import { UserDataService } from '../services/user.data.service';
 import { WorkdayDataService } from '../services/workday.data.service';
 import {DatesService} from '../services/dates.service';
+import {AuthenticationService} from '../authentication/authentication.service';
 
 @Component({
   selector: 'app-picto-agenda',
@@ -20,6 +21,7 @@ export class PictoAgendaComponent implements OnInit {
   private workDays: any[] | Workday[];
 
   constructor(
+    private auth: AuthenticationService,
     private datesService: DatesService,
     private userDataService: UserDataService,
     private workdayDataService: WorkdayDataService
@@ -36,9 +38,7 @@ export class PictoAgendaComponent implements OnInit {
 
   showPictoOfUser(index?: number): void {
     this.workDays = [];
-    this.clickedUser = User.fromJSON(
-      JSON.parse(localStorage.getItem('currentUser'))
-    );
+    this.clickedUser = this.auth.currentUser;
 
     if (index) {
       this.clickedUser = this.users[index];
@@ -67,7 +67,7 @@ export class PictoAgendaComponent implements OnInit {
   }
 
   isAdmin(): boolean {
-    return User.fromJSON(JSON.parse(localStorage.getItem('currentUser'))).admin;
+    return this.auth.currentUser.admin;
   }
 
   get workdays$(): Workday[] {

@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {AuthenticationService} from '../../../../user/authentication.service';
+import {AuthenticationService} from '../../../../authentication/authentication.service';
 import {ActivityUnit} from '../../../../shared/models/activityUnit.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FirebaseService} from '../../../../services/firebase.service';

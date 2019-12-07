@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../user/authentication.service';
+import { AuthenticationService } from '../authentication/authentication.service';
 import { Router } from '@angular/router';
 import { User } from '../shared/models/user.model';
 import { BehaviorSubject } from 'rxjs';
@@ -12,14 +12,8 @@ import * as $ from 'jquery';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  loggedInUser = new BehaviorSubject<string>('');
 
-  constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService
-  ) {
-    this.setCurrentUserFromLocalStorage();
-  }
+  constructor(private router: Router, private auth: AuthenticationService) {}
 
   ngOnInit() {
     const menu = $('#menu');
@@ -50,23 +44,12 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  setCurrentUserFromLocalStorage() {
-    if (localStorage.getItem('currentUser')) {
-      this.loggedInUser = new BehaviorSubject<string>(
-        User.fromJSON(JSON.parse(localStorage.getItem('currentUser'))).email
-      );
-    }
-  }
-
-  getUserFirstName(): string {
-    return User.fromJSON(JSON.parse((localStorage.getItem('currentUser')))).firstName;
+  get loggedInUser(): User {
+    return this.auth.currentUser;
   }
 
   logout() {
-    this.authenticationService.logout();
+    this.auth.logout();
     this.router.navigateByUrl('login');
-    if (localStorage.getItem('currentUser')) {
-      localStorage.removeItem('currentUser');
-    }
   }
 }
