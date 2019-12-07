@@ -17,14 +17,14 @@ function parseJwt(token) {
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private readonly _tokenKey = 'currentUser';
-  private _user$: BehaviorSubject<string>;
+  private readonly tokenKey = 'currentUser';
+  private user$: BehaviorSubject<string>;
   private tokenString: '';
   public redirectUrl: string;
 
   constructor(private http: HttpClient) {
 
-    const currentUser = localStorage.getItem(this._tokenKey);
+    const currentUser = localStorage.getItem(this.tokenKey);
     if (currentUser) {
     let parsedToken = (JSON.parse(currentUser)).token;
     this.tokenString = (JSON.parse(currentUser)).token;
@@ -34,21 +34,17 @@ export class AuthenticationService {
       const expires =
         new Date(parseInt(parsedToken.exp, 10) * 1000) < new Date();
       if (expires) {
-        localStorage.removeItem(this._tokenKey);
+        localStorage.removeItem(this.tokenKey);
         parsedToken = null;
       }
     }
-    this._user$ = new BehaviorSubject<string>(
+    this.user$ = new BehaviorSubject<string>(
       parsedToken && parsedToken.unique_name
     );
   } else {
-      this._user$ = new BehaviorSubject<string>(null);
+      this.user$ = new BehaviorSubject<string>(null);
 
     }
-  }
-
-  get user$(): BehaviorSubject<string> {
-    return this._user$;
   }
 
   get token(): string {
@@ -65,8 +61,8 @@ export class AuthenticationService {
       .pipe(
         map((token: any) => {
           if (token) {
-            localStorage.setItem(this._tokenKey, token);
-            this._user$.next(email);
+            localStorage.setItem(this.tokenKey, token);
+            this.user$.next(email);
             return true;
           } else {
             return false;
@@ -77,8 +73,8 @@ export class AuthenticationService {
 
   logout() {
     if (this.user$.getValue()) {
-      localStorage.removeItem(this._tokenKey);
-      this._user$.next(null);
+      localStorage.removeItem(this.tokenKey);
+      this.user$.next(null);
     }
   }
 
@@ -114,8 +110,8 @@ export class AuthenticationService {
       .pipe(
         map((token: any) => {
           if (token) {
-            localStorage.setItem(this._tokenKey, token);
-            this._user$.next(email);
+            localStorage.setItem(this.tokenKey, token);
+            this.user$.next(email);
             return true;
           } else {
             return false;

@@ -15,7 +15,11 @@ export class Comment {
   }
 
   static fromJSON(json: any): Comment {
-    const comment = new Comment(json.comment, json.user);
+    if ((json === undefined) || (json === null)) { return null; }
+    const comment = new Comment(
+        json.comment,
+        User.fromJSON(json.client)
+    );
     comment.id = json._id;
     return comment;
   }
@@ -43,7 +47,6 @@ export class Workday {
   holiday: boolean;
   comments: Comment[];
 
-
   constructor(
     date: Date,
     originalTemplateName: string,
@@ -57,7 +60,7 @@ export class Workday {
     holiday: boolean,
     comments: Comment[]
   ) {
-    this.date = date;
+    this.date = new Date(date);
     this.originalTemplateName = originalTemplateName;
     this.originalWeekNumber = originalWeekNumber;
     this.daycareMentors = daycareMentors;
@@ -71,6 +74,7 @@ export class Workday {
   }
 
   static fromJSON(json: any): Workday {
+    if ((json === undefined) || (json === null)) { return null; }
     const workday = new Workday(
       json.date,
       json.originalTemplateName,
@@ -78,7 +82,7 @@ export class Workday {
       json.daycareMentors.map(User.fromJSON),
       json.morningBusses.map(BusUnit.fromJSON),
       json.amActivities.map(ActivityUnit.fromJSON),
-      json.lunch,
+      LunchUnit.fromJSON(json.lunch),
       json.pmActivities.map(ActivityUnit.fromJSON),
       json.eveningBusses.map(BusUnit.fromJSON),
       json.holiday,
@@ -96,7 +100,7 @@ export class Workday {
       originalWeekNumber: this.originalWeekNumber,
       morningBusses: this.morningBusses.map(busUnit => busUnit.toJSON()),
       amActivities: this.amActivities.map(activityUnit => activityUnit.toJSON()),
-      lunch: this.lunch,
+      lunch: this.lunch.toJSON(),
       pmActivities: this.pmActivities.map(activityUnit => activityUnit.toJSON()),
       eveningBusses: this.eveningBusses.map(busUnit => busUnit.toJSON()),
       holiday: this.holiday,

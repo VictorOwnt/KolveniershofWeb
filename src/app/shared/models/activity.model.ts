@@ -9,6 +9,7 @@ export class Activity {
   }
 
   static fromJSON(json: any): Activity {
+    if ((json === undefined) || (json === null)) { return null; }
     const activity = new Activity(json.name, json.icon);
     activity.id = json._id;
     return activity;
@@ -22,3 +23,7 @@ export class Activity {
     };
   }
 }
+
+Activity.prototype.toString = function() {
+  return this.name;
+};

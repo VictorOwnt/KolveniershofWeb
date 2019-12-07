@@ -6,13 +6,14 @@ export class LunchUnit {
   mentors: User[];
   clients: User[];
 
-  constructor(
-    lunch: string,
-    mentors: User[],
-    clients: User[]
-  ) { }
+  constructor(lunch: string, mentors: User[], clients: User[]) {
+    this.lunch = lunch;
+    this.mentors = mentors;
+    this.clients = clients;
+  }
 
   static fromJSON(json: any): LunchUnit {
+    if ((json === undefined) || (json === null)) { return null; }
     const lunchUnit = new LunchUnit(
       json.lunch,
       json.mentors.map(User.fromJSON),
@@ -31,3 +32,7 @@ export class LunchUnit {
     };
   }
 }
+
+LunchUnit.prototype.toString = function() {
+  return this.lunch;
+};

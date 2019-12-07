@@ -36,6 +36,7 @@ export class User {
   }
 
   static fromJSON(json: any): User {
+    if ((json === undefined) || (json === null)) { return null; }
     const user = new User(
       json.firstName,
       json.lastName,
@@ -70,3 +71,7 @@ export class User {
     };
   }
 }
+
+User.prototype.toString = function() {
+  return this.firstName + ' ' + this.lastName;
+};

@@ -1,0 +1,10 @@
+@import "../../../variables.scss";
+@import "../../../success_failure_icons.scss";
+
+.container { margin: 20px; }
+
+h1, p { color: $color-danger-dark; }
+
+h1 { font-size: 200%; }
+
+.mat-dialog-actions { margin-bottom: 0; }

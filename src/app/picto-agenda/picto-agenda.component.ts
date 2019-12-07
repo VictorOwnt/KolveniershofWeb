@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../shared/models/user.model';
 import { Observable, Subject } from 'rxjs';
 import { Workday } from '../shared/models/workday.model';
-import { StaticMethodsPicto } from '../domain/staticMethods';
 import { UserDataService } from '../services/user.data.service';
-import { WorkDayDataService } from '../services/workDay.data.service';
+import { WorkdayDataService } from '../services/workday.data.service';
+import {DatesService} from '../services/dates.service';
 
 @Component({
   selector: 'app-picto-agenda',
@@ -13,43 +13,44 @@ import { WorkDayDataService } from '../services/workDay.data.service';
 })
 export class PictoAgendaComponent implements OnInit {
   public chosenDate: Date;
+  clickedUser: User;
 
-  private _fetchUsers$: Observable<User[]> = this._userDataService.users$;
-  private _users: User[];
+  private fetchUsers$: Observable<User[]> = this.userDataService.users$;
+  private users: User[];
   private workDays: any[] | Workday[];
-  private _clickedUser: User;
 
   constructor(
-    private _userDataService: UserDataService,
-    private _workdayDataService: WorkDayDataService
+    private datesService: DatesService,
+    private userDataService: UserDataService,
+    private workdayDataService: WorkdayDataService
   ) {
-    this._fetchUsers$.subscribe(users => (this._users = users));
+    this.fetchUsers$.subscribe(users => (this.users = users));
     this.showPictoOfUser();
   }
 
   ngOnInit() { }
 
   get users$(): Observable<User[]> {
-    return this._fetchUsers$;
+    return this.fetchUsers$;
   }
 
   showPictoOfUser(index?: number): void {
     this.workDays = [];
-    this._clickedUser = User.fromJSON(
+    this.clickedUser = User.fromJSON(
       JSON.parse(localStorage.getItem('currentUser'))
     );
 
     if (index) {
-      this._clickedUser = this._users[index];
+      this.clickedUser = this.users[index];
     }
-    let currentWeek = this.getCurrentWeek();
+    let currentWeek = this.datesService.weekDays(new Date());
 
     if (this.chosenDate) {
-      currentWeek = this.getCurrentWeek(this.chosenDate);
+      currentWeek = this.datesService.weekDays(this.chosenDate);
     }
     let workday: Workday;
     for (const date of currentWeek) {
-      this._workdayDataService.getWorkDayByDate(date).subscribe({
+      this.workdayDataService.getWorkdayByDate(date).subscribe({
         next: (result: Workday) => {
           if (result) {
             workday = result;
@@ -65,22 +66,6 @@ export class PictoAgendaComponent implements OnInit {
     }
   }
 
-  getCurrentWeek(date?: Date): Date[] {
-    let chosenDate: Date = new Date();
-    if (date) {
-      chosenDate = date;
-    }
-
-    const week = [];
-    for (let i = 1; i <= 7; i++) {
-      const first = chosenDate.getDate() - chosenDate.getDay() + i;
-      const day = new Date(chosenDate.setDate(first));
-
-      week.push(StaticMethodsPicto.formattedDate(day));
-    }
-    return week;
-  }
-
   isAdmin(): boolean {
     return User.fromJSON(JSON.parse(localStorage.getItem('currentUser'))).admin;
   }
@@ -94,7 +79,7 @@ export class PictoAgendaComponent implements OnInit {
     return this.workDays[param];
   }
 
-  getWeekdays(): Workday[]{
+  getWeekdays(): Workday[] {
     const weekdays = [];
     for (let i = 0; i < 5; i++) {
 
@@ -105,20 +90,14 @@ export class PictoAgendaComponent implements OnInit {
     return weekdays;
   }
 
-  getWeekenddays(): Workday[]{
+  getWeekenddays(): Workday[] {
     const weekenddays = [];
     for (let i = 5; i < 7; i++) {
 
-      console.log("test");
+      console.log('test');
       weekenddays.push(this.workDays[i]);
     }
     return weekenddays;
-  }
-
-
-
-  get clickedUser(): User {
-    return this._clickedUser;
   }
 
   private getTime(dateString: string | number | Date) {

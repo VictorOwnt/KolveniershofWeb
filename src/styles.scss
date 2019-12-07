@@ -112,10 +112,10 @@ $palette-primary-dark: (
         )
 );
 
-$kolveniershof-app-primary: mat-palette($palette-primary-dark, 500); // mat-palette($mat-indigo);
-$kolveniershof-app-accent:  mat-palette($palette-accent, 500); // mat-palette($mat-pink, A200, A100, A400);
+$kolveniershof-app-primary: mat-palette($palette-primary-dark, 500);
+$kolveniershof-app-accent: mat-palette($palette-accent, 500);
 // The warn palette is optional (defaults to red).
-$kolveniershof-app-warn:    mat-palette($mat-red);
+$kolveniershof-app-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $kolveniershof-app-theme: mat-light-theme($kolveniershof-app-primary, $kolveniershof-app-accent, $kolveniershof-app-warn);
@@ -197,6 +197,12 @@ body {
       -moz-box-shadow: $shadow-pink-hover;
       box-shadow: $shadow-pink-hover;
     }
+    &-outline {
+      @extend .btn-pink;
+      background-color: $color-background;
+      color: $color-accent;
+      border: 2px solid $color-accent;
+    }
   }
   &-white {
     @extend .btn;
@@ -204,9 +210,41 @@ body {
     color: $color-text;
     border: 2px solid $color-primary-dark;
   }
+  &-danger {
+    @extend .btn;
+    background-color: $color-danger;
+    -webkit-box-shadow: $shadow-danger;
+    -moz-box-shadow: $shadow-danger;
+    box-shadow: $shadow-danger;
+    &:hover {
+      -webkit-box-shadow: $shadow-danger-hover;
+      -moz-box-shadow: $shadow-danger-hover;
+      box-shadow: $shadow-danger-hover;
+    }
+    &-outline {
+      @extend .btn-danger;
+      background-color: $color-background;
+      color: $color-danger;
+      border: 2px solid $color-danger;
+    }
+  }
 }
 
-// Changes color to #003A70 (color-text)
-img.svgTextColor {
-  filter: invert(11%) sepia(73%) saturate(4067%) hue-rotate(197deg) brightness(97%) contrast(101%);
+// SVG color changer in img tag ( !!! SVG MUST BE BLACK !!! )
+img {
+  // Changes color to #003A70 (color-text)
+  &.svgTextColor {
+    filter: invert(11%) sepia(73%) saturate(4067%) hue-rotate(197deg) brightness(97%) contrast(101%);
+    -webkit-filter: invert(11%) sepia(73%) saturate(4067%) hue-rotate(197deg) brightness(97%) contrast(101%);
+  }
+
+  // Changes color to #FFF (white)
+  &.svgWhiteColor {
+    filter: invert(100%);
+    -webkit-filter: invert(100%);
+  }
+}
+
+mat-dialog-container {
+  padding: 0 !important;
 }

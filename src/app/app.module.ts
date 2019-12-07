@@ -1,6 +1,6 @@
 // everything still has to be put in seperate modules
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,10 +12,8 @@ import { HeaderComponent } from './header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
-  MatFormFieldModule,
-  MatInputModule,
-  MatNativeDateModule,
-  MatDialogModule
+  MatFormFieldModule, MatInputModule, MatNativeDateModule, MatDialogModule, MatCheckboxModule, MatSliderModule, MatSlideToggleModule,
+  MatRadioModule
 } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -27,20 +25,15 @@ import { httpInterceptorProviders } from './http-interceptors';
 import { PictoAgendaComponent } from './picto-agenda/picto-agenda.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { WorkDayDataService } from './services/workDay.data.service';
-import { WeekScheduleComponent } from './week-schedule/week-schedule.component';
+import { WorkdayDataService } from './services/workday.data.service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { EditWeekScheduleComponent } from './edit-week-schedule/edit-week-schedule.component';
-import { BusschemaComponent } from './busschema/busschema.component';
 import { MatSelectModule } from '@angular/material/select';
 import { RegisterComponent } from './user/register/register.component';
-import { BusschemaTableComponent } from './busschema/busschema-table/busschema-table.component';
-import { BlockOfWeekScheduleComponent } from './week-schedule/block-of-week-schedule/block-of-week-schedule.component';
 import { WeekdayComponent } from './weekday/weekday.component';
 import { ActivityComponent } from './weekday/activity/activity.component';
 import { WeekendComponent } from './weekend/weekend.component';
@@ -48,6 +41,7 @@ import { WeekendDayComponent } from './weekend/weekend-day/weekend-day.component
 import { HolidayComponent } from './holiday/holiday.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule} from '@angular/fire/storage';
+import { ImgFallbackModule } from 'ngx-img-fallback';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { environment } from '../environments/environment';
 import { AdminActivitiesComponent } from './admin-activities/admin-activities.component';
@@ -59,6 +53,25 @@ import { AdminBusComponent } from './admin-busses/bus-list/admin-bus/admin-bus.c
 import { BusNewComponent } from './admin-busses/bus-new/bus-new.component';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { AdminActivityComponent } from './admin-activities/activity-list/admin-activity/admin-activity.component';
+import { ScheduleComponent } from './admin/schedule/schedule.component';
+import { ScheduleWeekdayComponent } from './admin/schedule/schedule-weekday/schedule-weekday.component';
+import { ScheduleUnitComponent } from './admin/schedule/schedule-unit/schedule-unit.component';
+import localeNl from '@angular/common/locales/nl';
+import { ScheduleWeekendComponent } from './admin/schedule/schedule-weekend/schedule-weekend.component';
+import { WorkdayFilterPipe } from './pipes/workday-filter.pipe';
+import { ScheduleEmptyComponent } from './admin/schedule/schedule-empty/schedule-empty.component';
+import { WorkdayTemplateDataService } from './services/workdayTemplate.data.service';
+import { CommentListComponent } from './admin/schedule/comment-list/comment-list.component';
+import { DeleteModalComponent } from './shared/delete-modal/delete-modal.component';
+import { EditUnitModalComponent } from './admin/schedule/schedule-unit/edit-unit-modal/edit-unit-modal.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {BusDataService} from './services/bus.data.service';
+import {LunchDataService} from './services/lunch.data.service';
+import {ActivityDataService} from './services/activity.data.service';
+import { SuccessModalComponent } from './shared/success-modal/success-modal.component';
+import { ErrorModalComponent } from './shared/error-modal/error-modal.component';
+
+registerLocaleData(localeNl, 'nl-BE');
 
 @NgModule({
   declarations: [
@@ -67,13 +80,8 @@ import { AdminActivityComponent } from './admin-activities/activity-list/admin-a
     PageNotFoundComponent,
     HeaderComponent,
     FooterComponent,
-    WeekScheduleComponent,
     PictoAgendaComponent,
-    EditWeekScheduleComponent,
-    BusschemaComponent,
     RegisterComponent,
-    BusschemaTableComponent,
-    BlockOfWeekScheduleComponent,
     WeekdayComponent,
     ActivityComponent,
     WeekendComponent,
@@ -87,7 +95,18 @@ import { AdminActivityComponent } from './admin-activities/activity-list/admin-a
     AdminBusComponent,
     BusNewComponent,
     AdminActivitiesComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    ScheduleComponent,
+    ScheduleWeekdayComponent,
+    ScheduleUnitComponent,
+    ScheduleWeekendComponent,
+    WorkdayFilterPipe,
+    ScheduleEmptyComponent,
+    CommentListComponent,
+    DeleteModalComponent,
+    EditUnitModalComponent,
+    SuccessModalComponent,
+    ErrorModalComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -118,13 +137,33 @@ import { AdminActivityComponent } from './admin-activities/activity-list/admin-a
     MatSelectModule,
     ColorPickerModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    MatCheckboxModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    ImgFallbackModule,
+    MatAutocompleteModule,
+    MatRadioModule
   ],
-  entryComponents: [EditWeekScheduleComponent, ActivityNewComponent, BusNewComponent],
+  entryComponents: [
+    ActivityNewComponent,
+    BusNewComponent,
+    CommentListComponent,
+    EditUnitModalComponent,
+    DeleteModalComponent,
+    SuccessModalComponent,
+    ErrorModalComponent
+  ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'nl-BE' },
     httpInterceptorProviders,
-    WorkDayDataService,
-    MatDatepickerModule
+    DatePipe,
+    MatDatepickerModule,
+    WorkdayDataService,
+    WorkdayTemplateDataService,
+    ActivityDataService,
+    BusDataService,
+    LunchDataService
   ],
   bootstrap: [AppComponent]
 })

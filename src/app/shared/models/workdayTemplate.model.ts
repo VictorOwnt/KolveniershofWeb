@@ -38,6 +38,7 @@ export class WorkdayTemplate {
   }
 
   static fromJSON(json: any): WorkdayTemplate {
+    if ((json === undefined) || (json === null)) { return null; }
     const workdayTemplate = new WorkdayTemplate(
       json.templateName,
       json.weekNumber,
@@ -45,7 +46,7 @@ export class WorkdayTemplate {
       json.daycareMentors.map(User.fromJSON),
       json.morningBusses.map(BusUnit.fromJSON),
       json.amActivities.map(ActivityUnit.fromJSON),
-      json.lunch,
+      LunchUnit.fromJSON(json.lunch),
       json.pmActivities.map(ActivityUnit.fromJSON),
       json.eveningBusses.map(BusUnit.fromJSON)
     );
@@ -61,7 +62,7 @@ export class WorkdayTemplate {
       dayNumber: this.dayNumber,
       morningBusses: this.morningBusses.map(busUnit => busUnit.toJSON()),
       amActivities: this.amActivities.map(activityUnit => activityUnit.toJSON()),
-      lunch: this.lunch,
+      lunch: this.lunch.toJSON(),
       pmActivities: this.pmActivities.map(activityUnit => activityUnit.toJSON()),
       eveningBusses: this.eveningBusses.map(busUnit => busUnit.toJSON())
     };

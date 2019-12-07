@@ -6,7 +6,7 @@ $font-stack: 'Roboto', Arial, Helvetica, sans-serif;
 
 $color-primary: #007AEF !default;
 $color-primary-dark: #003A70 !default;
-$color-accent: #D81B60;
+$color-accent: #D81B60 !default;
 
 $color-danger: #FF4444 !default;
 $color-danger-dark: #CC0000 !default;
@@ -18,13 +18,18 @@ $color-success-dark: #007E33 !default;
 $color-background: #EEF3F8 !default;
 $color-text: $color-primary-dark !default;
 
+$color-divider: rgba(0, 58, 112, 0.5) !default; // $color-primary-dark 50% opacity
+
 $gradient-blue: linear-gradient(90deg, $color-primary, $color-primary-dark) !default;
 
 // SHADOWS
 
-$shadow-blue: 0px 17px 40px 0px rgba(0, 122, 239, .3) !default;
-$shadow-pink: 0px 17px 40px 0px rgba(216, 27, 96, .3) !default;
-$shadow-blue-hover: 0px 17px 40px 0px rgba(0, 122, 239, .5) !default;
-$shadow-pink-hover: 0px 17px 40px 0px rgba(216, 27, 96, .5) !default;
+$shadow-blue: 0px 12px 40px 0px rgba(0, 122, 239, .3) !default;
+$shadow-pink: 0px 12px 40px 0px rgba(216, 27, 96, .3) !default;
+$shadow-danger: 0px 12px 40px 0px rgba(255, 68, 68, .3) !default;
+$shadow-blue-hover: 0px 12px 40px 0px rgba(0, 122, 239, .5) !default;
+$shadow-pink-hover: 0px 12px 40px 0px rgba(255, 68, 68, .5) !default;
+$shadow-danger-hover: 0px 12px 40px 0px rgba(216, 27, 96, .5) !default;
 $shadow-subtle: 0 -20px 85px rgba(0, 0, 0, 0.05) !default;
-$shadow-hard: 0 0px 85px rgba(0, 0, 0, 0.2) !default;
+$shadow-hard: 0 0px 65px rgba(0, 0, 0, 0.2) !default;
+$shadow-card: 0 0 60px -15px rgba(0, 0, 0, .2) !default;

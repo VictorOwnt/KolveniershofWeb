@@ -17,6 +17,7 @@ import { FirebaseService } from '../../services/firebase.service';
 
 function comparePasswords(control: AbstractControl) {
   return new Promise( resolve => {
+    // tslint:disable-next-line: no-string-literal
     const password = control.parent.controls['password'].value;
     const confirmPassword = control.value;
     return password === confirmPassword
@@ -66,6 +67,7 @@ export class RegisterComponent implements OnInit {
   public user: FormGroup;
   public errorMsg = '';
   public startDate = new Date();
+  public nieuweData = false;
   hidePassword = true;
   hideConfirmPassword = true;
   imageUrl: any = null;
@@ -131,13 +133,17 @@ export class RegisterComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     reader.onload = (_event) => {
       this.imageUrl = reader.result;
+      this.nieuweData = true;
     };
   }
 
 
   register() {
-    const filePath = 'users/' + this.user.value.firstName + '_' + this.user.value.lastName + '_' + new Date().toISOString().split('T')[0];
-    this.firebaseService.uploadFile(filePath);
+    let filePath = '';
+    if (this.nieuweData) {
+      filePath = 'users/' + this.user.value.firstName + '_' + this.user.value.lastName + '_' + new Date().toISOString().split('T')[0];
+      this.firebaseService.uploadFile(filePath);
+    }
     this.authService
       .register(
         this.user.value.email,

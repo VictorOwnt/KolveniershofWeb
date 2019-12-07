@@ -7,15 +7,16 @@ export class BusUnit {
   mentors: User[];
   clients: User[];
 
-  constructor(
-    bus: Bus,
-    mentors: User[],
-    clients: User[]
-  ) {}
+  constructor(bus: Bus, mentors: User[], clients: User[]) {
+    this.bus = bus;
+    this.mentors = mentors;
+    this.clients = clients;
+  }
 
   static fromJSON(json: any): BusUnit {
+    if ((json === undefined) || (json === null)) { return null; }
     const busUnit = new BusUnit(
-      json.bus,
+      Bus.fromJSON(json.bus),
       json.mentors.map(User.fromJSON),
       json.clients.map(User.fromJSON)
     );
@@ -26,7 +27,7 @@ export class BusUnit {
   toJSON() {
     return {
       _id: this.id,
-      bus: this.bus,
+      bus: this.bus.toJSON(),
       mentors: this.mentors.map(mentor => mentor.toJSON()),
       clients: this.clients.map(client => client.toJSON())
     };

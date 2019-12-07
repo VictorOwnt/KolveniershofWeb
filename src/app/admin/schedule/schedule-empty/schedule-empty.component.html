@@ -1,0 +1,20 @@
+<div fxLayout="column" fxLayoutAlign="center center" >
+    <p>Geen data gevonden voor deze week.</p>
+    <button type="button" class="btn-pink" (mousedown)="generateWeek()">Genereer een nieuwe week</button>
+
+    <form class="templateForm" [formGroup]="template" (ngSubmit)="generateWeek(true)" fxLayout="column" fxLayoutGap="15px">
+        <h2 class="mat-h2">Gebruik een template</h2>
+
+        <label for="templateName">Selecteer een template:</label>
+        <mat-select id="templateName" placeholder="Naam van het template" formControlName="name" required> <!-- TODO - blue text -->
+            <mat-option *ngFor="let templateName of templateNames$ | async" [value]="templateName">{{ templateName | titlecase }}</mat-option>
+        </mat-select>
+
+        <label for="templateWeek">Selecteer een week uit de template:</label>
+        <mat-radio-group id="templateWeek" formControlName="week" aria-label="Selecteer een week uit de template" fxLayout="row wrap" fxLayoutAlign="space-between" required>
+            <mat-radio-button *ngFor="let i of numberArray(4)" value="{{ i+1 }}" fxFlex="calc(50% - 10px)">Week {{ i+1 }}</mat-radio-button>
+        </mat-radio-group>
+
+        <button type="submit" class="btn" [disabled]='!template.valid'>Gebruik een template</button>
+    </form>
+</div>

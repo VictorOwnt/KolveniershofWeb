@@ -1,7 +1,7 @@
-import { Subject, Observable} from 'rxjs';
+import { Subject, Observable, of} from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { API_URL} from '../../environments/environment';
+// import { HttpClient } from '@angular/common/http';
+// import { API_URL} from '../../environments/environment';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class FirebaseService {
     task: AngularFireUploadTask;
 
     constructor(
-        private http: HttpClient,
+        // private http: HttpClient,
         private storage: AngularFireStorage
     ) {}
 
@@ -30,9 +30,14 @@ export class FirebaseService {
         }
     }
 
-    lookupFileDownloadUrl(ref: string): Observable<string | null> {
-        this.ref = this.storage.ref(ref);
-        return this.ref.getDownloadURL();
+    lookupFileDownloadUrl(ref: string, type: string): Observable<string | null> {
+        if (type === 'user' && ref === '') {
+            return of('../../../assets/img/profile_picture_empty.png');
+        } else if (type === 'icon' && ref === '') {
+            return of('../../../assets/img/icons/icon-angry.svg');
+        } else {
+            return this.storage.ref(ref).getDownloadURL();
+        }
     }
 
     uploadFile(filePath: string) {
