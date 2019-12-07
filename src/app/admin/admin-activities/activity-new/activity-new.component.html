@@ -14,7 +14,7 @@
             <div>
                 <label for="icon">
                     <img class="iconupload" [src]="imageUrl ? imageUrl: '../../../assets/img/icons/add_circle.svg'"
-                        data-cy=chosePicture />
+                        data-cy=chosePicture  alt="Icoon atelier"/>
                 </label>
                 <br />
                 <input id="icon" accept='.svg,image/*' type="file" (change)="preview($event)" formControlName="icon"

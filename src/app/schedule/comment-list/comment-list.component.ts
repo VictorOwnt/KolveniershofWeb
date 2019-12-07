@@ -10,14 +10,9 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 })
 export class CommentListComponent implements OnInit {
 
-  constructor(
-      @Inject(MAT_DIALOG_DATA) public comments: Comment[],
-      public dialogRef: MatDialogRef<CommentListComponent>, private auth: AuthenticationService) {
-    console.log(this.comments);
-  }
+  constructor(@Inject(MAT_DIALOG_DATA) public comments: Comment[]) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   mailto(comment: Comment): string {
     const mailContent = [];

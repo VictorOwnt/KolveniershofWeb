@@ -45,20 +45,22 @@ export class ScheduleUnitComponent implements OnInit {
       this.title = this.unit.lunch;
       this.getIconUrl('icons/icon-restaurant.svg');
     }
+
     this.mentors = this.unit.mentors;
     this.mentors.forEach(async mentor => {
       await this.getImageUrl(mentor);
-   });
-    if(this.mentors.length > 2)
+    });
+    if (this.mentors.length > 2) {
       this.expandMentors = false;
+    }
 
     this.clients = this.unit.clients;
     this.clients.forEach(async client => {
       await this.getImageUrl(client);
-   });
-
-    if(this.clients.length > 2)
+    });
+    if (this.clients.length > 2) {
       this.expandClients = false;
+    }
   }
 
   async getImageUrl(user: User) {
