@@ -8,6 +8,7 @@ import {FooterComponent} from './footer/footer.component';
 import {RouterModule} from '@angular/router';
 import {FlexModule} from '@angular/flex-layout';
 import {MatDialogModule} from '@angular/material';
+import {WorkdayFilterPipe} from './pipes/workday-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {MatDialogModule} from '@angular/material';
     FooterComponent,
     DeleteModalComponent,
     SuccessModalComponent,
-    ErrorModalComponent
+    ErrorModalComponent,
+    WorkdayFilterPipe
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import {MatDialogModule} from '@angular/material';
     FooterComponent,
     DeleteModalComponent,
     SuccessModalComponent,
-    ErrorModalComponent
+    ErrorModalComponent,
+    WorkdayFilterPipe
   ]
 })
 export class SharedModule { }

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Workday} from '../models/workday.model';
-import {DatesService} from '../services/dates.service';
+import {Workday} from '../../models/workday.model';
+import {DatesService} from '../../services/dates.service';
 
 @Pipe({
   name: 'workdayFilter'
