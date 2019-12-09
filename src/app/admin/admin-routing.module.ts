@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import {AdminComponent} from './admin.component';
 import {AdminActivitiesComponent} from './admin-activities/admin-activities.component';
 import {AdminBussesComponent} from './admin-busses/admin-busses.component';
-import {AdminGuard} from '../authentication/admin.guard';
 import {AuthGuard} from '../authentication/auth.guard';
 
 const routes: Routes = [
