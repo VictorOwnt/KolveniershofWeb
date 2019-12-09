@@ -5,11 +5,13 @@ import {RegisterComponent} from './register/register.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
 import {FlexModule} from '@angular/flex-layout';
+import {ForbiddenComponent} from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForbiddenComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import {FlexModule} from '@angular/flex-layout';
   ],
   exports: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForbiddenComponent
   ]
 })
 export class AuthenticationModule {}
