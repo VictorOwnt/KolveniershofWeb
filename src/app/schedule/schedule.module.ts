@@ -20,6 +20,7 @@ import {FlexModule} from '@angular/flex-layout';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ImgFallbackModule} from 'ngx-img-fallback';
 import {SharedModule} from '../shared/shared.module';
+import {ScheduleRoutingModule} from './schedule-routing.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {SharedModule} from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
+    ScheduleRoutingModule,
     MatDialogModule,
     FlexModule,
     ReactiveFormsModule,
