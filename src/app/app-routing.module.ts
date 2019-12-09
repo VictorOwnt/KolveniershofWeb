@@ -7,7 +7,6 @@ import { PictoAgendaComponent } from './picto-agenda/picto-agenda.component';
 import { AuthGuard } from './authentication/auth.guard';
 import { RegisterComponent } from './authentication/register/register.component';
 import { AdminBussesComponent } from './admin/admin-busses/admin-busses.component';
-import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { AdminActivitiesComponent } from './admin/admin-activities/admin-activities.component';
 
 const appRoutes: Routes = [
@@ -16,8 +15,12 @@ const appRoutes: Routes = [
     loadChildren: () => import('./schedule/schedule.module').then(mod => mod.ScheduleModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule),
+    canActivate: [AuthGuard]
+  },
   // TODO - Fix all routes
-  { path: 'admin', component: AdminHomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: PictoAgendaComponent },
   { path: 'bus', component: AdminBussesComponent },

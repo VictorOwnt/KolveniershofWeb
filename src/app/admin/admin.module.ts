@@ -7,7 +7,7 @@ import {BusNewComponent} from './admin-busses/bus-new/bus-new.component';
 import {BusComponent} from './admin-busses/bus/bus.component';
 import {AdminBussesComponent} from './admin-busses/admin-busses.component';
 import {BusListComponent} from './admin-busses/bus-list/bus-list.component';
-import {AdminHomeComponent} from './admin-home/admin-home.component';
+import {AdminComponent} from './admin.component';
 import {FlexModule} from '@angular/flex-layout';
 import {MatCardModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
 import {SharedModule} from '../shared/shared.module';
@@ -15,6 +15,7 @@ import {ColorPickerModule} from 'ngx-color-picker';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {ActivityComponent} from './admin-activities/activity/activity.component';
+import {AdminRoutingModule} from './admin-routing.module';
 
 @NgModule({
   declarations: [
@@ -26,10 +27,11 @@ import {ActivityComponent} from './admin-activities/activity/activity.component'
     BusComponent,
     BusListComponent,
     BusNewComponent,
-    AdminHomeComponent
+    AdminComponent
   ],
   imports: [
     CommonModule,
+    AdminRoutingModule,
     RouterModule,
     FlexModule,
     MatCardModule,

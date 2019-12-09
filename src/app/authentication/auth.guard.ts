@@ -11,19 +11,16 @@ import {
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(
-    private authService: AuthenticationService,
-    private router: Router
-  ) {}
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean {
-    if (localStorage.getItem('currentUser')) {
+
+  constructor(private auth: AuthenticationService, private router: Router) {}
+
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    if (this.auth.currentUser) {
       return true;
     }
-    this.authService.redirectUrl = state.url;
+    this.auth.redirectUrl = state.url;
     this.router.navigate(['/login']);
     return false;
   }
+
 }
