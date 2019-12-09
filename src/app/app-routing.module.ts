@@ -9,7 +9,6 @@ import { RegisterComponent } from './authentication/register/register.component'
 import { AdminBussesComponent } from './admin/admin-busses/admin-busses.component';
 import { AdminActivitiesComponent } from './admin/admin-activities/admin-activities.component';
 import {ForbiddenComponent} from './authentication/forbidden/forbidden.component';
-import {AdminGuard} from './authentication/admin.guard';
 
 const appRoutes: Routes = [
   {
@@ -20,7 +19,8 @@ const appRoutes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule),
-    canActivate: [AdminGuard, AuthGuard]
+    canActivate: [AuthGuard],
+    data: { shouldBeAdmin: true }
   },
   // TODO - Fix all routes
   { path: 'login', component: LoginComponent },
