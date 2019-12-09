@@ -17,7 +17,20 @@ export class AuthGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const shouldBeAdmin: boolean = next.data.shouldBeAdmin || false;
 
+    // Check if user is logged in
     if (this.auth.currentUser) {
+      // Check if trying to navigate to home
+      if (state.url === '/') {
+        // Navigate to appropriate home page
+        if (this.auth.currentUser.admin) {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/schedule']);
+        }
+        return true;
+      }
+
+      // Check if user has access
       if (!shouldBeAdmin || this.auth.currentUser.admin) {
         return true;
       }

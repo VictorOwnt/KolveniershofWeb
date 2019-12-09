@@ -3,11 +3,8 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from 'src/app/authentication/login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PictoAgendaComponent } from './picto-agenda/picto-agenda.component';
 import { AuthGuard } from './authentication/auth.guard';
 import { RegisterComponent } from './authentication/register/register.component';
-import { AdminBussesComponent } from './admin/admin-busses/admin-busses.component';
-import { AdminActivitiesComponent } from './admin/admin-activities/admin-activities.component';
 import {ForbiddenComponent} from './authentication/forbidden/forbidden.component';
 
 const appRoutes: Routes = [
@@ -22,14 +19,12 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
     data: { shouldBeAdmin: true }
   },
-  // TODO - Fix all routes
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: PictoAgendaComponent },
-  { path: 'bus', component: AdminBussesComponent },
-  { path: 'picto', component: PictoAgendaComponent, canActivate: [AuthGuard] },
   { path: 'r', component: RegisterComponent },
-  { path: 'a', component: AdminActivitiesComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', component: PageNotFoundComponent, canActivate: [AuthGuard] }, // See AuthGuard for homepage routing
+  { path: 'home', redirectTo: '', pathMatch: 'full' },
+  { path: 'index', redirectTo: '', pathMatch: 'full' },
+  { path: 'welcome', redirectTo: '', pathMatch: 'full' },
   { path: 'forbidden', component: ForbiddenComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
