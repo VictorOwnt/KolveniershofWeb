@@ -1,7 +1,7 @@
 <div *ngIf="!bus" class="header" mat-dialog-title>Bus aanmaken</div>
 <div *ngIf="bus" class="header" mat-dialog-title>Bus aanpassen</div>
 <form [formGroup]="busForm" (ngSubmit)="save()">
-    <div mat-dialog-content>
+    <div mat-dialog-content class="content">
 
         <mat-form-field appearance="outline">
             <mat-label>Naam</mat-label>

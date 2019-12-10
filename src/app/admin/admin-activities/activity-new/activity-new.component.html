@@ -1,7 +1,7 @@
 <div *ngIf="!activity" class="header" mat-dialog-title>Atelier aanmaken</div>
 <div *ngIf="activity" class="header" mat-dialog-title>Atelier aanpassen</div>
 <form [formGroup]="activityForm" (ngSubmit)="save()">
-    <div mat-dialog-content>
+    <div mat-dialog-content class="content">
         <mat-form-field appearance="outline">
             <mat-label>Naam</mat-label>
             <input matInput [value]="activity ? activity.name : ''" placeholder="Naam van de activiteit"
