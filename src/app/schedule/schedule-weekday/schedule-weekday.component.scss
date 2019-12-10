@@ -44,7 +44,6 @@ h1, h2, h3, p {
     }
   }
 
-
   #general {
     > * {
       margin-bottom: 10px;
@@ -61,6 +60,14 @@ h1, h2, h3, p {
 
   .add-activity, .add-lunch {
     margin-bottom: 10px;
+  }
+}
+
+#holiday {
+  margin: 20px 0;
+
+  > img {
+    width: 80px;
   }
 }
 

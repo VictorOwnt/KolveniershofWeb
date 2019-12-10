@@ -3,6 +3,7 @@ import {Workday} from '../../models/workday.model';
 import {WorkdayDataService} from '../../services/workday.data.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { Observable } from 'rxjs';
+import {AuthenticationService} from '../../authentication/authentication.service';
 
 @Component({
   selector: 'app-schedule-weekday',
@@ -12,13 +13,16 @@ import { Observable } from 'rxjs';
 export class ScheduleWeekdayComponent implements OnInit {
   @Input() workday: Workday;
   icon: Observable<string | null>;
+  isAdmin?: boolean;
 
   constructor(
     private workdayDataService: WorkdayDataService,
-    private firebaseService: FirebaseService
-    ) {}
+    private firebaseService: FirebaseService,
+    private auth: AuthenticationService
+  ) {}
 
   ngOnInit() {
+    this.isAdmin = this.auth.currentUser.admin;
     this.icon = this.firebaseService.lookupFileDownloadUrl(this.workdayDataService.getDayIcon(this.workday.date.getDay()), 'icon');
   }
 
