@@ -12,6 +12,7 @@ import {SuccessModalComponent} from '../../shared/success-modal/success-modal.co
 import {ErrorModalComponent} from '../../shared/error-modal/error-modal.component';
 import {Workday} from '../../models/workday.model';
 import {WorkdayTemplate} from '../../models/workdayTemplate.model';
+import {AuthenticationService} from '../../authentication/authentication.service';
 
 @Component({
   selector: 'app-schedule-unit',
@@ -29,15 +30,19 @@ export class ScheduleUnitComponent implements OnInit {
   clients: User[] = [];
   expandClients = true;
   expandMentors = true;
+  isAdmin?: boolean;
 
   constructor(
     private firebaseService: FirebaseService,
     public dialog: MatDialog,
     private activityDataService: ActivityDataService,
-    private lunchDataService: LunchDataService
+    private lunchDataService: LunchDataService,
+    private auth: AuthenticationService
   ) { }
 
   ngOnInit() {
+    this.isAdmin = this.auth.currentUser.admin;
+
     if (this.unit instanceof ActivityUnit) {
       this.title = this.unit.activity.name;
       this.getIconUrl(this.unit.activity.icon);
