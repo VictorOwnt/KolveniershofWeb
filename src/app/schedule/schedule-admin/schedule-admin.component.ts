@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {Workday} from '../models/workday.model';
-import {WorkdayDataService} from '../services/workday.data.service';
-import {DatesService} from '../services/dates.service';
+import {Workday} from '../../models/workday.model';
+import {WorkdayDataService} from '../../services/workday.data.service';
+import {DatesService} from '../../services/dates.service';
 import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-schedule',
-  templateUrl: './schedule.component.html',
-  styleUrls: ['./schedule.component.scss']
+  templateUrl: './schedule-admin.component.html',
+  styleUrls: ['./schedule-admin.component.scss']
 })
-export class ScheduleComponent implements OnInit {
+export class ScheduleAdminComponent implements OnInit {
   workdays$: Observable<Workday[]>;
   dates: Date[] = [];
   private date: Date = new Date();

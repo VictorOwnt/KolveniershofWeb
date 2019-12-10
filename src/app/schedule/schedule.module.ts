@@ -5,7 +5,7 @@ import {ScheduleEmptyComponent} from './schedule-empty/schedule-empty.component'
 import {ScheduleUnitComponent} from './schedule-unit/schedule-unit.component';
 import {ScheduleWeekdayComponent} from './schedule-weekday/schedule-weekday.component';
 import {ScheduleWeekendComponent} from './schedule-weekend/schedule-weekend.component';
-import {ScheduleComponent} from './schedule.component';
+import {ScheduleAdminComponent} from './schedule-admin/schedule-admin.component';
 import {EditUnitModalComponent} from './schedule-unit/edit-unit-modal/edit-unit-modal.component';
 import {
   MatAutocompleteModule,
@@ -30,7 +30,7 @@ import {ScheduleRoutingModule} from './schedule-routing.module';
     EditUnitModalComponent,
     ScheduleWeekdayComponent,
     ScheduleWeekendComponent,
-    ScheduleComponent
+    ScheduleAdminComponent
   ],
   imports: [
     CommonModule,

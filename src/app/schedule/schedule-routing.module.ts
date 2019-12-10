@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {ScheduleComponent} from './schedule.component';
+import {ScheduleAdminComponent} from './schedule-admin/schedule-admin.component';
 import {AuthGuard} from '../authentication/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: ScheduleComponent, canActivate: [AuthGuard] }
+  { path: '', component: ScheduleAdminComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
