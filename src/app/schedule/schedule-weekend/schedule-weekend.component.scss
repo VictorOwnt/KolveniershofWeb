@@ -28,6 +28,10 @@ h1, h2, h3, p {
   h1:first-child {
     margin-bottom: 10px;
   }
+
+  img {
+    max-width: 30px;
+  }
 }
 
 .card_content {
