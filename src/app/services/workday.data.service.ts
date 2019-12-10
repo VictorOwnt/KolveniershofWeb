@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Workday } from '../models/workday.model';
 import { LunchUnit } from '../models/lunchUnit.model';
 import {DatesService} from './dates.service';
+import {User} from "../models/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +40,14 @@ export class WorkdayDataService {
 
   getWorkdaysByWeek(weekdate: Date): Observable<Workday[]> {
     return this.http
-      .get(`${API_URL}/workdays/week/${this.datesService.backendFormatDate(weekdate)}`)
-      .pipe(map((list: any[]): Workday[] => list.map(Workday.fromJSON)));
+        .get(`${API_URL}/workdays/week/${this.datesService.backendFormatDate(weekdate)}`)
+        .pipe(map((list: any[]): Workday[] => list.map(Workday.fromJSON)));
+  }
+
+  getWorkdaysByWeekByUser(weekdate: Date, user: User): Observable<Workday[]> {
+    return this.http
+        .get(`${API_URL}/workdays/week/${this.datesService.backendFormatDate(weekdate)}/${user.id}`)
+        .pipe(map((list: any[]): Workday[] => list.map(Workday.fromJSON)));
   }
 
   postWorkday(workday: Workday): Observable<Workday> {
