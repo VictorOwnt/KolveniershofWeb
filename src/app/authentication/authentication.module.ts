@@ -6,7 +6,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
 import {FlexModule} from '@angular/flex-layout';
 import {ForbiddenComponent} from './forbidden/forbidden.component';
-import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -23,8 +22,7 @@ import {RouterModule} from '@angular/router';
     FlexModule,
     MatInputModule,
     MatButtonModule,
-    MatDatepickerModule,
-    RouterModule
+    MatDatepickerModule
   ],
   exports: [
     LoginComponent,
