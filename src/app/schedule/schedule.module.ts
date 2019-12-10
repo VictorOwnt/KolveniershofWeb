@@ -16,7 +16,7 @@ import {
   MatRadioModule,
   MatSelectModule, MatSlideToggleModule
 } from '@angular/material';
-import {FlexModule} from '@angular/flex-layout';
+import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ImgFallbackModule} from 'ngx-img-fallback';
 import {SharedModule} from '../shared/shared.module';
@@ -48,7 +48,8 @@ import { ScheduleUserComponent } from './schedule-user/schedule-user.component';
     MatInputModule,
     MatButtonModule,
     MatSlideToggleModule,
-    SharedModule
+    SharedModule,
+    FlexLayoutModule
   ],
   entryComponents: [
     EditUnitModalComponent,

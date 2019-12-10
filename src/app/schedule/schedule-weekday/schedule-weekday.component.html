@@ -8,9 +8,9 @@
         </div>
     </div>
     <div fxLayout="column">
-        <div class="card_content" fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayout.lt-md="column" *ngIf="isAdmin || (!isAdmin && !this.workday.holiday)">
+        <div class="card_content" [ngClass.gt-sm]="isAdmin ? 'card_content_2col' : ''" [fxLayout]="isAdmin ? 'row wrap' : 'column'" fxLayoutAlign="flex-start" fxLayout.lt-md="column" *ngIf="isAdmin || (!isAdmin && !this.workday.holiday)">
             <div class="card_content" fxLayout="column"
-                 fxFlex="0 1 50%"
+                 [fxFlex]="isAdmin ? '0 1 50%' : '100%'"
                  fxFlex.lt-md="100%">
                 <div id="general" [style.border-bottom]="workday.holiday ? 'none' : ''" *ngIf="isAdmin">
                     <h2>Algemeen</h2>
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="card_content" fxLayout="column"
-                 fxFlex="0 1 50%"
+                 [fxFlex]="isAdmin ? '0 1 50%' : '100%'"
                  fxFlex.lt-md="100%">
                 <div id="lunch" *ngIf="!workday.holiday && (isAdmin || workday.lunch)">
                     <h2>Lunch</h2>
@@ -55,7 +55,7 @@
             <p>Er zijn {{ workday.comments.length }} opmerkingen beschikbaar.</p>
             <button type="button" class="btn" (click)="viewComments()">Opmerkingen bekijken</button>
         </div>
-        <div class="card_footer" *ngIf="!isAdmin">
+        <div class="card_footer" [ngClass.gt-sm]="isAdmin ? 'card_footer_2col' : ''" *ngIf="!isAdmin">
             <h2>Opmerking</h2>
             Add comment placeholder <!-- TODO - add comment as user -->
         </div>
