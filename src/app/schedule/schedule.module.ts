@@ -21,6 +21,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {ImgFallbackModule} from 'ngx-img-fallback';
 import {SharedModule} from '../shared/shared.module';
 import {ScheduleRoutingModule} from './schedule-routing.module';
+import { ScheduleUserComponent } from './schedule-user/schedule-user.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {ScheduleRoutingModule} from './schedule-routing.module';
     EditUnitModalComponent,
     ScheduleWeekdayComponent,
     ScheduleWeekendComponent,
-    ScheduleAdminComponent
+    ScheduleAdminComponent,
+    ScheduleUserComponent
   ],
   imports: [
     CommonModule,
