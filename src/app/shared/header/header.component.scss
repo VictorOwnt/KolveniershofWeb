@@ -1,0 +1,300 @@
+@import "../../../variables.scss";
+
+$hamburger-types: (squeeze);
+$hamburger-layer-color: $color-primary-dark;
+$hamburger-active-layer-color: #FFF;
+$hamburger-padding-y: 10px;
+$hamburger-layer-width: 30px;
+$hamburger-layer-height: 2px;
+$hamburger-layer-spacing: 5px;
+@import "../../../../node_modules/hamburgers/_sass/hamburgers/hamburgers";
+
+.navbar {
+  z-index: 1000;
+  width: 100%;
+  padding: 20px;
+  background-color: #FFF;
+  overflow: visible;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  margin-bottom: 35px;
+  -webkit-box-shadow: $shadow-hard;
+  -moz-box-shadow: $shadow-hard;
+  box-shadow: $shadow-hard;
+  img {
+    display: block;
+    position: absolute;
+    top: 50%;
+    height: calc(100% - 36px);
+    transform: translateY(-50%);
+  }
+  > button {
+    z-index: 1110 !important;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .navbar {
+    padding: 30px;
+  }
+}
+
+.material-icons {
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+#menu {
+  background: $color-accent;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  overflow: hidden;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  transition: all 0.4s ease-in-out;
+  visibility: hidden;
+  width: 100%;
+  z-index: 1100;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+
+    @for $i from 1 through 10 {
+      li:nth-child(#{$i}) {
+        animation-delay: $i*0.1s;
+      }
+    }
+
+    li {
+      animation-duration: 0.5s;
+      animation-fill-mode: both;
+      animation-name: fadeInUp;
+    }
+  }
+
+  ul {
+    &:hover {
+      a {
+        opacity: 0.5;
+      }
+    }
+
+    a {
+      -webkit-transform: translateZ(0);
+      transition: opacity 0.2s ease-in-out;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .main-nav {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    overflow: auto;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li:first-of-type > a {
+      padding-top: 0;
+    }
+
+    a {
+      color: #FFF;
+      display: block;
+      font-size: 2.5rem;
+      font-weight: bold;
+      padding: 1rem 1rem;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .material-icons {
+      font-size: 2.5rem;
+      margin-top: -0.3rem;
+    }
+  }
+
+  .menu-footer {
+    padding: 2rem;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+
+    p {
+      margin: 30px 10px;
+      color: #FFF;
+      font-size: 24px;
+    }
+
+    ul {
+      display: inline-block;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        display: inline;
+        margin: 0 1rem;
+      }
+    }
+
+    a {
+      color: #FFF;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .material-icons {
+      margin-top: -0.15rem;
+    }
+  }
+
+  @media screen and (max-width: 374px) {
+    .menu-footer {
+      p {
+        margin-bottom: 15px;
+      }
+    }
+    .footer-nav {
+      display: none;
+    }
+  }
+}
+
+/* PYRO EASTER EGG */
+$particles: 50;
+$width: 500;
+$height: 500;
+
+// Create the explosion...
+$box-shadow: ();
+$box-shadow2: ();
+@for $i from 0 through $particles {
+  $box-shadow: $box-shadow,
+  random($width)-$width / 2 + px
+  random($height)-$height / 1.2 + px
+  hsl(random(360), 100, 50);
+  $box-shadow2: $box-shadow2, 0 0 #fff
+}
+@mixin keyframes ($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+
+  @-ms-keyframes #{$animationName} {
+    @content;
+  }
+
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
+@mixin animation-delay ($settings) {
+  -moz-animation-delay: $settings;
+  -webkit-animation-delay: $settings;
+  -o-animation-delay: $settings;
+  -ms-animation-delay: $settings;
+  animation-delay: $settings;
+}
+
+@mixin animation-duration ($settings) {
+  -moz-animation-duration: $settings;
+  -webkit-animation-duration: $settings;
+  -o-animation-duration: $settings;
+  -ms-animation-duration: $settings;
+  animation-duration: $settings;
+}
+
+@mixin animation ($settings) {
+  -moz-animation: $settings;
+  -webkit-animation: $settings;
+  -o-animation: $settings;
+  -ms-animation: $settings;
+  animation: $settings;
+}
+
+@mixin transform ($settings) {
+  transform: $settings;
+  -moz-transform: $settings;
+  -webkit-transform: $settings;
+  -o-transform: $settings;
+  -ms-transform: $settings;
+}
+
+body {
+  margin:0;
+  padding:0;
+  background: #000;
+  overflow: hidden;
+}
+
+.pyro > .before, .pyro > .after {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  box-shadow: $box-shadow2;
+  @include animation((1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards));
+}
+
+.pyro > .after {
+  @include animation-delay((1.25s, 1.25s, 1.25s));
+  @include animation-duration((1.25s, 1.25s, 6.25s));
+}
+
+@include keyframes(bang) {
+  to {
+    box-shadow:$box-shadow;
+  }
+}
+
+@include keyframes(gravity)  {
+  to {
+    @include transform(translateY(200px));
+    opacity: 0;
+  }
+}
+
+@include keyframes(position) {
+  0%, 19.9% {
+    margin-top: 10%;
+    margin-left: 40%;
+  }
+  20%, 39.9% {
+    margin-top: 40%;
+    margin-left: 30%;
+  }
+  40%, 59.9% {
+    margin-top: 20%;
+    margin-left: 70%
+  }
+  60%, 79.9% {
+    margin-top: 30%;
+    margin-left: 20%;
+  }
+  80%, 99.9% {
+    margin-top: 30%;
+    margin-left: 80%;
+  }
+}
+

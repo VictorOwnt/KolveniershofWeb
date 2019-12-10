@@ -1,0 +1,10 @@
+<mat-card>
+    <mat-card-header>Ateliers</mat-card-header>
+    <mat-card-content>
+        <div fxFlex="column" data-cy=Activities>
+            <div class="row" *ngFor="let activity of activities$ | async;">
+                <app-admin-activity [activity]="activity"></app-admin-activity>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

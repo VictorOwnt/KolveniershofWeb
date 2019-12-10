@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {LunchUnit} from '../shared/models/lunchUnit.model';
+import {LunchUnit} from '../models/lunchUnit.model';
 import {API_URL} from '../../environments/environment';
 import {map} from 'rxjs/operators';
 

@@ -1,0 +1,26 @@
+<form class="center" fxLayout="column" [formGroup]="user" (ngSubmit)="login()">
+    <img src="../../../assets/img/logo.svg" alt="Logo Kolveniershof">
+
+    <h1 class="mat-display-1">Aanmelden</h1>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Emailadres</mat-label>
+        <input matInput placeholder="ruben@mail.be" formControlName="email" required data-cy=login-email>
+        <mat-error *ngIf="user.controls.email.invalid">{{getEmailErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Wachtwoord</mat-label>
+        <input matInput placeholder="abc123" [type]="hidePassword ? 'password' : 'text'" formControlName="password"
+            required data-cy=login-password>
+        <button type="button" mat-icon-button matSuffix (mousedown)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="user.controls.password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <p id="errorMsg" class="mat-error" style="display: none !important;">{{ errorMsg }}</p>
+
+    <button class="btn-pink" type="submit" [disabled]='!user.valid' data-cy="login-button">Meld aan</button>
+</form>

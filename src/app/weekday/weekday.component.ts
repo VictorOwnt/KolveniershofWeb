@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Workday } from 'src/app/shared/models/workday.model';
+import { Workday } from 'src/app/models/workday.model';
 import { FormControl } from '@angular/forms';
 
 @Component({

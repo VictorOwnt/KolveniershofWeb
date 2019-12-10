@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {DatesService} from './dates.service';
 import {Observable} from 'rxjs';
-import {WorkdayTemplate} from '../shared/models/workdayTemplate.model';
+import {WorkdayTemplate} from '../models/workdayTemplate.model';
 import {API_URL} from '../../environments/environment';
 import {map} from 'rxjs/operators';
-import {Workday} from '../shared/models/workday.model';
+import {Workday} from '../models/workday.model';
 
 @Injectable({
   providedIn: 'root'

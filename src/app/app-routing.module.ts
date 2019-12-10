@@ -1,27 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from 'src/app/user/login/login.component';
+import { LoginComponent } from 'src/app/authentication/login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PictoAgendaComponent } from './picto-agenda/picto-agenda.component';
-import { AuthGuard } from './user/auth.guard';
-import { RegisterComponent } from './user/register/register.component';
-import { ScheduleComponent } from './admin/schedule/schedule.component';
-import { AdminBussesComponent } from './admin-busses/admin-busses.component';
-import { AdminHomeComponent } from './admin-home/admin-home.component';
-import { AdminActivitiesComponent } from './admin-activities/admin-activities.component';
+import { AuthGuard } from './authentication/auth.guard';
+import { RegisterComponent } from './authentication/register/register.component';
+import {ForbiddenComponent} from './authentication/forbidden/forbidden.component';
 
 const appRoutes: Routes = [
-  // TODO - Fix all routes
-  { path: 's', component: ScheduleComponent, canActivate: [AuthGuard] },
-  { path: 'admin', component: AdminHomeComponent, canActivate: [AuthGuard] },
+  {
+    path: 'schedule',
+    loadChildren: () => import('./schedule/schedule.module').then(mod => mod.ScheduleModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule),
+    canActivate: [AuthGuard],
+    data: { shouldBeAdmin: true }
+  },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: PictoAgendaComponent },
-  { path: 'bus', component: AdminBussesComponent },
-  { path: 'picto', component: PictoAgendaComponent, canActivate: [AuthGuard] },
   { path: 'r', component: RegisterComponent },
-  { path: 'a', component: AdminActivitiesComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', component: PageNotFoundComponent, canActivate: [AuthGuard] }, // See AuthGuard for homepage routing
+  { path: 'home', redirectTo: '', pathMatch: 'full' },
+  { path: 'index', redirectTo: '', pathMatch: 'full' },
+  { path: 'welcome', redirectTo: '', pathMatch: 'full' },
+  { path: 'forbidden', component: ForbiddenComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

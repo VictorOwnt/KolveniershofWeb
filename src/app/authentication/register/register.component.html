@@ -1,0 +1,97 @@
+<div fxLayoutAlign="center center" fxFlexFill>
+    <form fxLayout="column" [formGroup]="user" (ngSubmit)="register()">
+        <img src="../../../assets/img/logo.svg" alt="Logo Kolveniershof">
+
+        <h1 class="mat-display-1">Registreren</h1>
+        <p class="subtitle">Welkom bij het digitale platform van Het Kolveniershof</p>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="6%" fxLayout.lt-md="column"
+            fxLayoutGap.lt-md="3%">
+            <div>
+                <label for="picture">
+                    <img class="profilePicture"
+                        [src]="imageUrl ? imageUrl: '../../../assets/img/profile_picture_empty.png'"  alt="Profielfoto"/>
+                </label>
+                <br />
+                <input id="picture" accept='image/*' type="file" (change)="preview($event)" />
+            </div>
+        </div>
+        <p fxLayoutAlign="center center" class="subtitle">Klik op het kader om een foto toe te voegen.</p>
+        <br />
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="3%" fxLayout.lt-md="column"
+            fxLayoutGap.lt-md="0">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Voornaam</mat-label>
+                <input matInput placeholder="Jan" formControlName="firstName" required data-cy=firstNameInput>
+                <mat-error *ngIf="user.controls.firstName.invalid">{{getNameErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Familienaam</mat-label>
+                <input matInput placeholder="Janssens" formControlName="lastName" required data-cy=lastNameInput>
+                <mat-error *ngIf="user.controls.lastName.invalid">{{getNameErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Emailadres</mat-label>
+            <input matInput placeholder="ruben@mail.be" formControlName="email" required data-cy=emailInput>
+            <mat-error *ngIf="user.controls.email.invalid">{{getEmailErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <div formGroupName="passwordGroup" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="3%"
+            fxLayout.lt-md="column" fxLayoutGap.lt-md="0">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Wachtwoord</mat-label>
+                <input matInput placeholder="abc123" [type]="hidePassword ? 'password' : 'text'"
+                    formControlName="password" required data-cy=passwordInput>
+                <button type="button" mat-icon-button matSuffix (mousedown)="hidePassword = !hidePassword"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="user.controls.passwordGroup.invalid">{{getPasswordErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Wachtwoord herhalen</mat-label>
+                <input matInput placeholder="abc123" [type]="hideConfirmPassword ? 'password' : 'text'"
+                    formControlName="confirmPassword" required data-cy=repeatPasswordInput>
+                <button type="button" mat-icon-button matSuffix (mousedown)="hideConfirmPassword = !hideConfirmPassword"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmPassword">
+                    <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="user.controls.passwordGroup.invalid">{{getPasswordErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline">
+            <mat-label>Geboortedatum</mat-label>
+            <input matInput [matDatepicker]="picker" placeholder="01/01/1990" formControlName="birthday" required
+                data-cy=birthdateInput>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="multi-year" [startAt]="startDate"></mat-datepicker>
+            <mat-error *ngIf="user.controls.birthday.invalid">{{getBirthdayErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Adres</mat-label>
+            <input matInput placeholder="Veldstraat 1a" formControlName="street" data-cy=adres>
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="3%" fxLayout.lt-md="column"
+            fxLayoutGap.lt-md="0">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Postcode</mat-label>
+                <input matInput placeholder="9000" formControlName="postalCode" data-cy=postcode>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Gemeente</mat-label>
+                <input matInput placeholder="Gent" formControlName="city" data-cy=gemeente>
+            </mat-form-field>
+        </div>
+
+        <p id="errorMsg" class="mat-error" style="display: none !important;">{{ errorMsg }}</p>
+
+        <button class="btn-pink" type="submit" [disabled]='!user.valid'>Creëer account</button>
+
+    </form>
+</div>
