@@ -37,20 +37,24 @@
   }
 }
 
+.top-row {
+  margin: 0 10%;
+}
+
 @media screen and (max-width: 1440px) {
-  .day, app-schedule-empty {
+  .day, app-schedule-empty, .top-row {
     margin: 0 5%;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .day, app-schedule-empty {
+  .day, app-schedule-empty, .top-row {
     margin: 0 20px;
   }
 }
 
 @media screen and (max-width: 425px) {
-  .day, app-schedule-empty {
+  .day, app-schedule-empty, .top-row {
     margin: 0 10px;
   }
 }

@@ -3,6 +3,9 @@ import {Workday} from '../../models/workday.model';
 import {WorkdayDataService} from '../../services/workday.data.service';
 import {DatesService} from '../../services/dates.service';
 import {Observable} from 'rxjs';
+import {SuccessModalComponent} from '../../shared/success-modal/success-modal.component';
+import {UserSelectorModalComponent} from '../user-selector-modal/user-selector-modal.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-schedule',
@@ -14,7 +17,7 @@ export class ScheduleAdminComponent implements OnInit {
   dates: Date[] = [];
   private date: Date = new Date();
 
-  constructor(public datesService: DatesService, private workdayDataService: WorkdayDataService) {
+  constructor(public datesService: DatesService, private workdayDataService: WorkdayDataService, public dialog: MatDialog) {
     this.loadWorkdays(this.date);
   }
 
@@ -39,6 +42,11 @@ export class ScheduleAdminComponent implements OnInit {
   prevWeek() {
     this.date = this.datesService.subtractWeek(this.date);
     this.loadWorkdays(this.date);
+  }
+
+  // Open user selector modal
+  openUserSelector() {
+    this.dialog.open(UserSelectorModalComponent, { width: '500px' });
   }
 
 }
