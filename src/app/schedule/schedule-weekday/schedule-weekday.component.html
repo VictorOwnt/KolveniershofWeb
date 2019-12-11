@@ -19,7 +19,7 @@
                 </div>
                 <div id="amActivities" *ngIf="!workday.holiday && (isAdmin || workday.amActivities.length > 0)">
                     <h2>Voormiddag</h2>
-                    <app-schedule-unit *ngFor="let activityUnit of workday.amActivities" [unit]="activityUnit" [workday]="workday" [isAm]="true" class="activity"></app-schedule-unit>
+                    <app-schedule-unit *ngFor="let activityUnit of workday.amActivities" [unit]="activityUnit" [workday]="workday" [isAm]="true" [isAdmin]="isAdmin" class="activity"></app-schedule-unit>
                     <div [style.margin-top]="workday.amActivities.length > 0 ? '' : '30px'" class="add-activity" *ngIf="isAdmin">
                         <button type="button" class="btn-white" (click)="newUnit('activity',true)">Nieuwe activiteit toevoegen</button>
                     </div>
@@ -30,7 +30,7 @@
                  fxFlex.lt-md="100%">
                 <div id="lunch" *ngIf="!workday.holiday && (isAdmin || workday.lunch)">
                     <h2>Lunch</h2>
-                    <app-schedule-unit *ngIf="workday.lunch; else addLunch" [unit]="workday.lunch" [workday]="workday" class="lunch"></app-schedule-unit>
+                    <app-schedule-unit *ngIf="workday.lunch; else addLunch" [unit]="workday.lunch" [workday]="workday" [isAdmin]="isAdmin" class="lunch"></app-schedule-unit>
                     <ng-template #addLunch>
                         <div [style.margin-top]="workday.lunch ? '' : '30px'" class="add-lunch">
                             <button type="button" class="btn-white" (click)="newUnit('lunch')">Lunch toevoegen</button>
@@ -39,7 +39,7 @@
                 </div>
                 <div id="pmActivities" *ngIf="!workday.holiday && (isAdmin || workday.pmActivities.length > 0)">
                     <h2>Namiddag</h2>
-                    <app-schedule-unit *ngFor="let activityUnit of workday.pmActivities" [unit]="activityUnit" [workday]="workday" [isAm]="false" class="activity"></app-schedule-unit>
+                    <app-schedule-unit *ngFor="let activityUnit of workday.pmActivities" [unit]="activityUnit" [workday]="workday" [isAm]="false" [isAdmin]="isAdmin" class="activity"></app-schedule-unit>
                     <div [style.margin-top]="workday.pmActivities.length > 0 ? '' : '30px'" class="add-activity" *ngIf="isAdmin">
                         <button type="button" class="btn-white" (click)="newUnit('activity',false)">Nieuwe activiteit toevoegen</button>
                     </div>

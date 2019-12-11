@@ -5,7 +5,6 @@ import {CommentListComponent} from '../comment-list/comment-list.component';
 import { Observable } from 'rxjs';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { WorkdayDataService } from 'src/app/services/workday.data.service';
-import {AuthenticationService} from '../../authentication/authentication.service';
 
 @Component({
   selector: 'app-schedule-weekend',
@@ -14,18 +13,16 @@ import {AuthenticationService} from '../../authentication/authentication.service
 })
 export class ScheduleWeekendComponent implements OnInit {
   @Input() workday: Workday;
+  @Input() isAdmin: boolean;
   icon: Observable<string | null>;
-  isAdmin?: boolean;
 
   constructor(
     public dialog: MatDialog,
     private workdayDataService: WorkdayDataService,
-    private firebaseService: FirebaseService,
-    private auth: AuthenticationService
-   ) {}
+    private firebaseService: FirebaseService
+  ) {}
 
   ngOnInit() {
-    this.isAdmin = this.auth.currentUser.admin;
     this.icon = this.firebaseService.lookupFileDownloadUrl(this.workdayDataService.getDayIcon(this.workday.date.getDay()), 'icon');
    }
 

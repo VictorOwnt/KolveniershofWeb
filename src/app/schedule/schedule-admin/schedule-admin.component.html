@@ -10,7 +10,7 @@
     <app-schedule-empty *ngIf="(workdays$ | async).length === 0; else notEmpty" [dates]="dates"></app-schedule-empty>
     <!-- Workdays -->
     <ng-template #notEmpty>
-        <app-schedule-weekday class="day" *ngFor="let workday of workdays$ | async | workdayFilter:false" [workday]="workday"></app-schedule-weekday>
-        <app-schedule-weekend class="day" *ngFor="let workday of workdays$ | async | workdayFilter:true" [workday]="workday"></app-schedule-weekend>
+        <app-schedule-weekday class="day" *ngFor="let workday of workdays$ | async | workdayFilter:false" [workday]="workday" [isAdmin]="true"></app-schedule-weekday>
+        <app-schedule-weekend class="day" *ngFor="let workday of workdays$ | async | workdayFilter:true" [workday]="workday" [isAdmin]="true"></app-schedule-weekend>
     </ng-template>
 </div>
