@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {UserDataService} from '../../services/user.data.service';
-import {Observable} from 'rxjs';
 import {User} from '../../models/user.model';
 import {FirebaseService} from '../../services/firebase.service';
 import {Router} from '@angular/router';
@@ -12,7 +11,7 @@ import {MatDialogRef} from '@angular/material/dialog';
   styleUrls: ['./user-selector-modal.component.scss']
 })
 export class UserSelectorModalComponent implements OnInit {
-  clients$: Observable<User[]>;
+  clients: User[];
 
   constructor(
     private userDataService: UserDataService,
@@ -22,13 +21,12 @@ export class UserSelectorModalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.clients$ = this.userDataService.clients$;
-    /*this.clients.forEach(async client => {
-      await this.getImageUrl(client);
-    });*/
-    this.clients$.subscribe(clients => clients.forEach(async client => {
-      await this.getImageUrl(client);
-    }));
+    this.userDataService.clients$.subscribe(clients => {
+      this.clients = clients;
+      this.clients.forEach(async client => {
+        await this.getImageUrl(client);
+      });
+    });
   }
 
   async getImageUrl(user: User) {

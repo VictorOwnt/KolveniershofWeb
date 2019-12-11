@@ -5,7 +5,7 @@
     </div>
 
     <div matDialogContent fxLayout="column">
-        <a *ngFor="let client of clients$ | async" (click)="openClientSchedule(client)" fxLayout="row" fxLayoutAlign="flex-start center">
+        <a *ngFor="let client of clients" (click)="openClientSchedule(client)" fxLayout="row" fxLayoutAlign="flex-start center">
             <img fxFlex="none" class="user_picture" [src]="client.picture" src-fallback='../../../assets/img/profile_picture_empty.png' alt="Profile picture">
             <p>{{ client.firstName }}</p>
         </a>
