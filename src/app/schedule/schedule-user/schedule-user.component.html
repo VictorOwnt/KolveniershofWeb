@@ -18,10 +18,13 @@
                                   fxFlex="0 1 calc(33.3% - 13.444px)"
                                   fxFlex.lt-md="0 1 calc(50% - 10px)"
                                   fxFlex.lt-sm="100%"></app-schedule-weekday>
-            <app-schedule-weekend class="day" *ngFor="let workday of workdays$ | async | workdayFilter:true" [workday]="workday"
-                                  fxFlex="0 1 calc(33.3% - 13.444px)"
-                                  fxFlex.lt-md="0 1 calc(50% - 10px)"
-                                  fxFlex.lt-sm="100%"></app-schedule-weekend>
+            <div class="day"
+                 fxLayout="column" fxLayoutGap="20px"
+                 fxFlex="0 1 calc(33.3% - 13.444px)"
+                 fxFlex.lt-md="0 1 calc(50% - 10px)"
+                 fxFlex.lt-sm="100%">
+                <app-schedule-weekend *ngFor="let workday of workdays$ | async | workdayFilter:true" [workday]="workday"></app-schedule-weekend>
+            </div>
         </div>
     </ng-template>
 </div>
