@@ -150,6 +150,7 @@ body {
   transform: translate(-50%, -50%);
   overflow: auto;
 }
+
 @media only screen and (max-width: 767px) {
   .center {
     margin: 20px auto;
@@ -176,54 +177,63 @@ body {
   -moz-box-shadow: $shadow-blue;
   box-shadow: $shadow-blue;
   cursor: pointer;
+
   &:hover {
     opacity: 0.8;
     -webkit-box-shadow: $shadow-blue-hover;
     -moz-box-shadow: $shadow-blue-hover;
     box-shadow: $shadow-blue-hover;
   }
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
+
   &-pink {
     @extend .btn;
     background-color: $color-accent;
     -webkit-box-shadow: $shadow-pink;
     -moz-box-shadow: $shadow-pink;
     box-shadow: $shadow-pink;
+
     &:hover {
       -webkit-box-shadow: $shadow-pink-hover;
       -moz-box-shadow: $shadow-pink-hover;
       box-shadow: $shadow-pink-hover;
     }
+
     &-outline {
       @extend .btn-pink;
-      background-color: $color-background;
+      background-color: unset;
       color: $color-accent;
       border: 2px solid $color-accent;
     }
   }
+
   &-white {
     @extend .btn;
-    background-color: $color-background;
+    background-color: unset;
     color: $color-text;
     border: 2px solid $color-primary-dark;
   }
+
   &-danger {
     @extend .btn;
     background-color: $color-danger;
     -webkit-box-shadow: $shadow-danger;
     -moz-box-shadow: $shadow-danger;
     box-shadow: $shadow-danger;
+
     &:hover {
       -webkit-box-shadow: $shadow-danger-hover;
       -moz-box-shadow: $shadow-danger-hover;
       box-shadow: $shadow-danger-hover;
     }
+
     &-outline {
       @extend .btn-danger;
-      background-color: $color-background;
+      background-color: unset;
       color: $color-danger;
       border: 2px solid $color-danger;
     }

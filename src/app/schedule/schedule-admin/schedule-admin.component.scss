@@ -2,6 +2,7 @@
 
 .weekselector {
   text-align: center;
+
   button {
     text-decoration: none;
     border: none;
@@ -30,8 +31,17 @@
   }
 }
 
+.btn-white {
+  display: flex;
+
+  > i {
+    font-size: 18px;
+  }
+}
+
 .day, app-schedule-empty {
   margin: 0 10%;
+
   &:last-child {
     margin-bottom: 20px;
   }
