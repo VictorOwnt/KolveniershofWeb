@@ -1,0 +1,18 @@
+<div class="container">
+    <div matDialogTitle>
+        <h1>Agenda van een cliënt weergeven</h1>
+        <p>Selecteer een cliënt.</p>
+    </div>
+
+    <div matDialogContent fxLayout="column">
+        <a *ngFor="let client of clients$ | async" (click)="openClientSchedule(client)" fxLayout="row" fxLayoutAlign="flex-start center">
+            <img fxFlex="none" class="user_picture" [src]="client.picture" src-fallback='../../../assets/img/profile_picture_empty.png' alt="Profile picture">
+            <p>{{ client.firstName }}</p>
+        </a>
+    </div>
+
+    <div matDialogActions fxLayoutAlign="end" fxFlexAlign="end" fxLayout="row" fxLayoutGap="20px"
+         fxLayout.lt-sm="column" fxLayoutAlign.lt-sm="center" fxFlexAlign.lt-sm="center">
+        <button class="btn-white" matDialogClose>Sluiten</button>
+    </div>
+</div>

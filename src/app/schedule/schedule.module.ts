@@ -22,6 +22,7 @@ import {ImgFallbackModule} from 'ngx-img-fallback';
 import {SharedModule} from '../shared/shared.module';
 import {ScheduleRoutingModule} from './schedule-routing.module';
 import { ScheduleUserComponent } from './schedule-user/schedule-user.component';
+import { UserSelectorModalComponent } from './user-selector-modal/user-selector-modal.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ScheduleUserComponent } from './schedule-user/schedule-user.component';
     ScheduleWeekdayComponent,
     ScheduleWeekendComponent,
     ScheduleAdminComponent,
-    ScheduleUserComponent
+    ScheduleUserComponent,
+    UserSelectorModalComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,8 @@ import { ScheduleUserComponent } from './schedule-user/schedule-user.component';
   ],
   entryComponents: [
     EditUnitModalComponent,
-    CommentListComponent
+    CommentListComponent,
+    UserSelectorModalComponent
   ]
 })
 export class ScheduleModule { }
