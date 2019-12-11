@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from "rxjs";
-import {Workday} from "../../models/workday.model";
-import {DatesService} from "../../services/dates.service";
-import {WorkdayDataService} from "../../services/workday.data.service";
-import {AuthenticationService} from "../../authentication/authentication.service";
+import {Observable} from 'rxjs';
+import {Workday} from '../../models/workday.model';
+import {DatesService} from '../../services/dates.service';
+import {WorkdayDataService} from '../../services/workday.data.service';
+import {AuthenticationService} from '../../authentication/authentication.service';
+import {ActivatedRoute} from '@angular/router';
+import {User} from '../../models/user.model';
+import {UserDataService} from '../../services/user.data.service';
 
 @Component({
   selector: 'app-schedule-user',
@@ -13,18 +16,35 @@ import {AuthenticationService} from "../../authentication/authentication.service
 export class ScheduleUserComponent implements OnInit {
 
   workdays$: Observable<Workday[]>;
+  client: User = null;
   dates: Date[] = [];
   private date: Date = new Date();
+  loggedInAdmin: boolean;
 
   constructor(
-      public datesService: DatesService,
-      private workdayDataService: WorkdayDataService,
-      private auth: AuthenticationService
-  ) {
-    this.loadWorkdays(this.date);
-  }
+    private route: ActivatedRoute,
+    public datesService: DatesService,
+    private workdayDataService: WorkdayDataService,
+    private auth: AuthenticationService,
+    private userDataService: UserDataService
+  ) {}
 
   ngOnInit() {
+    // Get logged in user
+    this.loggedInAdmin = this.auth.currentUser.admin;
+    // Get user
+    this.getUser(this.route.snapshot.paramMap.get('clientId')).then(() => {
+      // Load workdays
+      this.loadWorkdays(this.date);
+    });
+  }
+
+  private async getUser(id?: string) {
+    if (id) {
+      this.client = await this.userDataService.getUserById(this.route.snapshot.paramMap.get('clientId')).toPromise();
+    } else {
+      this.client = this.auth.currentUser;
+    }
   }
 
   // Load all workdays based on day in week
@@ -32,8 +52,7 @@ export class ScheduleUserComponent implements OnInit {
     // Get all days in week for today's week
     this.dates = this.datesService.weekDays(date);
     // Get all workdays for this week
-    this.workdays$ = this.workdayDataService.getWorkdaysByWeekByUser(this.dates[0], this.auth.currentUser);
-    console.log(this.workdays$)
+    this.workdays$ = this.workdayDataService.getWorkdaysByWeekByUser(this.dates[0], this.client);
   }
 
   // Load next week

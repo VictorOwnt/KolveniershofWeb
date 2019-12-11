@@ -33,4 +33,10 @@ export class UserDataService {
       .get(`${API_URL}/users/clients`)
       .pipe(map((list: any[]): User[] => list.map(User.fromJSON)));
   }
+
+  getUserById(id: string): Observable<User> {
+    return this.http
+      .get(`${API_URL}/users/id/${id}`)
+      .pipe(map(User.fromJSON));
+  }
 }

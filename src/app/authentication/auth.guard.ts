@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
         if (this.auth.currentUser.admin) {
           this.router.navigate(['/admin']);
         } else {
-          this.router.navigate(['/schedule/user']);
+          this.router.navigate(['/schedule/client']);
         }
         return true;
       }

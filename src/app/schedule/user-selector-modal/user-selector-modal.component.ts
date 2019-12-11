@@ -38,8 +38,8 @@ export class UserSelectorModalComponent implements OnInit {
   }
 
   openClientSchedule(client: User) {
-    this.router.navigate([`/schedule/user/${client.id}`]);
     this.dialogRef.close();
+    this.router.navigate([`/schedule/client/${client.id}`]);
   }
 
 }
