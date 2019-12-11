@@ -23,6 +23,7 @@ export class ScheduleUnitComponent implements OnInit {
   @Input() private workday?: Workday;
   @Input() private workdayTemplate?: WorkdayTemplate;
   @Input() private isAm?: boolean;
+  @Input() isAdmin: boolean;
   title: string;
   icon: string;
   mentors: User[] = [];

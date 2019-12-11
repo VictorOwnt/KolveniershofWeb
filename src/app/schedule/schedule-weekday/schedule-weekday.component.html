@@ -2,54 +2,62 @@
     <div class="card_header">
         <h1 class="mat-display-1" fxLayoutAlign="center center">{{ workday.date | date:'EEEE' | titlecase }}</h1>
         <div fxLayout="row" fxLayoutAlign="center center">
-            <img class="svgWhiteColor" [src]="icon | async" src-fallback='../../../../assets/img/icons/icon-moon.svg' alt="Day icon">
+            <img class="svgWhiteColor" [src]="icon | async" src-fallback='../../../assets/img/icons/icon-question-mark.svg' alt="Dag icoon">
             <span class="mat-h3" style="margin: auto 10px; ">&middot;</span>
             <h2 class="mat-h2">{{ workday.date | date:'d/MM' }}</h2>
         </div>
     </div>
     <div fxLayout="column">
-        <div class="card_content" fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayout.lt-md="column">
+        <div class="card_content" [ngClass.gt-sm]="isAdmin ? 'card_content_2col' : ''" [fxLayout]="isAdmin ? 'row wrap' : 'column'" fxLayoutAlign="flex-start" fxLayout.lt-md="column" *ngIf="isAdmin || (!isAdmin && !this.workday.holiday)">
             <div class="card_content" fxLayout="column"
-                 fxFlex="0 1 50%"
+                 [fxFlex]="isAdmin ? '0 1 50%' : '100%'"
                  fxFlex.lt-md="100%">
-                <div id="general" [style.border-bottom]="workday.holiday ? 'none' : ''">
+                <div id="general" [style.border-bottom]="workday.holiday ? 'none' : ''" *ngIf="isAdmin">
                     <h2>Algemeen</h2>
                     <p *ngIf="workday.originalTemplateName">Deze planning komt van het template {{ workday.originalTemplateName }}, week {{ workday.originalWeekNumber }}.</p>
                     <mat-slide-toggle [checked]="workday.holiday" (change)="changeHoliday($event.checked)" [aria-label]="'Vrijaf ' + (workday.date | date: 'dd/MM/yyyy')">Vrijaf</mat-slide-toggle>
                 </div>
-                <div id="amActivities" *ngIf="!workday.holiday">
+                <div id="amActivities" *ngIf="!workday.holiday && (isAdmin || workday.amActivities.length > 0)">
                     <h2>Voormiddag</h2>
-                    <app-schedule-unit *ngFor="let activityUnit of workday.amActivities" [unit]="activityUnit" [workday]="workday" [isAm]="true" class="activity"></app-schedule-unit>
-                    <div [style.margin-top]="workday.amActivities.length > 0 ? '' : '30px'" class="add-activity">
+                    <app-schedule-unit *ngFor="let activityUnit of workday.amActivities" [unit]="activityUnit" [workday]="workday" [isAm]="true" [isAdmin]="isAdmin" class="activity"></app-schedule-unit>
+                    <div [style.margin-top]="workday.amActivities.length > 0 ? '' : '30px'" class="add-activity" *ngIf="isAdmin">
                         <button type="button" class="btn-white" (click)="newUnit('activity',true)">Nieuwe activiteit toevoegen</button>
                     </div>
                 </div>
             </div>
             <div class="card_content" fxLayout="column"
-                 fxFlex="0 1 50%"
+                 [fxFlex]="isAdmin ? '0 1 50%' : '100%'"
                  fxFlex.lt-md="100%">
-                <div id="lunch" *ngIf="!workday.holiday">
+                <div id="lunch" *ngIf="!workday.holiday && (isAdmin || workday.lunch)">
                     <h2>Lunch</h2>
-                    <app-schedule-unit *ngIf="workday.lunch; else addLunch" [unit]="workday.lunch" [workday]="workday" class="lunch"></app-schedule-unit>
+                    <app-schedule-unit *ngIf="workday.lunch; else addLunch" [unit]="workday.lunch" [workday]="workday" [isAdmin]="isAdmin" class="lunch"></app-schedule-unit>
                     <ng-template #addLunch>
                         <div [style.margin-top]="workday.lunch ? '' : '30px'" class="add-lunch">
                             <button type="button" class="btn-white" (click)="newUnit('lunch')">Lunch toevoegen</button>
                         </div>
                     </ng-template>
                 </div>
-                <div id="pmActivities" *ngIf="!workday.holiday">
+                <div id="pmActivities" *ngIf="!workday.holiday && (isAdmin || workday.pmActivities.length > 0)">
                     <h2>Namiddag</h2>
-                    <app-schedule-unit *ngFor="let activityUnit of workday.pmActivities" [unit]="activityUnit" [workday]="workday" [isAm]="false" class="activity"></app-schedule-unit>
-                    <div [style.margin-top]="workday.pmActivities.length > 0 ? '' : '30px'" class="add-activity">
+                    <app-schedule-unit *ngFor="let activityUnit of workday.pmActivities" [unit]="activityUnit" [workday]="workday" [isAm]="false" [isAdmin]="isAdmin" class="activity"></app-schedule-unit>
+                    <div [style.margin-top]="workday.pmActivities.length > 0 ? '' : '30px'" class="add-activity" *ngIf="isAdmin">
                         <button type="button" class="btn-white" (click)="newUnit('activity',false)">Nieuwe activiteit toevoegen</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card_footer" *ngIf="workday.comments.length > 0">
+        <div class="card_content" id="holiday" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px" *ngIf="!isAdmin && this.workday.holiday">
+            <img src="../../../assets/img/icons/icon-beach-umbrella.svg" alt="Vrijaf icoon" class="svgTextColor">
+            <h3>Vrijaf!</h3>
+        </div>
+        <div class="card_footer" *ngIf="isAdmin && workday.comments.length > 0">
             <h2>Opmerkingen</h2>
             <p>Er zijn {{ workday.comments.length }} opmerkingen beschikbaar.</p>
             <button type="button" class="btn" (click)="viewComments()">Opmerkingen bekijken</button>
+        </div>
+        <div class="card_footer" [ngClass.gt-sm]="isAdmin ? 'card_footer_2col' : ''" *ngIf="!isAdmin">
+            <h2>Opmerking</h2>
+            Add comment placeholder <!-- TODO - add comment as user -->
         </div>
     </div>
 </div>

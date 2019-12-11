@@ -2,7 +2,6 @@
 
 .weekselector {
   text-align: center;
-
   button {
     text-decoration: none;
     border: none;
@@ -31,40 +30,28 @@
   }
 }
 
-.btn-white {
-  display: flex;
+.container {
+  margin: 20px;
+}
 
-  > i {
-    font-size: 18px;
+@media screen and (min-width: 960px) {
+  .day {
+    &:nth-child(3n) {
+      margin-right: 0 !important;
+    }
   }
 }
 
-.day, app-schedule-empty {
-  margin: 0 10%;
+@media screen and (max-width: 959px) {
+  .day {
+    &:nth-child(2n) {
+      margin-right: 0 !important;
+    }
+  }
+}
 
-  &:last-child {
+@media screen and (min-width: 600px) {
+  .day {
     margin-bottom: 20px;
-  }
-}
-
-.top-row {
-  margin: 0 10%;
-}
-
-@media screen and (max-width: 1440px) {
-  .day, app-schedule-empty, .top-row {
-    margin: 0 5%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .day, app-schedule-empty, .top-row {
-    margin: 0 20px;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .day, app-schedule-empty, .top-row {
-    margin: 0 10px;
   }
 }

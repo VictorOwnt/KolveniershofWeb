@@ -16,11 +16,13 @@ import {
   MatRadioModule,
   MatSelectModule, MatSlideToggleModule
 } from '@angular/material';
-import {FlexModule} from '@angular/flex-layout';
+import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ImgFallbackModule} from 'ngx-img-fallback';
 import {SharedModule} from '../shared/shared.module';
 import {ScheduleRoutingModule} from './schedule-routing.module';
+import { ScheduleUserComponent } from './schedule-user/schedule-user.component';
+import { UserSelectorModalComponent } from './user-selector-modal/user-selector-modal.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {ScheduleRoutingModule} from './schedule-routing.module';
     EditUnitModalComponent,
     ScheduleWeekdayComponent,
     ScheduleWeekendComponent,
-    ScheduleAdminComponent
+    ScheduleAdminComponent,
+    ScheduleUserComponent,
+    UserSelectorModalComponent
   ],
   imports: [
     CommonModule,
@@ -46,11 +50,13 @@ import {ScheduleRoutingModule} from './schedule-routing.module';
     MatInputModule,
     MatButtonModule,
     MatSlideToggleModule,
-    SharedModule
+    SharedModule,
+    FlexLayoutModule
   ],
   entryComponents: [
     EditUnitModalComponent,
-    CommentListComponent
+    CommentListComponent,
+    UserSelectorModalComponent
   ]
 })
 export class ScheduleModule { }

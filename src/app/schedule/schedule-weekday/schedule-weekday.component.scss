@@ -13,6 +13,7 @@ h1, h2, h3, p {
   -webkit-box-shadow: $shadow-card;
   -moz-box-shadow: $shadow-card;
   box-shadow: $shadow-card;
+  height: 100%;
 }
 
 .card_header {
@@ -27,6 +28,10 @@ h1, h2, h3, p {
 
   h1:first-child {
     margin-bottom: 10px;
+  }
+
+  img {
+    max-width: 30px;
   }
 }
 
@@ -43,7 +48,6 @@ h1, h2, h3, p {
       border-bottom: 2px solid $color-divider;
     }
   }
-
 
   #general {
     > * {
@@ -64,6 +68,14 @@ h1, h2, h3, p {
   }
 }
 
+#holiday {
+  margin: 20px 0;
+
+  > img {
+    width: 80px;
+  }
+}
+
 .card_footer {
   border-top: 2px solid $color-divider;
   padding-top: $card-padding;
@@ -79,27 +91,25 @@ h1, h2, h3, p {
   }
 }
 
-@media screen and (min-width: 960px) {
-  .card_content {
-    > .card_content {
-      &:first-child {
-        border-right: 1px solid $color-divider;
-        padding-right: $card-padding;
-      }
+.card_content_2col {
+  > .card_content {
+    &:first-child {
+      border-right: 1px solid $color-divider;
+      padding-right: $card-padding;
+    }
 
-      &:last-child {
-        padding-left: $card-padding;
-      }
+    &:last-child {
+      padding-left: $card-padding;
+    }
 
-      & > #amActivities {
-        border-bottom: unset;
-      }
+    & > #amActivities {
+      border-bottom: unset;
     }
   }
+}
 
-  .card_footer {
-    border-top: 1px solid $color-divider;
-  }
+.card_footer_2col {
+  border-top: 1px solid $color-divider;
 }
 
 .activity, .lunch {

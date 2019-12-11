@@ -2,17 +2,21 @@
     <div class="card_header">
         <h1 class="mat-display-1" fxLayoutAlign="center center">{{ workday.date | date:'EEEE' | titlecase }}</h1>
         <div fxLayout="row" fxLayoutAlign="center center">
-            <img class="svgWhiteColor" [src]="icon | async" src-fallback='../../../../assets/img/icons/icon-sun.svg' alt="Day icon">
+            <img class="svgWhiteColor" [src]="icon | async" src-fallback='../../../assets/img/icons/icon-question-mark.svg' alt="Dag icoon">
             <span class="mat-h3" style="margin: auto 10px; ">&middot;</span>
             <h2 class="mat-h2">{{ workday.date | date:'d/MM' }}</h2>
         </div>
     </div>
     <div class="card_content" fxLayout="column">
-        <div id="comments">
+        <div id="comments" *ngIf="isAdmin">
             <h2>Opmerkingen</h2>
             <p *ngIf="workday.comments.length === 0">Geen opmerkingen.</p>
             <p *ngIf="workday.comments.length > 0">Er zijn {{ workday.comments.length }} opmerkingen beschikbaar.</p>
             <button type="button" class="btn view-comments" (click)="viewComments()" [disabled]="workday.comments.length === 0">Opmerkingen bekijken</button>
+        </div>
+        <div id="add-comment" *ngIf="!isAdmin">
+            <h2>Opmerking</h2>
+            Add comment placeholder <!-- TODO - add comment as user -->
         </div>
     </div>
 </div>

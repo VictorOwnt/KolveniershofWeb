@@ -13,13 +13,14 @@ import { WorkdayDataService } from 'src/app/services/workday.data.service';
 })
 export class ScheduleWeekendComponent implements OnInit {
   @Input() workday: Workday;
+  @Input() isAdmin: boolean;
   icon: Observable<string | null>;
 
   constructor(
     public dialog: MatDialog,
     private workdayDataService: WorkdayDataService,
     private firebaseService: FirebaseService
-   ) {}
+  ) {}
 
   ngOnInit() {
     this.icon = this.firebaseService.lookupFileDownloadUrl(this.workdayDataService.getDayIcon(this.workday.date.getDay()), 'icon');

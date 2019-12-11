@@ -11,12 +11,13 @@ import { Observable } from 'rxjs';
 })
 export class ScheduleWeekdayComponent implements OnInit {
   @Input() workday: Workday;
+  @Input() isAdmin: boolean;
   icon: Observable<string | null>;
 
   constructor(
     private workdayDataService: WorkdayDataService,
     private firebaseService: FirebaseService
-    ) {}
+  ) {}
 
   ngOnInit() {
     this.icon = this.firebaseService.lookupFileDownloadUrl(this.workdayDataService.getDayIcon(this.workday.date.getDay()), 'icon');

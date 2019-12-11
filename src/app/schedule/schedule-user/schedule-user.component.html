@@ -1,0 +1,35 @@
+<app-header></app-header>
+
+<div fxLayout="column" fxLayoutGap="20px">
+    <!-- Week selector -->
+    <div class="weekselector" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <button (click)="prevWeek()"><i class="material-icons">navigate_before</i></button>
+        <p>Week {{ dates[0] | date: 'w' }}<br>({{ dates[0] | date: 'd LLL' }} tot {{ dates[4] | date: 'd LLL' }})</p>
+        <button (click)="nextWeek()"><i class="material-icons">navigate_next</i></button>
+    </div>
+    <!-- Client name -->
+    <p fxLayoutAlign="center" *ngIf="loggedInAdmin">Dit is de agenda van&nbsp;<strong>{{ client }}</strong>.</p>
+    <!-- Empty schedule -->
+    <div *ngIf="(workdays$ | async).length === 0; else notEmpty" fxLayoutAlign="center center">
+        <h3>Geen data gevonden voor deze week.</h3>
+    </div>
+    <!-- Workdays -->
+    <ng-template #notEmpty>
+        <div class="container"
+             fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayoutGap="20px"
+             fxLayout.lt-sm="column">
+            <app-schedule-weekday class="day" *ngFor="let workday of workdays$ | async | workdayFilter:false" [workday]="workday" [isAdmin]="false"
+                                  fxFlex="0 1 calc(33.3% - 13.444px)"
+                                  fxFlex.lt-md="0 1 calc(50% - 10px)"
+                                  fxFlex.lt-sm="100%"></app-schedule-weekday>
+            <div class="day"
+                 fxLayout="column" fxLayoutGap="20px"
+                 fxFlex="0 1 calc(33.3% - 13.444px)"
+                 fxFlex.lt-md="0 1 calc(50% - 10px)"
+                 fxFlex.lt-sm="100%">
+                <app-schedule-weekend *ngFor="let workday of workdays$ | async | workdayFilter:true" [workday]="workday" [isAdmin]="false"
+                                      fxFlex.gt-sm="0 1 calc(50% - 10px)"></app-schedule-weekend>
+            </div>
+        </div>
+    </ng-template>
+</div>
