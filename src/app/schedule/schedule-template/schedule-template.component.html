@@ -1,0 +1,19 @@
+<app-header></app-header>
+
+<div fxLayout="column" fxLayoutGap="20px">
+    <!-- Week selector -->
+    <div class="weekselector" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <button (click)="prevWeek()" [disabled]="this.weekNumber === 1">
+            <i class="material-icons">navigate_before</i>
+        </button>
+        <p>Week {{ weekNumber }}</p>
+        <button (click)="nextWeek()" [disabled]="this.weekNumber === 4">
+            <i class="material-icons">navigate_next</i>
+        </button>
+    </div>
+    <!-- Template name -->
+    <p fxLayoutAlign="center">Sjabloon:&nbsp;<strong>{{ templateName }}</strong>.</p>
+    <!-- WorkdayTemplates -->
+    <app-schedule-weekday class="day" *ngFor="let workdayTemplate of workdayTemplates$ | async"
+                          [workday]="workdayTemplate" [isAdmin]="true"></app-schedule-weekday>
+</div>
