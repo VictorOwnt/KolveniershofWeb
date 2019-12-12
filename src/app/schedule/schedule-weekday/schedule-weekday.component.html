@@ -1,11 +1,19 @@
 <div class="card" fxLayout="column">
-    <div class="card_header">
+    <div class="card_header" *ngIf="!isTemplate">
         <h1 class="mat-display-1" fxLayoutAlign="center center">{{ workday.date | date:'EEEE' | titlecase }}</h1>
         <div fxLayout="row" fxLayoutAlign="center center">
             <img class="svgWhiteColor" [src]="icon | async"
                  src-fallback='../../../assets/img/icons/icon-question-mark.svg' alt="Dag icoon">
             <span class="mat-h3" style="margin: auto 10px; ">&middot;</span>
             <h2 class="mat-h2">{{ workday.date | date:'d/MM' }}</h2>
+        </div>
+    </div>
+    <div class="card_header" *ngIf="isTemplate">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <img class="svgWhiteColor" [src]="icon | async"
+                 src-fallback='../../../assets/img/icons/icon-question-mark.svg' alt="Dag icoon">
+            <span class="mat-h3" style="margin: auto 10px; ">&middot;</span>
+            <h1 class="mat-h1">{{ ('2010-03-0' + workday.dayNumber) | date:'EEEE' | titlecase }}</h1>
         </div>
     </div>
     <div fxLayout="column">
