@@ -31,7 +31,7 @@ export class WorkdayTemplateDataService {
       .pipe(map(WorkdayTemplate.fromJSON));
   }
 
-  getWorkdayTemplatesByName(name: string, week: string = null, day: string = null): Observable<WorkdayTemplate[]> {
+  getWorkdayTemplatesByName(name: string, week: number = null, day: number = null): Observable<WorkdayTemplate[]> {
     let url;
     if (week) {
       if (day) {
