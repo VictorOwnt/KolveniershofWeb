@@ -57,7 +57,7 @@
         </div>
         <div class="card_footer" [ngClass.gt-sm]="isAdmin ? 'card_footer_2col' : ''" *ngIf="!isAdmin">
             <h2>Opmerking</h2>
-            Add comment placeholder <!-- TODO - add comment as user -->
+            <button type="submit" class="btn" (click)="addComment()">Opmerkingen toevoegen</button>
         </div>
     </div>
 </div>

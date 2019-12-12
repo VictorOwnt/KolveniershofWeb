@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {CommentListComponent} from './comment-list/comment-list.component';
+import {CommentNewComponent} from './comment-new/comment-new.component';
 import {ScheduleEmptyComponent} from './schedule-empty/schedule-empty.component';
 import {ScheduleUnitComponent} from './schedule-unit/schedule-unit.component';
 import {ScheduleWeekdayComponent} from './schedule-weekday/schedule-weekday.component';
@@ -27,6 +28,7 @@ import { UserSelectorModalComponent } from './user-selector-modal/user-selector-
 @NgModule({
   declarations: [
     CommentListComponent,
+    CommentNewComponent,
     ScheduleEmptyComponent,
     ScheduleUnitComponent,
     EditUnitModalComponent,
@@ -56,6 +58,7 @@ import { UserSelectorModalComponent } from './user-selector-modal/user-selector-
   entryComponents: [
     EditUnitModalComponent,
     CommentListComponent,
+    CommentNewComponent,
     UserSelectorModalComponent
   ]
 })
