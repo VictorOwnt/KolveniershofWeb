@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {DatesService} from './dates.service';
 import {Observable} from 'rxjs';
@@ -12,7 +12,8 @@ import {Workday} from '../models/workday.model';
 })
 export class WorkdayTemplateDataService {
 
-  constructor(private http: HttpClient, private datesService: DatesService) { }
+  constructor(private http: HttpClient, private datesService: DatesService) {
+  }
 
   get workdayTemplates$(): Observable<WorkdayTemplate[]> {
     return this.http
@@ -59,7 +60,11 @@ export class WorkdayTemplateDataService {
   }
 
   deleteWorkdayTemplate(id: string) {
-    this.http.delete<boolean>(`${API_URL}/workdayTemplates/id/${id}`);
+    return this.http.delete<boolean>(`${API_URL}/workdayTemplates/id/${id}`);
+  }
+
+  deleteWorkdayTemplates(templateName: string) {
+    return this.http.delete<boolean>(`${API_URL}/workdayTemplates/name/${templateName}`);
   }
 
   createWeek(templateName: string, weekNumber: number, date: Date): Observable<Workday[]> {

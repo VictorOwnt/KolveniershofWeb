@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {AdminActivitiesComponent} from './admin-activities/admin-activities.component';
 import {ActivityListComponent} from './admin-activities/activity-list/activity-list.component';
 import {ActivityNewComponent} from './admin-activities/activity-new/activity-new.component';
@@ -16,6 +16,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {ActivityComponent} from './admin-activities/activity/activity.component';
 import {AdminRoutingModule} from './admin-routing.module';
+import {AdminTemplatesComponent} from './admin-templates/admin-templates.component';
+import {TemplateNewComponent} from './admin-templates/template-new/template-new.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import {AdminRoutingModule} from './admin-routing.module';
     BusComponent,
     BusListComponent,
     BusNewComponent,
-    AdminComponent
+    AdminComponent,
+    AdminTemplatesComponent,
+    TemplateNewComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +49,9 @@ import {AdminRoutingModule} from './admin-routing.module';
   ],
   entryComponents: [
     ActivityNewComponent,
-    BusNewComponent
+    BusNewComponent,
+    TemplateNewComponent
   ]
 })
-export class AdminModule { }
+export class AdminModule {
+}
