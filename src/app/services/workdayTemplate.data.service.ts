@@ -63,8 +63,8 @@ export class WorkdayTemplateDataService {
       .pipe(map(WorkdayTemplate.fromJSON));
   }
 
-  patchWorkdayTemplateName(oldName: string, newName: string): Observable<string> {
-    return this.http.patch<string>(`${API_URL}/workdayTemplates/name/${oldName}`, newName);
+  patchWorkdayTemplateName(oldName: string, newName: string): Observable<boolean> {
+    return this.http.patch<boolean>(`${API_URL}/workdayTemplates/name/${oldName}`, newName);
   }
 
 
