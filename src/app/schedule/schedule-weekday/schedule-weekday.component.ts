@@ -5,6 +5,9 @@ import {FirebaseService} from 'src/app/services/firebase.service';
 import {Observable} from 'rxjs';
 import {WorkdayTemplate} from '../../models/workdayTemplate.model';
 import {WorkdayTemplateDataService} from '../../services/workdayTemplate.data.service';
+import {MatDialog} from '@angular/material/dialog';
+import {SuccessModalComponent} from '../../shared/success-modal/success-modal.component';
+import {EditUnitModalComponent} from '../schedule-unit/edit-unit-modal/edit-unit-modal.component';
 
 @Component({
   selector: 'app-schedule-weekday',
@@ -18,6 +21,7 @@ export class ScheduleWeekdayComponent implements OnInit {
   icon: Observable<string | null>;
 
   constructor(
+    public dialog: MatDialog,
     private workdayDataService: WorkdayDataService,
     private workdayTemplateDataService: WorkdayTemplateDataService,
     private firebaseService: FirebaseService
@@ -37,7 +41,31 @@ export class ScheduleWeekdayComponent implements OnInit {
   }
 
   newUnit(type: string, isAm: boolean = null) {
-    // TODO
+    let dialogData;
+    if (this.isTemplate) {
+      dialogData = {
+        workdayTemplate: this.workday as WorkdayTemplate,
+        isActivity: (type === 'activity'),
+        isAm
+      };
+    } else {
+      dialogData = {
+        workdayTemplate: this.workday as WorkdayTemplate,
+        isActivity: (type === 'activity'),
+        isAm
+      };
+    }
+    this.dialog.open(EditUnitModalComponent, {
+      width: '1000px',
+      data: dialogData
+    }).afterClosed().subscribe(message => {
+      if (message) {
+        this.dialog.open(SuccessModalComponent, {
+          width: '300px',
+          data: {message}
+        });
+      }
+    });
   }
 
   changeHoliday(holiday: boolean) {

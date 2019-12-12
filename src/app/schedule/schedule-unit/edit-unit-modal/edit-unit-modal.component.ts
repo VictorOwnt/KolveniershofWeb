@@ -23,7 +23,7 @@ import {WorkdayTemplateDataService} from '../../../services/workdayTemplate.data
   styleUrls: ['./edit-unit-modal.component.scss'],
 })
 export class EditUnitModalComponent implements OnInit {
-  unit: any = null;
+  unit: ActivityUnit | LunchUnit = null;
   workday: Workday = null;
   workdayTemplate: WorkdayTemplate = null;
   isAm: boolean = null;
@@ -51,7 +51,7 @@ export class EditUnitModalComponent implements OnInit {
     this.workday = data.workday;
     this.workdayTemplate = data.workdayTemplate;
     this.isAm = data.isAm;
-    this.isActivity = data.unit instanceof ActivityUnit;
+    this.isActivity = data.isActivity ? data.isActivity : data.unit instanceof ActivityUnit;
     activityDataService.activities$.subscribe(activities => this.activities = activities);
     userDataService.mentors$.subscribe(mentors => this.mentors = mentors);
     userDataService.clients$.subscribe(clients => this.clients = clients);
@@ -62,13 +62,14 @@ export class EditUnitModalComponent implements OnInit {
       if (this.unit) {
         // Download activity icon
         this.activityImgUrl = '';
-        this.firebaseService.lookupFileDownloadUrl(this.unit.activity.icon, 'icon').subscribe(img => this.activityImgUrl = img);
+        this.firebaseService.lookupFileDownloadUrl((this.unit as ActivityUnit).activity.icon, 'icon')
+          .subscribe(img => this.activityImgUrl = img);
       }
       // FormGroup for activityUnit
       this.unitFormGroup = this.fb.group({
-        activity: [this.unit ? this.unit.activity : null, Validators.required],
-        mentors: [this.unit ? this.unit.mentors : null, Validators.required],
-        clients: [this.unit ? this.unit.clients : null, Validators.required]
+        activity: [this.unit ? (this.unit as ActivityUnit).activity : null, Validators.required],
+        mentors: [this.unit ? (this.unit as ActivityUnit).mentors : null, Validators.required],
+        clients: [this.unit ? (this.unit as ActivityUnit).clients : null, Validators.required]
       });
       // Filter activities
       this.filteredActivities = this.unitFormGroup.controls.activity.valueChanges
@@ -76,9 +77,9 @@ export class EditUnitModalComponent implements OnInit {
     } else {
       // FormGroup for lunchUnit
       this.unitFormGroup = this.fb.group({
-        lunch: [this.unit ? this.unit.lunch : null, Validators.required],
-        mentors: [this.unit ? this.unit.mentors : null, Validators.required],
-        clients: [this.unit ? this.unit.clients : null, Validators.required]
+        lunch: [this.unit ? (this.unit as LunchUnit).lunch : null, Validators.required],
+        mentors: [this.unit ? (this.unit as LunchUnit).mentors : null, Validators.required],
+        clients: [this.unit ? (this.unit as LunchUnit).clients : null, Validators.required]
       });
     }
   }
