@@ -47,6 +47,10 @@ export class WorkdayTemplateDataService {
       .pipe(map((list: any[]): WorkdayTemplate[] => list.map(WorkdayTemplate.fromJSON)));
   }
 
+  postCreateWorkdayTemplatesWithName(templateName: string): Observable<boolean> {
+    return this.http.post<boolean>(`${API_URL}/workdayTemplates/name`, templateName);
+  }
+
   postWorkdayTemplate(workdayTemplate: WorkdayTemplate): Observable<WorkdayTemplate> {
     return this.http
       .post(`${API_URL}/workdayTemplates`, workdayTemplate)
@@ -58,6 +62,11 @@ export class WorkdayTemplateDataService {
       .post(`${API_URL}/workdayTemplates/id/${workdayTemplate.id}`, workdayTemplate)
       .pipe(map(WorkdayTemplate.fromJSON));
   }
+
+  patchWorkdayTemplateName(oldName: string, newName: string): Observable<string> {
+    return this.http.patch<string>(`${API_URL}/workdayTemplates/name/${oldName}`, newName);
+  }
+
 
   deleteWorkdayTemplate(id: string) {
     return this.http.delete<boolean>(`${API_URL}/workdayTemplates/id/${id}`);

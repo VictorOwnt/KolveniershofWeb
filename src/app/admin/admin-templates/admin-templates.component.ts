@@ -26,6 +26,13 @@ export class AdminTemplatesComponent implements OnInit {
     this.dialog.open(TemplateNewComponent, {
       width: '1000px',
       data: {templateName}
+    }).afterClosed().subscribe(message => {
+      if (message) {
+        this.dialog.open(SuccessModalComponent, {
+          width: '300px',
+          data: {message}
+        });
+      }
     });
   }
 

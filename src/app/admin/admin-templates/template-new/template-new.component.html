@@ -1,1 +1,16 @@
-<p>template-new works!</p>
+<form class="container" [formGroup]="templateForm" (ngSubmit)="save()" fxLayout="column">
+    <h1 mat-dialog-title class="mat-h1">Sjabloon {{ templateName ? 'aanpassen' : 'aanmaken' }}</h1>
+
+    <mat-form-field appearance="outline" mat-dialog-content>
+        <mat-label>Naam</mat-label>
+        <input matInput [value]="templateName" placeholder="Naam van het sjabloon" formControlName="templateName"
+               required>
+        <mat-error *ngIf="templateForm.controls.templateName.invalid">{{ getTemplateNameErrorMessage() }}</mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-actions fxLayoutAlign="end" fxFlexAlign="end" fxLayout="row" fxLayoutGap="20px"
+         fxLayout.lt-sm="column" fxLayoutAlign.lt-sm="center" fxFlexAlign.lt-sm="center">
+        <button class="btn-pink" type="submit" [disabled]='!templateForm.valid || !templateForm.dirty'>Opslaan</button>
+        <button class="btn-pink-outline" matDialogClose>Annuleren</button>
+    </div>
+</form>
