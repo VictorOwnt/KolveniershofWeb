@@ -1,16 +1,11 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit, Input} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import * as $ from 'jquery';
 import {AuthenticationService} from '../../authentication/authentication.service';
 import {WorkdayDataService} from '../../services/workday.data.service';
-import {UserDataService} from '../../services/user.data.service';
-import { FirebaseService } from '../../services/firebase.service';
 import {Workday, Comment} from '../../models/workday.model';
 import {Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
-import { User } from 'src/app/models/user.model';
-
 
 @Component({
   selector: 'app-comment-new',
@@ -18,67 +13,81 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./comment-new.component.scss']
 })
 export class CommentNewComponent implements OnInit {
-
+  @Input() private workday: Workday;
+  isAdmin = true;
+  commentObject: Comment;
+  userComment: string;
   public commentForm: FormGroup;
-  public imageUrl: any = null;
-  public client: User;
   public errorMsg = '';
 
   constructor(
-      @Inject(MAT_DIALOG_DATA) public workday: Workday,
-      public dialogRef: MatDialogRef<CommentNewComponent>,
-      private authService: AuthenticationService,
+      private auth: AuthenticationService,
       private workdayDataService: WorkdayDataService,
-      private userDataService: UserDataService,
-      private firebaseService: FirebaseService,
       private router: Router,
       private fb: FormBuilder
       ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     this.commentForm = this.fb.group({
-      comment: ['', [Validators.required]]
+      comment: ['']
     });
-    await this.getLoggedInUser();
-    await this.getImageUrl();
+    this.isAdmin = this.auth.currentUser.admin;
+    this.commentObject = this.getUserComment();
   }
 
-  async getLoggedInUser() {
-    const userid = this.authService.currentUser.id;
-    return new Promise( (resolve, reject) => {
-      this.userDataService.getUserById(userid).toPromise()
-      .then(user => resolve(this.client = user))
-      .catch((e) => reject(e));
-    })
-    .catch((err) => console.log(err));
+  getUserComment(): Comment {
+    const comment = this.workday.comments.find(uComment => uComment.client = this.auth.currentUser);
+    if (comment) {
+      this.userComment = comment.comment;
+    } else {
+      this.userComment = null;
+    }
+    return comment;
   }
 
-  async getImageUrl() {
-    return new Promise( (resolve, reject) => {
-      this.firebaseService.lookupFileDownloadUrl(this.client.picture, 'user').toPromise()
-      .then(img => resolve(this.imageUrl = img))
-      .catch((e) => reject(e));
-    })
-    .catch((err) => console.log(err));
-  }
-
-
-  getCommentErrorMessage() {
-    return (this.commentForm.controls.comment.hasError('required'))
-        ? 'Opmerking is verplicht.' : '';
+  onChange(e) {
+    this.userComment = e;
   }
 
   save() {
-      this.workday.comments.push(new Comment(this.commentForm.value.comment, this.client));
-      /*
-      this.workdayDataService.patchWorkday(this.workday).subscribe(
+    if (this.commentObject) {
+      this.commentObject.comment = this.userComment;
+      this.workdayDataService.patchComment(this.workday, this.commentObject).subscribe(
         val => {
           if (val) {
-            if (this.authService.redirectUrl) {
-              this.router.navigateByUrl(this.authService.redirectUrl);
-              this.authService.redirectUrl = undefined;
+            if (this.auth.redirectUrl) {
+              this.router.navigateByUrl(this.auth.redirectUrl);
+              this.auth.redirectUrl = undefined;
             } else {
-              this.dialogRef.close();
+              // TODO - weergeven dat het gelukt is
+              console.log(this.commentObject.comment);
+              console.log('Opmerking aangepast');
+            }
+          } else {
+            this.errorMsg = `Opmerking aanpassen mislukt`;
+          }
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err);
+          if (err.error instanceof Error) {
+            this.errorMsg = `${err.error.message}`;
+          } else {
+            this.errorMsg = `${err.error}`;
+          }
+          $('#errorMsg').slideDown(200);
+        }
+      );
+    } else {
+      this.workdayDataService.postComment(this.workday, new Comment(this.commentForm.value.comment, this.auth.currentUser)).subscribe(
+        val => {
+          if (val) {
+            if (this.auth.redirectUrl) {
+              this.router.navigateByUrl(this.auth.redirectUrl);
+              this.auth.redirectUrl = undefined;
+            } else {
+              // TODO - updaten van commentobject, als je nu een comment aanmaakt en direct daarna aanpast, crasht hij
+              // TODO - weergeven dat het gelukt is
+              console.log('Opmerking toegevoegd');
             }
           } else {
             this.errorMsg = `Opmerking toevoegen mislukt`;
@@ -93,6 +102,7 @@ export class CommentNewComponent implements OnInit {
           }
           $('#errorMsg').slideDown(200);
         }
-    );*/
+      );
+    }
   }
 }

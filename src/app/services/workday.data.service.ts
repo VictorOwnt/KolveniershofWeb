@@ -100,9 +100,9 @@ export class WorkdayDataService {
     return iconName;
   }
 
-  postComment(workday: Workday, comment: string): Observable<Comment> {
+  postComment(workday: Workday, comment: Comment): Observable<Comment> {
     return this.http
-      .post(`${API_URL}/workdays/id/${workday.id}`, {comment})
+      .post(`${API_URL}/workdays/id/${workday.id}/comments`, comment.toJSON())
       .pipe(map(Comment.fromJSON));
   }
 

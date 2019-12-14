@@ -58,7 +58,6 @@ import { UserSelectorModalComponent } from './user-selector-modal/user-selector-
   entryComponents: [
     EditUnitModalComponent,
     CommentListComponent,
-    CommentNewComponent,
     UserSelectorModalComponent
   ]
 })

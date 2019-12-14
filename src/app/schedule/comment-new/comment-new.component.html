@@ -1,21 +1,15 @@
-<div class="header" mat-dialog-title>Opmerking toevoegen</div>
-<form [formGroup]="commentForm" (ngSubmit)="save()">
-    <div mat-dialog-content class="content">
-        <div *ngIf="client" class="comment_user" fxLayout="row" fxLayoutAlign="flex-start center">
-                <img fxFlex="none" class="user_picture" [src]="imageUrl ? imageUrl: '../../../assets/img/profile_picture_empty.png'" alt="Profile picture"/>
-                <p>{{ client.firstName }}</p>
-        </div>
+<form [formGroup]="commentForm" (keyup.enter)="save()">
+    <div class="content">
         <mat-form-field appearance="outline">
             <mat-label>Opmerking</mat-label>
-            <input matInput placeholder="Schrijf hier je opmerking"
-                formControlName="comment" required> 
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <input matInput
+                   [value]="userComment ? userComment : ''"
+                   (change)="onChange($event.target.value)"
+                   placeholder="Schrijf hier je opmerking" formControlName="comment"
+                   [disabled]="isAdmin"> 
             <mat-error *ngIf="commentForm.controls.comment.invalid">{{getCommentErrorMessage()}}</mat-error>
         </mat-form-field>
     </div>
-    <div mat-dialog-actions fxLayoutAlign="end" fxFlexAlign="end" fxLayout="row" fxLayoutGap="20px"
-    fxLayout.lt-sm="column" fxLayoutAlign.lt-sm="center" fxFlexAlign.lt-sm="center">
-        <button class="btn-pink" type="submit" [disabled]='!commentForm.valid' data-cy=SaveButton>Opslaan</button>
-        <button class="btn-pink-outline" matDialogClose data-cy=CancelButton>Annuleren</button>
-    </div>
 </form>
+
+<!--[value]="userComment.comment ? userComment.comment : ''"-->
