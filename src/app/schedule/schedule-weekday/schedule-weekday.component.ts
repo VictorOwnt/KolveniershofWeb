@@ -9,7 +9,6 @@ import {MatDialog} from '@angular/material/dialog';
 import {SuccessModalComponent} from '../../shared/success-modal/success-modal.component';
 import {EditUnitModalComponent} from '../schedule-unit/edit-unit-modal/edit-unit-modal.component';
 import {CommentListComponent} from '../comment-list/comment-list.component';
-import {CommentNewComponent} from '../comment-new/comment-new.component';
 
 @Component({
   selector: 'app-schedule-weekday',
@@ -79,19 +78,10 @@ export class ScheduleWeekdayComponent implements OnInit {
     }
   }
 
-  viewComments() {
-    // TODO
-  }
-
-  addComment() {
-    const dialogRef = this.dialog.open(CommentNewComponent, {
-      width: '1000px',
-      data: this.workday
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-
+  viewComments(comments: Comment[]) {
+    this.dialog.open(CommentListComponent, {
+      width: '800px',
+      data: {comments}
     });
   }
 }
