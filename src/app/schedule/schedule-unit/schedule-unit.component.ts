@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ActivityUnit} from '../../models/activityUnit.model';
 import {User} from '../../models/user.model';
 import {LunchUnit} from '../../models/lunchUnit.model';
-import { FirebaseService } from 'src/app/services/firebase.service';
+import {FirebaseService} from 'src/app/services/firebase.service';
 import {EditUnitModalComponent} from './edit-unit-modal/edit-unit-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 import {ActivityDataService} from '../../services/activity.data.service';
@@ -36,7 +36,8 @@ export class ScheduleUnitComponent implements OnInit {
     public dialog: MatDialog,
     private activityDataService: ActivityDataService,
     private lunchDataService: LunchDataService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     if (this.unit instanceof ActivityUnit) {
@@ -65,21 +66,21 @@ export class ScheduleUnitComponent implements OnInit {
   }
 
   async getImageUrl(user: User) {
-    return new Promise( (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       this.firebaseService.lookupFileDownloadUrl(user.picture, 'user').toPromise()
-      .then(image => resolve(user.picture = image))
-      .catch((e) => reject(e));
+        .then(image => resolve(user.picture = image))
+        .catch((e) => reject(e));
     })
-    .catch((err) => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   async getIconUrl(ref: string) {
-    return new Promise( (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       this.firebaseService.lookupFileDownloadUrl(ref, 'icon').toPromise()
-      .then(icon => resolve(this.icon = icon))
-      .catch((e) => reject(e));
+        .then(icon => resolve(this.icon = icon))
+        .catch((e) => reject(e));
     })
-    .catch((err) => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   edit() {
@@ -95,7 +96,7 @@ export class ScheduleUnitComponent implements OnInit {
       if (message) {
         this.dialog.open(SuccessModalComponent, {
           width: '300px',
-          data: { message }
+          data: {message}
         });
       }
     });
@@ -106,7 +107,7 @@ export class ScheduleUnitComponent implements OnInit {
       // Open delete dialog
       this.dialog.open(DeleteModalComponent, {
         width: '500px',
-        data: { itemToDelete: 'atelier' }
+        data: {itemToDelete: 'atelier'}
       }).afterClosed().subscribe(canDelete => {
         if (canDelete) {
           // Delete unit & open modal
@@ -118,7 +119,7 @@ export class ScheduleUnitComponent implements OnInit {
       // Open delete dialog
       this.dialog.open(DeleteModalComponent, {
         width: '500px',
-        data: { itemToDelete: 'lunch' }
+        data: {itemToDelete: 'lunch'}
       }).afterClosed().subscribe(canDelete => {
         if (canDelete) {
           // Delete unit & open modal
@@ -134,13 +135,13 @@ export class ScheduleUnitComponent implements OnInit {
       // Success dialog
       this.dialog.open(SuccessModalComponent, {
         width: '300px',
-        data: { message: 'Verwijderen compleet.' }
+        data: {message: 'Verwijderen compleet.'}
       });
     } else {
       // Error dialog
       this.dialog.open(ErrorModalComponent, {
         width: '300px',
-        data: { message: 'Verwijderen niet gelukt. Probeer het later opnieuw.' }
+        data: {message: 'Verwijderen niet gelukt. Probeer het later opnieuw.'}
       });
     }
   }
