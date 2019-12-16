@@ -1,88 +1,88 @@
 <div class="navbar" fxLayoutAlign="space-between">
-  <a routerLink="/home">
-    <img src="../../../assets/img/logo.svg" alt="Logo">
-  </a>
+    <a routerLink="/home">
+        <img src="../../../assets/img/logo.svg" alt="Logo">
+    </a>
 
-  <button class="hamburger hamburger--squeeze" type="button" aria-label="Menu" aria-controls="navigation">
+    <button class="hamburger hamburger--squeeze" type="button" aria-label="Menu" aria-controls="navigation">
     <span class="hamburger-box">
       <span class="hamburger-inner"></span>
     </span>
-  </button>
+    </button>
 
-  <div id="menu" class="">
-    <!-- Pyro easter egg -->
-    <div id="boom" class="">
-      <div class="before"></div>
-      <div class="after"></div>
+    <div id="menu" class="">
+        <!-- Pyro easter egg -->
+        <div id="boom" class="">
+            <div class="before"></div>
+            <div class="after"></div>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <!-- Home button -->
+                <li>
+                    <a (click)="navigate('home')" style="cursor: pointer;">
+                        <i class="material-icons">
+                            home
+                        </i>
+                        Home
+                    </a>
+                </li>
+                <!-- Account button -->
+                <li>
+                    <a (click)="navigate('')" style="cursor: pointer;"> <!-- TODO - url -->
+                        <i class="material-icons">
+                            account_circle
+                        </i>
+                        Account
+                    </a>
+                </li>
+                <!-- Logout button -->
+                <li>
+                    <a (click)="logout()" style="cursor: pointer;">
+                        <i class="material-icons">
+                            exit_to_app
+                        </i>
+                        Afmelden
+                    </a>
+                </li>
+                <!-- Contact button -->
+                <li>
+                    <a href="https://www.averegina.be/contacteer-ons.html" target="_blank">
+                        <i class="material-icons">
+                            mail_outline
+                        </i>
+                        Contact
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <footer class="menu-footer">
+            <!-- Current user welcome message -->
+            <p id="boom_click">Welkom <b>{{ loggedInUser.firstName }}</b>!</p>
+
+            <nav class="footer-nav">
+                <ul>
+                    <!-- Ave Regina website button -->
+                    <li>
+                        <a href="https://www.averegina.be/" target="_blank">
+                            <i class="material-icons">
+                                web
+                            </i>
+                            Ave Regina
+                        </a>
+                    </li>
+                    <!-- HoGent website button -->
+                    <li>
+                        <a href="https://www.hogent.be/opleidingen/bachelors/toegepaste-informatica/" target="_blank">
+                            <i class="material-icons">
+                                school
+                            </i>
+                            HoGent
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </footer>
     </div>
-
-    <nav class="main-nav">
-      <ul>
-        <!-- Home button -->
-        <li>
-          <a routerLink="/home">
-            <i class="material-icons">
-              home
-            </i>
-            Home
-          </a>
-        </li>
-        <!-- Account button -->
-        <li>
-          <a routerLink=""> <!-- TODO - routerLink -->
-            <i class="material-icons">
-              account_circle
-            </i>
-            Account
-          </a>
-        </li>
-        <!-- Logout button -->
-        <li>
-          <a (click)="logout()" style="cursor: pointer;">
-            <i class="material-icons">
-              exit_to_app
-            </i>
-            Afmelden
-          </a>
-        </li>
-        <!-- Contact button -->
-        <li>
-          <a href="https://www.averegina.be/contacteer-ons.html" target="_blank">
-            <i class="material-icons">
-              mail_outline
-            </i>
-            Contact
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-    <footer class="menu-footer">
-      <!-- Current user welcome message -->
-      <p id="boom_click">Welkom <b>{{ loggedInUser.firstName }}</b>!</p>
-
-      <nav class="footer-nav">
-        <ul>
-          <!-- Ave Regina website button -->
-          <li>
-            <a href="https://www.averegina.be/" target="_blank">
-              <i class="material-icons">
-                web
-              </i>
-              Ave Regina
-            </a>
-          </li>
-          <!-- HoGent website button -->
-          <li>
-            <a href="https://www.hogent.be/opleidingen/bachelors/toegepaste-informatica/" target="_blank">
-              <i class="material-icons">
-                school
-              </i>
-              HoGent
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </footer>
-  </div>
 </div>

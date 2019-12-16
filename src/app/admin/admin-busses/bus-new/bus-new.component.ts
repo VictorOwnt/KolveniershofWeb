@@ -9,7 +9,6 @@ import {Bus} from '../../../models/bus.model';
 import {BusDataService} from '../../../services/bus.data.service';
 
 
-
 @Component({
   selector: 'app-bus-new',
   templateUrl: './bus-new.component.html',
@@ -22,12 +21,13 @@ export class BusNewComponent implements OnInit {
   public errorMsg = '';
 
   constructor(
-      @Inject(MAT_DIALOG_DATA) public bus: Bus,
-      public dialogRef: MatDialogRef<BusNewComponent>,
-      private authService: AuthenticationService,
-      private router: Router,
-      private fb: FormBuilder,
-      private busDataService: BusDataService) {}
+    @Inject(MAT_DIALOG_DATA) public bus: Bus,
+    public dialogRef: MatDialogRef<BusNewComponent>,
+    private authService: AuthenticationService,
+    private router: Router,
+    private fb: FormBuilder,
+    private busDataService: BusDataService) {
+  }
 
 
   ngOnInit() {
@@ -40,10 +40,9 @@ export class BusNewComponent implements OnInit {
   }
 
 
-
   getNameErrorMessage() {
     return (this.busForm.controls.name.hasError('required'))
-        ? 'Naam is verplicht.' : '';
+      ? 'Naam is verplicht.' : '';
   }
 
   save() {
@@ -52,52 +51,52 @@ export class BusNewComponent implements OnInit {
       this.bus.color = this.color;
       console.log(this.bus);
       this.busDataService.patchBus(this.bus).subscribe(
-          val => {
-            if (val) {
-              if (this.authService.redirectUrl) {
-                this.router.navigateByUrl(this.authService.redirectUrl);
-                this.authService.redirectUrl = undefined;
-              } else {
-                this.dialogRef.close();
-              }
+        val => {
+          if (val) {
+            if (this.authService.redirectUrl) {
+              this.router.navigateByUrl(this.authService.redirectUrl);
+              this.authService.redirectUrl = undefined;
             } else {
-              this.errorMsg = `Activiteit aanmaken mislukt`;
+              this.dialogRef.close();
             }
-          },
-          (err: HttpErrorResponse) => {
-            console.log(err);
-            if (err.error instanceof Error) {
-              this.errorMsg = `${err.error.message}`;
-            } else {
-              this.errorMsg = `${err.error}`;
-            }
-            $('#errorMsg').slideDown(200);
+          } else {
+            this.errorMsg = `Bus aanpassen mislukt`;
           }
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err);
+          if (err.error instanceof Error) {
+            this.errorMsg = `${err.error.message}`;
+          } else {
+            this.errorMsg = `${err.error}`;
+          }
+          $('#errorMsg').slideDown(200);
+        }
       );
     } else {
       const bus = new Bus(this.busForm.value.name, this.color);
       this.busDataService.postBus(bus).subscribe(
-          val => {
-            if (val) {
-              if (this.authService.redirectUrl) {
-                this.router.navigateByUrl(this.authService.redirectUrl);
-                this.authService.redirectUrl = undefined;
-              } else {
-                this.dialogRef.close();
-              }
+        val => {
+          if (val) {
+            if (this.authService.redirectUrl) {
+              this.router.navigateByUrl(this.authService.redirectUrl);
+              this.authService.redirectUrl = undefined;
             } else {
-              this.errorMsg = `Activiteit aanmaken mislukt`;
+              this.dialogRef.close();
             }
-          },
-          (err: HttpErrorResponse) => {
-            console.log(err);
-            if (err.error instanceof Error) {
-              this.errorMsg = `${err.error.message}`;
-            } else {
-              this.errorMsg = `${err.error}`;
-            }
-            $('#errorMsg').slideDown(200);
+          } else {
+            this.errorMsg = `Bus aanmaken mislukt`;
           }
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err);
+          if (err.error instanceof Error) {
+            this.errorMsg = `${err.error.message}`;
+          } else {
+            this.errorMsg = `${err.error}`;
+          }
+          $('#errorMsg').slideDown(200);
+        }
       );
     }
   }
