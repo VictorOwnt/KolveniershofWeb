@@ -25,7 +25,7 @@ import {AuthenticationModule} from './authentication/authentication.module';
 import {httpInterceptorProviders} from './http-interceptors';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatExpansionModule} from '@angular/material/expansion';
-import {CommonModule, DatePipe, registerLocaleData} from '@angular/common';
+import {CommonModule, DatePipe, registerLocaleData, TitleCasePipe} from '@angular/common';
 import {MatDividerModule} from '@angular/material/divider';
 import {HttpClientModule} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -98,6 +98,7 @@ registerLocaleData(localeNl, 'nl-BE');
     {provide: LOCALE_ID, useValue: 'nl-BE'},
     httpInterceptorProviders,
     DatePipe,
+    TitleCasePipe,
     MatDatepickerModule,
     WorkdayDataService,
     WorkdayTemplateDataService,

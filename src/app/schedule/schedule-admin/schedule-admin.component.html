@@ -2,7 +2,7 @@
 
 <div fxLayout="column" fxLayoutGap="20px">
     <div class="top-row" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between center">
-        <button class="btn-white" [disabled]="(workdays$ | async).length === 0">
+        <button class="btn-white" (click)="printWeek()" [disabled]="(workdays$ | async).length === 0">
             <i class="material-icons">print</i>&nbsp;Afdrukken
         </button>
         <div class="weekselector" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
