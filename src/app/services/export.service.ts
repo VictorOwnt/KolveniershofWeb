@@ -262,6 +262,10 @@ export class ExportService {
     ]));
   }
 
+  /**
+   * Create pdf and show print dialog
+   * @param workdays  Workdays to export
+   */
   public printWeek(workdays: Workday[]) {
     // Create empty pdf
     const pdf = this.createEmptyPdf(this.datePipe.transform(workdays[0].date, 'w'));
