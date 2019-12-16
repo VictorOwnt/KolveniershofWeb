@@ -5,9 +5,7 @@
             <input matInput
                    [value]="userComment ? userComment : ''"
                    (change)="onChange($event.target.value)"
-                   placeholder="Schrijf hier je opmerking" formControlName="comment"
-                   [disabled]="isAdmin"> 
-            <mat-error *ngIf="commentForm.controls.comment.invalid">{{getCommentErrorMessage()}}</mat-error>
+                   placeholder="Schrijf hier je opmerking" formControlName="comment">
         </mat-form-field>
     </div>
 </form>

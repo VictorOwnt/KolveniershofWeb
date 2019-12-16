@@ -29,7 +29,7 @@ export class CommentNewComponent implements OnInit {
 
   ngOnInit() {
     this.commentForm = this.fb.group({
-      comment: ['']
+      comment: {value: [''], disabled: this.isAdmin}
     });
     this.isAdmin = this.auth.currentUser.admin;
     this.commentObject = this.getUserComment();
