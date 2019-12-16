@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Workday} from '../../models/workday.model';
 import {WorkdayDataService} from '../../services/workday.data.service';
 import {DatesService} from '../../services/dates.service';
 import {Observable} from 'rxjs';
-import {SuccessModalComponent} from '../../shared/success-modal/success-modal.component';
 import {UserSelectorModalComponent} from '../user-selector-modal/user-selector-modal.component';
 import {MatDialog} from '@angular/material/dialog';
+import {ExportService} from '../../services/export.service';
 
 @Component({
   selector: 'app-schedule',
@@ -17,7 +17,12 @@ export class ScheduleAdminComponent implements OnInit {
   dates: Date[] = [];
   private date: Date = new Date();
 
-  constructor(public datesService: DatesService, private workdayDataService: WorkdayDataService, public dialog: MatDialog) {
+  constructor(
+    public datesService: DatesService,
+    private workdayDataService: WorkdayDataService,
+    public dialog: MatDialog,
+    private exportService: ExportService
+  ) {
     this.loadWorkdays(this.date);
   }
 
@@ -46,7 +51,12 @@ export class ScheduleAdminComponent implements OnInit {
 
   // Open user selector modal
   openUserSelector() {
-    this.dialog.open(UserSelectorModalComponent, { width: '500px' });
+    this.dialog.open(UserSelectorModalComponent, {width: '500px'});
+  }
+
+  // Print week as PDF
+  printWeek() {
+    this.workdays$.subscribe(workdays => this.exportService.printWeek(workdays));
   }
 
 }
