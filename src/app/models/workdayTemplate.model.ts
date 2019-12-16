@@ -8,6 +8,7 @@ export class WorkdayTemplate {
   templateName: string;
   weekNumber: number;
   dayNumber: number;
+  dayActivities: ActivityUnit[];
   daycareMentors: User[];
   morningBusses: BusUnit[];
   amActivities: ActivityUnit[];
@@ -20,6 +21,7 @@ export class WorkdayTemplate {
     templateName: string,
     weekNumber: number,
     dayNumber: number,
+    dayActivities: ActivityUnit[],
     daycareMentors: User[],
     morningBusses: BusUnit[],
     amActivities: ActivityUnit[],
@@ -31,6 +33,7 @@ export class WorkdayTemplate {
     this.templateName = templateName;
     this.weekNumber = weekNumber;
     this.dayNumber = dayNumber;
+    this.dayActivities = dayActivities;
     this.daycareMentors = daycareMentors;
     this.morningBusses = morningBusses;
     this.amActivities = amActivities;
@@ -48,6 +51,7 @@ export class WorkdayTemplate {
       json.templateName,
       json.weekNumber,
       json.dayNumber,
+      json.dayActivities.map(ActivityUnit.fromJSON),
       json.daycareMentors.map(User.fromJSON),
       json.morningBusses.map(BusUnit.fromJSON),
       json.amActivities.map(ActivityUnit.fromJSON),
@@ -66,6 +70,7 @@ export class WorkdayTemplate {
       templateName: this.templateName,
       weekNumber: this.weekNumber,
       dayNumber: this.dayNumber,
+      dayActivities: this.dayActivities.map(activityUnit => activityUnit.toJSON()),
       morningBusses: this.morningBusses.map(busUnit => busUnit.toJSON()),
       amActivities: this.amActivities.map(activityUnit => activityUnit.toJSON()),
       lunch: this.lunch.toJSON(),
