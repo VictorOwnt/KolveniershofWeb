@@ -2,10 +2,7 @@
     <div class="content">
         <mat-form-field appearance="outline">
             <mat-label>Opmerking</mat-label>
-            <input matInput
-                   [value]="userComment ? userComment : ''"
-                   (change)="onChange($event.target.value)"
-                   placeholder="Schrijf hier je opmerking" formControlName="comment">
+            <input matInput placeholder="Schrijf hier je opmerking" formControlName="comment">
         </mat-form-field>
     </div>
 </form>

@@ -16,8 +16,7 @@ import {ErrorModalComponent} from '../../shared/error-modal/error-modal.componen
 export class CommentNewComponent implements OnInit {
   @Input() private workday: Workday;
   isAdmin = false;
-  commentObject: Comment;
-  userComment: string;
+  comment: Comment = null;
   public commentForm: FormGroup;
 
   constructor(
@@ -31,39 +30,28 @@ export class CommentNewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.comment = this.workday.comments[0];
     this.commentForm = this.fb.group({
-      comment: {value: [''], disabled: this.isAdmin}
+      comment: {value: [this.comment ? this.comment.comment : ''], disabled: this.isAdmin}
     });
-    this.commentObject = this.getUserComment();
   }
 
-  getUserComment(): Comment {
-    const comment = this.workday.comments.find(uComment => uComment.client = this.auth.currentUser);
-    if (comment) {
-      this.userComment = comment.comment;
-    } else {
-      this.userComment = null;
-    }
-    return comment;
-  }
-
-  onChange(e) {
-    this.userComment = e;
-  }
-
+  // Save comment to backend
   save() {
-    if (this.commentObject) {
-      this.commentObject.comment = this.userComment;
-      this.workdayDataService.patchComment(this.workday, this.commentObject).subscribe(
+    if (this.comment) {
+      // Patch comment (comment was already present)
+      this.comment.comment = this.commentForm.value.comment.trim();
+      this.workdayDataService.patchComment(this.workday, this.comment).subscribe(
         val => {
           if (val) {
-            // TODO - weergeven dat het gelukt is
-            console.log(this.commentObject.comment);
+            this.comment = val as Comment;
+            // Success dialog
             this.dialog.open(SuccessModalComponent, {
               width: '300px',
               data: {message: 'Opmerking aangepast'}
             });
           } else {
+            // Error dialog
             this.dialog.open(ErrorModalComponent, {
               width: '300px',
               data: {message: 'Opmerking aanpassen mislukt'}
@@ -72,15 +60,20 @@ export class CommentNewComponent implements OnInit {
         }
       );
     } else {
-      this.workdayDataService.postComment(this.workday, new Comment(this.commentForm.value.comment, this.auth.currentUser)).subscribe(
+      // Post comment (no comment yet)
+      this.workdayDataService.postComment(
+        this.workday, new Comment(this.commentForm.value.comment.trim(), this.auth.currentUser)
+      ).subscribe(
         val => {
           if (val) {
-            // TODO - updaten van commentobject, als je nu een comment aanmaakt en direct daarna aanpast, crasht hij
+            this.comment = val as Comment;
+            // Success dialog
             this.dialog.open(SuccessModalComponent, {
               width: '300px',
               data: {message: 'Opmerking toegevoegd'}
             });
           } else {
+            // Error dialog
             this.dialog.open(ErrorModalComponent, {
               width: '300px',
               data: {message: 'Opmerking toevoegen mislukt'}
