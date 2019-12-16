@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../authentication/authentication.service';
-import { Router } from '@angular/router';
-import { User } from '../../models/user.model';
-import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from '../../authentication/authentication.service';
+import {Router} from '@angular/router';
+import {User} from '../../models/user.model';
+import {clearAllBodyScrollLocks, disableBodyScroll} from 'body-scroll-lock';
 import * as $ from 'jquery';
 
 @Component({
@@ -12,7 +12,8 @@ import * as $ from 'jquery';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router, private auth: AuthenticationService) {}
+  constructor(private router: Router, private auth: AuthenticationService) {
+  }
 
   ngOnInit() {
     const menu = $('#menu');
@@ -48,7 +49,13 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+    clearAllBodyScrollLocks();
     this.auth.logout();
     this.router.navigateByUrl('login');
+  }
+
+  navigate(url: string) {
+    clearAllBodyScrollLocks();
+    this.router.navigateByUrl(url);
   }
 }
