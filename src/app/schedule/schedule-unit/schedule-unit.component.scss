@@ -47,9 +47,13 @@
       width: 24px;
     }
 
-    #edit { fill: $color-text }
+    #edit {
+      fill: $color-text
+    }
 
-    #delete { fill: $color-danger }
+    #delete {
+      fill: $color-danger
+    }
   }
 }
 
@@ -61,8 +65,8 @@
     padding-bottom: 10px;
   }
 
-  .mentors {
-    border-bottom: 1px solid $color-divider;
+  .clients {
+    border-top: 1px solid $color-divider;
   }
 
   .user_picture, .more {
