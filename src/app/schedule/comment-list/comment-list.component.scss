@@ -1,5 +1,13 @@
 @import "../../../variables.scss";
 
+.container {
+  padding: 20px;
+}
+
+h1, h2, p {
+  color: $color-text;
+}
+
 .comment {
   padding: 10px 0;
 
@@ -36,15 +44,19 @@
 .comment_comment {
   margin-left: 35px + 15px;
 
-  a {
-    text-decoration: none;
-    color: $color-text;
-    margin: 16px 0 16px 15px;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
+  p {
+    margin-top: 10px;
+  }
+}
 
-    &:hover {
-      opacity: .7;
-    }
+a {
+  text-decoration: none;
+  color: $color-text;
+  margin-left: 15px;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    opacity: .7;
   }
 }
