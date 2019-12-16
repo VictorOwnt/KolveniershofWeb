@@ -14,6 +14,7 @@ export class WorkdayTemplate {
   lunch: LunchUnit;
   pmActivities: ActivityUnit[];
   eveningBusses: BusUnit[];
+  holiday: boolean;
 
   constructor(
     templateName: string,
@@ -24,7 +25,8 @@ export class WorkdayTemplate {
     amActivities: ActivityUnit[],
     lunch: LunchUnit,
     pmActivities: ActivityUnit[],
-    eveningBusses: BusUnit[]
+    eveningBusses: BusUnit[],
+    holiday: boolean
   ) {
     this.templateName = templateName;
     this.weekNumber = weekNumber;
@@ -35,10 +37,13 @@ export class WorkdayTemplate {
     this.lunch = lunch;
     this.pmActivities = pmActivities;
     this.eveningBusses = eveningBusses;
+    this.holiday = holiday;
   }
 
   static fromJSON(json: any): WorkdayTemplate {
-    if ((json === undefined) || (json === null)) { return null; }
+    if ((json === undefined) || (json === null)) {
+      return null;
+    }
     const workdayTemplate = new WorkdayTemplate(
       json.templateName,
       json.weekNumber,
@@ -48,7 +53,8 @@ export class WorkdayTemplate {
       json.amActivities.map(ActivityUnit.fromJSON),
       LunchUnit.fromJSON(json.lunch),
       json.pmActivities.map(ActivityUnit.fromJSON),
-      json.eveningBusses.map(BusUnit.fromJSON)
+      json.eveningBusses.map(BusUnit.fromJSON),
+      json.holiday
     );
     workdayTemplate.id = json._id;
     return workdayTemplate;
@@ -64,7 +70,8 @@ export class WorkdayTemplate {
       amActivities: this.amActivities.map(activityUnit => activityUnit.toJSON()),
       lunch: this.lunch.toJSON(),
       pmActivities: this.pmActivities.map(activityUnit => activityUnit.toJSON()),
-      eveningBusses: this.eveningBusses.map(busUnit => busUnit.toJSON())
+      eveningBusses: this.eveningBusses.map(busUnit => busUnit.toJSON()),
+      holiday: this.holiday
     };
   }
 }

@@ -4,15 +4,7 @@
   text-align: center;
 }
 
-.btn-white {
-  display: flex;
-
-  > i {
-    font-size: 18px;
-  }
-}
-
-.day, app-schedule-empty {
+.day {
   margin: 0 10%;
 
   &:last-child {
@@ -20,24 +12,20 @@
   }
 }
 
-.top-row {
-  margin: 0 10%;
-}
-
 @media screen and (max-width: 1440px) {
-  .day, app-schedule-empty, .top-row {
+  .day {
     margin: 0 5%;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .day, app-schedule-empty, .top-row {
+  .day {
     margin: 0 20px;
   }
 }
 
 @media screen and (max-width: 425px) {
-  .day, app-schedule-empty, .top-row {
+  .day {
     margin: 0 10px;
   }
 }

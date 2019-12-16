@@ -1,0 +1,23 @@
+<app-header></app-header>
+
+<div class="container" fxLayout="column">
+    <h1>Sjablonen</h1>
+
+    <div class="template-item" *ngFor="let templateName of templateNames$ | async"
+         fxLayout="row" fxLayoutAlign="start center">
+        <p fxFlex routerLink="/schedule/template/{{templateName}}">{{ templateName }}</p>
+        <a class="editDelete" fxFlex="none" (click)="edit(templateName)">
+            <svg id="edit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M 18.414062 2 C 18.158188 2 17.902031 2.0974687 17.707031 2.2929688 L 16 4 L 20 8 L 21.707031 6.2929688 C 22.098031 5.9019687 22.098031 5.2689063 21.707031 4.8789062 L 19.121094 2.2929688 C 18.925594 2.0974687 18.669937 2 18.414062 2 z M 14.5 5.5 L 3 17 L 3 21 L 7 21 L 18.5 9.5 L 14.5 5.5 z"/>
+            </svg>
+        </a>
+        <a class="editDelete" fxFlex="none" (click)="delete(templateName)">
+            <svg id="delete" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+        </a>
+    </div>
+
+    <button fxFlexAlign="end" fxFlexAlign.lt-sm="center" class="btn-pink" (click)="edit()">Nieuw sjabloon</button>
+</div>
