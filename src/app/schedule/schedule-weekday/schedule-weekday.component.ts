@@ -8,6 +8,7 @@ import {WorkdayTemplateDataService} from '../../services/workdayTemplate.data.se
 import {MatDialog} from '@angular/material/dialog';
 import {SuccessModalComponent} from '../../shared/success-modal/success-modal.component';
 import {EditUnitModalComponent} from '../schedule-unit/edit-unit-modal/edit-unit-modal.component';
+import {CommentListComponent} from '../comment-list/comment-list.component';
 
 @Component({
   selector: 'app-schedule-weekday',
@@ -77,8 +78,10 @@ export class ScheduleWeekdayComponent implements OnInit {
     }
   }
 
-  viewComments() {
-    // TODO
+  viewComments(comments: Comment[]) {
+    this.dialog.open(CommentListComponent, {
+      width: '800px',
+      data: {comments}
+    });
   }
-
 }

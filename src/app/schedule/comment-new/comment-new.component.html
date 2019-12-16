@@ -1,0 +1,8 @@
+<form [formGroup]="commentForm" (keyup.enter)="save()">
+    <div class="content">
+        <mat-form-field appearance="outline">
+            <mat-label>Opmerking</mat-label>
+            <input matInput placeholder="Schrijf hier je opmerking" formControlName="comment">
+        </mat-form-field>
+    </div>
+</form>
