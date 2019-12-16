@@ -111,8 +111,11 @@ export class ScheduleUnitComponent implements OnInit {
       }).afterClosed().subscribe(canDelete => {
         if (canDelete) {
           // Delete unit & open modal
-          this.activityDataService.deleteActivityUnit(this.unit, this.workday.id, this.workdayTemplate.id)
-            .subscribe(hasSucceeded => this.openAfterDeleteModal(hasSucceeded));
+          this.activityDataService.deleteActivityUnit(
+            this.unit,
+            this.workday ? this.workday.id : null,
+            this.workdayTemplate ? this.workdayTemplate.id : null
+          ).subscribe(hasSucceeded => this.openAfterDeleteModal(hasSucceeded));
         }
       });
     } else if (this.unit instanceof LunchUnit) {
@@ -123,8 +126,11 @@ export class ScheduleUnitComponent implements OnInit {
       }).afterClosed().subscribe(canDelete => {
         if (canDelete) {
           // Delete unit & open modal
-          this.lunchDataService.deleteLunchUnit(this.unit, this.workday.id, this.workdayTemplate.id)
-            .subscribe(hasSucceeded => this.openAfterDeleteModal(hasSucceeded));
+          this.lunchDataService.deleteLunchUnit(
+            this.unit,
+            this.workday ? this.workday.id : null,
+            this.workdayTemplate ? this.workdayTemplate.id : null
+          ).subscribe(hasSucceeded => this.openAfterDeleteModal(hasSucceeded));
         }
       });
     }
