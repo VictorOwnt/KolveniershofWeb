@@ -12,10 +12,14 @@
         <!-- Select activity -->
         <mat-form-field appearance="outline" *ngIf="isActivity">
             <mat-label>Atelier</mat-label>
-            <input type="text" placeholder="Atelier" aria-label="Atelier" matInput formControlName="activity" [matAutocomplete]="auto">
-            <mat-icon matSuffix><img class="icon svgTextColor" [src]="activityImgUrl ? activityImgUrl: '../../../assets/img/icons/add_circle.svg'" alt="Icoon atelier"/></mat-icon>
+            <input type="text" placeholder="Atelier" aria-label="Atelier" matInput formControlName="activity"
+                   [matAutocomplete]="auto">
+            <mat-icon matSuffix><img class="icon svgTextColor"
+                                     [src]="activityImgUrl ? activityImgUrl: '../../../assets/img/icons/add_circle.svg'"
+                                     alt="Icoon atelier"/></mat-icon>
             <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let activity of filteredActivities | async" [value]="activity" (onSelectionChange)='previewActivity(activity)'>
+                <mat-option *ngFor="let activity of filteredActivities | async" [value]="activity"
+                            (onSelectionChange)='previewActivity(activity)'>
                     {{ activity.name }}
                 </mat-option>
             </mat-autocomplete>
@@ -24,7 +28,8 @@
         <!-- Enter lunch -->
         <mat-form-field *ngIf="!isActivity">
             <input formControlName="lunch" type="text" aria-label="Lunch" matInput placeholder="Maaltijd" required>
-            <button mat-button type="button" *ngIf="unit.lunch" matSuffix mat-icon-button aria-label="Maak leeg" (mousedown)="unit.lunch=''">
+            <button mat-button type="button" *ngIf="unit.lunch" matSuffix mat-icon-button aria-label="Maak leeg"
+                    (mousedown)="unit.lunch=''">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
