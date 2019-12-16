@@ -238,6 +238,42 @@ body {
       border: 2px solid $color-danger;
     }
   }
+
+  &-nextprev {
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    background: none;
+    transition: all .4s ease-in-out;
+
+    > i {
+      transition: all .4s ease-in-out;
+      padding: 10px;
+      color: $color-text;
+      border-radius: 100%;
+    }
+
+    &:hover, &:focus {
+      > i {
+        transition: all .4s ease-in-out;
+        background: #FFF;
+      }
+    }
+
+    &:active {
+      transition: all .1s ease-in-out;
+      opacity: .5;
+    }
+
+    &:disabled {
+      > i {
+        background: unset;
+      }
+
+      opacity: .5;
+      cursor: not-allowed;
+    }
+  }
 }
 
 // SVG color changer in img tag ( !!! SVG MUST BE BLACK !!! )

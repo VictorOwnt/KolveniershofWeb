@@ -24,6 +24,7 @@ import {SharedModule} from '../shared/shared.module';
 import {ScheduleRoutingModule} from './schedule-routing.module';
 import { ScheduleUserComponent } from './schedule-user/schedule-user.component';
 import { UserSelectorModalComponent } from './user-selector-modal/user-selector-modal.component';
+import { ScheduleTemplateComponent } from './schedule-template/schedule-template.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { UserSelectorModalComponent } from './user-selector-modal/user-selector-
     ScheduleWeekendComponent,
     ScheduleAdminComponent,
     ScheduleUserComponent,
-    UserSelectorModalComponent
+    UserSelectorModalComponent,
+    ScheduleTemplateComponent
   ],
   imports: [
     CommonModule,

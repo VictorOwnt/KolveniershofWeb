@@ -31,7 +31,7 @@ export class WorkdayTemplateDataService {
       .pipe(map(WorkdayTemplate.fromJSON));
   }
 
-  getWorkdayTemplatesByName(name: string, week: string = null, day: string = null): Observable<WorkdayTemplate[]> {
+  getWorkdayTemplatesByName(name: string, week: number = null, day: number = null): Observable<WorkdayTemplate[]> {
     let url;
     if (week) {
       if (day) {
@@ -80,6 +80,38 @@ export class WorkdayTemplateDataService {
     return this.http
       .post(`${API_URL}/workdayTemplates/createWeek/${templateName}/${weekNumber}/${this.datesService.backendFormatDate(date)}`, null)
       .pipe(map((list: any[]): Workday[] => list.map(Workday.fromJSON)));
+  }
+
+  getDayIcon(day: number): string {
+    let iconName = 'icons/icon-';
+    switch (day) {
+      case 0:
+        iconName = iconName.concat('sun');
+        break;
+      case 1:
+        iconName = iconName.concat('moon');
+        break;
+      case 2:
+        iconName = iconName.concat('beach-ball');
+        break;
+      case 3:
+        iconName = iconName.concat('angry');
+        break;
+      case 4:
+        iconName = iconName.concat('cloud-lightning');
+        break;
+      case 5:
+        iconName = iconName.concat('bird');
+        break;
+      case 6:
+        iconName = iconName.concat('flower-bouquet');
+        break;
+      default:
+        iconName = iconName.concat('angry');
+        break;
+    }
+    iconName = iconName.concat('.svg');
+    return iconName;
   }
 
 }

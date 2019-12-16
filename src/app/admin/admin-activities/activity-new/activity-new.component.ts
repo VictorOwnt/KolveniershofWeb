@@ -6,19 +6,21 @@ import {AuthenticationService} from '../../../authentication/authentication.serv
 import {Router} from '@angular/router';
 import {ActivityDataService} from '../../../services/activity.data.service';
 import {HttpErrorResponse} from '@angular/common/http';
-import { Activity } from 'src/app/models/activity.model';
-import { FirebaseService } from '../../../services/firebase.service';
-import { DomSanitizer } from '@angular/platform-browser';
+import {Activity} from 'src/app/models/activity.model';
+import {FirebaseService} from '../../../services/firebase.service';
+import {DomSanitizer} from '@angular/platform-browser';
 
 function validate(url: any) {
   return (c: FormControl) => {
     console.log(c);
     if (url || c.value !== '') {
       return true;
-    } else { return {validate: {
-        valid: false
-      }
-    };
+    } else {
+      return {
+        validate: {
+          valid: false
+        }
+      };
     }
   };
 
@@ -37,15 +39,16 @@ export class ActivityNewComponent implements OnInit {
   public nieuweData = false;
 
   constructor(
-      @Inject(MAT_DIALOG_DATA) public activity: Activity,
-      public dialogRef: MatDialogRef<ActivityNewComponent>,
-      private authService: AuthenticationService,
-      private router: Router,
-      private fb: FormBuilder,
-      private activityDataService: ActivityDataService,
-      private firebaseService: FirebaseService,
-      private sanitizer: DomSanitizer
-      ) {}
+    @Inject(MAT_DIALOG_DATA) public activity: Activity,
+    public dialogRef: MatDialogRef<ActivityNewComponent>,
+    private authService: AuthenticationService,
+    private router: Router,
+    private fb: FormBuilder,
+    private activityDataService: ActivityDataService,
+    private firebaseService: FirebaseService,
+    private sanitizer: DomSanitizer
+  ) {
+  }
 
   ngOnInit() {
     if (this.activity) {
@@ -59,15 +62,14 @@ export class ActivityNewComponent implements OnInit {
   }
 
 
-
   getNameErrorMessage() {
     return (this.activityForm.controls.name.hasError('required'))
-        ? 'Naam is verplicht.' : '';
+      ? 'Naam is verplicht.' : '';
   }
 
   getIconErrorMessage() {
     return (this.activityForm.controls.icon.hasError('validate'))
-        ? '(verplicht)' : '';
+      ? '(verplicht)' : '';
   }
 
   preview(fileInput: any) {
@@ -91,54 +93,54 @@ export class ActivityNewComponent implements OnInit {
       }
       this.activity.name = this.activityForm.value.name;
       this.activityDataService.patchActivity(this.activity).subscribe(
-          val => {
-            if (val) {
-              if (this.authService.redirectUrl) {
-                this.router.navigateByUrl(this.authService.redirectUrl);
-                this.authService.redirectUrl = undefined;
-              } else {
-                this.dialogRef.close();
-              }
+        val => {
+          if (val) {
+            if (this.authService.redirectUrl) {
+              this.router.navigateByUrl(this.authService.redirectUrl);
+              this.authService.redirectUrl = undefined;
             } else {
-              this.errorMsg = `Activiteit aanmaken mislukt`;
+              this.dialogRef.close();
             }
-          },
-          (err: HttpErrorResponse) => {
-            console.log(err);
-            if (err.error instanceof Error) {
-              this.errorMsg = `${err.error.message}`;
-            } else {
-              this.errorMsg = `${err.error}`;
-            }
-            $('#errorMsg').slideDown(200);
+          } else {
+            this.errorMsg = `Atelier aanpassen mislukt`;
           }
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err);
+          if (err.error instanceof Error) {
+            this.errorMsg = `${err.error.message}`;
+          } else {
+            this.errorMsg = `${err.error}`;
+          }
+          $('#errorMsg').slideDown(200);
+        }
       );
     } else {// TODO - doesn't update without refresh
       const filePath = 'icons/icon-' + this.activityForm.value.name;
       this.firebaseService.uploadFile(filePath);
       const activity = new Activity(this.activityForm.value.name, filePath);
       this.activityDataService.postActivity(activity).subscribe(
-          val => {
-            if (val) {
-              if (this.authService.redirectUrl) {
-                this.router.navigateByUrl(this.authService.redirectUrl);
-                this.authService.redirectUrl = undefined;
-              } else {
-                this.dialogRef.close();
-              }
+        val => {
+          if (val) {
+            if (this.authService.redirectUrl) {
+              this.router.navigateByUrl(this.authService.redirectUrl);
+              this.authService.redirectUrl = undefined;
             } else {
-              this.errorMsg = `Activiteit aanmaken mislukt`;
+              this.dialogRef.close();
             }
-          },
-          (err: HttpErrorResponse) => {
-            console.log(err);
-            if (err.error instanceof Error) {
-              this.errorMsg = `${err.error.message}`;
-            } else {
-              this.errorMsg = `${err.error}`;
-            }
-            $('#errorMsg').slideDown(200);
+          } else {
+            this.errorMsg = `Atelier aanmaken mislukt`;
           }
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err);
+          if (err.error instanceof Error) {
+            this.errorMsg = `${err.error.message}`;
+          } else {
+            this.errorMsg = `${err.error}`;
+          }
+          $('#errorMsg').slideDown(200);
+        }
       );
     }
   }
