@@ -217,9 +217,13 @@ export class ExportService {
       // Add general info
       ExportService.addGeneral(pdf);
       // Add amActivities
-      this.addActivities(pdf, workday.amActivities, true);
+      if (workday.amActivities.length !== 0) {
+        this.addActivities(pdf, workday.amActivities, true);
+      }
       // Add pmActivities
-      this.addActivities(pdf, workday.pmActivities, false);
+      if (workday.pmActivities.length !== 0) {
+        this.addActivities(pdf, workday.pmActivities, false);
+      }
     }
   }
 
