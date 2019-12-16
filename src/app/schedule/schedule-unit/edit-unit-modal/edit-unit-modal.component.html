@@ -48,7 +48,8 @@
 
     <div mat-dialog-actions fxLayoutAlign="end" fxFlexAlign="end" fxLayout="row" fxLayoutGap="20px"
          fxLayout.lt-sm="column" fxLayoutAlign.lt-sm="center" fxFlexAlign.lt-sm="center">
-        <button class="btn-pink" type="submit" [disabled]="!unitFormGroup.valid || !unitFormGroup.dirty">{{ isActivity ? "Activiteit opslaan" : "Lunch opslaan" }}</button>
+        <button class="btn-pink" type="submit"
+                [disabled]="!unitFormGroup.valid || !unitFormGroup.dirty">{{ isActivity ? "Atelier opslaan" : "Lunch opslaan" }}</button>
         <button class="btn-pink-outline" matDialogClose>Annuleren</button>
     </div>
 </form>
