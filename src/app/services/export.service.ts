@@ -224,6 +224,10 @@ export class ExportService {
       if (workday.pmActivities.length !== 0) {
         this.addActivities(pdf, workday.pmActivities, false);
       }
+      // Add dayActivities
+      if (workday.dayActivities.length !== 0) {
+        this.addActivities(pdf, workday.dayActivities, null, true);
+      }
     }
   }
 
@@ -233,14 +237,20 @@ export class ExportService {
    * @param activityUnits ActivityUnits
    * @param isAm  Whether the activities are situated before or after noon
    */
-  private addActivities(pdf, activityUnits: ActivityUnit[], isAm: boolean) {
+  private addActivities(pdf, activityUnits: ActivityUnit[], isAm: boolean = null, isDay: boolean = null) {
     // Activities header
     pdf.content.push(
-      {
-        text: isAm ? 'Voormiddag' : 'Namiddag',
-        style: 'activitiesHeader',
-        margin: [0, 25, 0, 0]
-      }
+      isDay ?
+        {
+          text: 'Volledige dag',
+          style: 'activitiesHeader',
+          margin: [0, 25, 0, 0]
+        } :
+        {
+          text: isAm ? 'Voormiddag' : 'Namiddag',
+          style: 'activitiesHeader',
+          margin: [0, 25, 0, 0]
+        }
     );
     // Add activities
     activityUnits.forEach(activityUnit => pdf.content.push([
