@@ -40,11 +40,25 @@ export class ExportService {
   }
 
   /**
-   * TODO
+   * Adds general information to pdf
    * @param pdf File to add to
+   * @param notes General notes to display
    */
-  private static addGeneral(pdf/*, TODO*/) {
-    pdf.content.push(/*TODO*/);
+  private static addGeneral(pdf, notes: string) {
+    if (notes && notes.trim() !== '') {
+      pdf.content.push([
+        {
+          text: 'Algemene informatie',
+          style: 'sectionHeader',
+          margin: [0, 25, 0, 0]
+        },
+        {
+          text: notes,
+          italics: true,
+          margin: [0, 10, 0, 0]
+        }
+      ]);
+    }
   }
 
   /**
@@ -155,7 +169,7 @@ export class ExportService {
           fontSize: 28,
           alignment: 'center'
         },
-        activitiesHeader: {
+        sectionHeader: {
           fontSize: 16,
           bold: true
         },
@@ -196,6 +210,8 @@ export class ExportService {
       pageBreak: isFirstPage ? null : 'before'
     });
 
+    // Add general info
+    ExportService.addGeneral(pdf, workday.notes);
     if (workday.holiday) {
       pdf.content.push([
         // Holiday icon
@@ -214,8 +230,6 @@ export class ExportService {
         }
       ]);
     } else {
-      // Add general info
-      ExportService.addGeneral(pdf);
       // Add amActivities
       if (workday.amActivities.length !== 0) {
         this.addActivities(pdf, workday.amActivities, true);
@@ -243,12 +257,12 @@ export class ExportService {
       isDay ?
         {
           text: 'Volledige dag',
-          style: 'activitiesHeader',
+          style: 'sectionHeader',
           margin: [0, 25, 0, 0]
         } :
         {
           text: isAm ? 'Voormiddag' : 'Namiddag',
-          style: 'activitiesHeader',
+          style: 'sectionHeader',
           margin: [0, 25, 0, 0]
         }
     );
