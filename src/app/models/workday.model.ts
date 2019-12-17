@@ -114,7 +114,7 @@ export class Workday {
       dayActivities: this.dayActivities.map(activityUnit => activityUnit.toJSON()),
       morningBusses: this.morningBusses.map(busUnit => busUnit.toJSON()),
       amActivities: this.amActivities.map(activityUnit => activityUnit.toJSON()),
-      lunch: this.lunch.toJSON(),
+      lunch: this.lunch ? this.lunch.toJSON() : null,
       pmActivities: this.pmActivities.map(activityUnit => activityUnit.toJSON()),
       eveningBusses: this.eveningBusses.map(busUnit => busUnit.toJSON()),
       holiday: this.holiday,

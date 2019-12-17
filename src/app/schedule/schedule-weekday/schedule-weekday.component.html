@@ -42,7 +42,7 @@
                         Vrijaf
                     </mat-slide-toggle>
                     <mat-slide-toggle [checked]="hasDayActivities" (change)="changeDayActivities($event.checked)"
-                                      aria-label="Daguitstap" [disabled]="workday.holiday">
+                                      aria-label="Daguitstap" [disabled]="workday.holiday" #dayActivitiesToggle>
                         Daguitstap
                     </mat-slide-toggle>
                 </div>

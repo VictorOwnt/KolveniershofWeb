@@ -19,6 +19,7 @@ import {ErrorModalComponent} from '../../shared/error-modal/error-modal.componen
 })
 export class ScheduleWeekdayComponent implements OnInit {
   @ViewChild('notes', {static: false}) notesInput;
+  @ViewChild('dayActivitiesToggle', {static: false}) dayActivitiesToggle;
   @Input() workday: Workday | WorkdayTemplate;
   @Input() isAdmin: boolean;
   isTemplate: boolean;
@@ -107,11 +108,11 @@ export class ScheduleWeekdayComponent implements OnInit {
   changeDayActivities(hasDayActivities: boolean) {
     this.dialog.open(WarningModalComponent, {
       width: '500px',
-      data: {message: hasDayActivities ? 'Hiermee verwijder je het bestaande dagatelier.' : 'Hiermee verwijder je alle bestaande ateliers en de lunch.'}
+      data: {message: this.hasDayActivities ? 'Hiermee verwijder je het bestaande dagatelier.' : 'Hiermee verwijder je alle bestaande ateliers en de lunch.'}
     }).afterClosed().subscribe(result => {
       if (result) {
         // Delete data in activity
-        if (hasDayActivities) {
+        if (this.hasDayActivities) {
           this.workday.dayActivities = [];
         } else {
           this.workday.lunch = null;
@@ -124,6 +125,7 @@ export class ScheduleWeekdayComponent implements OnInit {
               // Set hasDayActivities to slider value
               this.hasDayActivities = hasDayActivities;
             } else {
+              this.dayActivitiesToggle.checked = !hasDayActivities;
               // Open error dialog
               this.dialog.open(ErrorModalComponent, {
                 width: '300px',
@@ -139,11 +141,19 @@ export class ScheduleWeekdayComponent implements OnInit {
               // Set hasDayActivities to slider value
               this.hasDayActivities = hasDayActivities;
             } else {
+              this.dayActivitiesToggle.checked = !hasDayActivities;
+              // Open error dialog
+              this.dialog.open(ErrorModalComponent, {
+                width: '300px',
+                data: {message: 'Het is niet gelukt om de dag aan te passen.'}
+              });
               // Reload workday data
               this.workdayDataService.getWorkdayById(this.workday.id).subscribe(workday => this.workday = workday);
             }
           });
         }
+      } else {
+        this.dayActivitiesToggle.checked = !hasDayActivities;
       }
     });
   }
