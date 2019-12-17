@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Workday} from '../../models/workday.model';
 import {WorkdayDataService} from '../../services/workday.data.service';
 import {FirebaseService} from 'src/app/services/firebase.service';
@@ -18,6 +18,7 @@ import {ErrorModalComponent} from '../../shared/error-modal/error-modal.componen
   styleUrls: ['./schedule-weekday.component.scss']
 })
 export class ScheduleWeekdayComponent implements OnInit {
+  @ViewChild('notes', {static: false}) notesInput;
   @Input() workday: Workday | WorkdayTemplate;
   @Input() isAdmin: boolean;
   isTemplate: boolean;
