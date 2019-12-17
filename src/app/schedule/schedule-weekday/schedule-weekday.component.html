@@ -30,9 +30,12 @@
                         template {{ workday.originalTemplateName }}, week {{ workday.originalWeekNumber }}.</p>
                     <mat-form-field appearance="outline" *ngIf="!isTemplate">
                         <mat-label>Nota's</mat-label>
-                        <input matInput placeholder="Schrijf hier je nota's"
-                               [value]="workday.notes ? workday.notes : ''"
-                               (keydown.enter)="addNotes($event.target.value)">
+                        <textarea #notes matInput placeholder="Schrijf hier je nota's"
+                                  [value]="workday.notes ? workday.notes : ''"></textarea>
+                        <button mat-icon-button matSuffix (click)="addNotes(notes.value)"
+                                [attr.aria-label]="'Nota\'s opslaan'">
+                            <mat-icon>add_comment</mat-icon>
+                        </button>
                     </mat-form-field>
                     <mat-slide-toggle [checked]="workday.holiday" (change)="changeHoliday($event.checked)"
                                       [aria-label]="'Vrijaf ' + (workday.date | date: 'dd/MM/yyyy')">

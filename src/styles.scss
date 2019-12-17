@@ -260,6 +260,27 @@ body {
     }
   }
 
+  &-success {
+    @extend .btn;
+    background-color: $color-success;
+    -webkit-box-shadow: $shadow-success;
+    -moz-box-shadow: $shadow-success;
+    box-shadow: $shadow-success;
+
+    &:hover {
+      -webkit-box-shadow: $shadow-success-hover;
+      -moz-box-shadow: $shadow-success-hover;
+      box-shadow: $shadow-success-hover;
+    }
+
+    &-outline {
+      @extend .btn-success;
+      background-color: unset;
+      color: $color-success;
+      border: 2px solid $color-success;
+    }
+  }
+
   &-nextprev {
     text-decoration: none;
     border: none;

@@ -47,7 +47,21 @@ export class ScheduleWeekdayComponent implements OnInit {
 
   addNotes(notes: string) {
     (this.workday as Workday).notes = notes;
-    this.workdayDataService.patchWorkday(this.workday as Workday).subscribe();
+    this.workdayDataService.patchWorkday(this.workday as Workday).subscribe(value => {
+      if (value.notes === (this.workday as Workday).notes) {
+        // Success modal
+        this.dialog.open(SuccessModalComponent, {
+          width: '300px',
+          data: {message: 'Nota\'s succesvol opgeslagen.'}
+        });
+      } else {
+        // Error modal
+        this.dialog.open(ErrorModalComponent, {
+          width: '300px',
+          data: {message: 'Opslaan nota\'s mislukt.'}
+        });
+      }
+    });
   }
 
   newUnit(type: string, isAm: boolean = null, isDay: boolean = null) {

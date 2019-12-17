@@ -44,7 +44,7 @@ h1, h2, h3, p {
     padding-top: $card-padding;
     padding-bottom: $card-padding;
 
-    &:not(#pmActivities, #dayActivities) {
+    &:not(#pmActivities):not(#dayActivities) {
       border-bottom: 2px solid $color-divider;
     }
   }
@@ -62,6 +62,10 @@ h1, h2, h3, p {
       &:last-child {
         margin-top: 20px;
       }
+    }
+
+    mat-form-field {
+      margin-bottom: calc(-1.34375em + 10px);
     }
   }
 
@@ -106,7 +110,7 @@ h1, h2, h3, p {
     }
 
     & > #amActivities {
-      border-bottom: unset;
+      border-bottom: unset !important;
     }
   }
 }
@@ -119,6 +123,3 @@ h1, h2, h3, p {
   margin-left: -10px;
   margin-right: -10px;
 }
-
-
-
