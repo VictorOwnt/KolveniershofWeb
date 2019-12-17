@@ -41,6 +41,11 @@ export class ScheduleWeekdayComponent implements OnInit {
     }
   }
 
+  addNotes(notes: string) {
+    (this.workday as Workday).notes = notes;
+    this.workdayDataService.patchWorkday(this.workday as Workday).subscribe();
+  }
+
   newUnit(type: string, isAm: boolean = null) {
     let dialogData;
     if (this.isTemplate) {
