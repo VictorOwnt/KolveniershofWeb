@@ -60,11 +60,25 @@ export class TemplateNewComponent implements OnInit {
 
   save() {
     if (this.oldName) {
-      this.workdayTemplateDataService.patchWorkdayTemplateName(this.oldName, this.templateForm.value.templateName);
-      this.dialogRef.close('Sjabloon aangepast');
+      this.workdayTemplateDataService.patchWorkdayTemplateName(this.oldName, this.templateForm.value.templateName).subscribe(value => {
+        if (value) {
+          // Success dialog
+          this.dialogRef.close('Sjabloon aangepast');
+        } else {
+          // Error dialog
+          this.dialogRef.close(false);
+        }
+      });
     } else {
-      this.workdayTemplateDataService.postCreateWorkdayTemplatesWithName(this.templateForm.value.templateName);
-      this.dialogRef.close('Sjabloon toegevoegd');
+      this.workdayTemplateDataService.postCreateWorkdayTemplatesWithName(this.templateForm.value.templateName).subscribe(value => {
+        if (value) {
+          // Success dialog
+          this.dialogRef.close('Sjabloon toegevoegd');
+        } else {
+          // Error dialog
+          this.dialogRef.close(false);
+        }
+      });
     }
   }
 

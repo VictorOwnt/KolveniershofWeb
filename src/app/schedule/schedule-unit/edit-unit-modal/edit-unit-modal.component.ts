@@ -109,8 +109,15 @@ export class EditUnitModalComponent implements OnInit {
         patchedUnit.mentors = this.unitFormGroup.value.mentors;
         patchedUnit.clients = this.unitFormGroup.value.clients;
         // Patch ActivityUnit
-        this.activityDataService.patchActivityUnit(patchedUnit, this.workday.id, this.workdayTemplate.id);
-        this.dialogRef.close('Atelier aangepast');
+        this.activityDataService.patchActivityUnit(patchedUnit, this.workday.id, this.workdayTemplate.id).subscribe(value => {
+          if (value) {
+            // Success dialog
+            this.dialogRef.close('Atelier aangepast');
+          } else {
+            // Error dialog
+            this.dialogRef.close(false);
+          }
+        });
       } else {
         // Create patched unit
         const patchedUnit = this.unit as LunchUnit;
@@ -118,8 +125,15 @@ export class EditUnitModalComponent implements OnInit {
         patchedUnit.mentors = this.unitFormGroup.value.mentors;
         patchedUnit.clients = this.unitFormGroup.value.clients;
         // Patch LunchUnit
-        this.lunchDataService.patchLunchUnit(patchedUnit, this.workday.id, this.workdayTemplate.id);
-        this.dialogRef.close('Lunch aangepast');
+        this.lunchDataService.patchLunchUnit(patchedUnit, this.workday.id, this.workdayTemplate.id).subscribe(value => {
+          if (value) {
+            // Success dialog
+            this.dialogRef.close('Lunch aangepast');
+          } else {
+            // Error dialog
+            this.dialogRef.close(false);
+          }
+        });
       }
     } else {
       if (this.isActivity) {
@@ -131,6 +145,10 @@ export class EditUnitModalComponent implements OnInit {
         );
         // Post unit
         this.activityDataService.postActivityUnit(newUnit).subscribe(activityUnit => {
+          if (!activityUnit) {
+            // Error dialog
+            this.dialogRef.close(false);
+          }
           if (this.workday) {
             // Add unit to workday
             if (this.isDay) {
@@ -140,7 +158,15 @@ export class EditUnitModalComponent implements OnInit {
             } else {
               this.workday.pmActivities.push(activityUnit);
             }
-            this.workdayDataService.patchWorkday(this.workday);
+            this.workdayDataService.patchWorkday(this.workday).subscribe(value => {
+              if (value) {
+                // Success dialog
+                this.dialogRef.close('Atelier toegevoegd');
+              } else {
+                // Error dialog
+                this.dialogRef.close(false);
+              }
+            });
           } else if (this.workdayTemplate) {
             // Add unit to workday template
             if (this.isDay) {
@@ -150,10 +176,17 @@ export class EditUnitModalComponent implements OnInit {
             } else {
               this.workdayTemplate.pmActivities.push(activityUnit);
             }
-            this.workdayTemplateDataService.patchWorkdayTemplate(this.workdayTemplate);
+            this.workdayTemplateDataService.patchWorkdayTemplate(this.workdayTemplate).subscribe(value => {
+              if (value) {
+                // Success dialog
+                this.dialogRef.close('Atelier toegevoegd');
+              } else {
+                // Error dialog
+                this.dialogRef.close(false);
+              }
+            });
           }
         });
-        this.dialogRef.close('Atelier toegevoegd');
       } else {
         // Create new unit
         const newUnit = new LunchUnit(
@@ -163,17 +196,35 @@ export class EditUnitModalComponent implements OnInit {
         );
         // Post unit
         this.lunchDataService.postLunchUnit(newUnit).subscribe(lunchUnit => {
+          if (!lunchUnit) {
+            this.dialogRef.close(false);
+          }
           if (this.workday) {
             // Add unit to workday
             this.workday.lunch = lunchUnit;
-            this.workdayDataService.patchWorkday(this.workday);
+            this.workdayDataService.patchWorkday(this.workday).subscribe(value => {
+              if (value) {
+                // Success dialog
+                this.dialogRef.close('Lunch toegevoegd');
+              } else {
+                // Error dialog
+                this.dialogRef.close(false);
+              }
+            });
           } else if (this.workdayTemplate) {
             // Add unit to workday template
             this.workdayTemplate.lunch = lunchUnit;
-            this.workdayTemplateDataService.patchWorkdayTemplate(this.workdayTemplate);
+            this.workdayTemplateDataService.patchWorkdayTemplate(this.workdayTemplate).subscribe(value => {
+              if (value) {
+                // Success dialog
+                this.dialogRef.close('Lunch toegevoegd');
+              } else {
+                // Error dialog
+                this.dialogRef.close(false);
+              }
+            });
           }
         });
-        this.dialogRef.close('Lunch toegevoegd');
       }
     }
   }
