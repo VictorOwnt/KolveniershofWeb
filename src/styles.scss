@@ -239,6 +239,27 @@ body {
     }
   }
 
+  &-warning {
+    @extend .btn;
+    background-color: $color-warning;
+    -webkit-box-shadow: $shadow-warning;
+    -moz-box-shadow: $shadow-warning;
+    box-shadow: $shadow-warning;
+
+    &:hover {
+      -webkit-box-shadow: $shadow-warning-hover;
+      -moz-box-shadow: $shadow-warning-hover;
+      box-shadow: $shadow-warning-hover;
+    }
+
+    &-outline {
+      @extend .btn-warning;
+      background-color: unset;
+      color: $color-warning;
+      border: 2px solid $color-warning;
+    }
+  }
+
   &-nextprev {
     text-decoration: none;
     border: none;
