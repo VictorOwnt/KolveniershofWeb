@@ -1,8 +1,18 @@
 @import "../../../variables.scss";
 @import "../../../success_failure_icons.scss";
 
-.container { margin: 20px; }
+.container {
+  margin: 20px;
+}
 
-h1 { color: $color-warning-dark; font-size: 150%; }
+h1, p {
+  color: $color-warning-dark;
+}
 
-.mat-dialog-actions { margin-bottom: 0; }
+h1 {
+  font-size: 150%;
+}
+
+.mat-dialog-actions {
+  margin-bottom: 0;
+}

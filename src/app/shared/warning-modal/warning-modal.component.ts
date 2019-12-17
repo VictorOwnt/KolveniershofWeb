@@ -7,20 +7,21 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
   styleUrls: ['./warning-modal.component.scss']
 })
 export class WarningModalComponent implements OnInit {
-  itemToDelete = 'item';
+  message: string = null;
 
   constructor(public dialogRef: MatDialogRef<WarningModalComponent>, @Inject(MAT_DIALOG_DATA) data: any) {
-    this.itemToDelete = data.itemToDelete;
+    this.message = data.message ? data.message : null;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   onDelete() {
     this.dialogRef.close(true);
   }
- /*
+
   onCancel() {
     this.dialogRef.close(false);
-  }*/
+  }
 
 }

@@ -10,9 +10,10 @@ export class ErrorModalComponent implements OnInit {
   message: string = null;
 
   constructor(@Inject(MAT_DIALOG_DATA) data: any) {
-    this.message = data.message;
+    this.message = data.message ? data.message : '';
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
 }
