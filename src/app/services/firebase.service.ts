@@ -31,7 +31,7 @@ export class FirebaseService {
         if (type === 'user' && ref === '') {
             return of('../../../assets/img/profile_picture_empty.png');
         } else if (type === 'icon' && ref === '') {
-            return of('../../../assets/img/icons/icon-angry.svg');
+            return of('../../../assets/img/icons/icon-question-mark.svg');
         } else {
             return this.storage.ref(ref).getDownloadURL();
         }

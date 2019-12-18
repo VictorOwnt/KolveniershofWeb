@@ -1,8 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthenticationService} from '../../../authentication/authentication.service';
-import {Router} from '@angular/router';
 import {ActivityDataService} from '../../../services/activity.data.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Activity} from 'src/app/models/activity.model';
@@ -12,7 +10,6 @@ import {ErrorModalComponent} from '../../../shared/error-modal/error-modal.compo
 
 function validate(url: any) {
   return (c: FormControl) => {
-    console.log(c);
     if (url || c.value !== '') {
       return true;
     } else {
@@ -41,8 +38,6 @@ export class ActivityNewComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data: any,
     public dialogRef: MatDialogRef<ActivityNewComponent>,
     private dialog: MatDialog,
-    private authService: AuthenticationService,
-    private router: Router,
     private fb: FormBuilder,
     private activityDataService: ActivityDataService,
     private firebaseService: FirebaseService,

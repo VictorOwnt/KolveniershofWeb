@@ -14,6 +14,7 @@ import {RouterModule} from '@angular/router';
 import {AdminRoutingModule} from './admin-routing.module';
 import {AdminTemplatesComponent} from './admin-templates/admin-templates.component';
 import {TemplateNewComponent} from './admin-templates/template-new/template-new.component';
+import { ActivityComponent } from './admin-activities/activity/activity.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {TemplateNewComponent} from './admin-templates/template-new/template-new.
     BusNewComponent,
     AdminComponent,
     AdminTemplatesComponent,
-    TemplateNewComponent
+    TemplateNewComponent,
+    ActivityComponent
   ],
   imports: [
     CommonModule,
