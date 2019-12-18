@@ -6,23 +6,23 @@
             <mat-label>Naam</mat-label>
             <input matInput [value]="activity ? activity.name : ''" placeholder="Naam van het atelier"
                    formControlName="name" required data-cy=NewNameInput>
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             <mat-error *ngIf="activityForm.controls.name.invalid">{{getNameErrorMessage()}}</mat-error>
         </mat-form-field>
         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="6%" fxLayout.lt-md="column"
              fxLayoutGap.lt-md="3%">
             <div>
                 <label for="icon">
-                    <img class="iconupload" [src]="imageUrl ? imageUrl: '../../../assets/img/icons/add_circle.svg'"
+                    <img class="iconupload svgTextColor"
+                         [src]="imageUrl ? imageUrl: '../../../assets/img/icons/add_circle.svg'"
                          data-cy=chosePicture alt="Icoon atelier"/>
                 </label>
                 <br/>
-                <input id="icon" accept='.svg,image/*' type="file" (change)="preview($event)" formControlName="icon"
-                       validate/>
+                <input id="icon" accept='.svg,image/*' type="file" (change)="preview($event)" formControlName="icon"/>
             </div>
         </div>
         <p fxLayoutAlign="center center" class="subtitle">Klik hier om een icoon toe te voegen.</p>
-        <mat-error *ngIf="activityForm.controls.icon.invalid" fxLayoutAlign="center center">{{getIconErrorMessage()}}
+        <mat-error *ngIf="activityForm.controls.icon.invalid" fxLayoutAlign="center center" style="margin-bottom: 20px">
+            {{getIconErrorMessage()}}
         </mat-error>
     </div>
     <div mat-dialog-actions fxLayoutAlign="end" fxFlexAlign="end" fxLayout="row" fxLayoutGap="20px"
