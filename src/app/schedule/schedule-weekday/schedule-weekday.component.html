@@ -1,11 +1,12 @@
 <div class="card" fxLayout="column">
     <div class="card_header" *ngIf="!isTemplate">
-        <h1 class="mat-display-1" fxLayoutAlign="center center">{{ workday.date | date:'EEEE' | titlecase }}</h1>
+        <h1 class="mat-display-1"
+            fxLayoutAlign="center center">{{ (workday | castWorkday).date | date:'EEEE' | titlecase }}</h1>
         <div fxLayout="row" fxLayoutAlign="center center">
             <img class="svgWhiteColor" [src]="icon | async"
                  src-fallback='../../../assets/img/icons/icon-question-mark.svg' alt="Dag icoon">
             <span class="mat-h3" style="margin: auto 10px; ">&middot;</span>
-            <h2 class="mat-h2">{{ workday.date | date:'d/MM' }}</h2>
+            <h2 class="mat-h2">{{ (workday | castWorkday).date | date:'d/MM' }}</h2>
         </div>
     </div>
     <div class="card_header" *ngIf="isTemplate">
@@ -13,7 +14,7 @@
             <img class="svgWhiteColor" [src]="icon | async"
                  src-fallback='../../../assets/img/icons/icon-question-mark.svg' alt="Dag icoon">
             <span class="mat-h3" style="margin: auto 10px; ">&middot;</span>
-            <h1 class="mat-h1">{{ ('2010-03-0' + workday.dayNumber) | date:'EEEE' | titlecase }}</h1>
+            <h1 class="mat-h1">{{ ('2010-03-0' + (workday | castWorkdayTemplate).dayNumber) | date:'EEEE' | titlecase }}</h1>
         </div>
     </div>
     <div fxLayout="column">
@@ -26,19 +27,20 @@
                 <div id="general" *ngIf="isAdmin" fxLayout="column"
                      [style.border-bottom]="(workday.holiday || hasDayActivities) ? 'none' : ''">
                     <h2>Algemeen</h2>
-                    <p *ngIf="workday.originalTemplateName">Deze planning komt van het
-                        template {{ workday.originalTemplateName }}, week {{ workday.originalWeekNumber }}.</p>
+                    <p *ngIf="(workday | castWorkday).originalTemplateName">Deze planning komt van het
+                        template {{ (workday | castWorkday).originalTemplateName }},
+                        week {{ (workday | castWorkday).originalWeekNumber }}.</p>
                     <mat-form-field appearance="outline" *ngIf="!isTemplate">
                         <mat-label>Nota's</mat-label>
                         <textarea #notes matInput placeholder="Schrijf hier je nota's"
-                                  [value]="workday.notes ? workday.notes : ''"></textarea>
+                                  [value]="(workday | castWorkday).notes ? (workday | castWorkday).notes : ''"></textarea>
                         <button mat-icon-button matSuffix (click)="addNotes(notes.value)"
                                 [attr.aria-label]="'Nota\'s opslaan'">
                             <mat-icon>add_comment</mat-icon>
                         </button>
                     </mat-form-field>
                     <mat-slide-toggle [checked]="workday.holiday" (change)="changeHoliday($event.checked)"
-                                      [aria-label]="'Vrijaf ' + (workday.date | date: 'dd/MM/yyyy')">
+                                      [aria-label]="'Vrijaf'">
                         Vrijaf
                     </mat-slide-toggle>
                     <mat-slide-toggle [checked]="hasDayActivities" (change)="changeDayActivities($event.checked)"
@@ -107,10 +109,10 @@
             <img src="../../../assets/img/icons/icon-beach-umbrella.svg" alt="Vrijaf icoon" class="svgTextColor">
             <h3>Vrijaf!</h3>
         </div>
-        <div class="card_footer" *ngIf="!isTemplate && isAdmin && workday.comments.length > 0">
+        <div class="card_footer" *ngIf="!isTemplate && isAdmin && (workday | castWorkday).comments.length > 0">
             <h2>Opmerkingen</h2>
-            <p>Er zijn {{ workday.comments.length }} opmerkingen beschikbaar.</p>
-            <button type="button" class="btn" (click)="viewComments(workday.comments)">Opmerkingen bekijken</button>
+            <p>Er zijn {{ (workday | castWorkday).comments.length }} opmerkingen beschikbaar.</p>
+            <button type="button" class="btn" (click)="viewComments(workday)">Opmerkingen bekijken</button>
         </div>
         <div class="card_footer" [ngClass.gt-sm]="isAdmin ? 'card_footer_2col' : ''" *ngIf="!isTemplate && !isAdmin">
             <app-comment-new [workday]="workday"></app-comment-new>

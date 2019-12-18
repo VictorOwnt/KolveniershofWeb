@@ -30,7 +30,7 @@
             <input #lunchInput formControlName="lunch" type="text" aria-label="Lunch" matInput placeholder="Maaltijd"
                    required>
             <button mat-button type="button" *ngIf="lunchInput.value" matSuffix mat-icon-button aria-label="Maak leeg"
-                    (mousedown)="lunchInput.value = ''; unit ? unit.lunch='' : null; lunchInput.checkValidity();">
+                    (mousedown)="clearLunch()">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
