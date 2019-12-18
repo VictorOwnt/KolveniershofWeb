@@ -14,14 +14,14 @@ import {DeleteModalComponent} from '../../shared/delete-modal/delete-modal.compo
   styleUrls: ['./admin-activities.component.scss']
 })
 export class AdminActivitiesComponent implements OnInit {
-  activities$: Observable<Activity[]>;
+  activities: Activity[];
   iconImage: Observable<string | null>; // TODO - Icon
 
   constructor(public dialog: MatDialog, private activityDataService: ActivityDataService) {
   }
 
   ngOnInit() {
-    this.activities$ = this.activityDataService.activities$;
+    this.activityDataService.activities$.subscribe(activities => this.activities = activities);
   }
 
   edit(activity?: Activity) {
