@@ -44,7 +44,7 @@ h1, h2, h3, p {
     padding-top: $card-padding;
     padding-bottom: $card-padding;
 
-    &:not(#pmActivities) {
+    &:not(#pmActivities):not(#dayActivities) {
       border-bottom: 2px solid $color-divider;
     }
   }
@@ -53,13 +53,19 @@ h1, h2, h3, p {
     > * {
       margin-bottom: 10px;
       margin-top: 10px;
+
       &:first-child {
         margin-top: 0;
         margin-bottom: 20px;
       }
+
       &:last-child {
         margin-top: 20px;
       }
+    }
+
+    mat-form-field {
+      margin-bottom: calc(-1.34375em + 10px);
     }
   }
 
@@ -84,6 +90,7 @@ h1, h2, h3, p {
   > * {
     margin-bottom: 10px;
     margin-top: 10px;
+
     &:first-child {
       margin-top: 0;
       margin-bottom: 20px;
@@ -103,7 +110,7 @@ h1, h2, h3, p {
     }
 
     & > #amActivities {
-      border-bottom: unset;
+      border-bottom: unset !important;
     }
   }
 }
@@ -116,6 +123,3 @@ h1, h2, h3, p {
   margin-left: -10px;
   margin-right: -10px;
 }
-
-
-

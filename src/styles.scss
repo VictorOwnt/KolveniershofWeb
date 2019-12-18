@@ -239,6 +239,48 @@ body {
     }
   }
 
+  &-warning {
+    @extend .btn;
+    background-color: $color-warning;
+    -webkit-box-shadow: $shadow-warning;
+    -moz-box-shadow: $shadow-warning;
+    box-shadow: $shadow-warning;
+
+    &:hover {
+      -webkit-box-shadow: $shadow-warning-hover;
+      -moz-box-shadow: $shadow-warning-hover;
+      box-shadow: $shadow-warning-hover;
+    }
+
+    &-outline {
+      @extend .btn-warning;
+      background-color: unset;
+      color: $color-warning;
+      border: 2px solid $color-warning;
+    }
+  }
+
+  &-success {
+    @extend .btn;
+    background-color: $color-success;
+    -webkit-box-shadow: $shadow-success;
+    -moz-box-shadow: $shadow-success;
+    box-shadow: $shadow-success;
+
+    &:hover {
+      -webkit-box-shadow: $shadow-success-hover;
+      -moz-box-shadow: $shadow-success-hover;
+      box-shadow: $shadow-success-hover;
+    }
+
+    &-outline {
+      @extend .btn-success;
+      background-color: unset;
+      color: $color-success;
+      border: 2px solid $color-success;
+    }
+  }
+
   &-nextprev {
     text-decoration: none;
     border: none;

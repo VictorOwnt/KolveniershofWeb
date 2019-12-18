@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {CommentListComponent} from './comment-list/comment-list.component';
 import {CommentNewComponent} from './comment-new/comment-new.component';
 import {ScheduleEmptyComponent} from './schedule-empty/schedule-empty.component';
@@ -15,16 +15,17 @@ import {
   MatIconModule,
   MatInputModule,
   MatRadioModule,
-  MatSelectModule, MatSlideToggleModule
+  MatSelectModule,
+  MatSlideToggleModule
 } from '@angular/material';
 import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ImgFallbackModule} from 'ngx-img-fallback';
 import {SharedModule} from '../shared/shared.module';
 import {ScheduleRoutingModule} from './schedule-routing.module';
-import { ScheduleUserComponent } from './schedule-user/schedule-user.component';
-import { UserSelectorModalComponent } from './user-selector-modal/user-selector-modal.component';
-import { ScheduleTemplateComponent } from './schedule-template/schedule-template.component';
+import {ScheduleUserComponent} from './schedule-user/schedule-user.component';
+import {UserSelectorModalComponent} from './user-selector-modal/user-selector-modal.component';
+import {ScheduleTemplateComponent} from './schedule-template/schedule-template.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ScheduleTemplateComponent } from './schedule-template/schedule-template
     MatButtonModule,
     MatSlideToggleModule,
     SharedModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule
   ],
   entryComponents: [
     EditUnitModalComponent,
@@ -63,4 +65,5 @@ import { ScheduleTemplateComponent } from './schedule-template/schedule-template
     UserSelectorModalComponent
   ]
 })
-export class ScheduleModule { }
+export class ScheduleModule {
+}

@@ -27,9 +27,13 @@ $gradient-blue: linear-gradient(90deg, $color-primary, $color-primary-dark) !def
 $shadow-blue: 0px 12px 40px 0px rgba(0, 122, 239, .3) !default;
 $shadow-pink: 0px 12px 40px 0px rgba(216, 27, 96, .3) !default;
 $shadow-danger: 0px 12px 40px 0px rgba(255, 68, 68, .3) !default;
+$shadow-warning: 0px 12px 40px 0px rgba(255, 187, 51, .3) !default;
+$shadow-success: 0px 12px 40px 0px rgba(0, 200, 81, .3) !default;
 $shadow-blue-hover: 0px 12px 40px 0px rgba(0, 122, 239, .5) !default;
 $shadow-pink-hover: 0px 12px 40px 0px rgba(255, 68, 68, .5) !default;
 $shadow-danger-hover: 0px 12px 40px 0px rgba(216, 27, 96, .5) !default;
+$shadow-warning-hover: 0px 12px 40px 0px rgba(255, 187, 51, .5) !default;
+$shadow-success-hover: 0px 12px 40px 0px rgba(0, 200, 81, .5) !default;
 $shadow-subtle: 0 -20px 85px rgba(0, 0, 0, 0.05) !default;
 $shadow-hard: 0 0px 65px rgba(0, 0, 0, 0.2) !default;
 $shadow-card: 0 0 60px -15px rgba(0, 0, 0, .2) !default;

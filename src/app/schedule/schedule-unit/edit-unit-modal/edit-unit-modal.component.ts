@@ -27,6 +27,7 @@ export class EditUnitModalComponent implements OnInit {
   workday: Workday = null;
   workdayTemplate: WorkdayTemplate = null;
   isAm: boolean = null;
+  isDay: boolean = null;
   activities: Activity[] = [];
   activityImgUrl: any = null;
   mentors: User[] = [];
@@ -47,10 +48,11 @@ export class EditUnitModalComponent implements OnInit {
     private workdayDataService: WorkdayDataService,
     private workdayTemplateDataService: WorkdayTemplateDataService
   ) {
-    this.unit = data.unit;
-    this.workday = data.workday;
-    this.workdayTemplate = data.workdayTemplate;
-    this.isAm = data.isAm;
+    this.unit = data.unit ? data.unit : null;
+    this.workday = data.workday ? data.workday : null;
+    this.workdayTemplate = data.workdayTemplate ? data.workdayTemplate : null;
+    this.isAm = data.isAm ? data.isAm : null;
+    this.isDay = data.isDay ? data.isDay : null;
     this.isActivity = data.isActivity ? data.isActivity : data.unit instanceof ActivityUnit;
     activityDataService.activities$.subscribe(activities => this.activities = activities);
     userDataService.mentors$.subscribe(mentors => this.mentors = mentors);
@@ -131,7 +133,9 @@ export class EditUnitModalComponent implements OnInit {
         this.activityDataService.postActivityUnit(newUnit).subscribe(activityUnit => {
           if (this.workday) {
             // Add unit to workday
-            if (this.isAm) {
+            if (this.isDay) {
+              this.workday.dayActivities.push(activityUnit);
+            } else if (this.isAm) {
               this.workday.amActivities.push(activityUnit);
             } else {
               this.workday.pmActivities.push(activityUnit);
@@ -139,7 +143,9 @@ export class EditUnitModalComponent implements OnInit {
             this.workdayDataService.patchWorkday(this.workday);
           } else if (this.workdayTemplate) {
             // Add unit to workday template
-            if (this.isAm) {
+            if (this.isDay) {
+              this.workdayTemplate.dayActivities.push(activityUnit);
+            } else if (this.isAm) {
               this.workdayTemplate.amActivities.push(activityUnit);
             } else {
               this.workdayTemplate.pmActivities.push(activityUnit);

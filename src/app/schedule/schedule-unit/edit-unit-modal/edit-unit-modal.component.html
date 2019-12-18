@@ -27,9 +27,10 @@
 
         <!-- Enter lunch -->
         <mat-form-field *ngIf="!isActivity">
-            <input formControlName="lunch" type="text" aria-label="Lunch" matInput placeholder="Maaltijd" required>
-            <button mat-button type="button" *ngIf="unit.lunch" matSuffix mat-icon-button aria-label="Maak leeg"
-                    (mousedown)="unit.lunch=''">
+            <input #lunchInput formControlName="lunch" type="text" aria-label="Lunch" matInput placeholder="Maaltijd"
+                   required>
+            <button mat-button type="button" *ngIf="lunchInput.value" matSuffix mat-icon-button aria-label="Maak leeg"
+                    (mousedown)="lunchInput.value = ''; unit ? unit.lunch='' : null; lunchInput.checkValidity();">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
@@ -53,8 +54,8 @@
 
     <div mat-dialog-actions fxLayoutAlign="end" fxFlexAlign="end" fxLayout="row" fxLayoutGap="20px"
          fxLayout.lt-sm="column" fxLayoutAlign.lt-sm="center" fxFlexAlign.lt-sm="center">
-        <button class="btn-pink" type="submit"
-                [disabled]="!unitFormGroup.valid || !unitFormGroup.dirty">{{ isActivity ? "Atelier opslaan" : "Lunch opslaan" }}</button>
+        <button class="btn-pink" type="submit" [disabled]="!unitFormGroup.valid || !unitFormGroup.dirty">
+            {{ isActivity ? "Atelier opslaan" : "Lunch opslaan" }}</button>
         <button class="btn-pink-outline" matDialogClose>Annuleren</button>
     </div>
 </form>

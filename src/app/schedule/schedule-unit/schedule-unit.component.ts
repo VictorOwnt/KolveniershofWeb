@@ -23,6 +23,7 @@ export class ScheduleUnitComponent implements OnInit {
   @Input() private workday?: Workday;
   @Input() private workdayTemplate?: WorkdayTemplate;
   @Input() private isAm?: boolean;
+  @Input() private isDay?: boolean;
   @Input() isAdmin: boolean;
   title: string;
   icon: string;
@@ -90,7 +91,8 @@ export class ScheduleUnitComponent implements OnInit {
         unit: this.unit,
         workday: this.workday,
         workdayTemplate: this.workdayTemplate,
-        isAm: this.isAm
+        isAm: this.isAm,
+        isDay: this.isDay
       }
     }).afterClosed().subscribe(message => {
       if (message) {

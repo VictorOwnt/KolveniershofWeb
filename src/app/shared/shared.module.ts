@@ -9,6 +9,7 @@ import {RouterModule} from '@angular/router';
 import {FlexModule} from '@angular/flex-layout';
 import {MatDialogModule} from '@angular/material';
 import {WorkdayFilterPipe} from './pipes/workday-filter.pipe';
+import {WarningModalComponent} from './warning-modal/warning-modal.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {WorkdayFilterPipe} from './pipes/workday-filter.pipe';
     DeleteModalComponent,
     SuccessModalComponent,
     ErrorModalComponent,
-    WorkdayFilterPipe
+    WorkdayFilterPipe,
+    WarningModalComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import {WorkdayFilterPipe} from './pipes/workday-filter.pipe';
   entryComponents: [
     DeleteModalComponent,
     SuccessModalComponent,
-    ErrorModalComponent
+    ErrorModalComponent,
+    WarningModalComponent
   ],
   exports: [
     HeaderComponent,

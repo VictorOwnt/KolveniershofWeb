@@ -1,8 +1,8 @@
-import { User } from './user.model';
-import { ActivityUnit } from './activityUnit.model';
-import { LunchUnit } from './lunchUnit.model';
+import {User} from './user.model';
+import {ActivityUnit} from './activityUnit.model';
+import {LunchUnit} from './lunchUnit.model';
 
-import { BusUnit } from './busUnit.model';
+import {BusUnit} from './busUnit.model';
 
 export class Comment {
   id: string;
@@ -15,10 +15,12 @@ export class Comment {
   }
 
   static fromJSON(json: any): Comment {
-    if ((json === undefined) || (json === null)) { return null; }
+    if ((json === undefined) || (json === null)) {
+      return null;
+    }
     const comment = new Comment(
-        json.comment,
-        User.fromJSON(json.client)
+      json.comment,
+      User.fromJSON(json.client)
     );
     comment.id = json._id;
     return comment;
@@ -38,6 +40,8 @@ export class Workday {
   date: Date;
   originalTemplateName: string;
   originalWeekNumber: number;
+  notes: string;
+  dayActivities: ActivityUnit[];
   daycareMentors: User[];
   morningBusses: BusUnit[];
   amActivities: ActivityUnit[];
@@ -51,6 +55,8 @@ export class Workday {
     date: Date,
     originalTemplateName: string,
     originalWeekNumber: number,
+    notes: string,
+    dayActivities: ActivityUnit[],
     daycareMentors: User[],
     morningBusses: BusUnit[],
     amActivities: ActivityUnit[],
@@ -63,6 +69,8 @@ export class Workday {
     this.date = new Date(date);
     this.originalTemplateName = originalTemplateName;
     this.originalWeekNumber = originalWeekNumber;
+    this.notes = notes;
+    this.dayActivities = dayActivities;
     this.daycareMentors = daycareMentors;
     this.morningBusses = morningBusses;
     this.amActivities = amActivities;
@@ -74,11 +82,15 @@ export class Workday {
   }
 
   static fromJSON(json: any): Workday {
-    if ((json === undefined) || (json === null)) { return null; }
+    if ((json === undefined) || (json === null)) {
+      return null;
+    }
     const workday = new Workday(
       json.date,
       json.originalTemplateName,
       json.originalWeekNumber,
+      json.notes,
+      json.dayActivities.map(ActivityUnit.fromJSON),
       json.daycareMentors.map(User.fromJSON),
       json.morningBusses.map(BusUnit.fromJSON),
       json.amActivities.map(ActivityUnit.fromJSON),
@@ -98,9 +110,11 @@ export class Workday {
       date: this.date,
       originalTemplateName: this.originalTemplateName,
       originalWeekNumber: this.originalWeekNumber,
+      notes: this.notes,
+      dayActivities: this.dayActivities.map(activityUnit => activityUnit.toJSON()),
       morningBusses: this.morningBusses.map(busUnit => busUnit.toJSON()),
       amActivities: this.amActivities.map(activityUnit => activityUnit.toJSON()),
-      lunch: this.lunch.toJSON(),
+      lunch: this.lunch ? this.lunch.toJSON() : null,
       pmActivities: this.pmActivities.map(activityUnit => activityUnit.toJSON()),
       eveningBusses: this.eveningBusses.map(busUnit => busUnit.toJSON()),
       holiday: this.holiday,
