@@ -17,12 +17,12 @@
                          data-cy=chosePicture alt="Icoon atelier"/>
                 </label>
                 <br/>
-                <input id="icon" accept='.svg,image/*' type="file" (change)="preview($event)" formControlName="icon"
-                       validate/>
+                <input id="icon" accept='.svg,image/*' type="file" (change)="preview($event)" formControlName="icon"/>
             </div>
         </div>
         <p fxLayoutAlign="center center" class="subtitle">Klik hier om een icoon toe te voegen.</p>
-        <mat-error *ngIf="activityForm.controls.icon.invalid" fxLayoutAlign="center center">{{getIconErrorMessage()}}
+        <mat-error *ngIf="activityForm.controls.icon.invalid" fxLayoutAlign="center center" style="margin-bottom: 20px">
+            {{getIconErrorMessage()}}
         </mat-error>
     </div>
     <div mat-dialog-actions fxLayoutAlign="end" fxFlexAlign="end" fxLayout="row" fxLayoutGap="20px"
