@@ -144,7 +144,7 @@ export class RegisterComponent implements OnInit {
       this.user.value.firstName,
       this.user.value.lastName,
       filePath,
-      this.user.value.birthday, // TODO - Correct date
+      this.user.value.birthday,
       this.user.value.street,
       this.user.value.city,
       this.user.value.postalCode
