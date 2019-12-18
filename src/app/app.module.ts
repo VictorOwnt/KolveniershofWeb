@@ -109,4 +109,21 @@ registerLocaleData(localeNl, 'nl-BE');
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor() {
+    this.overrideDate();
+  }
+
+  overrideDate() {
+    Date.prototype.toJSON = ((key) => {
+      function addZ(n) {
+        return (n < 10 ? '0' : '') + n;
+      }
+
+      return function() {
+        return this.getFullYear() + '-' +
+          addZ(this.getMonth() + 1) + '-' +
+          addZ(this.getDate());
+      };
+    })();
+  }
 }
