@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {AuthenticationService} from '../../../authentication/authentication.service';
 import {ActivityUnit} from '../../../models/activityUnit.model';
@@ -23,6 +23,7 @@ import {WorkdayTemplateDataService} from '../../../services/workdayTemplate.data
   styleUrls: ['./edit-unit-modal.component.scss'],
 })
 export class EditUnitModalComponent implements OnInit {
+  @ViewChild('lunchInput', {static: false}) lunchInput;
   unit: ActivityUnit | LunchUnit = null;
   workday: Workday = null;
   workdayTemplate: WorkdayTemplate = null;
@@ -229,4 +230,11 @@ export class EditUnitModalComponent implements OnInit {
     }
   }
 
+  clearLunch() {
+    this.lunchInput.nativeElement.value = '';
+    if (this.unit !== null) {
+      (this.unit as LunchUnit).lunch = '';
+    }
+    this.lunchInput.nativeElement.lunchInput.checkValidity();
+  }
 }

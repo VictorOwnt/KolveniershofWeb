@@ -165,7 +165,8 @@ export class ScheduleWeekdayComponent implements OnInit {
     });
   }
 
-  viewComments(comments: Comment[]) {
+  viewComments(workday) {
+    const comments = (workday as Workday).comments;
     this.dialog.open(CommentListComponent, {
       width: '800px',
       data: {comments}
