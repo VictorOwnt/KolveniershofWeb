@@ -110,7 +110,11 @@ export class EditUnitModalComponent implements OnInit {
         patchedUnit.mentors = this.unitFormGroup.value.mentors;
         patchedUnit.clients = this.unitFormGroup.value.clients;
         // Patch ActivityUnit
-        this.activityDataService.patchActivityUnit(patchedUnit, this.workday.id, this.workdayTemplate.id).subscribe(value => {
+        this.activityDataService.patchActivityUnit(
+          patchedUnit,
+          this.workday ? this.workday.id : null,
+          this.workdayTemplate ? this.workdayTemplate.id : null
+        ).subscribe(value => {
           if (value) {
             // Success dialog
             this.dialogRef.close('Atelier aangepast');
@@ -126,7 +130,11 @@ export class EditUnitModalComponent implements OnInit {
         patchedUnit.mentors = this.unitFormGroup.value.mentors;
         patchedUnit.clients = this.unitFormGroup.value.clients;
         // Patch LunchUnit
-        this.lunchDataService.patchLunchUnit(patchedUnit, this.workday.id, this.workdayTemplate.id).subscribe(value => {
+        this.lunchDataService.patchLunchUnit(
+          patchedUnit,
+          this.workday ? this.workday.id : null,
+          this.workdayTemplate ? this.workdayTemplate.id : null
+        ).subscribe(value => {
           if (value) {
             // Success dialog
             this.dialogRef.close('Lunch aangepast');
