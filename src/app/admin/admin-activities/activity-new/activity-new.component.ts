@@ -82,6 +82,7 @@ export class ActivityNewComponent implements OnInit {
       if (this.isNew) {
         const filePath = 'icons/icon-' + this.activityForm.value.name;
         this.firebaseService.uploadFile(filePath);
+        this.activity.icon = filePath;
       }
       this.activity.name = this.activityForm.value.name;
       this.activityDataService.patchActivity(this.activity).subscribe(
