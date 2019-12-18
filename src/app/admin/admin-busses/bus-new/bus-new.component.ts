@@ -16,7 +16,7 @@ import {ErrorModalComponent} from '../../../shared/error-modal/error-modal.compo
 })
 export class BusNewComponent implements OnInit {
   bus: Bus;
-  public color = '#000000';
+  public color = '#003A70';
   public busForm: FormGroup;
 
   constructor(

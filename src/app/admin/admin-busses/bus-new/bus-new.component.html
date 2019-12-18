@@ -6,7 +6,6 @@
         <mat-form-field appearance="outline">
             <mat-label>Naam</mat-label>
             <input matInput [value]="bus ? bus.name : ''" placeholder="Naam van de bus" formControlName="name" required>
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             <mat-error *ngIf="busForm.controls.name.invalid">{{getNameErrorMessage()}}</mat-error>
         </mat-form-field>
         <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1%" fxLayout.lt-md="column">

@@ -1,11 +1,13 @@
+@import "../../../../variables.scss";
+
 .header {
   padding: 2%;
   justify-content: center;
   align-items: center;
   text-align: center;
   color: white;
-  background-color: #007AEF;
-  border-radius: 4px 4px 0px 0px;
+  background-color: $color-primary;
+  border-radius: 4px 4px 0 0;
   font-size: 175%;
 }
 
@@ -22,14 +24,15 @@
   margin: 0;
 }
 
-mat-form-field{
+mat-form-field {
   width: 100%;
 }
 
 input[type="file"] {
   display: none;
 }
- #icon {
+
+#icon {
   margin-bottom: 0;
   height: 100px;
   width: 100px;
@@ -38,11 +41,11 @@ input[type="file"] {
 
 }
 
- svg {
-   margin-top: 20%
- }
+svg {
+  margin-top: 20%
+}
 
- .content {
-   margin-top: 30px;
- }
+.content {
+  margin-top: 30px;
+}
 

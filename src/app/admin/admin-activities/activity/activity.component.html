@@ -1,5 +1,6 @@
 <div class="activity-item" fxLayout="row" fxLayoutAlign="start center">
-    <img class="icon" [src]="iconImage | async" src-fallback='../../../assets/img/profile_picture_empty.png' alt="{{ activity }}" width="30"/>
+    <img class="icon svgTextColor" [src]="iconImage | async"
+         src-fallback='../../../assets/img/profile_picture_empty.png' alt="{{ activity }}" width="30"/>
     <p fxFlex>{{ activity }}</p>
     <a class="editDelete" fxFlex="none" (click)="edit(activity)">
         <svg id="edit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
