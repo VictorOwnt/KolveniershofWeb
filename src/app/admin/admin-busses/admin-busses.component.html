@@ -1,6 +1,28 @@
 <app-header></app-header>
-<div class="container">
-    <app-bus-list [busses]="busses$"></app-bus-list>
+<div class="container" fxLayout="column">
+    <h1>Bussen</h1>
 
-    <button class="btn-pink" type="submit" (click)="openDialog()">Bus aanmaken</button>
+    <div class="bus-item" *ngFor="let bus of busses$ | async"
+         fxLayout="row" fxLayoutAlign="start center">
+        <div class="icon">
+            <svg [attr.fill]="bus.color" stroke="black" stroke-width="0.5" height="30" viewBox="0 0 24 24" width="30"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M 11 3 C 7.375 3 3 3.237 3 7 L 3 18 C 3 18.884916 3.3906671 19.671627 4 20.220703 L 4 21.5 C 4 22.328 4.672 23 5.5 23 C 6.328 23 7 22.328 7 21.5 L 7 21 L 17 21 L 17 21.5 C 17 22.328 17.672 23 18.5 23 C 19.328 23 20 22.328 20 21.5 L 20 20.220703 C 20.609333 19.671627 21 18.884916 21 18 L 21 7 C 21 3.237 16.625 3 13 3 L 11 3 z M 6 7 L 18 7 C 18.552 7 19 7.448 19 8 L 19 12 C 19 12.552 18.552 13 18 13 L 6 13 C 5.448 13 5 12.552 5 12 L 5 8 C 5 7.448 5.448 7 6 7 z M 6.5 16 C 7.328 16 8 16.672 8 17.5 C 8 18.328 7.328 19 6.5 19 C 5.672 19 5 18.328 5 17.5 C 5 16.672 5.672 16 6.5 16 z M 17.5 16 C 18.328 16 19 16.672 19 17.5 C 19 18.328 18.328 19 17.5 19 C 16.672 19 16 18.328 16 17.5 C 16 16.672 16.672 16 17.5 16 z"/>
+            </svg>
+        </div>
+        <p fxFlex>{{ bus }}</p>
+        <a class="editDelete" fxFlex="none" (click)="edit(bus)">
+            <svg id="edit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M 18.414062 2 C 18.158188 2 17.902031 2.0974687 17.707031 2.2929688 L 16 4 L 20 8 L 21.707031 6.2929688 C 22.098031 5.9019687 22.098031 5.2689063 21.707031 4.8789062 L 19.121094 2.2929688 C 18.925594 2.0974687 18.669937 2 18.414062 2 z M 14.5 5.5 L 3 17 L 3 21 L 7 21 L 18.5 9.5 L 14.5 5.5 z"/>
+            </svg>
+        </a>
+        <a class="editDelete" fxFlex="none" (click)="delete(bus)">
+            <svg id="delete" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+        </a>
+    </div>
+
+    <button class="btn-pink" fxFlexAlign="end" fxFlexAlign.lt-sm="center" (click)="edit()">Nieuwe bus</button>
 </div>

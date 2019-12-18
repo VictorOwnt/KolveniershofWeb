@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {Bus} from '../../models/bus.model';
-import {BusNewComponent} from './bus-new/bus-new.component';
 import {Observable} from 'rxjs';
 import {BusDataService} from '../../services/bus.data.service';
+import {SuccessModalComponent} from '../../shared/success-modal/success-modal.component';
+import {ErrorModalComponent} from '../../shared/error-modal/error-modal.component';
+import {DeleteModalComponent} from '../../shared/delete-modal/delete-modal.component';
+import {BusNewComponent} from './bus-new/bus-new.component';
 
 @Component({
   selector: 'app-admin-busses',
@@ -11,36 +14,62 @@ import {BusDataService} from '../../services/bus.data.service';
   styleUrls: ['./admin-busses.component.scss']
 })
 export class AdminBussesComponent implements OnInit {
-
-  private fetchBusses$: Observable<Bus[]> = this.busDataService.busses$;
-  public busses: Bus[];
-
+  busses$: Observable<Bus[]>;
 
   constructor(public dialog: MatDialog, private busDataService: BusDataService) {
-  this.fetchBusses$.subscribe(busses => (this.busses = busses));
-}
-
-  openDialog(b: Bus = null): void {
-    const dialogRef = this.dialog.open(BusNewComponent, {
-      width: '1000px',
-      data: b
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-
-    });
   }
-
 
   ngOnInit() {
+    this.busses$ = this.busDataService.busses$;
   }
 
-  get busses$(): Observable<Bus[]> {
-    return this.fetchBusses$;
+  edit(bus?: Bus) {
+    this.dialog.open(BusNewComponent, {
+      width: '1000px',
+      data: {bus}
+    }).afterClosed().subscribe(message => {
+      if (message && message !== false) {
+        this.dialog.open(SuccessModalComponent, {
+          width: '300px',
+          data: {message}
+        });
+      } else if (message === false) {
+        // Open error dialog
+        this.dialog.open(ErrorModalComponent, {
+          width: '300px',
+          data: {message: 'Probeer later opnieuw.'}
+        });
+      }
+    });
   }
 
-  delete(id: string): void {
-    this.busDataService.deleteBus(id).subscribe();
+  delete(bus: Bus) {
+    // Open delete dialog
+    this.dialog.open(DeleteModalComponent, {
+      width: '500px',
+      data: {itemToDelete: 'bus'}
+    }).afterClosed().subscribe(canDelete => {
+      if (canDelete) {
+        // Delete activity & open modal
+        this.busDataService.deleteBus(bus.id)
+          .subscribe(hasSucceeded => this.openAfterDeleteModal(hasSucceeded));
+      }
+    });
+  }
+
+  openAfterDeleteModal(hasSucceeded: boolean) {
+    if (hasSucceeded) {
+      // Success dialog
+      this.dialog.open(SuccessModalComponent, {
+        width: '300px',
+        data: {message: 'Verwijderen compleet.'}
+      });
+    } else {
+      // Error dialog
+      this.dialog.open(ErrorModalComponent, {
+        width: '300px',
+        data: {message: 'Verwijderen niet gelukt. Probeer het later opnieuw.'}
+      });
+    }
   }
 }
