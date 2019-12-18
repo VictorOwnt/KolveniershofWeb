@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { API_URL } from '../../environments/environment';
-import { User } from '../models/user.model';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
+import {API_URL} from '../../environments/environment';
+import {User} from '../models/user.model';
 
 function parseJwt(token) {
   if (!token) {
@@ -52,9 +52,9 @@ export class AuthenticationService {
       fromLocalStorage.lastName,
       fromLocalStorage.email,
       fromLocalStorage.picture,
-      /*fromLocalStorage.street,
-      fromLocalStorage.postalCode,
-      fromLocalStorage.city,*/
+      fromLocalStorage.address.street,
+      fromLocalStorage.address.postalCode,
+      fromLocalStorage.address.city,
       fromLocalStorage.admin,
       fromLocalStorage.birthday,
       fromLocalStorage.absentDates
@@ -65,7 +65,7 @@ export class AuthenticationService {
 
   login(email: string, password: string): Observable<boolean> {
     return this.http
-      .post(`${API_URL}/users/login`, { email, password })
+      .post(`${API_URL}/users/login`, {email, password})
       .pipe(map((res: any) => {
           const token = res.token;
           if (token) {
@@ -126,6 +126,6 @@ export class AuthenticationService {
   }
 
   checkEmailAvailability(email: string): Observable<boolean> {
-    return this.http.post<boolean>(`${API_URL}/users/isvalidemail`, email);
+    return this.http.post<boolean>(`${API_URL}/users/isvalidemail`, {email});
   }
 }
