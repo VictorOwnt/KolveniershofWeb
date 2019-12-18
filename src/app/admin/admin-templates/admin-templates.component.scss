@@ -1,7 +1,7 @@
 @import "../../../variables.scss";
 
 .container {
-  margin: 0 10%;
+  margin: 0 10% 20px;
 }
 
 .template-item {
@@ -62,12 +62,12 @@
 
 @media screen and (max-width: 1440px) {
   .container {
-    margin: 0 5%;
+    margin: 0 5% 20px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .container {
-    margin: 0 20px;
+    margin: 0 20px 20px;
   }
 }

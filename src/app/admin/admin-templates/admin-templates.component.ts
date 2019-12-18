@@ -49,7 +49,7 @@ export class AdminTemplatesComponent implements OnInit {
       data: {itemToDelete: 'sjabloon'}
     }).afterClosed().subscribe(canDelete => {
       if (canDelete) {
-        // Delete unit & open modal
+        // Delete templates & open modal
         this.workdayTemplateDataService.deleteWorkdayTemplates(templateName)
           .subscribe(hasSucceeded => this.openAfterDeleteModal(hasSucceeded));
       }
