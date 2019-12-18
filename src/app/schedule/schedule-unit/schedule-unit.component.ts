@@ -95,10 +95,17 @@ export class ScheduleUnitComponent implements OnInit {
         isDay: this.isDay
       }
     }).afterClosed().subscribe(message => {
-      if (message) {
+      if (message && message !== false) {
+        // Open success dialog
         this.dialog.open(SuccessModalComponent, {
           width: '300px',
           data: {message}
+        });
+      } else if (message === false) {
+        // Open error dialog
+        this.dialog.open(ErrorModalComponent, {
+          width: '300px',
+          data: {message: 'Probeer later opnieuw.'}
         });
       }
     });
