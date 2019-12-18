@@ -52,9 +52,9 @@ export class AuthenticationService {
       fromLocalStorage.lastName,
       fromLocalStorage.email,
       fromLocalStorage.picture,
-      /*fromLocalStorage.street,
-      fromLocalStorage.postalCode,
-      fromLocalStorage.city,*/
+      fromLocalStorage.address.street,
+      fromLocalStorage.address.postalCode,
+      fromLocalStorage.address.city,
       fromLocalStorage.admin,
       fromLocalStorage.birthday,
       fromLocalStorage.absentDates

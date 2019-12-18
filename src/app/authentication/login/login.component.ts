@@ -1,9 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators
-} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../authentication.service';
 import {Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -53,7 +49,7 @@ export class LoginComponent implements OnInit {
               this.router.navigateByUrl(this.authService.redirectUrl);
               this.authService.redirectUrl = undefined;
             } else {
-              this.router.navigate(['/home']); // TODO
+              this.router.navigate(['/home']);
             }
           } else {
             this.errorMsg = `Aanmelden mislukt`;
