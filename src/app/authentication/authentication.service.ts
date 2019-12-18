@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { API_URL } from '../../environments/environment';
-import { User } from '../models/user.model';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
+import {API_URL} from '../../environments/environment';
+import {User} from '../models/user.model';
 
 function parseJwt(token) {
   if (!token) {
@@ -65,7 +65,7 @@ export class AuthenticationService {
 
   login(email: string, password: string): Observable<boolean> {
     return this.http
-      .post(`${API_URL}/users/login`, { email, password })
+      .post(`${API_URL}/users/login`, {email, password})
       .pipe(map((res: any) => {
           const token = res.token;
           if (token) {
