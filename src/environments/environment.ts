@@ -16,7 +16,8 @@ export const environment = {
 };
 
 export const API_URL = 'https://kolv02-backend.herokuapp.com/API';
-// export const API_URL = 'localhost:3000/API';
+// Uncomment next line for use with local backend
+// export const API_URL = 'http://localhost:3000/API';
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -77,7 +77,7 @@ export class ScheduleWeekdayComponent implements OnInit {
       };
     } else {
       dialogData = {
-        workdayTemplate: this.workday as WorkdayTemplate,
+        workday: this.workday as Workday,
         isActivity: (type === 'activity'),
         isAm,
         isDay
@@ -106,9 +106,9 @@ export class ScheduleWeekdayComponent implements OnInit {
   changeHoliday(holiday: boolean) {
     this.workday.holiday = holiday;
     if (this.isTemplate) {
-      this.workdayTemplateDataService.patchWorkdayTemplate(this.workday as WorkdayTemplate);
+      this.workdayTemplateDataService.patchWorkdayTemplate(this.workday as WorkdayTemplate).subscribe();
     } else {
-      this.workdayDataService.patchWorkday(this.workday as Workday);
+      this.workdayDataService.patchWorkday(this.workday as Workday).subscribe();
     }
   }
 
