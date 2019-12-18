@@ -16,17 +16,20 @@ import {BusDataService} from '../../../services/bus.data.service';
 })
 export class BusNewComponent implements OnInit {
 
+  bus: Bus;
   public color = '#000000';
   public busForm: FormGroup;
   public errorMsg = '';
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public bus: Bus,
+    @Inject(MAT_DIALOG_DATA) private data: any,
     public dialogRef: MatDialogRef<BusNewComponent>,
     private authService: AuthenticationService,
     private router: Router,
     private fb: FormBuilder,
-    private busDataService: BusDataService) {
+    private busDataService: BusDataService
+  ) {
+    this.bus = data.bus;
   }
 
 

@@ -33,13 +33,14 @@ function validate(url: any) {
 })
 export class ActivityNewComponent implements OnInit {
 
+  activity: Activity;
   public activityForm: FormGroup;
   public errorMsg = '';
   imageUrl: any = null;
   public nieuweData = false;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public activity: Activity,
+    @Inject(MAT_DIALOG_DATA) private data: any,
     public dialogRef: MatDialogRef<ActivityNewComponent>,
     private authService: AuthenticationService,
     private router: Router,
@@ -48,6 +49,7 @@ export class ActivityNewComponent implements OnInit {
     private firebaseService: FirebaseService,
     private sanitizer: DomSanitizer
   ) {
+    this.activity = data.activity;
   }
 
   ngOnInit() {
@@ -60,7 +62,6 @@ export class ActivityNewComponent implements OnInit {
       icon: ['', validate(this.imageUrl)]
     });
   }
-
 
   getNameErrorMessage() {
     return (this.activityForm.controls.name.hasError('required'))
