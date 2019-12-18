@@ -126,6 +126,6 @@ export class AuthenticationService {
   }
 
   checkEmailAvailability(email: string): Observable<boolean> {
-    return this.http.post<boolean>(`${API_URL}/users/isvalidemail`, email);
+    return this.http.post<boolean>(`${API_URL}/users/isvalidemail`, {email});
   }
 }
