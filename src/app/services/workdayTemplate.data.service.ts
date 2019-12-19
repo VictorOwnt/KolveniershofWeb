@@ -76,7 +76,7 @@ export class WorkdayTemplateDataService {
     return this.http.delete<boolean>(`${API_URL}/workdayTemplates/name/${templateName}`);
   }
 
-  createWeek(templateName: string, weekNumber: number, date: Date): Observable<Workday[]> {
+  createWeekFromTemplate(templateName: string, weekNumber: number, date: Date): Observable<Workday[]> {
     return this.http
       .post(`${API_URL}/workdayTemplates/createWeek/${templateName}/${weekNumber}/${this.datesService.backendFormatDate(date)}`, null)
       .pipe(map((list: any[]): Workday[] => list.map(Workday.fromJSON)));

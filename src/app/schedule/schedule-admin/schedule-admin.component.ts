@@ -5,6 +5,8 @@ import {DatesService} from '../../services/dates.service';
 import {Observable} from 'rxjs';
 import {UserSelectorModalComponent} from '../user-selector-modal/user-selector-modal.component';
 import {MatDialog} from '@angular/material/dialog';
+import {SuccessModalComponent} from 'src/app/shared/success-modal/success-modal.component';
+import {ErrorModalComponent} from 'src/app/shared/error-modal/error-modal.component';
 import {ExportService} from '../../services/export.service';
 
 @Component({
@@ -57,6 +59,24 @@ export class ScheduleAdminComponent implements OnInit {
   // Print week as PDF
   printWeek() {
     this.workdays$.subscribe(workdays => this.exportService.printWeek(workdays));
+  }
+
+  deleteWeek() {
+    this.workdayDataService.deleteWorkdaysFromWeek(this.date).subscribe(value => {
+      if (value) {
+        // Success dialog
+        this.dialog.open(SuccessModalComponent, {
+          width: '300px',
+          data: {message: 'Planning verwijderd.'}
+        });
+      } else {
+        // Error dialog
+        this.dialog.open(ErrorModalComponent, {
+          width: '300px',
+          data: {message: 'Planning verwijderen mislukt.'}
+        });
+      }
+    });
   }
 
 }

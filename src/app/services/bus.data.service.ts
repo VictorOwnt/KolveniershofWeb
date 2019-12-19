@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, of, Subject} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {API_URL} from '../../environments/environment';
@@ -12,16 +12,18 @@ import {BusUnit} from '../models/busUnit.model';
 export class BusDataService {
 
   public loadingError$ = new Subject<string>();
-  constructor(protected http: HttpClient) { }
+
+  constructor(protected http: HttpClient) {
+  }
 
   get busses$(): Observable<Bus[]> {
     return this.http
       .get(`${API_URL}/busses/`)
       .pipe(catchError(error => {
-        this.loadingError$.next(error.statusText);
-        return of(null);
-      }), map((list: any[]): Bus[] => list.map(Bus.fromJSON))
-    );
+          this.loadingError$.next(error.statusText);
+          return of(null);
+        }), map((list: any[]): Bus[] => list.map(Bus.fromJSON))
+      );
   }
 
   postBus(bus: Bus): Observable<Bus> {
@@ -65,14 +67,14 @@ export class BusDataService {
   }
 
   patchBusUnit(busUnit: BusUnit, workdayId: string = null, workdayTemplateId: string = null): Observable<BusUnit> {
-    const jsonData = { workdayId, workdayTemplateId, ...busUnit };
+    const jsonData = {workdayId, workdayTemplateId, ...busUnit};
     return this.http
       .patch(`${API_URL}/busses/units/id/${busUnit.id}`, jsonData)
       .pipe(map(BusUnit.fromJSON));
   }
 
   deleteBusUnit(busUnit: BusUnit, workdayId: string = null, workdayTemplateId: string = null): Observable<boolean> {
-    const jsonData = { workdayId, workdayTemplateId };
+    const jsonData = {workdayId, workdayTemplateId};
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -80,7 +82,7 @@ export class BusDataService {
       body: jsonData,
     };
     return this.http
-      .delete<boolean>(`${API_URL}/activities/units/id/${busUnit.id}`, options);
+      .delete<boolean>(`${API_URL}/busses/units/id/${busUnit.id}`, options);
   }
 
 }

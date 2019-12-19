@@ -111,4 +111,8 @@ export class WorkdayDataService {
       .patch(`${API_URL}/workdays/id/${workday.id}/comments/${comment.id}`, comment)
       .pipe(map(Comment.fromJSON));
   }
+
+  deleteWorkdaysFromWeek(weekdate: Date): Observable<boolean> {
+    return this.http.delete<boolean>(`${API_URL}/workdays/week/${this.datesService.backendFormatDate(weekdate)}`);
+  }
 }
