@@ -1,0 +1,47 @@
+@import "../../../variables.scss";
+
+.weekselector {
+  text-align: center;
+}
+
+.btn-white {
+  display: flex;
+
+  > i {
+    font-size: 18px;
+  }
+}
+
+.day, .empty {
+  margin: 0 10%;
+
+  &:last-child {
+    margin-bottom: 20px;
+  }
+}
+
+.top-row {
+  margin: 0 10%;
+}
+
+inline-link {
+  // TODO
+}
+
+@media screen and (max-width: 1440px) {
+  .day, .empty, .top-row {
+    margin: 0 5%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .day, .empty, .top-row {
+    margin: 0 20px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .day, .empty, .top-row {
+    margin: 0 10px;
+  }
+}
