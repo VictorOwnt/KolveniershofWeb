@@ -12,6 +12,8 @@ import {SuccessModalComponent} from '../../shared/success-modal/success-modal.co
 import {ErrorModalComponent} from '../../shared/error-modal/error-modal.component';
 import {Workday} from '../../models/workday.model';
 import {WorkdayTemplate} from '../../models/workdayTemplate.model';
+import { BusUnit } from 'src/app/models/busUnit.model';
+import { Bus } from 'src/app/models/bus.model';
 
 @Component({
   selector: 'app-schedule-unit',
@@ -27,6 +29,7 @@ export class ScheduleUnitComponent implements OnInit {
   @Input() isAdmin: boolean;
   title: string;
   icon: string;
+  bus: Bus;
   mentors: User[] = [];
   clients: User[] = [];
   expandClients = true;
@@ -47,6 +50,9 @@ export class ScheduleUnitComponent implements OnInit {
     } else if (this.unit instanceof LunchUnit) {
       this.title = this.unit.lunch;
       this.getIconUrl('icons/icon-restaurant.svg');
+    } else if (this.unit instanceof BusUnit) {
+      this.title = this.unit.bus.name;
+      this.bus.color = this.unit.bus.color;
     }
 
     this.mentors = this.unit.mentors;
