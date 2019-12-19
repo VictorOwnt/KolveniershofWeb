@@ -13,7 +13,6 @@ import {ErrorModalComponent} from '../../shared/error-modal/error-modal.componen
 import {Workday} from '../../models/workday.model';
 import {WorkdayTemplate} from '../../models/workdayTemplate.model';
 import {BusUnit} from 'src/app/models/busUnit.model';
-import {Bus} from 'src/app/models/bus.model';
 import {BusDataService} from '../../services/bus.data.service';
 
 @Component({
@@ -30,7 +29,7 @@ export class ScheduleUnitComponent implements OnInit {
   @Input() isAdmin: boolean;
   title: string;
   icon: string;
-  bus: Bus;
+  busColor: string;
   mentors: User[] = [];
   clients: User[] = [];
   expandClients = true;
@@ -54,7 +53,7 @@ export class ScheduleUnitComponent implements OnInit {
       this.getIconUrl('icons/icon-restaurant.svg');
     } else if (this.unit instanceof BusUnit) {
       this.title = this.unit.bus.name;
-      this.bus.color = this.unit.bus.color;
+      this.busColor = this.unit.bus.color;
     }
 
     this.mentors = this.unit.mentors;
