@@ -62,22 +62,21 @@ export class ScheduleAdminComponent implements OnInit {
   }
 
   deleteWeek() {
-    // TODO - foute methode, is die van templates
-    /*this.workdayDataService.deleteWorkdayTemplates(this.templateName).subscribe(value => {
+    this.workdayDataService.deleteWorkdaysFromWeek(this.date).subscribe(value => {
       if (value) {
         // Success dialog
         this.dialog.open(SuccessModalComponent, {
           width: '300px',
-          data: {message: 'Template succesvol verwijderd!'}
+          data: {message: 'Planning verwijderd.'}
         });
       } else {
         // Error dialog
         this.dialog.open(ErrorModalComponent, {
           width: '300px',
-          data: {message: 'Template verwijderen mislukt!'}
+          data: {message: 'Planning verwijderen mislukt.'}
         });
       }
-    });*/
+    });
   }
 
 }
