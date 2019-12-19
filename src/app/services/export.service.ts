@@ -6,6 +6,7 @@ import {DatePipe, TitleCasePipe} from '@angular/common';
 import {DatesService} from './dates.service';
 import {ActivityUnit} from '../models/activityUnit.model';
 import {AuthenticationService} from '../authentication/authentication.service';
+import {BusUnit} from '../models/busUnit.model';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -72,21 +73,22 @@ export class ExportService {
   /**
    * Create empty pdf with only heading
    * @param weekNumber  Number of the week
+   * @param bus Whether it is a bus schedule
    */
-  private createEmptyPdf(weekNumber: string) {
+  private createEmptyPdf(weekNumber: string, bus: boolean) {
     return {
       info: {
-        title: 'Planning week ' + weekNumber,
+        title: (bus ? 'Busplanning' : 'Planning') + ' week ' + weekNumber,
         author: this.auth.currentUser.toString(),
-        subject: 'Planning',
-        keywords: 'Planning',
+        subject: bus ? 'Busplanning' : 'Planning',
+        keywords: bus ? 'Busplanning' : 'Planning',
         creator: 'Ruben De Freyne, Reeven Govaert, Jakob Lierman, Wout Maes, Victor Van hulle, Sebastien Wojtyla',
         producer: 'HoGent'
       },
 
       header: (currentPage) => {
         return currentPage !== 1 ? {
-          text: 'Kolveniershof planning - week ' + weekNumber,
+          text: 'Kolveniershof ' + (bus ? 'busplanning' : 'planning') + ' - week ' + weekNumber,
           margin: [40, 20],
           style: 'headerfooter'
         } : null;
@@ -130,7 +132,7 @@ export class ExportService {
             [
               // Title
               {
-                text: 'Kolveniershof planning',
+                text: 'Kolveniershof ' + (bus ? 'busplanning' : 'planning'),
                 width: 'auto',
                 style: 'title'
               },
@@ -173,7 +175,7 @@ export class ExportService {
           fontSize: 16,
           bold: true
         },
-        activityTitle: {
+        unitTitle: {
           fontSize: 14,
           bold: true,
           italics: true
@@ -191,8 +193,9 @@ export class ExportService {
    * @param pdf File to add to
    * @param workday Workday to add to pdf
    * @param isFirstPage Whether this is a title page or not
+   * @param bus Whether it is a bus schedule
    */
-  private addDay(pdf, workday: Workday, isFirstPage: boolean) {
+  private addDay(pdf, workday: Workday, isFirstPage: boolean, bus: boolean) {
     // Add date header
     pdf.content.push({
       layout: 'noBorders',
@@ -211,7 +214,10 @@ export class ExportService {
     });
 
     // Add general info
-    ExportService.addGeneral(pdf, workday.notes);
+    if (!bus) {
+      ExportService.addGeneral(pdf, workday.notes);
+    }
+
     if (workday.holiday) {
       pdf.content.push([
         // Holiday icon
@@ -230,26 +236,38 @@ export class ExportService {
         }
       ]);
     } else {
-      // Add amActivities
-      if (workday.amActivities.length !== 0) {
-        this.addActivities(pdf, workday.amActivities, true);
-      }
-      // Add pmActivities
-      if (workday.pmActivities.length !== 0) {
-        this.addActivities(pdf, workday.pmActivities, false);
-      }
-      // Add dayActivities
-      if (workday.dayActivities.length !== 0) {
-        this.addActivities(pdf, workday.dayActivities, null, true);
+      if (bus) {
+        // Add morningBusses
+        if (workday.morningBusses.length !== 0) {
+          this.addBusses(pdf, workday.morningBusses, true);
+        }
+        // Add eveningBusses
+        if (workday.eveningBusses.length !== 0) {
+          this.addBusses(pdf, workday.eveningBusses, false);
+        }
+      } else {
+        // Add amActivities
+        if (workday.amActivities.length !== 0) {
+          this.addActivities(pdf, workday.amActivities, true);
+        }
+        // Add pmActivities
+        if (workday.pmActivities.length !== 0) {
+          this.addActivities(pdf, workday.pmActivities, false);
+        }
+        // Add dayActivities
+        if (workday.dayActivities.length !== 0) {
+          this.addActivities(pdf, workday.dayActivities, null, true);
+        }
       }
     }
   }
 
   /**
    * Add activities to pdf
-   * @param pdf pdf File to add to
+   * @param pdf File to add to
    * @param activityUnits ActivityUnits
    * @param isAm  Whether the activities are situated before or after noon
+   * @param isDay Whether the activities are day activities
    */
   private addActivities(pdf, activityUnits: ActivityUnit[], isAm: boolean = null, isDay: boolean = null) {
     // Activities header
@@ -270,7 +288,7 @@ export class ExportService {
     activityUnits.forEach(activityUnit => pdf.content.push([
       {
         text: activityUnit.activity.toString(),
-        style: 'activityTitle',
+        style: 'unitTitle',
         margin: [0, 20, 0, 10]
       },
       {
@@ -287,12 +305,48 @@ export class ExportService {
   }
 
   /**
+   * Add busses to pdf
+   * @param pdf File to add to
+   * @param busUnits  BusUnits
+   * @param isMorning Whether the busses drive in the morning or evening
+   */
+  private addBusses(pdf, busUnits: BusUnit[], isMorning: boolean) {
+    // Busses header
+    pdf.content.push(
+      {
+        text: isMorning ? 'Ochtend' : 'Avond',
+        style: 'sectionHeader',
+        margin: [0, 25, 0, 0]
+      }
+    );
+    // Add busses
+    busUnits.forEach(busUnit => pdf.content.push([
+      {
+        text: busUnit.bus.toString(),
+        style: 'unitTitle',
+        margin: [0, 20, 0, 10]
+      },
+      {
+        layout: 'noBorders',
+        table: {
+          widths: ['auto', '*'],
+          body: [
+            [{text: 'Begeleiders', bold: true}, busUnit.mentors.join(', ')],
+            [{text: 'Cliënten', bold: true}, busUnit.clients.join(', ')]
+          ]
+        }
+      }
+    ]));
+  }
+
+  /**
    * Create pdf and show print dialog
    * @param workdays  Workdays to export
+   * @param bus Whether it is a bus schedule
    */
-  public printWeek(workdays: Workday[]) {
+  public printWeek(workdays: Workday[], bus: boolean = true) {
     // Create empty pdf
-    const pdf = this.createEmptyPdf(this.datePipe.transform(workdays[0].date, 'w'));
+    const pdf = this.createEmptyPdf(this.datePipe.transform(workdays[0].date, 'w'), bus);
     // Add template info
     if (workdays[0].originalTemplateName) {
       ExportService.addTemplate(pdf, workdays[0].originalTemplateName, workdays[0].originalWeekNumber.toString());
@@ -301,7 +355,7 @@ export class ExportService {
     let firstPage = true;
     workdays.forEach(workday => {
       if (!this.datesService.isWeekend(workday.date)) {
-        this.addDay(pdf, workday, firstPage);
+        this.addDay(pdf, workday, firstPage, bus);
         firstPage = false;
       }
     });
