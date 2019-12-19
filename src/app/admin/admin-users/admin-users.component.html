@@ -1,0 +1,15 @@
+<app-header></app-header>
+
+<div class="container" fxLayout="column">
+    <h1>Begeleiders</h1>
+    <div *ngFor="let mentor of mentors$ | async">
+        <app-user [user]="mentor"></app-user>
+    </div>
+
+    <h1>Cliënten</h1>
+    <div *ngFor="let client of clients$ | async">
+        <app-user [user]="client"></app-user>
+    </div>
+
+    <button class="btn-pink" fxFlexAlign="end" fxFlexAlign.lt-sm="center" (click)="create()">Nieuwe gebruiker</button>
+</div>

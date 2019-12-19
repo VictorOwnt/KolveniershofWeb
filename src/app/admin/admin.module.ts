@@ -14,7 +14,11 @@ import {RouterModule} from '@angular/router';
 import {AdminRoutingModule} from './admin-routing.module';
 import {AdminTemplatesComponent} from './admin-templates/admin-templates.component';
 import {TemplateNewComponent} from './admin-templates/template-new/template-new.component';
-import { ActivityComponent } from './admin-activities/activity/activity.component';
+import {ActivityComponent} from './admin-activities/activity/activity.component';
+import {AdminUsersComponent} from './admin-users/admin-users.component';
+import {UserComponent} from './admin-users/user/user.component';
+import {AuthenticationModule} from '../authentication/authentication.module';
+import {ImgFallbackModule} from 'ngx-img-fallback';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,9 @@ import { ActivityComponent } from './admin-activities/activity/activity.componen
     AdminComponent,
     AdminTemplatesComponent,
     TemplateNewComponent,
-    ActivityComponent
+    ActivityComponent,
+    AdminUsersComponent,
+    UserComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +45,9 @@ import { ActivityComponent } from './admin-activities/activity/activity.componen
     ColorPickerModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    AuthenticationModule,
+    ImgFallbackModule
   ],
   entryComponents: [
     ActivityNewComponent,
