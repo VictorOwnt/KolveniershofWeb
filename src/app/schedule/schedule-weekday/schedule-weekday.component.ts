@@ -22,6 +22,7 @@ export class ScheduleWeekdayComponent implements OnInit {
   @ViewChild('dayActivitiesToggle', {static: false}) dayActivitiesToggle;
   @Input() workday: Workday | WorkdayTemplate;
   @Input() isAdmin: boolean;
+  @Input() isBusSchedule = false;
   isTemplate: boolean;
   hasDayActivities: boolean;
   icon: Observable<string | null>;
@@ -35,7 +36,9 @@ export class ScheduleWeekdayComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.hasDayActivities = this.workday.dayActivities.length !== 0;
+    if (!this.isBusSchedule) {
+      this.hasDayActivities = this.workday.dayActivities.length !== 0;
+    }
     if (this.workday instanceof Workday) {
       this.isTemplate = false;
       this.icon = this.firebaseService
@@ -72,6 +75,7 @@ export class ScheduleWeekdayComponent implements OnInit {
       dialogData = {
         workdayTemplate: this.workday as WorkdayTemplate,
         isActivity: (type === 'activity'),
+        isBus: (type === 'bus'),
         isAm,
         isDay
       };
@@ -79,6 +83,7 @@ export class ScheduleWeekdayComponent implements OnInit {
       dialogData = {
         workday: this.workday as Workday,
         isActivity: (type === 'activity'),
+        isBus: (type === 'bus'),
         isAm,
         isDay
       };

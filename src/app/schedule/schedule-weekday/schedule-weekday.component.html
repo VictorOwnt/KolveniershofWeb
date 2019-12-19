@@ -24,7 +24,8 @@
             <div class="card_content" fxLayout="column"
                  [fxFlex]="isAdmin ? '0 1 50%' : '100%'"
                  fxFlex.lt-md="100%">
-                <div id="general" *ngIf="isAdmin" fxLayout="column"
+                <!-- General info -->
+                <div id="general" *ngIf="isAdmin && !isBusSchedule" fxLayout="column"
                      [style.border-bottom]="(workday.holiday || hasDayActivities) ? 'none' : ''">
                     <h2>Algemeen</h2>
                     <p *ngIf="(workday | castWorkday).originalTemplateName">Deze planning komt van het
@@ -48,8 +49,25 @@
                         Daguitstap
                     </mat-slide-toggle>
                 </div>
+
+                <!-- Morning busses -->
+                <div id="morningBusses"
+                     *ngIf="!workday.holiday && (isAdmin || workday.morningBusses.length > 0) && isBusSchedule">
+                    <h2>Ochtend</h2>
+                    <app-schedule-unit *ngFor="let busUnit of workday.morningBusses" [unit]="busUnit"
+                                       [workday]="workday" [isAm]="true" [isAdmin]="isAdmin"
+                                       class="bus"></app-schedule-unit>
+                    <div [style.margin-top]="workday.morningBusses.length > 0 ? '' : '30px'" class="add-bus"
+                         *ngIf="isAdmin">
+                        <button type="button" class="btn-white" (click)="newUnit('bus',true)">
+                            Nieuwe bus toevoegen
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AM activities -->
                 <div id="amActivities"
-                     *ngIf="!workday.holiday && !hasDayActivities && (isAdmin || workday.amActivities.length > 0)">
+                     *ngIf="!workday.holiday && !hasDayActivities && (isAdmin || workday.amActivities.length > 0) && !isBusSchedule">
                     <h2>Voormiddag</h2>
                     <app-schedule-unit *ngFor="let activityUnit of workday.amActivities" [unit]="activityUnit"
                                        [workday]="workday" [isAm]="true" [isAdmin]="isAdmin"
@@ -65,7 +83,9 @@
             <div class="card_content" fxLayout="column"
                  [fxFlex]="isAdmin ? '0 1 50%' : '100%'"
                  fxFlex.lt-md="100%">
-                <div id="lunch" *ngIf="!workday.holiday && !hasDayActivities && (isAdmin || workday.lunch)">
+                <!-- Lunch -->
+                <div id="lunch"
+                     *ngIf="!workday.holiday && !hasDayActivities && (isAdmin || workday.lunch) && !isBusSchedule">
                     <h2>Lunch</h2>
                     <app-schedule-unit *ngIf="workday.lunch; else addLunch" [unit]="workday.lunch" [workday]="workday"
                                        [isAdmin]="isAdmin" class="lunch"></app-schedule-unit>
@@ -77,8 +97,10 @@
                         </div>
                     </ng-template>
                 </div>
+
+                <!-- PM activities -->
                 <div id="pmActivities"
-                     *ngIf="!workday.holiday && !hasDayActivities && (isAdmin || workday.pmActivities.length > 0)">
+                     *ngIf="!workday.holiday && !hasDayActivities && (isAdmin || workday.pmActivities.length > 0) && !isBusSchedule">
                     <h2>Namiddag</h2>
                     <app-schedule-unit *ngFor="let activityUnit of workday.pmActivities" [unit]="activityUnit"
                                        [workday]="workday" [isAm]="false" [isAdmin]="isAdmin"
@@ -90,7 +112,10 @@
                         </button>
                     </div>
                 </div>
-                <div id="dayActivities" *ngIf="!workday.holiday && hasDayActivities && (isAdmin || hasDayActivities)">
+
+                <!-- Day activities -->
+                <div id="dayActivities"
+                     *ngIf="!workday.holiday && hasDayActivities && (isAdmin || hasDayActivities) && !isBusSchedule">
                     <h2>Dagateliers</h2>
                     <app-schedule-unit *ngFor="let activityUnit of workday.dayActivities" [unit]="activityUnit"
                                        [workday]="workday" [isDay]="true" [isAdmin]="isAdmin"
@@ -102,19 +127,40 @@
                         </button>
                     </div>
                 </div>
+
+                <!-- Evening busses -->
+                <div id="eveningBusses"
+                     *ngIf="!workday.holiday && (isAdmin || workday.eveningBusses.length > 0) && isBusSchedule">
+                    <h2>Avond</h2>
+                    <app-schedule-unit *ngFor="let busUnit of workday.eveningBusses" [unit]="busUnit"
+                                       [workday]="workday" [isAm]="false" [isAdmin]="isAdmin"
+                                       class="bus"></app-schedule-unit>
+                    <div [style.margin-top]="workday.eveningBusses.length > 0 ? '' : '30px'" class="add-bus"
+                         *ngIf="isAdmin">
+                        <button type="button" class="btn-white" (click)="newUnit('bus',false)">
+                            Nieuwe bus toevoegen
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!-- Holiday -->
         <div class="card_content" id="holiday" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px"
              *ngIf="!isAdmin && this.workday.holiday">
             <img src="../../../assets/img/icons/icon-beach-umbrella.svg" alt="Vrijaf icoon" class="svgTextColor">
             <h3>Vrijaf!</h3>
         </div>
-        <div class="card_footer" *ngIf="!isTemplate && isAdmin && (workday | castWorkday).comments.length > 0">
+
+        <!-- Comments -->
+        <div class="card_footer"
+             *ngIf="!isTemplate && isAdmin && (workday | castWorkday).comments.length > 0 && !isBusSchedule">
             <h2>Opmerkingen</h2>
             <p>Er zijn {{ (workday | castWorkday).comments.length }} opmerkingen beschikbaar.</p>
             <button type="button" class="btn" (click)="viewComments(workday)">Opmerkingen bekijken</button>
         </div>
-        <div class="card_footer" [ngClass.gt-sm]="isAdmin ? 'card_footer_2col' : ''" *ngIf="!isTemplate && !isAdmin">
+        <div class="card_footer" [ngClass.gt-sm]="isAdmin ? 'card_footer_2col' : ''"
+             *ngIf="!isTemplate && !isAdmin && !isBusSchedule">
             <app-comment-new [workday]="workday"></app-comment-new>
         </div>
     </div>

@@ -1,7 +1,16 @@
 <div class="card" fxLayout="column">
     <div class="card_header" fxLayout="row" fxLayoutAlign="flex-start center">
-        <img fxFlex="none" [src]="icon" src-fallback='../../../assets/img/icons/icon-question-mark.svg'
-             alt="Atelier icoon" class="svgTextColor">
+        <div *ngIf="icon">
+            <img fxFlex="none" [src]="icon" src-fallback='../../../assets/img/icons/icon-question-mark.svg'
+                 alt="Atelier icoon" class="svgTextColor">
+        </div>
+        <div *ngIf="busColor">
+            <svg class="busIcon" [attr.fill]="busColor" stroke="black" stroke-width="0.5" height="30"
+                 viewBox="0 0 24 24"
+                 width="30" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 11 3 C 7.375 3 3 3.237 3 7 L 3 18 C 3 18.884916 3.3906671 19.671627 4 20.220703 L 4 21.5 C 4 22.328 4.672 23 5.5 23 C 6.328 23 7 22.328 7 21.5 L 7 21 L 17 21 L 17 21.5 C 17 22.328 17.672 23 18.5 23 C 19.328 23 20 22.328 20 21.5 L 20 20.220703 C 20.609333 19.671627 21 18.884916 21 18 L 21 7 C 21 3.237 16.625 3 13 3 L 11 3 z M 6 7 L 18 7 C 18.552 7 19 7.448 19 8 L 19 12 C 19 12.552 18.552 13 18 13 L 6 13 C 5.448 13 5 12.552 5 12 L 5 8 C 5 7.448 5.448 7 6 7 z M 6.5 16 C 7.328 16 8 16.672 8 17.5 C 8 18.328 7.328 19 6.5 19 C 5.672 19 5 18.328 5 17.5 C 5 16.672 5.672 16 6.5 16 z M 17.5 16 C 18.328 16 19 16.672 19 17.5 C 19 18.328 18.328 19 17.5 19 C 16.672 19 16 18.328 16 17.5 C 16 16.672 16.672 16 17.5 16 z"/>
+            </svg>
+        </div>
         <h2 class="mat-h2" fxFlex="grow">{{ title }}</h2>
         <a fxFlex="none" (click)="edit()" *ngIf="isAdmin">
             <svg id="edit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#000000">
