@@ -1,0 +1,81 @@
+<div class="container">
+    <h1 mat-dialog-title class="mat-h1" *ngIf="isAdmin">Gegevens van {{ user.firstName }} aanpassen</h1>
+    <h1 mat-dialog-title class="mat-h1" *ngIf="!isAdmin">Gegevens aanpassen</h1>
+
+    <form [formGroup]="userForm" (ngSubmit)="save()">
+        <div mat-dialog-content fxLayout="column">
+            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="6%" fxLayout.lt-md="column"
+                 fxLayoutGap.lt-md="3%">
+                <div>
+                    <label for="picture">
+                        <img class="profilePicture"
+                             [src]="imageUrl ? imageUrl: '../../../assets/img/profile_picture_empty.png'"
+                             alt="Profielfoto"/>
+                    </label>
+                    <br/>
+                    <input id="picture" accept='image/*' type="file" (change)="preview($event)"/>
+                </div>
+            </div>
+            <p fxLayoutAlign="center center" class="subtitle">Klik op het kader om een foto toe te voegen.</p>
+            <br/>
+
+            <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="3%" fxLayout.lt-md="column"
+                 fxLayoutGap.lt-md="0">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Voornaam</mat-label>
+                    <input matInput placeholder="Jan" formControlName="firstName" required data-cy=firstNameInput>
+                    <mat-error *ngIf="userForm.controls.firstName.invalid">{{getNameErrorMessage()}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Familienaam</mat-label>
+                    <input matInput placeholder="Janssens" formControlName="lastName" required>
+                    <mat-error *ngIf="userForm.controls.lastName.invalid">{{getNameErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Emailadres</mat-label>
+                <input matInput placeholder="ruben@mail.be" formControlName="email" required>
+                <mat-error *ngIf="userForm.controls.email.invalid">{{getEmailErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Geboortedatum</mat-label>
+                <input matInput [matDatepicker]="picker" placeholder="01/01/1990" formControlName="birthday" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker startView="multi-year" [startAt]="user.birthday"></mat-datepicker>
+                <mat-error *ngIf="userForm.controls.birthday.invalid">{{getBirthdayErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Adres</mat-label>
+                <input matInput placeholder="Veldstraat 1a" formControlName="street">
+            </mat-form-field>
+
+            <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="3%" fxLayout.lt-md="column"
+                 fxLayoutGap.lt-md="0">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Postcode</mat-label>
+                    <input matInput placeholder="9000" formControlName="postalCode">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Gemeente</mat-label>
+                    <input matInput placeholder="Gent" formControlName="city">
+                </mat-form-field>
+            </div>
+
+            <mat-slide-toggle formControlName="admin">
+                Begeleider
+            </mat-slide-toggle>
+        </div>
+
+        <div mat-dialog-actions fxLayoutAlign="end" fxFlexAlign="end" fxLayout="row" fxLayoutGap="20px"
+             fxLayout.lt-sm="column" fxLayoutAlign.lt-sm="center" fxFlexAlign.lt-sm="center" fxFlexFill>
+            <button class="btn-pink" type="submit" [disabled]='!userForm.valid && !userForm.dirty'>Opslaan</button>
+            <button class="btn-pink-outline" mat-dialog-close>Annuleren</button>
+        </div>
+
+    </form>
+</div>

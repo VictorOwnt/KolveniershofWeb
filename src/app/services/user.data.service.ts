@@ -1,25 +1,27 @@
-import { Injectable } from '@angular/core';
-import { Observable, Subject, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
-import { API_URL } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { User } from '../models/user.model';
+import {Injectable} from '@angular/core';
+import {Observable, of, Subject} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
+import {API_URL} from 'src/environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {User} from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserDataService {
   public loadingError$ = new Subject<string>();
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient) {
+  }
 
   get users$(): Observable<User[]> {
     return this.http
       .get(`${API_URL}/users/`)
       .pipe(catchError(error => {
-        this.loadingError$.next(error.statusText);
-        return of(null);
-      }), map((list: any[]): User[] => list.map(User.fromJSON))
-    );
+          this.loadingError$.next(error.statusText);
+          return of(null);
+        }), map((list: any[]): User[] => list.map(User.fromJSON))
+      );
   }
 
   get mentors$(): Observable<User[]> {
@@ -38,5 +40,15 @@ export class UserDataService {
     return this.http
       .get(`${API_URL}/users/id/${id}`)
       .pipe(map(User.fromJSON));
+  }
+
+  patchUser(user: User): Observable<User> {
+    return this.http
+      .patch(`${API_URL}/users/id/${user.id}`, user)
+      .pipe(map(User.fromJSON));
+  }
+
+  deleteUser(user: User): Observable<boolean> {
+    return this.http.delete<boolean>(`${API_URL}/users/id/${user.id}`);
   }
 }

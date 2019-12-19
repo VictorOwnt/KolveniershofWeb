@@ -4,6 +4,10 @@ import {Router} from '@angular/router';
 import {User} from '../../models/user.model';
 import {clearAllBodyScrollLocks, disableBodyScroll} from 'body-scroll-lock';
 import * as $ from 'jquery';
+import {EditProfileComponent} from '../../authentication/edit-profile/edit-profile.component';
+import {SuccessModalComponent} from '../success-modal/success-modal.component';
+import {ErrorModalComponent} from '../error-modal/error-modal.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +16,7 @@ import * as $ from 'jquery';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router, private auth: AuthenticationService) {
+  constructor(private router: Router, private auth: AuthenticationService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -57,5 +61,25 @@ export class HeaderComponent implements OnInit {
   navigate(url: string) {
     clearAllBodyScrollLocks();
     this.router.navigateByUrl(url);
+  }
+
+  private openAccountPopup() {
+    this.dialog.open(EditProfileComponent, {
+      width: '1000px',
+      data: {user: this.auth.currentUser, isAdmin: false}
+    }).afterClosed().subscribe(message => {
+      if (message && message !== false) {
+        this.dialog.open(SuccessModalComponent, {
+          width: '300px',
+          data: {message}
+        });
+      } else if (message === false) {
+        // Open error dialog
+        this.dialog.open(ErrorModalComponent, {
+          width: '300px',
+          data: {message: 'Probeer later opnieuw.'}
+        });
+      }
+    });
   }
 }

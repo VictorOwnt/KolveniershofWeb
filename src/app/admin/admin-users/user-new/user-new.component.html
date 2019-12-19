@@ -1,0 +1,22 @@
+<div class="container">
+    <h1 mat-dialog-title class="mat-h1">Gebruiker toevoegen</h1>
+    <form [formGroup]="newUserForm" (ngSubmit)="send()">
+
+        <div mat-dialog-content fxLayout="column">
+            <p>Vul hier het emailadres van de nieuwe gebruiker in.
+                Deze zal een uitnodiging ontvangen om zich te registreren bij het webplatform.</p>
+
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Emailadres</mat-label>
+                <input matInput placeholder="ruben@mail.be" formControlName="email" required>
+                <mat-error *ngIf="newUserForm.controls.email.invalid">{{getEmailErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div mat-dialog-actions fxLayoutAlign="end" fxFlexAlign="end" fxLayout="row" fxLayoutGap="20px"
+             fxLayout.lt-sm="column" fxLayoutAlign.lt-sm="center" fxFlexAlign.lt-sm="center" fxFlexFill>
+            <button class="btn-pink" type="submit" [disabled]='!newUserForm.valid'>Uitnodigen</button>
+            <button class="btn-pink-outline" mat-dialog-close>Annuleren</button>
+        </div>
+    </form>
+</div>
