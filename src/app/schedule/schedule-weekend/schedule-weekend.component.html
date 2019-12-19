@@ -18,8 +18,7 @@
             </button>
         </div>
         <div id="add-comment" *ngIf="!isAdmin">
-            <h2>Opmerking</h2>
-            Add comment placeholder <!-- TODO - add comment as user -->
+            <app-comment-new [workday]="workday"></app-comment-new>
         </div>
     </div>
 </div>
