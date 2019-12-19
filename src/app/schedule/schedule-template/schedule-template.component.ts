@@ -3,6 +3,9 @@ import {WorkdayTemplateDataService} from '../../services/workdayTemplate.data.se
 import {Observable} from 'rxjs';
 import {WorkdayTemplate} from '../../models/workdayTemplate.model';
 import {ActivatedRoute} from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { SuccessModalComponent } from 'src/app/shared/success-modal/success-modal.component';
+import { ErrorModalComponent } from 'src/app/shared/error-modal/error-modal.component';
 
 @Component({
   selector: 'app-schedule-template',
@@ -14,7 +17,7 @@ export class ScheduleTemplateComponent implements OnInit {
   weekNumber = 1;
   workdayTemplates$: Observable<WorkdayTemplate[]>;
 
-  constructor(private route: ActivatedRoute, private workdayTemplateDataService: WorkdayTemplateDataService) {
+  constructor(private route: ActivatedRoute, private workdayTemplateDataService: WorkdayTemplateDataService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -37,6 +40,25 @@ export class ScheduleTemplateComponent implements OnInit {
   prevWeek() {
     this.weekNumber -= 1;
     this.loadWorkdayTemplates(this.templateName, this.weekNumber);
+  }
+
+  deleteWeek() {
+    // TODO - week, verwijdert nu alle weken van die templates
+    this.workdayTemplateDataService.deleteWorkdayTemplates(this.templateName).subscribe(value => {
+      if (value) {
+        // Success dialog
+        this.dialog.open(SuccessModalComponent, {
+          width: '300px',
+          data: {message: 'Template succesvol verwijderd!'}
+        });
+      } else {
+        // Error dialog
+        this.dialog.open(ErrorModalComponent, {
+          width: '300px',
+          data: {message: 'Template verwijderen mislukt!'}
+        });
+      }
+    });
   }
 
 }
