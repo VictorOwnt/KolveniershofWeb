@@ -12,8 +12,9 @@ import {SuccessModalComponent} from '../../shared/success-modal/success-modal.co
 import {ErrorModalComponent} from '../../shared/error-modal/error-modal.component';
 import {Workday} from '../../models/workday.model';
 import {WorkdayTemplate} from '../../models/workdayTemplate.model';
-import { BusUnit } from 'src/app/models/busUnit.model';
-import { Bus } from 'src/app/models/bus.model';
+import {BusUnit} from 'src/app/models/busUnit.model';
+import {Bus} from 'src/app/models/bus.model';
+import {BusDataService} from '../../services/bus.data.service';
 
 @Component({
   selector: 'app-schedule-unit',
@@ -39,6 +40,7 @@ export class ScheduleUnitComponent implements OnInit {
     private firebaseService: FirebaseService,
     public dialog: MatDialog,
     private activityDataService: ActivityDataService,
+    private busDataService: BusDataService,
     private lunchDataService: LunchDataService
   ) {
   }
@@ -127,6 +129,21 @@ export class ScheduleUnitComponent implements OnInit {
         if (canDelete) {
           // Delete unit & open modal
           this.activityDataService.deleteActivityUnit(
+            this.unit,
+            this.workday ? this.workday.id : null,
+            this.workdayTemplate ? this.workdayTemplate.id : null
+          ).subscribe(hasSucceeded => this.openAfterDeleteModal(hasSucceeded));
+        }
+      });
+    } else if (this.unit instanceof BusUnit) {
+      // Open delete dialog
+      this.dialog.open(DeleteModalComponent, {
+        width: '500px',
+        data: {itemToDelete: 'bus'}
+      }).afterClosed().subscribe(canDelete => {
+        if (canDelete) {
+          // Delete unit & open modal
+          this.busDataService.deleteBusUnit(
             this.unit,
             this.workday ? this.workday.id : null,
             this.workdayTemplate ? this.workdayTemplate.id : null
