@@ -344,7 +344,7 @@ export class ExportService {
    * @param workdays  Workdays to export
    * @param bus Whether it is a bus schedule
    */
-  public printWeek(workdays: Workday[], bus: boolean = true) {
+  public printWeek(workdays: Workday[], bus: boolean = false) {
     // Create empty pdf
     const pdf = this.createEmptyPdf(this.datePipe.transform(workdays[0].date, 'w'), bus);
     // Add template info
