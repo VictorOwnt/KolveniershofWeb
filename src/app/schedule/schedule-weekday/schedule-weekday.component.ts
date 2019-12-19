@@ -72,6 +72,7 @@ export class ScheduleWeekdayComponent implements OnInit {
       dialogData = {
         workdayTemplate: this.workday as WorkdayTemplate,
         isActivity: (type === 'activity'),
+        isBus: (type === 'bus'),
         isAm,
         isDay
       };
@@ -79,6 +80,7 @@ export class ScheduleWeekdayComponent implements OnInit {
       dialogData = {
         workday: this.workday as Workday,
         isActivity: (type === 'activity'),
+        isBus: (type === 'bus'),
         isAm,
         isDay
       };

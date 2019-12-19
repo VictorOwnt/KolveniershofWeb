@@ -16,6 +16,9 @@ import {Workday} from '../../../models/workday.model';
 import {WorkdayTemplate} from '../../../models/workdayTemplate.model';
 import {WorkdayDataService} from '../../../services/workday.data.service';
 import {WorkdayTemplateDataService} from '../../../services/workdayTemplate.data.service';
+import {BusUnit} from '../../../models/busUnit.model';
+import {BusDataService} from '../../../services/bus.data.service';
+import {Bus} from '../../../models/bus.model';
 
 @Component({
   selector: 'app-schedule-edit',
@@ -24,16 +27,19 @@ import {WorkdayTemplateDataService} from '../../../services/workdayTemplate.data
 })
 export class EditUnitModalComponent implements OnInit {
   @ViewChild('lunchInput', {static: false}) lunchInput;
-  unit: ActivityUnit | LunchUnit = null;
+  unit: ActivityUnit | LunchUnit | BusUnit = null;
   workday: Workday = null;
   workdayTemplate: WorkdayTemplate = null;
   isAm: boolean = null;
   isDay: boolean = null;
   activities: Activity[] = [];
   activityImgUrl: any = null;
+  busses: Bus[] = [];
   mentors: User[] = [];
   clients: User[] = [];
   isActivity = false;
+  isBus = false;
+  isLunch: false;
   filteredActivities: Observable<Activity[]>;
   public unitFormGroup: FormGroup;
 
@@ -44,6 +50,7 @@ export class EditUnitModalComponent implements OnInit {
     private fb: FormBuilder,
     private firebaseService: FirebaseService,
     private activityDataService: ActivityDataService,
+    private busDataService: BusDataService,
     private lunchDataService: LunchDataService,
     private userDataService: UserDataService,
     private workdayDataService: WorkdayDataService,
@@ -55,7 +62,10 @@ export class EditUnitModalComponent implements OnInit {
     this.isAm = data.isAm ? data.isAm : null;
     this.isDay = data.isDay ? data.isDay : null;
     this.isActivity = data.isActivity ? data.isActivity : data.unit instanceof ActivityUnit;
+    this.isBus = data.isBus ? data.isBus : data.unit instanceof BusUnit;
+    this.isLunch = data.isLunch ? data.isLunch : data.unit instanceof LunchUnit;
     activityDataService.activities$.subscribe(activities => this.activities = activities);
+    busDataService.busses$.subscribe(busses => this.busses = busses);
     userDataService.mentors$.subscribe(mentors => this.mentors = mentors);
     userDataService.clients$.subscribe(clients => this.clients = clients);
   }
@@ -77,6 +87,13 @@ export class EditUnitModalComponent implements OnInit {
       // Filter activities
       this.filteredActivities = this.unitFormGroup.controls.activity.valueChanges
         .pipe(startWith(''), map(value => this._filterActivities(value)));
+    } else if (this.isBus) {
+      // FormGroup for busUnit
+      this.unitFormGroup = this.fb.group(({
+        bus: [this.unit ? (this.unit as BusUnit).bus : null, Validators.required],
+        mentors: [this.unit ? (this.unit as BusUnit).mentors : null, Validators.required],
+        clients: [this.unit ? (this.unit as BusUnit).clients : null, Validators.required]
+      }));
     } else {
       // FormGroup for lunchUnit
       this.unitFormGroup = this.fb.group({
@@ -94,6 +111,10 @@ export class EditUnitModalComponent implements OnInit {
 
   compareUsers(user1: User, user2: User) {
     return user1 && user2 ? user1.id === user2.id : user1 === user2;
+  }
+
+  compareBusses(bus1: Bus, bus2: Bus) {
+    return bus1 && bus2 ? bus1.id === bus2.id : bus1 === bus2;
   }
 
   previewActivity(activity: Activity) {
@@ -118,6 +139,26 @@ export class EditUnitModalComponent implements OnInit {
           if (value) {
             // Success dialog
             this.dialogRef.close('Atelier aangepast');
+          } else {
+            // Error dialog
+            this.dialogRef.close(false);
+          }
+        });
+      } else if (this.isBus) {
+        // Create patched unit
+        const patchedUnit = this.unit as BusUnit;
+        patchedUnit.bus = this.unitFormGroup.value.bus;
+        patchedUnit.mentors = this.unitFormGroup.value.mentors;
+        patchedUnit.clients = this.unitFormGroup.value.clients;
+        // Patch ActivityUnit
+        this.busDataService.patchBusUnit(
+          patchedUnit,
+          this.workday ? this.workday.id : null,
+          this.workdayTemplate ? this.workdayTemplate.id : null
+        ).subscribe(value => {
+          if (value) {
+            // Success dialog
+            this.dialogRef.close('Bus aangepast');
           } else {
             // Error dialog
             this.dialogRef.close(false);
@@ -189,6 +230,53 @@ export class EditUnitModalComponent implements OnInit {
               if (value) {
                 // Success dialog
                 this.dialogRef.close('Atelier toegevoegd');
+              } else {
+                // Error dialog
+                this.dialogRef.close(false);
+              }
+            });
+          }
+        });
+      } else if (this.isBus) {
+        // Create new unit
+        const newUnit = new BusUnit(
+          this.unitFormGroup.value.bus,
+          this.unitFormGroup.value.mentors,
+          this.unitFormGroup.value.clients
+        );
+        // Post unit
+        this.busDataService.postBusUnit(newUnit).subscribe(busUnit => {
+          if (!busUnit) {
+            // Error dialog
+            this.dialogRef.close(false);
+          }
+          if (this.workday) {
+            // Add unit to workday
+            if (this.isAm) {
+              this.workday.morningBusses.push(busUnit);
+            } else {
+              this.workday.eveningBusses.push(busUnit);
+            }
+            this.workdayDataService.patchWorkday(this.workday).subscribe(value => {
+              if (value) {
+                // Success dialog
+                this.dialogRef.close('Bus toegevoegd');
+              } else {
+                // Error dialog
+                this.dialogRef.close(false);
+              }
+            });
+          } else if (this.workdayTemplate) {
+            // Add unit to workday template
+            if (this.isAm) {
+              this.workdayTemplate.morningBusses.push(busUnit);
+            } else {
+              this.workdayTemplate.eveningBusses.push(busUnit);
+            }
+            this.workdayTemplateDataService.patchWorkdayTemplate(this.workdayTemplate).subscribe(value => {
+              if (value) {
+                // Success dialog
+                this.dialogRef.close('Bus toegevoegd');
               } else {
                 // Error dialog
                 this.dialogRef.close(false);

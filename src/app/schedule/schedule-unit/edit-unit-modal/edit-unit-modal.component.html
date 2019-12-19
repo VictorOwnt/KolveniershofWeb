@@ -1,11 +1,13 @@
 <form [formGroup]="unitFormGroup" (ngSubmit)="submitUnit()" fxLayout="column" fxLayoutGap="15px">
     <div class="header" *ngIf="unit === null">
         <h1 mat-dialog-title *ngIf="isActivity">Nieuw atelier</h1>
-        <h1 mat-dialog-title *ngIf="!isActivity">Nieuwe lunch</h1>
+        <h1 mat-dialog-title *ngIf="isBus">Nieuwe bus</h1>
+        <h1 mat-dialog-title *ngIf="isLunch">Nieuwe lunch</h1>
     </div>
     <div class="header" *ngIf="unit !== null">
         <h1 mat-dialog-title *ngIf="isActivity">Atelier bewerken</h1>
-        <h1 mat-dialog-title *ngIf="!isActivity">Lunch bewerken</h1>
+        <h1 mat-dialog-title *ngIf="isBus">Bus bewerken</h1>
+        <h1 mat-dialog-title *ngIf="isLunch">Lunch bewerken</h1>
     </div>
 
     <div class="content" mat-dialog-content>
@@ -25,8 +27,16 @@
             </mat-autocomplete>
         </mat-form-field>
 
+        <!-- Select bus -->
+        <mat-form-field *ngIf="isBus">
+            <mat-label>Bus</mat-label>
+            <mat-select formControlName="bus" placeholder="Selecteer een bus" [compareWith]="compareBusses" required>
+                <mat-option *ngFor="let bus of busses" [value]="bus">{{ bus }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
         <!-- Enter lunch -->
-        <mat-form-field *ngIf="!isActivity">
+        <mat-form-field *ngIf="isLunch">
             <input #lunchInput formControlName="lunch" type="text" aria-label="Lunch" matInput placeholder="Maaltijd"
                    required>
             <button mat-button type="button" *ngIf="lunchInput.value" matSuffix mat-icon-button aria-label="Maak leeg"
