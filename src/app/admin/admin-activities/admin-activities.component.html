@@ -3,8 +3,8 @@
 <div class="container" fxLayout="column">
     <h1>Ateliers</h1>
 
-    <div class="activity-item" *ngFor="let activity of activities$ | async">
-    <app-activity [activity]="activity"></app-activity>
+    <div *ngFor="let activity of activities$ | async">
+        <app-activity [activity]="activity"></app-activity>
     </div>
 
     <button class="btn-pink" fxFlexAlign="end" fxFlexAlign.lt-sm="center" (click)="create()">Nieuw atelier</button>

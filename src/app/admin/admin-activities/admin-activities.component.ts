@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Activity} from '../../models/activity.model';
 import {ActivityDataService} from '../../services/activity.data.service';
-import {ActivityNewComponent} from '../admin-activities/activity-new/activity-new.component';
+import {ActivityNewComponent} from './activity-new/activity-new.component';
 import {SuccessModalComponent} from '../../shared/success-modal/success-modal.component';
 import {ErrorModalComponent} from '../../shared/error-modal/error-modal.component';
-import { Observable } from 'rxjs';
-import { MatDialog } from '@angular/material';
+import {Observable} from 'rxjs';
+import {MatDialog} from '@angular/material';
 
 
 @Component({
@@ -15,6 +15,7 @@ import { MatDialog } from '@angular/material';
 })
 export class AdminActivitiesComponent implements OnInit {
   activities$: Observable<Activity[]>;
+
   constructor(public dialog: MatDialog, private activityDataService: ActivityDataService) {
   }
 
