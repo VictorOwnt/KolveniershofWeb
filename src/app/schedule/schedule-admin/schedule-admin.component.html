@@ -21,5 +21,8 @@
                               [workday]="workday" [isAdmin]="true"></app-schedule-weekday>
         <app-schedule-weekend class="day" *ngFor="let workday of workdays$ | async | workdayFilter:true"
                               [workday]="workday" [isAdmin]="true"></app-schedule-weekend>
+        <div fxLayoutAlign="center center" fxLayoutGap="20px">
+            <button type="button" class="btn-danger" (click)="deleteWeek()">Verwijder planning van deze week</button>
+        </div>
     </ng-template>
 </div>
