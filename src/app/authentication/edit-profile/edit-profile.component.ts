@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {ActivityDataService} from '../../services/activity.data.service';
 import {FirebaseService} from '../../services/firebase.service';
 import {User} from '../../models/user.model';
 import {AuthenticationService} from '../authentication.service';
@@ -48,7 +47,6 @@ export class EditProfileComponent implements OnInit {
     public dialogRef: MatDialogRef<EditProfileComponent>,
     private dialog: MatDialog,
     private fb: FormBuilder,
-    private activityDataService: ActivityDataService,
     private firebaseService: FirebaseService,
     private auth: AuthenticationService
   ) {
@@ -58,6 +56,7 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit() {
     const oldEmail = this.user.email;
+    this.firebaseService.lookupFileDownloadUrl(this.user.picture, 'user').subscribe(img => this.imageUrl = img);
     this.userForm = this.fb.group({
       firstName: [this.user.firstName, Validators.required],
       lastName: [this.user.lastName, Validators.required],
