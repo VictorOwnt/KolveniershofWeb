@@ -3,10 +3,19 @@ import {CommonModule} from '@angular/common';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatSlideToggleModule
+} from '@angular/material';
 import {FlexModule} from '@angular/flex-layout';
 import {ForbiddenComponent} from './forbidden/forbidden.component';
 import {EditProfileComponent} from './edit-profile/edit-profile.component';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +34,9 @@ import {EditProfileComponent} from './edit-profile/edit-profile.component';
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSlideToggleModule,
+    SharedModule
   ],
   entryComponents: [
     EditProfileComponent

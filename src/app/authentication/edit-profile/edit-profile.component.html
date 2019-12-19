@@ -1,6 +1,6 @@
 <div class="container">
-    <h1 mat-dialog-title *ngIf="isAdmin">Gegevens van {{ user.firstName }} aanpassen</h1>
-    <h1 mat-dialog-title *ngIf="!isAdmin">Gegevens aanpassen</h1>
+    <h1 mat-dialog-title class="mat-h1" *ngIf="isAdmin">Gegevens van {{ user.firstName }} aanpassen</h1>
+    <h1 mat-dialog-title class="mat-h1" *ngIf="!isAdmin">Gegevens aanpassen</h1>
 
     <form [formGroup]="userForm" (ngSubmit)="save()">
         <div mat-dialog-content fxLayout="column">
@@ -65,6 +65,10 @@
                     <input matInput placeholder="Gent" formControlName="city">
                 </mat-form-field>
             </div>
+
+            <mat-slide-toggle formControlName="admin">
+                Begeleider
+            </mat-slide-toggle>
         </div>
 
         <div mat-dialog-actions fxLayoutAlign="end" fxFlexAlign="end" fxLayout="row" fxLayoutGap="20px"

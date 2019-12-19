@@ -6,6 +6,9 @@ import {User} from '../../models/user.model';
 import {AuthenticationService} from '../authentication.service';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {UserDataService} from '../../services/user.data.service';
+import {ErrorModalComponent} from '../../shared/error-modal/error-modal.component';
+import {HttpErrorResponse} from '@angular/common/http';
 
 function serverSideValidateEmail(authService: AuthenticationService, oldValue: string): ValidatorFn {
   return (control: AbstractControl): Observable<{ [key: string]: any }> => {
@@ -48,10 +51,11 @@ export class EditProfileComponent implements OnInit {
     private dialog: MatDialog,
     private fb: FormBuilder,
     private firebaseService: FirebaseService,
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
+    private userDataService: UserDataService
   ) {
     this.user = data.user;
-    this.isAdmin = auth.currentUser.admin;
+    this.isAdmin = data.isAdmin ? data.isAdmin : auth.currentUser.admin;
   }
 
   ngOnInit() {
@@ -68,7 +72,8 @@ export class EditProfileComponent implements OnInit {
       street: [this.user.street],
       city: [this.user.city],
       postalCode: [this.user.postalCode],
-      picture: [this.user.picture]
+      picture: [this.user.picture],
+      admin: [this.user.admin]
     });
   }
 
@@ -100,7 +105,37 @@ export class EditProfileComponent implements OnInit {
   }
 
   save() {
-    // TODO
+    // Change values for user
+    this.user.firstName = this.userForm.value.firstName;
+    this.user.lastName = this.userForm.value.lastName;
+    this.user.email = this.userForm.value.email;
+    this.user.birthday = this.userForm.value.birthday;
+    this.user.street = this.userForm.value.street;
+    this.user.postalCode = this.userForm.value.postalCode;
+    this.user.city = this.userForm.value.city;
+    this.user.admin = this.userForm.value.admin;
+    if (this.isNewImage) {
+      this.user.picture =
+        'users/' + this.userForm.value.firstName + '_' + this.userForm.value.lastName + '_' + new Date().toISOString().split('T')[0];
+      this.firebaseService.uploadFile(this.user.picture);
+    }
+
+    this.userDataService.patchUser(this.user).subscribe(val => {
+        if (val) {
+          // Success dialog
+          this.dialogRef.close('Gegevens aangepast.');
+        } else {
+          // Error dialog
+          this.dialogRef.close(false);
+        }
+      }, (err: HttpErrorResponse) => {
+        // Open error dialog
+        this.dialog.open(ErrorModalComponent, {
+          width: '300px',
+          data: {message: err.error instanceof Error ? err.error.message : err.error}
+        });
+      }
+    );
   }
 
 }
