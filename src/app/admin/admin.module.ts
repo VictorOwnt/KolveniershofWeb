@@ -16,6 +16,7 @@ import {AdminTemplatesComponent} from './admin-templates/admin-templates.compone
 import {TemplateNewComponent} from './admin-templates/template-new/template-new.component';
 import {ActivityComponent} from './admin-activities/activity/activity.component';
 import {AdminUsersComponent} from './admin-users/admin-users.component';
+import {UserNewComponent} from './admin-users/user-new/user-new.component';
 import {UserComponent} from './admin-users/user/user.component';
 import {AuthenticationModule} from '../authentication/authentication.module';
 import {ImgFallbackModule} from 'ngx-img-fallback';
@@ -31,6 +32,7 @@ import {ImgFallbackModule} from 'ngx-img-fallback';
     TemplateNewComponent,
     ActivityComponent,
     AdminUsersComponent,
+    UserNewComponent,
     UserComponent
   ],
   imports: [
@@ -52,7 +54,8 @@ import {ImgFallbackModule} from 'ngx-img-fallback';
   entryComponents: [
     ActivityNewComponent,
     BusNewComponent,
-    TemplateNewComponent
+    TemplateNewComponent,
+    UserNewComponent
   ]
 })
 export class AdminModule {

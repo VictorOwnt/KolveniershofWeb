@@ -1,0 +1,14 @@
+@import "../../../../variables.scss";
+
+.container {
+  margin: 20px;
+  color: $color-text;
+}
+
+h1, h2, p {
+  color: $color-text;
+}
+
+.mat-dialog-actions {
+  margin-bottom: 0;
+}
