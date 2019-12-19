@@ -43,7 +43,7 @@ export class ScheduleEmptyComponent implements OnInit {
     if (template) {
       // Create week from template
       this.workdayTemplateDataService
-        .createWeek(this.template.controls.name.value, this.template.controls.week.value, this.dates[0]).subscribe(val => {
+        .createWeekFromTemplate(this.template.controls.name.value, this.template.controls.week.value, this.dates[0]).subscribe(val => {
           if (val) {
             // Open success modal
             this.openModal(true, 'Week aangemaakt vanuit template.');
