@@ -44,7 +44,7 @@ h1, h2, h3, p {
     padding-top: $card-padding;
     padding-bottom: $card-padding;
 
-    &:not(#pmActivities):not(#dayActivities) {
+    &:not(#pmActivities):not(#dayActivities):not(#eveningBusses) {
       border-bottom: 2px solid $color-divider;
     }
   }
@@ -69,7 +69,7 @@ h1, h2, h3, p {
     }
   }
 
-  .add-activity, .add-lunch {
+  .add-activity, .add-lunch, .add-bus {
     margin-bottom: 10px;
   }
 }
@@ -109,7 +109,7 @@ h1, h2, h3, p {
       padding-left: $card-padding;
     }
 
-    & > #amActivities {
+    & > #amActivities, & > #morningBusses {
       border-bottom: unset !important;
     }
   }
@@ -119,7 +119,7 @@ h1, h2, h3, p {
   border-top: 1px solid $color-divider;
 }
 
-.activity, .lunch {
+.activity, .lunch, .bus {
   margin-left: -10px;
   margin-right: -10px;
 }
