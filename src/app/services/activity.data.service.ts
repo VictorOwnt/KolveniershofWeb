@@ -1,8 +1,8 @@
 import {Observable, of, Subject} from 'rxjs';
-import { Injectable } from '@angular/core';
-import { ActivityUnit } from '../models/activityUnit.model';
+import {Injectable} from '@angular/core';
+import {ActivityUnit} from '../models/activityUnit.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { API_URL } from '../../environments/environment';
+import {API_URL} from '../../environments/environment';
 import {Activity} from '../models/activity.model';
 import {catchError, map} from 'rxjs/operators';
 
@@ -12,7 +12,8 @@ import {catchError, map} from 'rxjs/operators';
 export class ActivityDataService {
   public loadingError$ = new Subject<string>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   get activities$(): Observable<Activity[]> {
     return this.http
@@ -67,14 +68,14 @@ export class ActivityDataService {
   }
 
   patchActivityUnit(activityUnit: ActivityUnit, workdayId: string = null, workdayTemplateId: string = null): Observable<ActivityUnit> {
-    const jsonData = { workdayId, workdayTemplateId, ...activityUnit };
+    const jsonData = {workdayId, workdayTemplateId, ...activityUnit};
     return this.http
       .patch(`${API_URL}/activities/units/id/${activityUnit.id}`, jsonData)
       .pipe(map(ActivityUnit.fromJSON));
   }
 
   deleteActivityUnit(activityUnit: ActivityUnit, workdayId: string = null, workdayTemplateId: string = null): Observable<boolean> {
-    const jsonData = { workdayId, workdayTemplateId };
+    const jsonData = {workdayId, workdayTemplateId};
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

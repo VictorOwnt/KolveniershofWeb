@@ -5,57 +5,57 @@
 }
 
 .activity-item {
-    margin: 2px -10px;
-    padding: 5px 12px;
-    background-color: unset;
-    border-radius: 8px;
+  margin: 2px -10px;
+  padding: 5px 12px;
+  background-color: unset;
+  border-radius: 8px;
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    background-color: #FFF;
+  }
+
+  .icon {
+    width: 24px;
+    height: 100%;
+    margin: auto 10px auto 0;
+  }
+
+  .editDelete {
+    margin: 0 6px;
     transition: all .2s ease-in-out;
-  
-    &:hover {
-      background-color: #FFF;
-    }
-  
-    .icon {
-      width: 24;
-      height: 100%;
-      margin: auto 10px auto 0;
-    }
-  
-    .editDelete {
-      margin: 0 6px;
-      transition: all .2s ease-in-out;
-      cursor: pointer;
-  
-      &:last-of-type {
-        margin-right: 0;
-      }
-  
-      &:hover {
-        opacity: .7;
-      }
-  
-      & svg {
-        height: 24px;
-        width: 24px;
-      }
-  
-      #edit {
-        fill: $color-text
-      }
-  
-      #delete {
-        fill: $color-danger
-      }
-    }
-  
-    &:first-of-type {
-      margin-top: 0;
-    }
-  
+    cursor: pointer;
+
     &:last-of-type {
-      margin-bottom: 12px;
+      margin-right: 0;
+    }
+
+    &:hover {
+      opacity: .7;
+    }
+
+    & svg {
+      height: 24px;
+      width: 24px;
+    }
+
+    #edit {
+      fill: $color-text
+    }
+
+    #delete {
+      fill: $color-danger
     }
   }
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  &:last-of-type {
+    margin-bottom: 12px;
+  }
+}
 
 @media screen and (max-width: 1440px) {
   .container {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Workday} from '../../models/workday.model';
 import {DatesService} from '../../services/dates.service';
@@ -27,7 +27,8 @@ export class ScheduleUserComponent implements OnInit {
     private workdayDataService: WorkdayDataService,
     private auth: AuthenticationService,
     private userDataService: UserDataService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     // Get logged in user

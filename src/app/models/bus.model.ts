@@ -9,7 +9,9 @@ export class Bus {
   }
 
   static fromJSON(json: any): Bus {
-    if ((json === undefined) || (json === null)) { return null; }
+    if ((json === undefined) || (json === null)) {
+      return null;
+    }
     const bus = new Bus(json.name, json.color);
     bus.id = json._id;
     return bus;

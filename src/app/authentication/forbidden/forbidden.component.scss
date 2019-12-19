@@ -73,16 +73,26 @@
   margin-top: 30px;
 }
 
-@keyframes lock{
-  50%{top:-6%;}
-  100%{top:-10%;}
+@keyframes lock {
+  50% {
+    top: -6%;
+  }
+  100% {
+    top: -10%;
+  }
 }
 
-@keyframes colors{
-  50%{transform:scale(1.1);}
-  100%{color:$color-accent;}
+@keyframes colors {
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    color: $color-accent;
+  }
 }
 
-@keyframes show{
-  100%{opacity:1;}
+@keyframes show {
+  100% {
+    opacity: 1;
+  }
 }

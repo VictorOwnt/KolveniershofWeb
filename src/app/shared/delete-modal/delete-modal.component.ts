@@ -13,7 +13,8 @@ export class DeleteModalComponent implements OnInit {
     this.itemToDelete = data.itemToDelete;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   onDelete() {
     this.dialogRef.close(true);

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {DatePipe} from '@angular/common';
 
 @Injectable({
@@ -6,7 +6,8 @@ import {DatePipe} from '@angular/common';
 })
 export class DatesService {
 
-  constructor(private datepipe: DatePipe) { }
+  constructor(private datepipe: DatePipe) {
+  }
 
   /**
    * Add days to date, creates copy
