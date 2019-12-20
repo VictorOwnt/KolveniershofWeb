@@ -13,6 +13,7 @@ export class SuccessModalComponent implements OnInit {
     this.message = data.message;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
 }

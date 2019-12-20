@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { LoginComponent } from 'src/app/authentication/login/login.component';
-import { RouterModule, Routes } from '@angular/router';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AuthGuard } from './authentication/auth.guard';
-import { RegisterComponent } from './authentication/register/register.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {LoginComponent} from 'src/app/authentication/login/login.component';
+import {RouterModule, Routes} from '@angular/router';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {AuthGuard} from './authentication/auth.guard';
+import {RegisterComponent} from './authentication/register/register.component';
 import {ForbiddenComponent} from './authentication/forbidden/forbidden.component';
 
 const appRoutes: Routes = [
@@ -17,16 +17,16 @@ const appRoutes: Routes = [
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule),
     canActivate: [AuthGuard],
-    data: { shouldBeAdmin: true }
+    data: {shouldBeAdmin: true}
   },
-  { path: 'login', component: LoginComponent },
-  { path: 'r', component: RegisterComponent },
-  { path: '', component: PageNotFoundComponent, canActivate: [AuthGuard] }, // See AuthGuard for homepage routing
-  { path: 'home', redirectTo: '', pathMatch: 'full' },
-  { path: 'index', redirectTo: '', pathMatch: 'full' },
-  { path: 'welcome', redirectTo: '', pathMatch: 'full' },
-  { path: 'forbidden', component: ForbiddenComponent },
-  { path: '**', component: PageNotFoundComponent }
+  {path: 'login', component: LoginComponent},
+  {path: 'r', component: RegisterComponent},
+  {path: '', component: PageNotFoundComponent, canActivate: [AuthGuard]}, // See AuthGuard for homepage routing
+  {path: 'home', redirectTo: '', pathMatch: 'full'},
+  {path: 'index', redirectTo: '', pathMatch: 'full'},
+  {path: 'welcome', redirectTo: '', pathMatch: 'full'},
+  {path: 'forbidden', component: ForbiddenComponent},
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
@@ -34,4 +34,5 @@ const appRoutes: Routes = [
   imports: [RouterModule.forRoot(appRoutes), CommonModule],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

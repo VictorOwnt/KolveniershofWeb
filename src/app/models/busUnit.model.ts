@@ -1,5 +1,5 @@
-import { Bus } from './bus.model';
-import { User } from './user.model';
+import {Bus} from './bus.model';
+import {User} from './user.model';
 
 export class BusUnit {
   id: string;
@@ -14,7 +14,9 @@ export class BusUnit {
   }
 
   static fromJSON(json: any): BusUnit {
-    if ((json === undefined) || (json === null)) { return null; }
+    if ((json === undefined) || (json === null)) {
+      return null;
+    }
     const busUnit = new BusUnit(
       Bus.fromJSON(json.bus),
       json.mentors.map(User.fromJSON),

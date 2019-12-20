@@ -1,13 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Activity } from 'src/app/models/activity.model';
+import {Component, Input, OnInit} from '@angular/core';
+import {Activity} from 'src/app/models/activity.model';
 import {FirebaseService} from 'src/app/services/firebase.service';
 import {MatDialog} from '@angular/material/dialog';
 import {ActivityNewComponent} from '../activity-new/activity-new.component';
 import {SuccessModalComponent} from '../../../shared/success-modal/success-modal.component';
 import {ErrorModalComponent} from '../../../shared/error-modal/error-modal.component';
 import {DeleteModalComponent} from '../../../shared/delete-modal/delete-modal.component';
-import { Observable } from 'rxjs';
-import { ActivityDataService } from 'src/app/services/activity.data.service';
+import {Observable} from 'rxjs';
+import {ActivityDataService} from 'src/app/services/activity.data.service';
 
 @Component({
   selector: 'app-activity',
@@ -15,10 +15,11 @@ import { ActivityDataService } from 'src/app/services/activity.data.service';
   styleUrls: ['./activity.component.scss']
 })
 export class ActivityComponent implements OnInit {
-  @Input() private activity: Activity;
+  @Input() activity: Activity;
   iconImage: Observable<string | null>;
 
-  constructor(public dialog: MatDialog, private activityDataService: ActivityDataService, private firebaseService: FirebaseService) { }
+  constructor(public dialog: MatDialog, private activityDataService: ActivityDataService, private firebaseService: FirebaseService) {
+  }
 
   ngOnInit() {
     this.iconImage = this.firebaseService.lookupFileDownloadUrl(this.activity.icon, 'icon');

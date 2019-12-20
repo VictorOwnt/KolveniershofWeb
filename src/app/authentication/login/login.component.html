@@ -12,9 +12,9 @@
     <mat-form-field appearance="outline">
         <mat-label>Wachtwoord</mat-label>
         <input matInput placeholder="abc123" [type]="hidePassword ? 'password' : 'text'" formControlName="password"
-            required data-cy=login-password>
+               required data-cy=login-password>
         <button type="button" mat-icon-button matSuffix (mousedown)="hidePassword = !hidePassword"
-            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
             <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
         <mat-error *ngIf="user.controls.password.invalid">{{getPasswordErrorMessage()}}</mat-error>

@@ -1,4 +1,4 @@
-import { User } from './user.model';
+import {User} from './user.model';
 
 export class LunchUnit {
   id: string;
@@ -13,7 +13,9 @@ export class LunchUnit {
   }
 
   static fromJSON(json: any): LunchUnit {
-    if ((json === undefined) || (json === null)) { return null; }
+    if ((json === undefined) || (json === null)) {
+      return null;
+    }
     const lunchUnit = new LunchUnit(
       json.lunch,
       json.mentors.map(User.fromJSON),

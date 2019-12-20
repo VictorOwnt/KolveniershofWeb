@@ -22,6 +22,7 @@ $hamburger-layer-spacing: 5px;
   -webkit-box-shadow: $shadow-hard;
   -moz-box-shadow: $shadow-hard;
   box-shadow: $shadow-hard;
+
   img {
     display: block;
     position: absolute;
@@ -29,6 +30,7 @@ $hamburger-layer-spacing: 5px;
     height: calc(100% - 36px);
     transform: translateY(-50%);
   }
+
   > button {
     z-index: 1110 !important;
   }
@@ -86,6 +88,7 @@ $hamburger-layer-spacing: 5px;
     a {
       -webkit-transform: translateZ(0);
       transition: opacity 0.2s ease-in-out;
+
       &:hover {
         opacity: 1;
       }
@@ -182,12 +185,11 @@ $box-shadow: ();
 $box-shadow2: ();
 @for $i from 0 through $particles {
   $box-shadow: $box-shadow,
-  random($width)-$width / 2 + px
-  random($height)-$height / 1.2 + px
-  hsl(random(360), 100, 50);
+  random($width)-$width / 2 + px random($height)-$height / 1.2 + px hsl(random(360), 100, 50);
   $box-shadow2: $box-shadow2, 0 0 #fff
 }
-@mixin keyframes ($animationName) {
+
+@mixin keyframes($animationName) {
   @-webkit-keyframes #{$animationName} {
     @content;
   }
@@ -209,7 +211,7 @@ $box-shadow2: ();
   }
 }
 
-@mixin animation-delay ($settings) {
+@mixin animation-delay($settings) {
   -moz-animation-delay: $settings;
   -webkit-animation-delay: $settings;
   -o-animation-delay: $settings;
@@ -217,7 +219,7 @@ $box-shadow2: ();
   animation-delay: $settings;
 }
 
-@mixin animation-duration ($settings) {
+@mixin animation-duration($settings) {
   -moz-animation-duration: $settings;
   -webkit-animation-duration: $settings;
   -o-animation-duration: $settings;
@@ -225,7 +227,7 @@ $box-shadow2: ();
   animation-duration: $settings;
 }
 
-@mixin animation ($settings) {
+@mixin animation($settings) {
   -moz-animation: $settings;
   -webkit-animation: $settings;
   -o-animation: $settings;
@@ -233,7 +235,7 @@ $box-shadow2: ();
   animation: $settings;
 }
 
-@mixin transform ($settings) {
+@mixin transform($settings) {
   transform: $settings;
   -moz-transform: $settings;
   -webkit-transform: $settings;
@@ -242,8 +244,8 @@ $box-shadow2: ();
 }
 
 body {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   background: #000;
   overflow: hidden;
 }
@@ -264,11 +266,11 @@ body {
 
 @include keyframes(bang) {
   to {
-    box-shadow:$box-shadow;
+    box-shadow: $box-shadow;
   }
 }
 
-@include keyframes(gravity)  {
+@include keyframes(gravity) {
   to {
     @include transform(translateY(200px));
     opacity: 0;

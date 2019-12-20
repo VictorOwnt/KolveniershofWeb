@@ -1,5 +1,5 @@
-import { Activity } from './activity.model';
-import { User } from './user.model';
+import {Activity} from './activity.model';
+import {User} from './user.model';
 
 export class ActivityUnit {
   id: string;
@@ -14,7 +14,9 @@ export class ActivityUnit {
   }
 
   static fromJSON(json: any): ActivityUnit {
-    if ((json === undefined) || (json === null)) { return null; }
+    if ((json === undefined) || (json === null)) {
+      return null;
+    }
     const activityUnit = new ActivityUnit(
       Activity.fromJSON(json.activity),
       json.mentors.map(User.fromJSON),
@@ -26,7 +28,7 @@ export class ActivityUnit {
 
   toJSON() {
     return {
-      _id : this.id,
+      _id: this.id,
       activity: this.activity.toJSON(),
       mentors: this.mentors.map(mentor => mentor.toJSON()),
       clients: this.clients.map(client => client.toJSON())

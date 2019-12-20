@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="99px" height="70px" viewBox="0 0 99 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="99px" height="70px" viewBox="0 0 99 70" version="1.1" xmlns="http://www.w3.org/2000/svg"
+>
     <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
     <title>Logo</title>
     <desc>Created with Sketch.</desc>
     <g id="Logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <circle id="Oval" fill="#2E7BE8" cx="35" cy="35" r="35"></circle>
         <polygon id="Triangle" fill="#003A70" points="99 2 99 70 35 70"></polygon>
-        <path d="M37.5,44 C39.9852814,44 42,46.0147186 42,48.5 L42,70 L42,70 L33,70 L33,48.5 C33,46.0147186 35.0147186,44 37.5,44 Z" id="Rectangle" fill="#FFFFFF"></path>
-        <path d="M50.5,39 C52.9852814,39 55,41.0147186 55,43.5 L55,70 L55,70 L46,70 L46,43.5 C46,41.0147186 48.0147186,39 50.5,39 Z" id="Rectangle" fill="#FFFFFF"></path>
-        <path d="M63.5,49 C65.9852814,49 68,51.0147186 68,53.5 L68,70 L68,70 L59,70 L59,53.5 C59,51.0147186 61.0147186,49 63.5,49 Z" id="Rectangle" fill="#FFFFFF"></path>
-        <path d="M76.5,44 C78.9852814,44 81,46.0147186 81,48.5 L81,70 L81,70 L72,70 L72,48.5 C72,46.0147186 74.0147186,44 76.5,44 Z" id="Rectangle" fill="#FFFFFF"></path>
-        <path d="M89.5,35 C91.9852814,35 94,37.0147186 94,39.5 L94,70 L94,70 L85,70 L85,39.5 C85,37.0147186 87.0147186,35 89.5,35 Z" id="Rectangle" fill="#FFFFFF"></path>
+        <path d="M37.5,44 C39.9852814,44 42,46.0147186 42,48.5 L42,70 L42,70 L33,70 L33,48.5 C33,46.0147186 35.0147186,44 37.5,44 Z"
+              id="Rectangle" fill="#FFFFFF"></path>
+        <path d="M50.5,39 C52.9852814,39 55,41.0147186 55,43.5 L55,70 L55,70 L46,70 L46,43.5 C46,41.0147186 48.0147186,39 50.5,39 Z"
+              id="Rectangle" fill="#FFFFFF"></path>
+        <path d="M63.5,49 C65.9852814,49 68,51.0147186 68,53.5 L68,70 L68,70 L59,70 L59,53.5 C59,51.0147186 61.0147186,49 63.5,49 Z"
+              id="Rectangle" fill="#FFFFFF"></path>
+        <path d="M76.5,44 C78.9852814,44 81,46.0147186 81,48.5 L81,70 L81,70 L72,70 L72,48.5 C72,46.0147186 74.0147186,44 76.5,44 Z"
+              id="Rectangle" fill="#FFFFFF"></path>
+        <path d="M89.5,35 C91.9852814,35 94,37.0147186 94,39.5 L94,70 L94,70 L85,70 L85,39.5 C85,37.0147186 87.0147186,35 89.5,35 Z"
+              id="Rectangle" fill="#FFFFFF"></path>
     </g>
 </svg>

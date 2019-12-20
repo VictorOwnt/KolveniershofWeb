@@ -26,7 +26,7 @@ import {ScheduleRoutingModule} from './schedule-routing.module';
 import {ScheduleUserComponent} from './schedule-user/schedule-user.component';
 import {UserSelectorModalComponent} from './user-selector-modal/user-selector-modal.component';
 import {ScheduleTemplateComponent} from './schedule-template/schedule-template.component';
-import { ScheduleBusComponent } from './schedule-bus/schedule-bus.component';
+import {ScheduleBusComponent} from './schedule-bus/schedule-bus.component';
 
 @NgModule({
   declarations: [

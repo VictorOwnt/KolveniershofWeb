@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 import {Workday} from '../../models/workday.model';
 import {DatesService} from '../../services/dates.service';
 
@@ -7,7 +7,8 @@ import {DatesService} from '../../services/dates.service';
 })
 export class WorkdayFilterPipe implements PipeTransform {
 
-  constructor(private datesService: DatesService) {}
+  constructor(private datesService: DatesService) {
+  }
 
   transform(workdays: Workday[], weekend: boolean): Workday[] {
     if (!workdays) {

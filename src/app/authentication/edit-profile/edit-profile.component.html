@@ -66,7 +66,7 @@
                 </mat-form-field>
             </div>
 
-            <mat-slide-toggle formControlName="admin">
+            <mat-slide-toggle *ngIf="isAdmin" formControlName="admin">
                 Begeleider
             </mat-slide-toggle>
         </div>

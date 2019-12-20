@@ -1,9 +1,9 @@
 @import "variables.scss";
 
 .svg-box {
-  display:inline-block;
+  display: inline-block;
   position: relative;
-  width:150px;
+  width: 150px;
   align-self: center;
 }
 
@@ -28,10 +28,10 @@
 }
 
 /*------- Checkmark ---------*/
-.checkmark{
+.checkmark {
   stroke-width: 6.25;
   stroke-linecap: round;
-  position:absolute;
+  position: absolute;
   top: 56px;
   left: 49px;
   width: 52px;
@@ -44,44 +44,44 @@
 
 @keyframes draw-circle {
   0% {
-    stroke-dasharray: 0,330;
+    stroke-dasharray: 0, 330;
     stroke-dashoffset: 0;
     opacity: 1;
   }
 
   80% {
-    stroke-dasharray: 330,330;
+    stroke-dasharray: 330, 330;
     stroke-dashoffset: 0;
     opacity: 1;
   }
 
-  100%{
+  100% {
     opacity: 0.4;
   }
 }
 
 @keyframes draw-check {
   0% {
-    stroke-dasharray: 49,80;
+    stroke-dasharray: 49, 80;
     stroke-dashoffset: 48;
     opacity: 0;
   }
 
   50% {
-    stroke-dasharray: 49,80;
+    stroke-dasharray: 49, 80;
     stroke-dashoffset: 48;
     opacity: 1;
   }
 
   100% {
-    stroke-dasharray: 130,80;
+    stroke-dasharray: 130, 80;
     stroke-dashoffset: 48;
   }
 }
 
 /*---------- Cross ----------*/
 .cross {
-  stroke-width:6.25;
+  stroke-width: 6.25;
   stroke-linecap: round;
   position: absolute;
   top: 54px;
@@ -100,40 +100,40 @@
 
 @keyframes draw-first-line {
   0% {
-    stroke-dasharray: 0,56;
+    stroke-dasharray: 0, 56;
     stroke-dashoffset: 0;
   }
 
   50% {
-    stroke-dasharray: 0,56;
+    stroke-dasharray: 0, 56;
     stroke-dashoffset: 0;
   }
 
   100% {
-    stroke-dasharray: 56,330;
+    stroke-dasharray: 56, 330;
     stroke-dashoffset: 0;
   }
 }
 
 @keyframes draw-second-line {
   0% {
-    stroke-dasharray: 0,55;
+    stroke-dasharray: 0, 55;
     stroke-dashoffset: 1;
   }
 
   50% {
-    stroke-dasharray: 0,55;
+    stroke-dasharray: 0, 55;
     stroke-dashoffset: 1;
   }
 
   100% {
-    stroke-dasharray: 55,0;
+    stroke-dasharray: 55, 0;
     stroke-dashoffset: 70;
   }
 }
 
 .alert-sign {
-  stroke-width:6.25;
+  stroke-width: 6.25;
   stroke-linecap: round;
   position: absolute;
   top: 40px;
@@ -144,7 +144,7 @@
 }
 
 .alert-sign .dot {
-  stroke:none;
+  stroke: none;
   fill: $color-warning;
 }
 

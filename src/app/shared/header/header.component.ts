@@ -63,7 +63,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl(url);
   }
 
-  private openAccountPopup() {
+  openAccountPopup() {
     this.dialog.open(EditProfileComponent, {
       width: '1000px',
       data: {user: this.auth.currentUser, isAdmin: false}

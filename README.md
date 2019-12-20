@@ -2,6 +2,8 @@
 
 <h1 align="center">Kolveniershof webapplication</h1>
 
+> ### [`https://kolv02-hogent.web.app`](https://kolv02-hogent.web.app)
+
 The 'Kolveniershof' webapplication is an application made to guide mentally disabled people through their weekly planning at the day care institution ([Ave Regina](https://www.averegina.be/vz---dagondersteuning.html)).
 
 Users can log in anywhere to view their schedule and possibly provide comments.
@@ -11,27 +13,36 @@ Here, the supervisors can create new schedules for upcoming weeks. The webapplic
 
 This project is part of the [Project III: Mobile apps](https://bamaflexweb.hogent.be/BMFUIDetailxOLOD.aspx?a=110488&b=1&c=1) course for the Bachelor of Applied Informatics at the Ghent University College [HoGent](https://www.hogent.be/en/) (Academic year 2019-2020).
 
-<!-- TODO - Add screenshots
 ## Screenshots
 
 <p align="center">
-    <img src="./screenshots/.jpg?raw=true" width="256px">
-    <img src="./screenshots/.jpg?raw=true" width="256px">
-    <img src="./screenshots/.jpg?raw=true" width="256px">
-    <img src="./screenshots/.jpg?raw=true" width="256px">
-    <img src="./screenshots/.jpg?raw=true" width="256px">
-    <img src="./screenshots/.jpg?raw=true" width="256px">
-    <img src="./screenshots/.jpg?raw=true" width="256px">
-    <img src="./screenshots/speed_camera_new.jpg?raw=true" width="256px">
-    <img src="./screenshots/police_check_new.jpg?raw=true" width="256px">
+    <img src="./screenshots/schedule_user.png?raw=true" width="256px">
+    <img src="./screenshots/schedule_admin.png?raw=true" width="256px">
+    <img src="./screenshots/schedule_admin_empty.png?raw=true" width="256px">
+    <img src="./screenshots/activities.png?raw=true" width="256px">
+    <img src="./screenshots/activities_edit.png?raw=true" width="256px">
+    <img src="./screenshots/busses_new.png?raw=true" width="256px">
+    <img src="./screenshots/activityunit_edit.png?raw=true" width="256px">
+    <img src="./screenshots/busunit_new.png?raw=true" width="256px">
+    <img src="./screenshots/lunchunit_delete.png?raw=true" width="256px">
+    <img src="./screenshots/notes_edit.png?raw=true" width="256px">
+    <img src="./screenshots/comment_view.png?raw=true" width="256px">
+    <img src="./screenshots/busschedule.png?raw=true" width="256px">
+    <img src="./screenshots/templates_edit.png?raw=true" width="256px">
+    <img src="./screenshots/template.png?raw=true" width="256px">
+    <img src="./screenshots/users.png?raw=true" width="256px">
+    <img src="./screenshots/users_invite.png?raw=true" width="256px">
+    <img src="./screenshots/register.png?raw=true" width="256px">
+    <img src="./screenshots/login.png?raw=true" width="256px">
+    <img src="./screenshots/nav.png?raw=true" width="256px">
+    <img src="./screenshots/user_edit.png?raw=true" width="256px">
 </p>
--->
 
 ---
 
 ## Getting Started
 
-The webapplication is currently hosted by [Heroku](https://www.heroku.com/) [![Heroku Frontend Status](http://heroku-shields.herokuapp.com/kolv02-frontend)](https://kolv02-frontend.herokuapp.com).
+The webapplication is currently hosted by [Firebase](https://firebase.google.com/) [![Website](https://img.shields.io/website?logo=firebase&url=https%3A%2F%2Fkolv02-hogent.web.app)](https://kolv02-hogent.web.app).
 
 [**Visit the website**](https://kolv02-frontend.herokuapp.com/)
 
@@ -105,14 +116,14 @@ This application relies on a REST backend server.
 2. Change the value for `API_URL` to your own link.
 3. Create a new Firebase project and change the values accordingly.
 
-The sourcecode for this server is located [here](https://github.com/HoGent-Projecten3/projecten3-1920-backend-kolv02). The server is hosted by [Heroku](https://www.heroku.com/) [![Heroku Backend Status](http://heroku-shields.herokuapp.com/kolv02-backend)](https://kolv02-backend.herokuapp.com).
+The sourcecode for this server is located [here](https://github.com/HoGent-Projecten3/projecten3-1920-backend-kolv02). The server is hosted by [Heroku](https://www.heroku.com/) [![Website](https://img.shields.io/website?label=backend&logo=heroku&url=https%3A%2F%2Fkolv02-backend.herokuapp.com%2Fdocs)](https://kolv02-backend.herokuapp.com).
 
 ## Built With
 
 - [Angular Material](https://material.angular.io/)
 - [Hamburgers](https://jonsuh.com/hamburgers/)
 - [ReactiveX](http://reactivex.io/)
-- [FireBase](https://firebase.google.com/)
+- [Firebase](https://firebase.google.com/)
 - [zxcvbn](https://github.com/dropbox/zxcvbn)
 
 ## Team
