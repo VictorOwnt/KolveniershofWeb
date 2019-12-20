@@ -285,23 +285,25 @@ export class ExportService {
         }
     );
     // Add activities
-    activityUnits.forEach(activityUnit => pdf.content.push([
-      {
-        text: activityUnit.activity.toString(),
-        style: 'unitTitle',
-        margin: [0, 20, 0, 10]
-      },
-      {
-        layout: 'noBorders',
-        table: {
-          widths: ['auto', '*'],
-          body: [
-            [{text: 'Begeleiders', bold: true}, activityUnit.mentors.join(', ')],
-            [{text: 'Cliënten', bold: true}, activityUnit.clients.join(', ')]
-          ]
+    if (activityUnits.length !== 0) {
+      activityUnits.forEach(activityUnit => pdf.content.push([
+        {
+          text: activityUnit.activity.toString(),
+          style: 'unitTitle',
+          margin: [0, 20, 0, 10]
+        },
+        {
+          layout: 'noBorders',
+          table: {
+            widths: ['auto', '*'],
+            body: [
+              [{text: 'Begeleiders', bold: true}, activityUnit.mentors.join(', ')],
+              [{text: 'Cliënten', bold: true}, activityUnit.clients.join(', ')]
+            ]
+          }
         }
-      }
-    ]));
+      ]));
+    }
   }
 
   /**
@@ -320,23 +322,25 @@ export class ExportService {
       }
     );
     // Add busses
-    busUnits.forEach(busUnit => pdf.content.push([
-      {
-        text: busUnit.bus.toString(),
-        style: 'unitTitle',
-        margin: [0, 20, 0, 10]
-      },
-      {
-        layout: 'noBorders',
-        table: {
-          widths: ['auto', '*'],
-          body: [
-            [{text: 'Begeleiders', bold: true}, busUnit.mentors.join(', ')],
-            [{text: 'Cliënten', bold: true}, busUnit.clients.join(', ')]
-          ]
+    if (busUnits.length !== 0) {
+      busUnits.forEach(busUnit => pdf.content.push([
+        {
+          text: busUnit.bus.toString(),
+          style: 'unitTitle',
+          margin: [0, 20, 0, 10]
+        },
+        {
+          layout: 'noBorders',
+          table: {
+            widths: ['auto', '*'],
+            body: [
+              [{text: 'Begeleiders', bold: true}, busUnit.mentors.join(', ')],
+              [{text: 'Cliënten', bold: true}, busUnit.clients.join(', ')]
+            ]
+          }
         }
-      }
-    ]));
+      ]));
+    }
   }
 
   /**
