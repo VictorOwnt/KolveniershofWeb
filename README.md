@@ -51,13 +51,13 @@ The webapplication is currently hosted by [Firebase](https://firebase.google.com
 1. Clone this repo
 
    ```bash
-   git clone https://github.com/HoGent-Projecten3/projecten3-1920-angular-kolv02
+   git clone https://github.com/VictorOwnt/KolveniershofWeb
    ```
 
 2. Open the project root directory
 
    ```bash
-   cd projecten3-1920-angular-kolv02
+   cd KolveniershofWeb
    ```
 
 3. Install dependencies from npm
@@ -77,7 +77,7 @@ The webapplication is currently hosted by [Firebase](https://firebase.google.com
 > Copy paste this in your terminal if you're lazy. 😴
 >
 > ```bash
-> git clone https://github.com/HoGent-Projecten3/projecten3-1920-angular-kolv02 && cd projecten3-1920-angular-kolv02 && npm i && npm start
+> git clone https://github.com/VictorOwnt/KolveniershofWeb && cd KolveniershofWeb && npm i && npm start
 > ```
 
 #### Dummy login
@@ -116,7 +116,7 @@ This application relies on a REST backend server.
 2. Change the value for `API_URL` to your own link.
 3. Create a new Firebase project and change the values accordingly.
 
-The sourcecode for this server is located [here](https://github.com/HoGent-Projecten3/projecten3-1920-backend-kolv02). The server is hosted by [Heroku](https://www.heroku.com/) [![Website](https://img.shields.io/website?label=backend&logo=heroku&url=https%3A%2F%2Fkolv02-backend.herokuapp.com%2Fdocs)](https://kolv02-backend.herokuapp.com).
+The sourcecode for this server is located [here](https://github.com/VictorOwnt/KolveniershofBackend). The server is hosted by [Heroku](https://www.heroku.com/) [![Website](https://img.shields.io/website?label=backend&logo=heroku&url=https%3A%2F%2Fkolv02-backend.herokuapp.com%2Fdocs)](https://kolv02-backend.herokuapp.com).
 
 ## Built With
 
