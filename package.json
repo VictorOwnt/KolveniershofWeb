@@ -28,7 +28,7 @@
     "firebase": "^7.5.2",
     "hamburgers": "^1.1.3",
     "hammerjs": "^2.0.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ngx-color-picker": "^8.2.0",
     "ngx-img-fallback": "^1.3.4",
     "normalize.css": "^8.0.1",
